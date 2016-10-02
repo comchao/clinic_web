@@ -159,103 +159,122 @@ window.onclick = function(event) {
                             <label for="radio2">กล้ามเนื้อตามร่างกาายกระตุกชัก</label>
                         </div>
                     </li>
+                    
  -->
-                    <li>
+                    
+                     <li>
                         <div class="pure-radiobutton">
-                            <input id="radio3" name="radio" type="checkbox" class="radio">
-                            <label for="radio3">ความอยากอาหารลดลง</label>
+                            <input id="radio1" name="radio" type="checkbox" class="radio">
+                            <label for="radio1">กินน้ำเยอะ</label>
                         </div>
                     </li>
                      <li>
                         <div class="pure-radiobutton">
+                            <input id="radio2" name="radio" type="checkbox" class="radio">
+                            <label for="radio2">กล้ามเนื้อตามร่างกาายกระตุกชัก</label>
+                        </div>
+                    </li>
+                     <li>
+                        <div class="pure-radiobutton">
+                            <input id="radio3" name="radio" type="checkbox" class="radio">
+                            <label for="radio3">ตาขุนมัว ภาสะต้อ เเต่จะไม่พบในเเมว</label>
+                        </div>
+                    </li><li>
+                        <div class="pure-radiobutton">
                             <input id="radio4" name="radio" type="checkbox" class="radio">
-                            <label for="radio4">ซึม เบื่ออาหาร อาจมีไข้</label>
+                            <label for="radio4">ความอยากอาหารลดลง</label>
                         </div>
                     </li>
                      <li>
                         <div class="pure-radiobutton">
                             <input id="radio5" name="radio" type="checkbox" class="radio">
-                            <label for="radio5">ตาขุนมัว ภาสะต้อ เเต่จะไม่พบในเเมว</label>
+                            <label for="radio5">ซึม เบื่ออาหาร อาจมีไข้</label>
                         </div>
                     </li>
                      <li>
                         <div class="pure-radiobutton">
                             <input id="radio6" name="radio" type="checkbox" class="radio">
-                            <label for="radio6">ท้องเสีย ถ่ายน้ำ จนถ่ายเป็ยเลือด เหม็นคาว</label>
+                            <label for="radio6">ตาขุนมัว ภาสะต้อ เเต่จะไม่พบในเเมว</label>
                         </div>
                     </li>
                      <li>
                         <div class="pure-radiobutton">
                             <input id="radio7" name="radio" type="checkbox" class="radio">
-                            <label for="radio7">ที่ตา   พบเเผลหลุมที่จระจกตา ตาเเห้ง</label>
+                            <label for="radio7">ท้องเสีย ถ่ายน้ำ จนถ่ายเป็ยเลือด เหม็นคาว</label>
+                        </div>
+                    </li>
+                     <li>
+                        <div class="pure-radiobutton">
+                            <input id="radio8" name="radio" type="checkbox" class="radio">
+                            <label for="radio8">ที่ตา   พบเเผลหลุมที่จระจกตา ตาเเห้ง</label>
                         </div>
                     </li>
 
-                    <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio8" name="radio" type="checkbox" class="radio">
-                            <label for="radio8">น้ำหนักลด</label>
-                        </div>
-                    </li>
                     <li>
                         <div class="pure-radiobutton">
                             <input id="radio9" name="radio" type="checkbox" class="radio">
-                            <label for="radio9">ปัสสาวะมาก</label>
+                            <label for="radio9">น้ำหนักลด</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pure-radiobutton">
+                            <input id="radio10" name="radio" type="checkbox" class="radio">
+                            <label for="radio10">ปัสสาวะมาก</label>
                         </div>
                     </li>
                      <li>
                         <div class="pure-radiobutton">
-                            <input id="radio10" name="radio" type="checkbox" class="radio">
-                            <label for="radio10">พบมากในสัตว์อายุเยอะ</label>
+                            <input id="radio11" name="radio" type="checkbox" class="radio">
+                            <label for="radio11">พบมากในสัตว์อายุเยอะ</label>
                         </div>
                     </li>
 
                     <li>
                         <div class="pure-radiobutton">
-                            <input id="radio11" name="radio" type="checkbox" class="radio" >
-                            <label for="radio11">มีกลิ้นปากฉุน เหมือนแอมโมเนีย</label>
+                            <input id="radio12" name="radio" type="checkbox" class="radio" >
+                            <label for="radio12">มีกลิ้นปากฉุน เหมือนแอมโมเนีย</label>
                         </div>
                     </li>
                     <li>
                         <div class="pure-radiobutton">
-                            <input id="radio12" name="radio" type="checkbox" class="radio" >
-                            <label for="radio12">มีน้ำมูกใสต่อมาข้นเหลือง อาจมีไอหายใจลำบาก</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
                             <input id="radio13" name="radio" type="checkbox" class="radio" >
-                            <label for="radio13">ไม่กินอาหาร อาจมีอาเจียน</label>
+                            <label for="radio13">มีน้ำมูกใสต่อมาข้นเหลือง อาจมีไอหายใจลำบาก</label>
                         </div>
                     </li>
                      <li>
                         <div class="pure-radiobutton">
                             <input id="radio14" name="radio" type="checkbox" class="radio" >
-                            <label for="radio14">หิวบ่อย กินอาหารมากขั้น เเต่ไม่อ้วน</label>
+                            <label for="radio14">ไม่กินอาหาร อาจมีอาเจียน</label>
+                        </div>
+                    </li>
+                     <li>
+                        <div class="pure-radiobutton">
+                            <input id="radio15" name="radio" type="checkbox" class="radio" >
+                            <label for="radio15">หิวบ่อย กินอาหารมากขั้น เเต่ไม่อ้วน</label>
                         </div>
                     </li>
                     <li>
                      <div class="pure-radiobutton">
-                            <input id="radio15" name="radio" type="checkbox" class="radio" >
-                            <label for="radio15">อาเจียน</label>
+                            <input id="radio16" name="radio" type="checkbox" class="radio" >
+                            <label for="radio16">อาเจียน</label>
                         </div>
                     </li>
                      <li>
                       <div class="pure-radiobutton">
-                            <input id="radio16" name="radio" type="checkbox" class="radio" >
-                            <label for="radio16">อาเจียหรือท้องเสีย</label>
+                            <input id="radio17" name="radio" type="checkbox" class="radio" >
+                            <label for="radio17">อาเจียหรือท้องเสีย</label>
                         </div>
                     </li>
                       <li>
                       <div class="pure-radiobutton">
-                            <input id="radio17" name="radio" type="checkbox" class="radio" >
-                            <label for="radio17">อาเจียมีท้องเสีย เป็นนมูกหรือปนเลือดและอาเจียน</label>
+                            <input id="radio18" name="radio" type="checkbox" class="radio" >
+                            <label for="radio18">อาเจียมีท้องเสีย เป็นนมูกหรือปนเลือดและอาเจียน</label>
                         </div>
                     </li>
                      <li>
                       <div class="pure-radiobutton">
-                            <input id="radio18" name="radio" type="checkbox" class="radio" >
-                            <label for="radio18">อาจมีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง</label>
+                            <input id="radio19" name="radio" type="checkbox" class="radio" >
+                            <label for="radio19">อาจมีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง</label>
                         </div>
                     </li>
                     
