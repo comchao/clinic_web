@@ -140,11 +140,11 @@ window.onclick = function(event) {
 }
 </script>
 <div class="page">
-    <h3 class="page-title"><center>วินิฉัยโรคสัตว์เบื้องต้น</center></h3>
+    <h3 class="page-title"><center>วินิฉัยโรคสัตว์</center></h3>
 
     <form action="">
         <div class="panel">
-            <div class="panel-heading">อาการที่พบ</div>
+            <div class="panel-heading">อาการที่พบเบื้องต้น</div>
             <div class="panel-body">
                 <ul class="input-list">
                 
