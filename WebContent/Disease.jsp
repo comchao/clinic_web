@@ -159,6 +159,7 @@ window.onclick = function(event) {
                             <label for="radio2">กล้ามเนื้อตามร่างกาายกระตุกชัก</label>
                         </div>
                     </li>
+                    ไม่เอานะครับ
                     
  -->
                     
