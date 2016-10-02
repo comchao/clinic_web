@@ -147,21 +147,7 @@ window.onclick = function(event) {
             <div class="panel-heading">อาการที่พบ</div>
             <div class="panel-body">
                 <ul class="input-list">
-                   <!--  <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio1" name="radio" type="checkbox" class="radio" checked="checked">
-                            <label for="radio1">กินน้ำเยอะ</label>
-                        </div>
-                    </li>
-                      <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio2" name="radio" type="checkbox" class="radio" checked="checked">
-                            <label for="radio2">กล้ามเนื้อตามร่างกาายกระตุกชัก</label>
-                        </div>
-                    </li>
-                    ไม่เอานะครับ55555+++
-                    
- -->
+                
                     
                      <li>
                         <div class="pure-radiobutton">
