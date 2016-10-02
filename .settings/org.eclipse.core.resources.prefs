@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//WebContent/ShowCalendar1.jsp=UTF-8
+encoding//WebContent/demo/Disease.jsp=UTF-8
+encoding//src/dao/ProductDAO.java=UTF-8
+encoding//src/net/calendar/db/CalDAO.java=UTF-8
+encoding//src/servlet/AddCalenderServlet.java=UTF-8
+encoding//src/servlet/LoginServlet.java=UTF-8

@@ -1,0 +1,10 @@
+<Context>
+	<Resource name="jdbc/petshopdb"
+			  auth="Container" 
+			  type="javax.sql.DataSource" 
+			  driverClassName="com.mysql.jdbc.Driver"
+			  url="jdbc:mysql://localhost:3306/petshopdb"
+			  username="root"
+			  password=""
+			  />
+</Context>
