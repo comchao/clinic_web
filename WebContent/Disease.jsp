@@ -139,9 +139,10 @@ window.onclick = function(event) {
     }
 }
 </script>
-<div class="page">
-    <h3 class="page-title"><center>วินิฉัยโรคสัตว์</center></h3>
 
+<div class="col-lg-6">
+ 	<div class="cont2">
+ 	
     <form action="">
         <div class="panel">
             <div class="panel-heading">อาการที่พบเบื้องต้น</div>
@@ -210,7 +211,18 @@ window.onclick = function(event) {
                         </div>
                     </li>
                      <li>
-                        <div class="pure-radiobutton">
+                       
+                    </div>
+
+                </ul>
+            </div></div></div></div>
+            <div class="col-sm-6">
+				
+							<div class="panel">
+            <div class="panel-heading">อาการที่พบเบื้องต้น</div>
+            <div class="panel-body">
+                <ul class="input-list">
+                 <div class="pure-radiobutton">
                             <input id="radio11" name="radio" type="checkbox" class="radio">
                             <label for="radio11">พบมากในสัตว์อายุเยอะ</label>
                         </div>
@@ -263,18 +275,15 @@ window.onclick = function(event) {
                             <input id="radio19" name="radio" type="checkbox" class="radio" >
                             <label for="radio19">อาจมีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง</label>
                         </div>
+                         <br><br> 
                     </li>
-                    
+                   
+        </div>
+        </div></div></div>
+              
+  
 
-                </ul>
-            </div>
-        </div>
-        
-                </ul>
-            </div>
-        </div>
-    </form>
-</div>
+
 </body>
 </html>
 	
