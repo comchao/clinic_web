@@ -150,6 +150,7 @@ window.onclick = function(event) {
             <div class="panel-body">
                 <ul class="input-list">
               <table bgcolor="#FFFFFF">
+            <!--   อาการโรคสัตว์ที่พบเบื้องต้น -->
  <li>
 
      <tr><td>กินน้ำ</td><td> <input name="กินน้ำ"type="radio"  value="1" > มาก  </td><td><input name="กินน้ำ"type="radio" value="0.5"> น้อย </td><td> <input name="กินน้ำ"type="radio"  value="0"> ปกติ </td></tr>
