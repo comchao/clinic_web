@@ -140,83 +140,49 @@ window.onclick = function(event) {
 }
 </script>
 
+<center>
 <div class="col-lg-6">
- 	<div class="cont2">
+ 	<div class="cont1">
  	
     <form action="">
         <div class="panel">
             <div class="panel-heading">อาการที่พบเบื้องต้น</div>
             <div class="panel-body">
                 <ul class="input-list">
-                
-                    
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio1" name="radio" type="checkbox" class="radio">
-                            <label for="radio1">กินน้ำเยอะ</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio2" name="radio" type="checkbox" class="radio">
-                            <label for="radio2">กล้ามเนื้อตามร่างกาายกระตุกชัก</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio3" name="radio" type="checkbox" class="radio">
-                            <label for="radio3">ตาขุนมัว ภาสะต้อ เเต่จะไม่พบในเเมว</label>
-                        </div>
-                    </li><li>
-                        <div class="pure-radiobutton">
-                            <input id="radio4" name="radio" type="checkbox" class="radio">
-                            <label for="radio4">ความอยากอาหารลดลง</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio5" name="radio" type="checkbox" class="radio">
-                            <label for="radio5">ซึม เบื่ออาหาร อาจมีไข้</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio6" name="radio" type="checkbox" class="radio">
-                            <label for="radio6">ตาขุนมัว ภาสะต้อ เเต่จะไม่พบในเเมว</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio7" name="radio" type="checkbox" class="radio">
-                            <label for="radio7">ท้องเสีย ถ่ายน้ำ จนถ่ายเป็ยเลือด เหม็นคาว</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio8" name="radio" type="checkbox" class="radio">
-                            <label for="radio8">ที่ตา   พบเเผลหลุมที่จระจกตา ตาเเห้ง</label>
-                        </div>
-                    </li>
+              <table bgcolor="#FFFFFF">
+ <li>
 
-                    <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio9" name="radio" type="checkbox" class="radio">
-                            <label for="radio9">น้ำหนักลด</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio10" name="radio" type="checkbox" class="radio">
-                            <label for="radio10">ปัสสาวะมาก</label>
-                        </div>
-                    </li>
-                     <li>
-                       
-                    </div>
-
-                </ul>
+     <tr><td>กินน้ำ</td><td> <input name="กินน้ำ"type="radio"  value="1" > มาก  </td><td><input name="กินน้ำ"type="radio" value="0.5"> น้อย </td><td> <input name="กินน้ำ"type="radio"  value="0"> ปกติ </td></tr>
+     <tr><td>กล้ามเนื้อตามร่างกาายกระตุกชัก</td><td> <input name="กล้ามเนื้อตามร่างกาายกระตุกชัก"type="radio"  value="1"> มาก</td><td><input name="กล้ามเนื้อตามร่างกาายกระตุกชัก"type="radio" value="0.5"> น้อย </td><td> <input name="กล้ามเนื้อตามร่างกาายกระตุกชัก"type="radio"  value="0"> ปกติ </td></tr>
+     <tr><td>ขับถ่าย</td><td> <input name="ขับถ่าย"type="radio"  value="1"> เลือด  </td><td><input name="ขับถ่าย"type="radio" value="0.5"> น้ำ  </td> <td> <input name="กินน้ำ"type="radio"  value="0"> ปกติ </td></tr>
+  	 <tr><td>ความอยากอาหาร</td><td> <input name="ความอยากอาหาร"type="radio"  value="1"> หิวมาก </td> <td><input name="ความอยากอาหาร"type="radio" value="0.5"> หิวน้อย </td><td> <input name="ความอยากอาหาร"type="radio"  value="0"> ปกติ </td></tr>
+     <tr><td>ตาขุนมัว ภาสะต้อ </td><td> <input name="ตาขุนมัว ภาสะต้อ"type="radio"  value="1"> มาก </td><td><input name="ตาขุนมัว ภาสะต้อ"type="radio" value="0.5"> น้อย </td><td> <input name="ตาขุนมัว ภาสะต้อ"type="radio"  value="0"> ปกติ </td></tr>
+    <tr><td>ที่ตา พบเเผลหลุมที่จระจกตา ตาเเห้ง</td><td> <input name="ที่ตา พบเเผลหลุมที่จระจกตา ตาเเห้ง"type="radio"  value="1"> มาก </td><td><input name="ที่ตา พบเเผลหลุมที่จระจกตา ตาเเห้ง"type="radio" value="0.5"> น้อย </td><td> <input name="ที่ตา พบเเผลหลุมที่จระจกตา ตาเเห้ง"type="radio"  value="0"> ปกติ </td></tr>
+   <tr><td>น้ำหนัก</td> <td><td> <input name="น้ำหนัก"type="radio"  value="1"> ลด <td> <input name="น้ำหนัก"type="radio"  value="0"> ปกติ</td></tr>
+   <tr><td>ปัสสาวะ</td><td> <input name="ปัสสาวะ"type="radio"  value="1"> มาก </td><td><input name="ปัสสาวะ"type="radio" value="0.5"> น้อย </td><td> <input name="ปัสสาวะ"type="radio"  value="0"> ปกติ </td></tr>
+    <tr><td>มีกลิ้นปากฉุน </td><td> <input name="มีกลิ้นปากฉุน"type="radio"  value="1"> มาก </td><td><input name="มีกลิ้นปากฉุน"type="radio" value="0.5"> น้อย </td><td> <input name="มีกลิ้นปากฉุน"type="radio"  value="0"> ปกติ </td></tr>
+     <tr><td>มีไข้</td><td> <input name="มีไข้"type="radio"  value="1"> สูง </td><td><input name="มีไข้"type="radio" value="0.5"> ต่ำ </td><td> <input name="มีไข้"type="radio"  value="0"> ปกติ </td></tr>
+     <tr><td>มีน้ำมูกใส </td><td> <input name="มีน้ำมูกใส"type="radio"  value="1"> มาก </td><td><input name="มีน้ำมูกใส"type="radio" value="0.5"> น้อย </td><td> <input name="มีน้ำมูกใส"type="radio"  value="0"> ปกติ </td></tr>
+    <tr><td>มีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  </td><td> <input name="มีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง"type="radio"  value="1"> มาก </td><td><input name="มีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง"type="radio" value="0.5"> น้อย </td><td> <input name="มีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง"type="radio"  value="0"> ปกติ </td></tr>
+    <tr><td>อาการซึม</td><td> <input name="อาการซึม"type="radio"  value="1"> มาก </td><td><input name="อาการซึม"type="radio" value="0.5"> น้อย </td><td> <input name="อาการซึม"type="radio"  value="0"> ปกติ </td></tr>
+    <tr><td>อาเจียน  </td><td> <input name="อาเจียน"type="radio"  value="1"> มาก </td><td><input name="อาเจียน"type="radio" value="0.5"> น้อย </td><td> <input name="อาเจียน"type="radio"  value="0"> ปกติ </td></tr>
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+                         
+  
+  
+</table>
             </div></div></div></div>
-            <div class="col-sm-6">
+            </center>
+          <!--   <div class="col-sm-6">
 				
 							<div class="panel">
             <div class="panel-heading">อาการที่พบเบื้องต้น</div>
@@ -275,18 +241,17 @@ window.onclick = function(event) {
                             <input id="radio19" name="radio" type="checkbox" class="radio" >
                             <label for="radio19">อาจมีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง</label>
                         </div>
-                         <br><br> 
+                         
                     </li>
                    
         </div>
         </div></div></div>
-              
-  
+</table>
 
 
 </body>
 </html>
-	
+	 -->
 	
 </div>
 <%@ include file="footer_index.jsp"%>
