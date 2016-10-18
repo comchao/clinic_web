@@ -146,7 +146,7 @@
 			
 			<!-- ปฎิทิน -->
 			<div class="col-sm-3 officer-menu-item">
-				<a href="Disease.jsp?id=<%=session.getAttribute("id")%>"class="officer-menu-link"
+				<a href="DiseaseGetSymptomServlet?id=<%=session.getAttribute("id")%>"class="officer-menu-link"
 					data-toggle="modal">
 					<div class="caption">
 						<div class="caption-content">
