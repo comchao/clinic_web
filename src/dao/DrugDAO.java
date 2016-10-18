@@ -14,7 +14,7 @@ public class DrugDAO {
 	static ResultSet rs = null;
 	static PreparedStatement preparedStmt;
 	
-	//เน€เธ�เธดเน�เธกเธ�เน�เธญเธกเธนเธฅเธขเธฒ
+	
 	public boolean insertDrug(DrugBean drug) {
 
 		String sql = "insert into drug"
@@ -47,7 +47,7 @@ public class DrugDAO {
 		}
 	}
 	
-	//เธ�เน�เธ�เธซเธฒเธ�เน�เธญเธกเธนเธฅเธขเธฒเธ—เธฑเน�เธ�เธซเธกเธ”
+	
 	static public ArrayList<DrugBean> queryDrugAll(){
 		
 		DrugBean drugBean = new DrugBean();
@@ -135,7 +135,7 @@ public class DrugDAO {
 		return null;
 	}
 	
-	//เธ�เน�เธ�เธซเธฒเธ�เน�เธญเธกเธนเธฅเธขเธฒ
+
 		public ArrayList<DrugBean> searchDrug(String drugName) {
 
 			DrugBean drugBean = new DrugBean();
@@ -225,7 +225,7 @@ public class DrugDAO {
 			return null;
 		}
 		
-	//เธฅเธ�เธ�เน�เธญเธกเธนเธฅเธขเธฒ
+	//à¹€à¸˜à¸…à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸�à¹€à¸˜à¸™à¹€à¸˜à¸…à¹€à¸˜à¸‚à¹€à¸˜à¸’
 	
 	public boolean delDrug(DrugBean drug) {
 
@@ -253,7 +253,7 @@ public class DrugDAO {
 		}
 	}
 	
-	//เน�เธ�เน�เน�เธ� เธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”เธขเธฒ
+	//à¹€à¸™ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸™ï¿½à¹€à¸˜ï¿½ à¹€à¸˜à¸ƒà¹€à¸˜à¸’à¹€à¸˜à¸‚à¹€à¸˜à¸…à¹€à¸˜à¸�à¹€à¸™â‚¬à¹€à¸˜à¸�à¹€à¸˜à¸•à¹€à¸˜à¸‚à¹€à¸˜â€�à¹€à¸˜à¸‚à¹€à¸˜à¸’
 	
 	public boolean updateDrug(DrugBean drug) {
 

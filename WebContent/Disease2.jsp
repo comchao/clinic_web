@@ -144,32 +144,78 @@ window.onclick = function(event) {
 <div class="col-lg-6">
  	<div class="cont1">
  	
-    <form action="Disease2.jsp" method="post">
+    <form action="">
         <div class="panel">
-            <div class="panel-heading">อาการที่พบเบื้องต้น</div>
+            <div class="panel-heading">อาการที่พบ</div>
             <div class="panel-body">
                 <ul class="input-list">
               <table bgcolor="#FFFFFF">
             <!--   อาการโรคสัตว์ที่พบเบื้องต้น -->
  <li>
+ <%
+ String spasm = request.getParameter("spasm");  			      /* 1 */
+ String halitosis = request.getParameter("halitosis"); 		      /* 2 */
+ String water = request.getParameter("water");     	              /* 3 */
+ String eat = request.getParameter("eat");        				  /* 4 */
+ String dapress = request.getParameter("dapress");				  /* 5 */
+ String blear = request.getParameter("blear ");					   /* 6 */
+ String eyelesion = request.getParameter("eyelesion");			   /* 7 */
+ String pustsule = request.getParameter("pustsule");				/* 8 */
+ String excrete = request.getParameter("excrete");						/* 9 */
+ String snot = request.getParameter("snot");						/* 10 */
+ String weight = request.getParameter("weight");						/* 11 */
+ String urinate = request.getParameter("urinate");						/* 12 */
+ String fever = request.getParameter("fever");							/* 13 */
+ String vomit = request.getParameter("vomit");						/* 14 */
+ %> 
+<%if(spasm!=null){ %>
+	 <%=spasm%>        <!--  1 -->
+<% }%>
+	<%if(halitosis!=null){ %>
+	 <%=halitosis%>    <!--  2 -->
+	 <% }%>
+	 <%if(water!=null){ %>
+	 <%=water%> 	   <!--  3 -->
+	  <% }%>
+	 	 <%if(eat!=null){ %>
+	 <%=eat%> 		   <!--  4 -->
+	   <% }%>
+	    <%if(dapress!=null){ %>
+	 <%=dapress%>      <!--  5 -->
+	  <% }%>
+	    <%if(dapress!=null){ %>
+	 <%=dapress%>        <!--  6 -->
+	   <% }%>
+	   <%if(eyelesion!=null){ %>
+	 <%=eyelesion%>    <!--  7 -->
+	  <% }%>
+	     <%if(pustsule!=null){ %>
+	 <%=pustsule%>     <!--  8 -->
+	  <% }%>
+	    <%if(excrete!=null){ %>
+	 <%=excrete%>      <!--  9 -->
+	 <% }%>
+	   <%if(snot!=null){ %>
+	 <%=snot%>         <!--  10 -->
+	  <% }%>
+	   <%if(weight!=null){ %>
+	 <%=weight%>       <!--  11-->
+	 <% }%>
+	   <%if(urinate!=null){ %>
+	 <%=urinate%>      <!--  12-->
+	  <% }%>
+	   <%if(urinate!=null){ %>
+	 <%=fever%>        <!--  13-->
+	 <% }%>
+	  <%if(vomit!=null){ %>
+	  <%=vomit%>        <!--  14-->
+      <% }%>
 
-     <tr><td>กินน้ำ</td><td> <input name="water"type="radio"  value="1" > มาก  </td><td><input name="water"type="radio" value="0.5"> น้อย </td><td> <input name="water"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>กล้ามเนื้อตามร่างกาายกระตุกชัก</td><td> <input name="spasm"type="radio"  value="1"> มาก</td><td><input name="spasm"type="radio" value="0.5"> น้อย </td><td> <input name="spasm"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>ขับถ่าย</td><td> <input name="excrete"type="radio"  value="1"> เลือด  </td><td><input name="excrete"type="radio" value="0.5"> น้ำ  </td> <td> <input name="excrete"type="radio"  value="0"> ปกติ </td></tr>
-  	 <tr><td>ความอยากอาหาร</td><td> <input name="eat"type="radio"  value="1"> หิวมาก </td> <td><input name="eat"type="radio" value="0.5"> หิวน้อย </td><td> <input name="eat"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>ตาขุนมัว ภาสะต้อ </td><td> <input name="pustsule"type="radio"  value="1"> มาก </td><td><input name="pustsule"type="radio" value="0.5"> น้อย </td><td> <input name="pustsule"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>ที่ตา พบเเผลหลุมที่จระจกตา ตาเเห้ง</td><td> <input name="eyelesion"type="radio"  value="1"> มาก </td><td><input name="eyelesion"type="radio" value="0.5"> น้อย </td><td> <input name="eyelesion"type="radio"  value="0"> ปกติ </td></tr>
-   <tr><td>น้ำหนัก</td> <td><td> <input name="weight"type="radio"  value="1"> ลด <td> <input name="น้ำหนัก"type="radio"  value="0"> ปกติ</td></tr>
-   <tr><td>ปัสสาวะ</td><td> <input name="urinate"type="radio"  value="1"> มาก </td><td><input name="urinate"type="radio" value="0.5"> น้อย </td><td> <input name="urinate"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>มีกลิ้นปากฉุน </td><td> <input name="halitosis"type="radio"  value="1"> มาก </td><td><input name="halitosis"type="radio" value="0.5"> น้อย </td><td> <input name="halitosis"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>มีไข้</td><td> <input name="fever"type="radio"  value="1"> สูง </td><td><input name="fever"type="radio" value="0.5"> ต่ำ </td><td> <input name="fever"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>มีน้ำมูกใส </td><td> <input name="snot"type="radio"  value="1"> มาก </td><td><input name="snot"type="radio" value="0.5"> น้อย </td><td> <input name="snot"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>มีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  </td><td> <input name="pustsule"type="radio"  value="1"> มาก </td><td><input name="pustsule"type="radio" value="0.5"> น้อย </td><td> <input name="pustsule"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>อาการซึม</td><td> <input name="pustsule"type="radio"  value="1"> มาก </td><td><input name="pustsule"type="radio" value="0.5"> น้อย </td><td> <input name="pustsule"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>อาเจียน  </td><td> <input name="vomit"type="radio"  value="1"> มาก </td><td><input name="vomit"type="radio" value="0.5"> น้อย </td><td> <input name="vomit"type="radio"  value="0"> ปกติ </td></tr>
- <input type="submit">
-  </from>
-  
+   
+   
+ 
+
+    
   
   
   
