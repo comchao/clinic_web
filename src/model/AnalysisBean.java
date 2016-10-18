@@ -21,14 +21,14 @@ public class AnalysisBean {
 	public void setId_symptom(int id_symptom) {
 		this.id_symptom = id_symptom;
 	}
-	public int getValue() {
+	public float getValue() {
 		return value;
 	}
-	public void setValue(int value) {
+	public void setValue(float value) {
 		this.value = value;
 	}
 	int id_symptom;
-	int value;
+	float value;
 	boolean valid;
 	public boolean isValid() {
 		return valid;

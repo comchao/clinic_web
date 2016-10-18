@@ -72,7 +72,7 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 		      AnalysisBean Bean = new AnalysisBean();	
 				
 		        Bean.setId_symptom(Integer.parseInt(id_symptom));
-		        Bean.setValue(Integer.parseInt(value));
+		        Bean.setValue(Float.parseFloat(value));
 				
 				
 				// DAO login

@@ -80,7 +80,7 @@ public static boolean  insertDisease(AnalysisBean disease) {
 		preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
 		preparedStmt.setInt(1, disease.getId_symptom());
 		System.out.println("Id_symptom"+disease.getId_symptom());
-		preparedStmt.setInt(2, disease.getValue());
+		preparedStmt.setFloat(2, disease.getValue());
 		System.out.println("Value"+disease.getValue());
 		preparedStmt.executeUpdate();
 		dbc.closeConnection();
