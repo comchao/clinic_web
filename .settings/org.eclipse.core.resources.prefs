@@ -5,3 +5,5 @@ encoding//src/dao/ProductDAO.java=UTF-8
 encoding//src/net/calendar/db/CalDAO.java=UTF-8
 encoding//src/servlet/AddCalenderServlet.java=UTF-8
 encoding//src/servlet/LoginServlet.java=UTF-8
+encoding/<project>=UTF-8
+separateDerivedEncodings=true

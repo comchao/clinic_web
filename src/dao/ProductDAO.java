@@ -21,7 +21,7 @@ public class ProductDAO {
 	static ResultSet rs = null;
 	static PreparedStatement preparedStmt;
 
-	// à¹€à¸™â‚¬à¹€à¸˜ï¿½à¹€à¸˜à¸”à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸�à¹€à¸˜à¸™à¹€à¸˜à¸…à¹€à¸˜à¸Šà¹€à¸˜à¸”à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸’
+	
 	public boolean insertProduct(ProductBean drug) {
 
 		String sql = "insert into products" + "(product_code,product_name,product_detail,product_price,product_unit,refer_type_pet,product_img_name)"
@@ -55,7 +55,8 @@ public class ProductDAO {
 		}
 	}
 	
-	//à¹€à¸™â‚¬à¹€à¸˜ï¿½à¹€à¸˜à¸”à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸ƒà¹€à¸˜à¸’à¹€à¸˜à¸‚à¹€à¸˜ï¿½à¹€à¸˜à¸’à¹€à¸˜à¸ƒà¹€à¸˜à¸Šà¹€à¸˜à¸‘à¹€à¸™ï¿½à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸˜à¸—à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸Šà¹€à¸˜à¸”à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸’
+	
+	
 	static public boolean inserPetShop(ShopDetailBean shopDetailBean,String[] prd_name, String[] prd_qty, String[] prd_price, String[] prd_total){		
 		String sql_insert = "insert into `shop_detail`" 		
 //				+ "(product_name,product_qty,product_price,product_total)"  
@@ -99,7 +100,8 @@ public class ProductDAO {
 		return false;				
 	}
 	
-	//à¹€à¸™â‚¬à¹€à¸˜ï¿½à¹€à¸˜à¸”à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸�à¹€à¸˜à¸‘à¹€à¸˜ï¿½à¹€à¸™â‚¬à¹€à¸˜â€�à¹€à¸˜â€”à¹€à¸˜ï¿½à¹€à¸˜à¸’à¹€à¸˜à¸ƒà¹€à¸˜ï¿½à¹€à¸˜à¸—à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸�à¹€à¸˜à¸’à¹€à¸˜à¸‹à¹€à¸˜à¸’à¹€à¸˜à¸ƒà¹€à¸˜à¸Šà¹€à¸˜à¸‘à¹€à¸˜â€¢à¹€à¸˜à¸‡à¹€à¸™ï¿½à¹€à¸™â‚¬à¹€à¸˜à¸…à¹€à¸˜à¸•à¹€à¸™ï¿½à¹€à¸˜à¸‚à¹€à¸˜ï¿½
+	
+	
 	static public boolean insertDeposit(DepositBean depositBean,ShopDetailBean shopDetailBean ){		
 		String sql_insert = "insert into `shop_detail`" 		
 				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total)"  
@@ -107,8 +109,8 @@ public class ProductDAO {
 		
 		
 		try  {
-            	//à¹€à¸™â‚¬à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜â€¢à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸’ id à¹€à¸˜ï¿½à¹€à¸˜à¸�à¹€à¸˜ï¿½ pet_deposit get and set All Data Table: shop_detail
-            	preparedStmt = null;
+            	
+			preparedStmt = null;
                 preparedStmt = dbc.createDBConnect().prepareStatement(sql_insert);
                 preparedStmt.setInt (1, depositBean.getId());
                 preparedStmt.setString(2, shopDetailBean.getPrd_date());
@@ -134,7 +136,8 @@ public class ProductDAO {
 		}	
 	}
 	
-	// à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜ï¿½à¹€à¸˜à¸‹à¹€à¸˜à¸’à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸�à¹€à¸˜à¸™à¹€à¸˜à¸…à¹€à¸˜â€”à¹€à¸˜à¸‘à¹€à¸™ï¿½à¹€à¸˜ï¿½à¹€à¸˜à¸Šà¹€à¸˜à¸”à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸’à¹€à¸˜â€”à¹€à¸˜à¸‘à¹€à¸™ï¿½à¹€à¸˜ï¿½à¹€à¸˜à¸‹à¹€à¸˜à¸�à¹€à¸˜â€�
+	
+	
 	static public ArrayList<ProductBean> queryProdtuctAll() {
 
 		ProductBean productBean = new ProductBean();
@@ -390,7 +393,8 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 		return null;
 	}
 
-	// à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜ï¿½à¹€à¸˜à¸‹à¹€à¸˜à¸’à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸�à¹€à¸˜à¸™à¹€à¸˜à¸…à¹€à¸˜à¸Šà¹€à¸˜à¸”à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸’
+	
+	
 	public ArrayList<ProductBean> searchProduct(String productName) {
 
 		ProductBean productBean = new ProductBean();
@@ -432,8 +436,9 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 		return null;
 	}
 	
-	// à¹€à¸˜à¸…à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸�à¹€à¸˜à¸�à¹€à¸˜à¸™à¹€à¸˜à¸…à¹€à¸˜à¸Šà¹€à¸˜à¸”à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸’
-
+	
+	
+	
 	public boolean delProduct(ProductBean product) {
 
 		String sql = " delete from products where id = ?; ";
@@ -460,8 +465,7 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 		}
 	}
 
-	// à¹€à¸™ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸™ï¿½à¹€à¸˜ï¿½ à¹€à¸˜à¸ƒà¹€à¸˜à¸’à¹€à¸˜à¸‚à¹€à¸˜à¸…à¹€à¸˜à¸�à¹€à¸™â‚¬à¹€à¸˜à¸�à¹€à¸˜à¸•à¹€à¸˜à¸‚à¹€à¸˜â€�à¹€à¸˜à¸Šà¹€à¸˜à¸”à¹€à¸˜ï¿½à¹€à¸˜ï¿½à¹€à¸™ï¿½à¹€à¸˜à¸’
-
+	
 	public boolean updateProduct(ProductBean product) {
 
 		String sql = "update products set product_name = ?,product_detail = ?,product_price = ?,product_unit = ? where id = ?; ";

@@ -10,91 +10,115 @@ import db.ConnectionManager;
 import model.AnalysisBean;
 import model.SymptomsBean;
 
-
 public class DiseaseDAO {
-	static ConnectDB dbc = new ConnectDB();	
+	static ConnectDB dbc = new ConnectDB();
 	static ResultSet rs = null;
 	static PreparedStatement preparedStmt;
-Connection con = null;
-	
+	Connection con = null;
+
 	PreparedStatement pstm = null;
 	static Connection dbconConnection = null;
 	static PreparedStatement pre = null;
 
 	static PreparedStatement pstmtt = null;
 
-	//เรียกข้อมูลอาการโรค
-static public ArrayList<SymptomsBean> getdisease(){
-		
-	   SymptomsBean disease = new SymptomsBean();
+	// เรียกข้อมูลอาการโรค
+	static public ArrayList<SymptomsBean> getdisease() {
+
+		SymptomsBean disease = new SymptomsBean();
 		ArrayList<SymptomsBean> diseaseList = new ArrayList<SymptomsBean>();
-		
-		String sql = "select * from symptoms_disease order by symptom; ";
+
+		String sql = "select DISTINCT symptom from symptoms_disease order by symptom; ";
 		try {
-				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
-				
-				rs = preparedStmt.executeQuery();			
-				//dbc.closeConnection();
-				
-	            while (rs.next()) {
-	            	disease = new SymptomsBean();
-	            	
-	            	disease.setId_symptom(rs.getInt("id_symptom")); //ID อาการโรค
-	            	disease.setSymptom(rs.getString("symptom"));    //อาการโรค
-	            	diseaseList.add(disease);
-	            }
-	            rs.close();	
-            return diseaseList;
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			rs = preparedStmt.executeQuery();
+			// dbc.closeConnection();
+
+			while (rs.next()) {
+				disease = new SymptomsBean();
+
+				// disease.setId_symptom(rs.getInt("id_symptom")); //ID อาการโรค
+				disease.setSymptom(rs.getString("symptom")); // อาการโรค
+				diseaseList.add(disease);
+			}
+			rs.close();
+			return diseaseList;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("error ===> "+e);
-		}finally {
+			System.out.println("error ===> " + e);
+		} finally {
 			try {
 				dbc.closeConnection();
 				preparedStmt.close();
 			} catch (Exception e) {
-				System.out.println("finally x=> "+e.getMessage());
+				System.out.println("finally x=> " + e.getMessage());
 			}
 		}
 		return null;
 	}
 
+	// public boolean deletemanyProduct (String[] c){
+	// for(String s:c) {
+	//
+	// }
+	//
 
-
-
-//public boolean deletemanyProduct (String[] c){
-//	for(String s:c) {
-//	
-//}
-//
-
-
-
-public static boolean  insertDisease(AnalysisBean disease) {
-	String insertSQL = " insert into analysis_disease(id_symptom ,value)"
-			+ " values(? ,?); ";
-	System.out.println("Query: " +  insertSQL);
-	try {
-		
-		preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
-		preparedStmt.setInt(1, disease.getId_symptom());
-		System.out.println("Id_symptom"+disease.getId_symptom());
-		preparedStmt.setFloat(2, disease.getValue());
-		System.out.println("Value"+disease.getValue());
-		preparedStmt.executeUpdate();
-		dbc.closeConnection();
-		return true;
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return false;
-	}finally {
+	public static boolean insertDisease(AnalysisBean disease) {
+		String insertSQL = " insert into analysis_disease(id_symptom ,value)" + " values(? ,?); ";
+		System.out.println("Query: " + insertSQL);
 		try {
+
+			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
+			preparedStmt.setInt(1, disease.getId_symptom());
+			System.out.println("Id_symptom" + disease.getId_symptom());
+			preparedStmt.setFloat(2, disease.getValue());
+			System.out.println("Value" + disease.getValue());
+			preparedStmt.executeUpdate();
 			dbc.closeConnection();
-			preparedStmt.close();
-		} catch (Exception e) {
-			System.out.println("finally x=> "+e.getMessage());
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
 		}
 	}
-}}
+
+	public ArrayList<AnalysisBean> symptom(String disease) {
+		ArrayList<AnalysisBean> List = new ArrayList<AnalysisBean>();
+       String SELECT = "SELECT * FROM symptoms_disease WHERE symptom = ?";
+		try {
+			dbconConnection = ConnectionManager.getConnection();
+			preparedStmt = dbconConnection.prepareStatement(SELECT);
+			preparedStmt.setString(1, disease);
+			rs = preparedStmt.executeQuery();
+			AnalysisBean diseaseList;
+			while (rs.next()) {
+				diseaseList = new AnalysisBean();
+				diseaseList.setId_symptom(rs.getInt("id_symptom")); // *1
+				System.out.println("id_symptom1:=" + diseaseList.getId_symptom());
+				diseaseList.setSymptom(rs.getString("symptom")); // *2
+				System.out.println("symptom2:=" + diseaseList.getSymptom());
+				diseaseList.setId_disease(rs.getInt("id_disease")); // *
+				System.out.println("id_disease3:=" + diseaseList.getId_disease());
+
+				List.add(diseaseList);
+			}
+			preparedStmt.close();
+			rs.close(); // ปิดการทำงาน rs
+			dbconConnection.close(); // ปิดการทำงาน dbconConnection
+
+		} catch (Exception e) {
+			e.printStackTrace(); // เเสดงค่าภาษา SQL ที่เกิดของผิดพลาด
+		}
+		return List;
+	}
+}

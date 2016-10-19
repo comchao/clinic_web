@@ -3,6 +3,7 @@ package model;
 public class AnalysisBean {
 	int id;
 	int id_disease;
+	
 	public int getId() {
 		return id;
 	}
@@ -30,6 +31,15 @@ public class AnalysisBean {
 	int id_symptom;
 	float value;
 	boolean valid;
+	
+	
+	String symptom;
+	public String getSymptom() {
+		return symptom;
+	}
+	public void setSymptom(String symptom) {
+		this.symptom = symptom;
+	}
 	public boolean isValid() {
 		return valid;
 	}
