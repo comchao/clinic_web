@@ -178,14 +178,14 @@ to {
 
 								   
 								
-									<form action="symptomServlet" method="get">
+									<form action="Disease2.jsp" method="post">
 										<tr><td><input name="symptom<%=i%>"  type="checkbox"  value="<%=bean.getSymptom()%>" ></td>
 									
 									<td> <%=bean.getSymptom()%></td>
 									<td><input name="value<%=i%>" type="radio"  value="1" >มาก </td>
 									<td><input name="value<%=i%>"  type="radio" value="0.5"> น้อย </td>
 									<td><input name="value<%=i%>"  type="radio"  value="0">  ปกติ  </td>
-									<%-- <input name="id_symptom<%=i%>"  type="hidden"  value="<%=bean.getId_symptom()%>" >  --%>
+									<input name="id_symptom<%=i%>"  type="hidden"  value="<%=bean.getId_symptom()%>" >  
 									
 								
 									<%

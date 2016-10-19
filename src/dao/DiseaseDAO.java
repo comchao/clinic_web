@@ -28,7 +28,7 @@ public class DiseaseDAO {
 		SymptomsBean disease = new SymptomsBean();
 		ArrayList<SymptomsBean> diseaseList = new ArrayList<SymptomsBean>();
 
-		String sql = "select DISTINCT symptom from symptoms_disease order by symptom; ";
+		String sql = "select  DISTINCT symptom from symptoms_disease order by symptom; ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 
@@ -38,8 +38,8 @@ public class DiseaseDAO {
 			while (rs.next()) {
 				disease = new SymptomsBean();
 
-				// disease.setId_symptom(rs.getInt("id_symptom")); //ID อาการโรค
-				disease.setSymptom(rs.getString("symptom")); // อาการโรค
+			/* disease.setId_symptom(rs.getInt("id_symptom")); //ID อาการโรค
+*/				disease.setSymptom(rs.getString("symptom")); // อาการโรค
 				diseaseList.add(disease);
 			}
 			rs.close();
@@ -92,13 +92,13 @@ public class DiseaseDAO {
 		}
 	}
 
-	public ArrayList<AnalysisBean> symptom(String disease) {
+	public ArrayList<AnalysisBean> symptom(String symptom) {
 		ArrayList<AnalysisBean> List = new ArrayList<AnalysisBean>();
-       String SELECT = "SELECT * FROM symptoms_disease WHERE symptom = ?";
+       String SELECT = "SELECT * FROM symptoms_disease,disease WHERE symptoms_disease.id_disease = disease.id_disease and symptoms_disease.symptom=?";
 		try {
 			dbconConnection = ConnectionManager.getConnection();
 			preparedStmt = dbconConnection.prepareStatement(SELECT);
-			preparedStmt.setString(1, disease);
+			preparedStmt.setString(1, symptom);
 			rs = preparedStmt.executeQuery();
 			AnalysisBean diseaseList;
 			while (rs.next()) {
@@ -107,8 +107,10 @@ public class DiseaseDAO {
 				System.out.println("id_symptom1:=" + diseaseList.getId_symptom());
 				diseaseList.setSymptom(rs.getString("symptom")); // *2
 				System.out.println("symptom2:=" + diseaseList.getSymptom());
-				diseaseList.setId_disease(rs.getInt("id_disease")); // *
+				diseaseList.setId_disease(rs.getInt("id_disease")); // *3
 				System.out.println("id_disease3:=" + diseaseList.getId_disease());
+				diseaseList.setDisease(rs.getString("disease")); // *4
+				System.out.println("disease:=" + diseaseList.getDisease());
 
 				List.add(diseaseList);
 			}
@@ -121,4 +123,8 @@ public class DiseaseDAO {
 		}
 		return List;
 	}
+	
+	
+	
+	
 }

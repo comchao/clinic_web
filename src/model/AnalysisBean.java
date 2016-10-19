@@ -3,7 +3,14 @@ package model;
 public class AnalysisBean {
 	int id;
 	int id_disease;
+	String disease;
 	
+	public String getDisease() {
+		return disease;
+	}
+	public void setDisease(String disease) {
+		this.disease = disease;
+	}
 	public int getId() {
 		return id;
 	}
