@@ -66,15 +66,17 @@ public class DiseaseDAO {
 	//
 
 	public static boolean insertDisease(AnalysisBean disease) {
-		String insertSQL = " insert into analysis_disease(id_symptom ,value)" + " values(? ,?); ";
+		String insertSQL = "insert into analysis_disease(id_disease,id_symptom ,value)" + " values(?,?,?); ";
 		System.out.println("Query: " + insertSQL);
 		try {
 
 			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
-			preparedStmt.setInt(1, disease.getId_symptom());
-			System.out.println("Id_symptom" + disease.getId_symptom());
-			preparedStmt.setFloat(2, disease.getValue());
-			System.out.println("Value" + disease.getValue());
+			preparedStmt.setInt(1, disease.getId_disease());
+			System.out.println("id_disease:" + disease.getId_disease());
+			preparedStmt.setInt(2, disease.getId_symptom());
+			System.out.println("Id_symptom:" + disease.getId_symptom());
+			preparedStmt.setFloat(3, disease.getValue());
+			System.out.println("Value:" + disease.getValue());
 			preparedStmt.executeUpdate();
 			dbc.closeConnection();
 			return true;

@@ -194,7 +194,7 @@ String id_symptom = request.getParameter("id_symptom"+i);
  
 
 <%if(value!=null&&symptom!=null){ %>
-<form action="" method="post">
+
  <%--  <tr><center><td> <input name="id_symptom<%=i%>"  type="checkbox" onClick="toggle(this)" value="<%=id_symptom%>" /> <br/>   --%>  
 <%-- <center><td><%=i+1%></td><center> --%>
 
@@ -218,7 +218,7 @@ for(int x=0;x<List.size();x++){
       <td><%=bean.getDisease() %></td>
 	  <td><%=bean.getId_symptom() %></td>
 	  
-	  <td><%=bean.getId_disease() %></td>
+	  <td>c</td>
 	
 	<td><%if(value.equals("1")){%>
               	มาก   
@@ -226,16 +226,20 @@ for(int x=0;x<List.size();x++){
               	น้อย 
               	 <%}if(value.equals("0")){%>
                                           ปกติ<%} %> </td>
-      <%--    <input name="value<%=i%>" type="hidden" value="<%=value%>"/>	
-         <input name="id_symptom<%=i%>" type="hidden" value="<%=id_symptom%>"/>	     --%>
+         <form action="DiseaseGetSymptomServlet" method="post">
+      
+         <input name="id_disease<%=i%>" type="hidden" value="<%=bean.getId_disease()%>"/>
+         <input name="id_symptom<%=i%>" type="hidden" value="<%=bean.getId_symptom() %>"/>
+         <input name="value<%=i%>" type="hidden" value="<%=value%>"/>		  
 	
 <%}}}
 %>
 
-
-		</form>
 </table>
 <input name="submit" type="submit" >
+
+
+		</form>
 					</div>
 				</div>
 		</div>
