@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import db.ConnectDB;
 import db.ConnectionManager;
 import model.AnalysisBean;
+import model.DiseaseBean;
 import model.SymptomsBean;
 
 public class DiseaseDAO {
@@ -96,7 +97,7 @@ public class DiseaseDAO {
 
 	public ArrayList<AnalysisBean> symptom(String symptom) {
 		ArrayList<AnalysisBean> List = new ArrayList<AnalysisBean>();
-       String SELECT = "SELECT * FROM symptoms_disease,disease WHERE symptoms_disease.id_disease = disease.id_disease and symptoms_disease.symptom=?";
+       String SELECT = "SELECT * FROM symptoms_disease,disease WHERE symptoms_disease.id_disease = disease.id_disease and symptoms_disease.symptom=? order by symptom";
 		try {
 			dbconConnection = ConnectionManager.getConnection();
 			preparedStmt = dbconConnection.prepareStatement(SELECT);
@@ -127,6 +128,56 @@ public class DiseaseDAO {
 	}
 	
 	
-	
+	public static boolean insertDisease1(DiseaseBean disease) {
+		String insertSQL = "insert into disease(disease)" + " values(?); ";
+		System.out.println("Query: " + insertSQL);
+		try {
+
+			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
+			preparedStmt.setString(1, disease.getDisease());
+			System.out.println( "diseaseDAO"+disease.getDisease());
+			
+			preparedStmt.executeUpdate();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}}
+		public static boolean insertSymptomsBean(SymptomsBean disease) {
+			String insertSQL = "insert into symptoms_disease(symptom,disease)" + " values(?,?); ";
+			System.out.println("Query: " + insertSQL);
+			try {
+
+				preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
+				preparedStmt.setString(1, disease.getSymptom());
+				preparedStmt.setString(2, disease.getDisease());
+				System.out.println( "DiseaseDAO2"+disease.getSymptom());
+				System.out.println( "SymptomDAO2"+disease.getDisease());
+				preparedStmt.executeUpdate();
+				dbc.closeConnection();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			} finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> " + e.getMessage());
+				}
+			}
+		
+	}
 	
 }

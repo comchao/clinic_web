@@ -4,6 +4,21 @@ public class SymptomsBean {
 	
 	int id_symptom;
 	String  symptom;
+	String disease;
+	boolean valid;
+	
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public String getDisease() {
+		return disease;
+	}
+	public void setDisease(String disease) {
+		this.disease = disease;
+	}
 	public int getId_symptom() {
 		return id_symptom;
 	}

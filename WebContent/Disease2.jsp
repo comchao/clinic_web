@@ -171,11 +171,11 @@ to {
 							<table bgcolor="#FFFFFF">
 								<!--   อาการโรคสัตว์ที่พบเบื้องต้น -->
 	<tr>							<li>
-
+<!-- <th width="150">   <h4>ลำดับ    </h4> </th> -->
 <th width="200"> <h4>อาการ</h4>  </th>
 <th width="150">   <h4>โรค    </h4> </th>
-<th width="150">   <h4>รหัสอาการ </h4> </th>
-<th width="150">   <h4>รหัสโรค       </h4>  </th>
+<!-- <th width="150">   <h4>รหัสอาการ </h4> </th> -->
+
 <th width="150">   <h4>ระดับอาการ</h4>  </th>
 
 </tr>
@@ -191,16 +191,12 @@ String id_symptom = request.getParameter("id_symptom"+i);
 
 %>
 
+
  
 
 <%if(value!=null&&symptom!=null){ %>
 
- <%--  <tr><center><td> <input name="id_symptom<%=i%>"  type="checkbox" onClick="toggle(this)" value="<%=id_symptom%>" /> <br/>   --%>  
-<%-- <center><td><%=i+1%></td><center> --%>
-
-<%-- 
- <tr><td><%=symptom%></td></center> --%>
-                                                      
+                                                    
  		
 <%
 
@@ -208,17 +204,19 @@ DiseaseDAO dao = new DiseaseDAO();
 
 List<AnalysisBean> List = dao.symptom(symptom);
 response.setCharacterEncoding("utf-8");
-for(int x=0;x<List.size();x++){
-	AnalysisBean bean = List.get(x);
+for(int i1 = 0;i1<List.size();i1++){
+	AnalysisBean bean = List.get(i1);
 
  
 
-%>	
-<tr>  <td><%=bean.getSymptom()%></td>
+%>	 <tr>  
+	<%--  <td><%=i+1%></td>  --%>
+
+      <td><%=bean.getSymptom()%></td>
       <td><%=bean.getDisease() %></td>
-	  <td><%=bean.getId_symptom() %></td>
+	<%--   <td><%=bean.getId_symptom() %></td> --%>
 	  
-	  <td>c</td>
+	  
 	
 	<td><%if(value.equals("1")){%>
               	มาก   

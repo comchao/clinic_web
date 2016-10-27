@@ -3,6 +3,13 @@ package model;
 public class DiseaseBean {
 	int id_disease;
     String disease;
+    String symptom;
+	public String getSymptom() {
+		return symptom;
+	}
+	public void setSymptom(String symptom) {
+		this.symptom = symptom;
+	}
 	public int getId_disease() {
 		return id_disease;
 	}

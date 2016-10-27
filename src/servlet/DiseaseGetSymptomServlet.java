@@ -3,8 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,8 +41,8 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 			// ดึงข้อมูลอาการโรค
 			diseaseList = DiseaseDAO.getdisease();
 			HttpSession session = request.getSession(true);
-			String p = "1";
-			session.setAttribute("pageN", p);
+			/*String p = "1";
+			session.setAttribute("pageN", p);*/
 			// เก็บข้อมูลอาการโรค
 			session.setAttribute("symptom", diseaseList);
 			response.sendRedirect("Disease.jsp");
@@ -71,10 +69,7 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 			String id_symptom = request.getParameter("id_symptom" + i);
 			String value = request.getParameter("value" + i);
 			if (id_disease != null &&id_symptom != null && value != null) {
-				/*
-				 * System.out.println("id_symptom"+id_symptom);
-				 * System.out.println("value"+value);
-				 */
+				
 
 				DiseaseDAO DAO = new DiseaseDAO();
 				AnalysisBean Bean = new AnalysisBean();
@@ -92,11 +87,11 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 				  "<!DOCTYPE HTML>"); out.println("<html>"); out.println(
 				  " <body>"); out.println(
 				  " <script>alert('สำเร็จ');window.location='index-officer.jsp';</script>"
-				  ); out.println(" </body>"); out.println("</html>"); } else {
+				  ); out.println("</body>"); out.println("</html>"); } else {
 				  response.setContentType("text/html"); PrintWriter out =
 				  response.getWriter(); out.println("<!DOCTYPE HTML>");
 				  out.println("<html>"); out.println(" <body>"); out.println(
-				  " <script>alert('ไม่สำเร็จ');window.location='errorConfrim.jsp';</script>"
+				  " <script>alert('สำเร็จ');window.location='index-officer.jsp';</script>"
 				 ); out.println(" </body>"); out.println("</html>"); } }
 				 
 

@@ -154,19 +154,22 @@ to {
 		}
 	}
 </script>
-
 <center>
-	<div class="col-lg-6">
+<div class="col-lg-12">
 		<div class="cont1">
 
 				
 				<div class="panel">
-					<div class="panel-heading">อาการที่พบเบื้องต้น</div>
+					<div class="panel-heading"><h3>อาการโรค</h3></div>
 					<div class="panel-body">
 						<ul class="input-list">
 							<table bgcolor="#FFFFFF">
 								<!--   อาการโรคสัตว์ที่พบเบื้องต้น -->
-								<li>
+	<tr>							<li>
+
+	
+							<table bgcolor="">
+								
 								
 									<%
 										ArrayList<SymptomsBean> diseaseList = (ArrayList) session.getAttribute("symptom");
@@ -181,119 +184,36 @@ to {
 									<form action="Disease2.jsp" method="post">
 										<tr><td><input name="symptom<%=i%>"  type="checkbox"  value="<%=bean.getSymptom()%>" ></td>
 									
-									<td> <%=bean.getSymptom()%></td>
-									<td><input name="value<%=i%>" type="radio"  value="1" >มาก </td>
-									<td><input name="value<%=i%>"  type="radio" value="0.5"> น้อย </td>
-									<td><input name="value<%=i%>"  type="radio"  value="0">  ปกติ  </td>
+									<td><h5><%=bean.getSymptom()%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5> </td>
+								
+									
+									<td><input name="value<%=i%>" type="radio"  value="1" >&nbsp;&nbsp;<b>มาก</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td><input name="value<%=i%>"  type="radio" value="0.5"> &nbsp;&nbsp;<b>น้อย</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td><input name="value<%=i%>"  type="radio"  value="0">  &nbsp;&nbsp;<b>ปกติ</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
 									<input name="id_symptom<%=i%>"  type="hidden"  value="<%=bean.getId_symptom()%>" >  
 									
 								
+									
+										
+										
 									<%
 										}
 									%> 
-									<td> <input name="submit"type="submit"> </td> </tr>
-									
+									<td> <input name="submit"type="submit"> </td> 
+							</form>
+									<td><form action="AddDisease.jsp" method="post">
+										<input name="submit" value="เพิ่มข้อมูล" type="submit"> </td> </tr>
 										</form>
-								
+										
+										
 									
-									
-									
-									
-									
-									
-									<!-- <tr><td>กินน้ำ</td><td> <input name="water"type="radio"  value="1" > มาก  </td><td><input name="water"type="radio" value="0.5"> น้อย </td><td> <input name="water"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>กล้ามเนื้อตามร่างกาายกระตุกชัก</td><td> <input name="spasm"type="radio"  value="1"> มาก</td><td><input name="spasm"type="radio" value="0.5"> น้อย </td><td> <input name="spasm"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>ขับถ่าย</td><td> <input name="excrete"type="radio"  value="1"> เลือด  </td><td><input name="excrete"type="radio" value="0.5"> น้ำ  </td> <td> <input name="excrete"type="radio"  value="0"> ปกติ </td></tr>
-  	 <tr><td>ความอยากอาหาร</td><td> <input name="eat"type="radio"  value="1"> หิวมาก </td> <td><input name="eat"type="radio" value="0.5"> หิวน้อย </td><td> <input name="eat"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>ตาขุนมัว ภาสะต้อ </td><td> <input name="pustsule"type="radio"  value="1"> มาก </td><td><input name="pustsule"type="radio" value="0.5"> น้อย </td><td> <input name="pustsule"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>ที่ตา พบเเผลหลุมที่จระจกตา ตาเเห้ง</td><td> <input name="eyelesion"type="radio"  value="1"> มาก </td><td><input name="eyelesion"type="radio" value="0.5"> น้อย </td><td> <input name="eyelesion"type="radio"  value="0"> ปกติ </td></tr>
-   <tr><td>น้ำหนัก</td> <td><td> <input name="weight"type="radio"  value="1"> ลด <td> <input name="น้ำหนัก"type="radio"  value="0"> ปกติ</td></tr>
-   <tr><td>ปัสสาวะ</td><td> <input name="urinate"type="radio"  value="1"> มาก </td><td><input name="urinate"type="radio" value="0.5"> น้อย </td><td> <input name="urinate"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>มีกลิ้นปากฉุน </td><td> <input name="halitosis"type="radio"  value="1"> มาก </td><td><input name="halitosis"type="radio" value="0.5"> น้อย </td><td> <input name="halitosis"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>มีไข้</td><td> <input name="fever"type="radio"  value="1"> สูง </td><td><input name="fever"type="radio" value="0.5"> ต่ำ </td><td> <input name="fever"type="radio"  value="0"> ปกติ </td></tr>
-     <tr><td>มีน้ำมูกใส </td><td> <input name="snot"type="radio"  value="1"> มาก </td><td><input name="snot"type="radio" value="0.5"> น้อย </td><td> <input name="snot"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>มีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  </td><td> <input name="pustsule"type="radio"  value="1"> มาก </td><td><input name="pustsule"type="radio" value="0.5"> น้อย </td><td> <input name="pustsule"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>อาการซึม</td><td> <input name="pustsule"type="radio"  value="1"> มาก </td><td><input name="pustsule"type="radio" value="0.5"> น้อย </td><td> <input name="pustsule"type="radio"  value="0"> ปกติ </td></tr>
-    <tr><td>อาเจียน  </td><td> <input name="vomit"type="radio"  value="1"> มาก </td><td><input name="vomit"type="radio" value="0.5"> น้อย </td><td> <input name="vomit"type="radio"  value="0"> ปกติ </td></tr>
- <input type="submit">
-  </from>
-   -->
-							</table>
-					</div>
-				</div>
-		</div>
-	</div>
-</center>
-<!--   <div class="col-sm-6">
-				
-							<div class="panel">
-            <div class="panel-heading">อาการที่พบเบื้องต้น</div>
-            <div class="panel-body">
-                <ul class="input-list">
-                 <div class="pure-radiobutton">
-                            <input id="radio11" name="radio" type="checkbox" class="radio">
-                            <label for="radio11">พบมากในสัตว์อายุเยอะ</label>
-                        </div>
-                    </li>
+	
+    
 
-                    <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio12" name="radio" type="checkbox" class="radio" >
-                            <label for="radio12">มีกลิ้นปากฉุน เหมือนแอมโมเนีย</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio13" name="radio" type="checkbox" class="radio" >
-                            <label for="radio13">มีน้ำมูกใสต่อมาข้นเหลือง อาจมีไอหายใจลำบาก</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio14" name="radio" type="checkbox" class="radio" >
-                            <label for="radio14">ไม่กินอาหาร อาจมีอาเจียน</label>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="pure-radiobutton">
-                            <input id="radio15" name="radio" type="checkbox" class="radio" >
-                            <label for="radio15">หิวบ่อย กินอาหารมากขั้น เเต่ไม่อ้วน</label>
-                        </div>
-                    </li>
-                    <li>
-                     <div class="pure-radiobutton">
-                            <input id="radio16" name="radio" type="checkbox" class="radio" >
-                            <label for="radio16">อาเจียน</label>
-                        </div>
-                    </li>
-                     <li>
-                      <div class="pure-radiobutton">
-                            <input id="radio17" name="radio" type="checkbox" class="radio" >
-                            <label for="radio17">อาเจียหรือท้องเสีย</label>
-                        </div>
-                    </li>
-                      <li>
-                      <div class="pure-radiobutton">
-                            <input id="radio18" name="radio" type="checkbox" class="radio" >
-                            <label for="radio18">อาเจียมีท้องเสีย เป็นนมูกหรือปนเลือดและอาเจียน</label>
-                        </div>
-                    </li>
-                     <li>
-                      <div class="pure-radiobutton">
-                            <input id="radio19" name="radio" type="checkbox" class="radio" >
-                            <label for="radio19">อาจมีตุ่มหนองตามผิวหนัง ฝ่าเท้าเข็งในรายเรื้อรัง</label>
-                        </div>
-                         
-                    </li>
-                   
-        </div>
-        </div></div></div>
-</table>
-
-
-</body>
-</html>
-	 -->
 
 </div>
+	</center>
 <%@ include file="footer_index.jsp"%>
