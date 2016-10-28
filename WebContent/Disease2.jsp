@@ -25,7 +25,6 @@
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
-
 /* Modal Content */
 .modal-content {
 	position: relative;
@@ -41,33 +40,27 @@
 	animation-name: animatetop;
 	animation-duration: 0.4s
 }
-
 /* Add Animation */
 @
 -webkit-keyframes animatetop {
 	from {top: -300px;
 	opacity: 0
 }
-
 to {
 	top: 0;
 	opacity: 1
 }
-
 }
 @
 keyframes animatetop {
 	from {top: -300px;
 	opacity: 0
 }
-
 to {
 	top: 0;
 	opacity: 1
 }
-
 }
-
 /* The Close Button */
 .close {
 	color: white;
@@ -75,23 +68,19 @@ to {
 	font-size: 28px;
 	font-weight: bold;
 }
-
 .close:hover, .close:focus {
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;
 }
-
 .modal-header {
 	padding: 2px 16px;
 	background-color: #5cb85c;
 	color: white;
 }
-
 .modal-body {
 	padding: 2px 16px;
 }
-
 .modal-footer {
 	padding: 2px 16px;
 	background-color: #5cb85c;
@@ -134,23 +123,18 @@ to {
 <script>
 	// Get the modal
 	var modal = document.getElementById('myModal');
-
 	// Get the button that opens the modal
 	var btn = document.getElementById("myBtn");
-
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
-
 	// When the user clicks the button, open the modal
 	btn.onclick = function() {
 		modal.style.display = "block";
 	}
-
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 		modal.style.display = "none";
 	}
-
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 		if (event.target == modal) {
@@ -182,13 +166,11 @@ to {
 <%
 request.setCharacterEncoding("UTF-8");
 /* String id_symptom = request.getParameter("id_symptom"+1) */;
-
 for (int i = 0; i < 50; i++) {
 	request.setCharacterEncoding("UTF-8");
 String value = request.getParameter("value"+i);
 String symptom = request.getParameter("symptom"+i);
 String id_symptom = request.getParameter("id_symptom"+i);
-
 %>
 
 
@@ -199,16 +181,12 @@ String id_symptom = request.getParameter("id_symptom"+i);
                                                     
  		
 <%
-
 DiseaseDAO dao = new DiseaseDAO();  
-
 List<AnalysisBean> List = dao.symptom(symptom);
 response.setCharacterEncoding("utf-8");
 for(int i1 = 0;i1<List.size();i1++){
 	AnalysisBean bean = List.get(i1);
-
  
-
 %>	 <tr>  
 	<%--  <td><%=i+1%></td>  --%>
 
@@ -226,15 +204,15 @@ for(int i1 = 0;i1<List.size();i1++){
                                           ปกติ<%} %> </td>
          <form action="DiseaseGetSymptomServlet" method="post">
       
-         <input name="id_disease<%=i%>" type="hidden" value="<%=bean.getId_disease()%>"/>
-         <input name="id_symptom<%=i%>" type="hidden" value="<%=bean.getId_symptom() %>"/>
-         <input name="value<%=i%>" type="hidden" value="<%=value%>"/>		  
+         <input name="symptom[]" type="hidden" value="<%=bean.getSymptom()%>"/>
+         <input name="disease[]" type="hidden" value="<%=bean.getDisease()%>"/>
+         <input name="value[]" type="hidden" value="<%=value%>"/>		  
 	
 <%}}}
 %>
 
 </table>
-<input name="submit" type="submit" >
+<input name="submit" type="submit" value="บันทึกอาการ" >
 
 
 		</form>

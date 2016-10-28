@@ -4,7 +4,35 @@ public class AnalysisBean {
 	int id;
 	int id_disease;
 	String disease;
+	Float Total;
+	Float  Totalcolum;
+	Float Totalvalue ;
+	 Float sum;
+	public Float getSum() {
+		return sum;
+	}
+	public void setSum(Float sum) {
+		this.sum = sum;
+	}
+	public Float getTotalvalue() {
+		return Totalvalue;
+	}
+	public void setTotalvalue(Float totalvalue) {
+		Totalvalue = totalvalue;
 	
+	}
+	public Float getTotalcolum() {
+		return Totalcolum;
+	}
+	public void setTotalcolum(Float totalcolum) {
+		Totalcolum = totalcolum;
+	}
+	public Float getTotal() {
+		return Total;
+	}
+	public void setTotal(Float total) {
+		Total = total;
+	}
 	public String getDisease() {
 		return disease;
 	}

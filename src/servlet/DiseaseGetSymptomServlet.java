@@ -61,24 +61,25 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 
 		
 		/* String id_symptom = request.getParameter("id_symptom"+1) */;
-
+/*
 		for (int i = 0; i < 50; i++) {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
-			String id_disease = request.getParameter("id_disease" + i);
-			String id_symptom = request.getParameter("id_symptom" + i);
+			String symptom = request.getParameter("symptom" + i);
+			String disease = request.getParameter("disease" + i);
+			
 			String value = request.getParameter("value" + i);
-			if (id_disease != null &&id_symptom != null && value != null) {
+			if ( symptom!= null &&disease != null && value != null) {
 				
 
 				DiseaseDAO DAO = new DiseaseDAO();
 				AnalysisBean Bean = new AnalysisBean();
-				Bean.setId_disease(Integer.parseInt(id_disease));
-				Bean.setId_symptom(Integer.parseInt(id_symptom));
+				Bean.setSymptom(symptom);
+				Bean.setDisease(disease);
 				Bean.setValue(Float.parseFloat(value));
 
 				// DAO login
-				DiseaseDAO.insertDisease(Bean);
+				DAO.insertDisease(Bean);
 
 				// Response to view
 				
@@ -95,6 +96,39 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 				 ); out.println(" </body>"); out.println("</html>"); } }
 				 
 
-			}
+			}*/
+		request.setCharacterEncoding("UTF-8");
+	    response.setCharacterEncoding("UTF-8");
+		  String[] symptom = request.getParameterValues("symptom[]");
+		  String[] disease = request.getParameterValues("disease[]");
+		  String[] value = request.getParameterValues("value[]");
+		  for(int i=0; i<symptom.length; i++){
+			  
+			  System.out.println(symptom[i]);
+			  System.out.println(disease[i]);
+			  System.out.println(value[i]);
+			  DiseaseDAO DAO = new DiseaseDAO();
+				AnalysisBean Bean = new AnalysisBean();
+				Bean.setSymptom(symptom[i]);
+				Bean.setDisease(disease[i]);
+				Bean.setValue(Float.parseFloat(value[i]));
+
+				// DAO login
+				DAO.insertDisease(Bean);
+
+				// Response to view
+				
+				  if (Bean.isValid()) { response.setContentType("text/html");
+				  PrintWriter out = response.getWriter(); out.println(
+				  "<!DOCTYPE HTML>"); out.println("<html>"); out.println(
+				  " <body>"); out.println(
+				  " <script>alert('สำเร็จ');window.location='Total.jsp';</script>"
+				  ); out.println("</body>"); out.println("</html>"); } else {
+				  response.setContentType("text/html"); PrintWriter out =
+				  response.getWriter(); out.println("<!DOCTYPE HTML>");
+				  out.println("<html>"); out.println(" <body>"); out.println(
+				  " <script>alert('สำเร็จ');window.location='Total.jsp';</script>"
+				 ); out.println(" </body>"); out.println("</html>"); } }
+				 
 		}
 	}

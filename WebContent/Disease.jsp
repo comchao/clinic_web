@@ -193,7 +193,7 @@ to {
 									<td><input name="value<%=i%>" type="radio"  value="1" >&nbsp;&nbsp;<b>มาก</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 									<td><input name="value<%=i%>"  type="radio" value="0.5"> &nbsp;&nbsp;<b>น้อย</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 									<td><input name="value<%=i%>"  type="radio"  value="0">  &nbsp;&nbsp;<b>ปกติ</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-									<input name="id_symptom<%=i%>"  type="hidden"  value="<%=bean.getId_symptom()%>" >  
+									<%-- <input name="id_symptom<%=i%>"  type="hidden"  value="<%=bean.getId_symptom()%>" >   --%>
 									
 								
 									
