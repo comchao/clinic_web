@@ -272,7 +272,8 @@ public class DiseaseDAO {
 			AnalysisBean disease = new AnalysisBean();
 			ArrayList<AnalysisBean> diseaseList = new ArrayList<AnalysisBean>();
 
-			String sql = "SELECT `disease` ,SUM(`sum`) AS Total FROM `analysis_disease` GROUP BY disease ORDER BY Total DESC LIMIT 0,2; ";
+			String sql = "SELECT e.disease,SUM(e.sum) AS total ,e1.maxDisease FROM analysis_disease e JOIN (SELECT disease, SUM(sum) AS maxDisease "
+					+ "FROM analysis_disease GROUP BY disease ORDER BY maxDisease DESC LIMIT 1) e1 GROUP BY e.disease HAVING total= e1.maxDisease; ";
 			try {
 				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 
@@ -284,7 +285,8 @@ public class DiseaseDAO {
 
 			
 	     			disease.setDisease(rs.getString("disease"));  
-	                disease.setTotal(rs.getFloat   ("Total")); 
+	                disease.setTotal(rs.getFloat("maxDisease"));
+	                System.out.println("maxDisease"+rs.getFloat("maxDisease"));
 	                
 
 					diseaseList.add(disease);
