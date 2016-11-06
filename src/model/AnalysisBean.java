@@ -4,6 +4,13 @@ public class AnalysisBean {
 	int id;
 	int id_disease;
 	String disease;
+	float Total1;
+	public float getTotal1() {
+		return Total1;
+	}
+	public void setTotal1(float total1) {
+		Total1 = total1;
+	}
 	Float Total;
 	Float  Totalcolum;
 	Float Totalvalue ;

@@ -20,10 +20,10 @@
 <center>
 <table>
 <tr>
-<th>อาการ</th>
-<th>Totalcolumvalue</th>
+<th><h3>อาการที่พบ<h3></h3></th>
+<!-- <th>Totalcolumvalue</th>
 <th>Totalcolum</th>
-<th>Total</th>
+<th>Total</th> -->
 </tr>
 <%
 
@@ -56,8 +56,8 @@ AnalysisBean bean = List.get(i);
         
         
           <td><%=bean.getSymptom()%></td>
-          <td><%=bean.getTotalvalue()%></td>
-          <td><%=bean.getTotalcolum()%></td>
+         <%--  <td><%=bean.getTotalvalue()%></td>
+          <td><%=bean.getTotalcolum()%></td> --%>
           
           <%
             float Totalvalue =  bean.getTotalvalue();
@@ -70,7 +70,7 @@ AnalysisBean bean = List.get(i);
           
           %> 
                       
-           <td><%=Total1%></td>
+           <%-- <td><%=Total1%></td> --%>
            
            <form action="Analysis_diseaseServlet" method="post">
            <input type="hidden" name="sum<%=i%>" value="<%=Total1%>">

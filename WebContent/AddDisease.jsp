@@ -7,20 +7,33 @@
 <br>
 <br>
 <br>
-<br>
+<br><br><br>
+<table>
+ 
+  <tr>
+    <td width="350"></td>
+    <td><form action="AddSymptomDisease.jsp" method="post"><input name="submit" value="เพิ่มเฉพาะอาการ" type="submit" class="btn btn-success" > </form></td>
+
+  </tr>
+</table>
+
+
 
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:100px;margin:0px auto;">
-	<a href="drugView.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	
 	
 </div>
-<br><br><br>
+
+
+
 	<div class="row">
-		<h3 align="center">เพิ่มข้อมูลโรค</h3>
+		
+			<h3 align="center">เพิ่มข้อมูลโรค</h3>
 		<br /><br />
 		
 		
-		
+	
 		
 		<form name="form1" id="form1" method="POST" action="InsertDiseaseServlet" style="margin: 10px, 10px, 10px, 10px;">
 			<div class="row">
@@ -30,6 +43,7 @@
 								<div>
 									<p>ชื่อโรค</p>
 								</div>
+								
 							</div>
 							<div class="col-sm-5">
 								<div class="form-group">
@@ -47,72 +61,62 @@
 							<div class="col-sm-5">
 								<div class="form-group">
 									<input type="text" name="symptom[]" id="symptom"
-										placeholder="อาการของโรค1" class="form-control" required="required" />
+										placeholder="อาการของโรค" class="form-control" required="required" />
 								</div>
 							</div>
-							</div>
-							<div class="row">
-							<div class="col-sm-3">
-								<div>
-									<p></p>
-								</div>
-							</div>
-							<div class="col-sm-5">
+							</div>    
+<table id="myTbl" width="1540" >  
+  <tr id="firstTr">  
+   <td width="140">
+    <td width="600"><div class="col-sm-5">
 								<div class="form-group">
 									<input type="text" name="symptom[]" id="symptom"
-										placeholder="อาการของโรค2" class="form-control" required="required" />
+										placeholder="อาการของโรค" class="form-control" required="required" />
 								</div>
-							</div>
-							</div>
-								<div class="row">
-							<div class="col-sm-3">
-								<div>
-									<p></p>
-								</div>
-							</div>
-							<div class="col-sm-5">
-								<div class="form-group">
-									<input type="text" name="symptom[]" id="symptom"
-										placeholder="อาการของโรค3" class="form-control" required="required" />
-								</div>
-							</div>
-							</div>
-								<div class="row">
-							<div class="col-sm-3">
-								<div>
-									<p></p>
-								</div>
-							</div>
-							<div class="col-sm-5">
-								<div class="form-group">
-									<input type="text" name="symptom[]" id="symptom"
-										placeholder="อาการของโรค4" class="form-control" required="required" />
-								</div>
-							</div>
-							</div>
-								<div class="row">
-							<div class="col-sm-3">
-								<div>
-									<p></p>
-								</div>
-							</div>
-							<div class="col-sm-5">
-								<div class="form-group">
-									<input type="text" name="symptom[]" id="symptom"
-										placeholder="อาการของโรค5" class="form-control" required="required" />
-								</div>
-							</div>
-							</div>
+							</div></td>   
+    
+   
+      
+    </tr>  
+</table>  
+<br />  
+<table width="1540" >  
+  <tr>  
+   <td width="170">
+    <td width="300">
+    
+  <td width="150">
+    <td>  
+    <button id="addRow" type="button">+</button>    
+    &nbsp;  
+    <button id="removeRow" type="button">-</button>  
+
+						
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	<input type="submit" name="submit" id="submit"
+	class="btn btn-success" value="บันทึกข้อมูล" onclick="cal(value)" />  
+					
+    </td>  
+  </tr>  
+</table>  
+</form>
+<script language="javascript" src="jquery-1.3.2.min.js"></script>  
+<script type="text/javascript">  
+$(function(){  
+    $("#addRow").click(function(){  
+        $("#myTbl").append($("#firstTr").clone());  
+    });  
+    $("#removeRow").click(function(){  
+        if($("#myTbl tr").size()>1){  
+            $("#myTbl tr:last").remove();  
+        }else{  
+            alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");  
+        }  
+    });           
+});  
+</script>
 							
-							
-						<div class="row">
-				<div class="col-sm-12">
-					<div class="form-group" style="text-align: right">
-						<input type="submit" name="submit" id="submit"
-							class="btn btn-success" value="บันทึกข้อมูล" onclick="cal(value)" />  <br> <br> <br>
-					</div>
-				</div>
-			</div>
+						
 			
 		</form>
 	</div>

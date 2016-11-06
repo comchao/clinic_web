@@ -59,6 +59,45 @@ public class DiseaseDAO {
 		}
 		return null;
 	}
+	// เรียกข้อมูลอาการโรคsymptom
+		static public ArrayList<SymptomsBean> symptom() {
+
+			SymptomsBean disease = new SymptomsBean();
+			ArrayList<SymptomsBean> diseaseList = new ArrayList<SymptomsBean>();
+
+			String sql = "select  * from symptoms_disease order by symptom; ";
+			try {
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+				rs = preparedStmt.executeQuery();
+				// dbc.closeConnection();
+
+				while (rs.next()) {
+					disease = new SymptomsBean();
+
+				   /* disease.setId_symptom(rs.getInt("id_symptom")); //ID อาการโรค
+	*/				disease.setSymptom(rs.getString("symptom")); // อาการโรค
+					disease.setDisease(rs.getString("disease")); // อาการโรค
+	
+					diseaseList.add(disease);
+				}
+				rs.close();
+				return diseaseList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			} finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> " + e.getMessage());
+				}
+			}
+			return null;
+		}
+
 
 	
 
@@ -164,6 +203,11 @@ public class DiseaseDAO {
 		}
 		return null;
 	}
+	
+	
+	
+	
+	
 	static public ArrayList<AnalysisBean> getvaluecolum() {
 
 		AnalysisBean disease = new AnalysisBean();
@@ -205,7 +249,43 @@ public class DiseaseDAO {
 		return null;
 	}
 	
-	
+
+	static public ArrayList<AnalysisBean> disease() {
+
+		AnalysisBean disease = new AnalysisBean();
+		ArrayList<AnalysisBean> diseaseList = new ArrayList<AnalysisBean>();
+
+		String sql = "SELECT * FROM disease order by disease; ";
+		try {
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			rs = preparedStmt.executeQuery();
+			// dbc.closeConnection();
+
+			while (rs.next()) {
+				disease = new AnalysisBean();
+
+				disease.setDisease(rs.getString("disease")); //โรค
+     			
+   
+				diseaseList.add(disease);
+			}
+			rs.close();
+			return diseaseList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+		return null;
+	}
 	
 	
 	

@@ -21,7 +21,7 @@
 <center>
 
 <h2>ผลของการวิเคราะห์โรค</h2><br>
-
+<br>
 
 <%
 
@@ -44,8 +44,8 @@ AnalysisBean bean = List.get(i);
 
        
         
-         <h4> <%=bean.getDisease()%><h4>
-        <%=bean.getTotal()%> 
+         <h3> <%=bean.getDisease()%><h3>
+      <%--   <%=bean.getTotal()%>  --%>
         
            
        

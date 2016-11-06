@@ -155,20 +155,51 @@ to {
 	}
 </script>
 <center>
+<style type="text/css">  
+/* class สำหรับแถวส่วนหัวของตาราง */  
+.tr_head{   
+    background-color:#333333;  
+    color:#FFFFFF;  
+}  
+/* class สำหรับแถวแรกของรายละเอียด */  
+.tr_odd{  
+    background-color:#F8F8F8;  
+}  
+/* class สำหรับแถวสองของรายละเอียด */  
+.tr_even{  
+    background-color:#F2F2F2;  
+}  
+</style> 
+<script language="javascript">  
+  window.onload = function () {      
+        var a=document.getElementById('mytable'); // อ้างอิงตารางด้วยตัวแปร a  
+        for(i=0;i<a.rows.length;i++){ // วน Loop นับจำนวนแถวในตาราง  
+            if(i>0){  // ตรวจสอบถ้าไม่ใช่แถวหัวข้อ  
+                if(i%2==1){   // ตรวจสอบถ้าไม่ใช่แถวรายละเอียด  
+                    a.rows[i].className="tr_odd";     // กำหนด class แถวแรก  
+                }else{  
+                    a.rows[i].className="tr_even";  // กำหนด class แถวที่สอง  
+                }     
+            }else{ // ถ้าเป็นแถวหัวข้อกำหนด class   
+                a.rows[i].className="tr_head";    
+            }     
+        }  
+ }  
+ </script>  
 <div class="col-lg-12">
 		<div class="cont1">
 
 				
 				<div class="panel">
-					<div class="panel-heading"><h3>อาการโรค</h3></div>
+					<div class="panel-heading"><h3>การวินิจฉัยโรคเบื้องต้น</h3></div>
 					<div class="panel-body">
 						<ul class="input-list">
-							<table bgcolor="#FFFFFF">
+							 <table id="mytable" border="0" cellspacing="0" cellpadding="0">  
 								<!--   อาการโรคสัตว์ที่พบเบื้องต้น -->
 	<tr>							<li>
 
 	
-							<table bgcolor="">
+						
 								
 								
 									<%
@@ -181,18 +212,21 @@ to {
 
 								   
 								
-									<form action="Disease2.jsp" method="post">
-										<tr><td><input name="symptom<%=i%>"  type="checkbox"  value="<%=bean.getSymptom()%>" ></td>
+									  <form action="DiseaseGetSymptomServlet" method="post">
+										<tr>
+										<td width="50"></td>
+										
+										<td><input name="symptom<%=i%>"  type="hidden" value="<%=bean.getSymptom()%>" ><%=bean.getSymptom()%></td>
 									
-									<td><h5><%=bean.getSymptom()%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<td><h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5> </td>
 								
 									
-									<td><input name="value<%=i%>" type="radio"  value="1" >&nbsp;&nbsp;<b>มาก</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><input name="value<%=i%>"  type="radio" value="0.5"> &nbsp;&nbsp;<b>น้อย</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><input name="value<%=i%>"  type="radio"  value="0">  &nbsp;&nbsp;<b>ปกติ</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+									<td ><input name="value<%=i%>" type="radio"  value="1" >&nbsp;&nbsp;<b>มาก</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td ><input name="value<%=i%>"  type="radio" value="0.5"> &nbsp;&nbsp;<b>น้อย</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td ><input name="value<%=i%>"  type="radio"  value="0">  &nbsp;&nbsp;<b>ปกติ</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
 									<%-- <input name="id_symptom<%=i%>"  type="hidden"  value="<%=bean.getId_symptom()%>" >   --%>
 									
 								
@@ -202,18 +236,23 @@ to {
 									<%
 										}
 									%> 
-									<td> <input name="submit"type="submit"> </td> 
-							</form>
-									<td><form action="AddDisease.jsp" method="post">
-										<input name="submit" value="เพิ่มข้อมูล" type="submit"> </td> </tr>
-										</form>
-										
+									</tr></table>
+									<br>
+<table>	
+<tr>                              <!-- วิเคราะห์โรค -->						
+<td><input name="submit"type="submit" class="btn btn-success" value="วิเคราะห์โรค" > </form></td>
+<td width="10"></td>
+                                    <!-- เพิ่มข้อมูลโรค -->
+<td><form action="AddDisease.jsp" method="post"><input name="submit" value="เพิ่มข้อมูลโรค" type="submit" class="btn btn-success" > </form></td>
+<td width="10"></td>
+<td><form action="EditDisease.jsp" method="post"><input name="submit" value="แก้ไขข้อมูลโรค" type="submit" class="btn btn-success" > </form></td>
+<td width="10"></td>
+
+<td></td>
+
+</tr></table>											
 										
 									
 	
     
-
-
-</div>
-	</center>
 <%@ include file="footer_index.jsp"%>
