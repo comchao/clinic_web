@@ -47,7 +47,7 @@ AnalysisBean bean = List.get(i);
          <h3> <%=bean.getDisease()%><h3>
       <%--   <%=bean.getTotal()%>  --%>
         
-           
+           <br><br>
        
            
            
@@ -58,9 +58,26 @@ AnalysisBean bean = List.get(i);
            
            
 <%}%>
+<br>
+<%
 
-   
-           </form></center>
+DiseaseDAO dao2 = new DiseaseDAO();  
+List<AnalysisBean> List2 = dao2.Analysis();
+response.setCharacterEncoding("utf-8");
+for(int i2 = 0;i2<List2.size();i2++){
+AnalysisBean bean2 = List2.get(i2);
+%>	
+
+<form action="ClearDataServlet" method="post">
+
+<input name="id[]" type="hidden" value="<%=bean2.getId()%>">
+ <%}%>
+<input type="submit" name="submit"
+								id="submit" class="btn btn-success" value="Clear Data"
+								onclick="cal(value)" /></form> 
+  
+  
+           </center>
 </body>
 </html>
 <%@ include file="footer_index.jsp"%>

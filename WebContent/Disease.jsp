@@ -245,7 +245,7 @@ to {
                                     <!-- เพิ่มข้อมูลโรค -->
 <td><form action="AddDisease.jsp" method="post"><input name="submit" value="เพิ่มข้อมูลโรค" type="submit" class="btn btn-success" > </form></td>
 <td width="10"></td>
-<td><form action="EditDisease.jsp" method="post"><input name="submit" value="แก้ไขข้อมูลโรค" type="submit" class="btn btn-success" > </form></td>
+<td><form action="EditDisease.jsp" method="post"><input name="submit" value="ข้อมูลโรค" type="submit" class="btn btn-success" > </form></td>
 <td width="10"></td>
 
 <td></td>

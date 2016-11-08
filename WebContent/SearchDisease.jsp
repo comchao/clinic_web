@@ -111,17 +111,16 @@
 					<th><h4>อาการ</h4></th>
 					<th><h4>โรค</h4></th>
 					
-					<th><h4>เเก้ไข</h4></th>
-					<th><h4>ลบ</h4></th>
+					<th><h4>เเก้ไขข้อมูล</h4></th>
+					<th><h4>ลบข้อมูล</h4></th>
 					
 				</tr>
 				<%
-								DiseaseDAO dao = new DiseaseDAO();
+				List<AnalysisBean> List = (List) session.getAttribute("search");
 
-								List<SymptomsBean> List = dao.symptom();
-								response.setCharacterEncoding("utf-8");
-								for (int i = 0; i < List.size(); i++) {
-									SymptomsBean bean = List.get(i);
+				AnalysisBean bean;
+				for (int i = 0; i < List.size(); i++) {
+					bean = (AnalysisBean) List.get(i);
 									
 								%>
 				<tr>
@@ -129,7 +128,6 @@
 								<td><%=bean.getSymptom() %></td>
 							
 								<td><%=bean.getDisease() %></td>
-							  
 								
 					<td>
 					<form action="UpdateDiseaseServlet.jsp" method="post">

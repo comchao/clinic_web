@@ -44,9 +44,6 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 			// ดึงข้อมูลอาการโรค
 			diseaseList = DiseaseDAO.getdisease();
 			HttpSession session = request.getSession(true);
-			/*
-			 * String p = "1"; session.setAttribute("pageN", p);
-			 */
 			// เก็บข้อมูลอาการโรค
 			session.setAttribute("symptom", diseaseList);
 			response.sendRedirect("Disease.jsp");

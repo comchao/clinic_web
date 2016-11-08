@@ -29,7 +29,7 @@
 		<br />
 
 		<form name="form1" id="form1" method="POST"
-			action="InsertDiseaseServlet" style="margin: 10px, 10px, 10px, 10px;">
+			action="AddSymptomDiseaseServlet" style="margin: 10px, 10px, 10px, 10px;">
 			<div class="row">
 				<div class="form-group">
 				
@@ -44,7 +44,7 @@
 							</div>
 							<div class="col-sm-5">
 								<div class="form-group">
-								<select name="drug_type" id="drug_type" class="form-control"
+								<select name=disease id="drug_type" class="form-control"
 										required="required">
 								<%
 								DiseaseDAO dao = new DiseaseDAO();
@@ -99,9 +99,12 @@
 							<td width="170">
 							<td width="300">
 							<td width="150">
-							<td>
-								<button id="addRow" type="button">+</button> &nbsp;
-								<button id="removeRow" type="button">-</button> &nbsp; &nbsp;
+							<td>  
+    <button id="addRow" type="button"  style = "background-color:#228B22">&nbsp;  &nbsp;  +&nbsp;  &nbsp;  </button>    
+    &nbsp;  
+    <button id="removeRow" type="button" style = "background-color:#B22222" >&nbsp;  &nbsp; - &nbsp;  &nbsp;   </button>  
+
+								&nbsp; &nbsp;
 								&nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" name="submit"
 								id="submit" class="btn btn-success" value="บันทึกข้อมูล"
 								onclick="cal(value)" />
