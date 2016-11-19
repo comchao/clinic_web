@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-11-19T11:41:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DiseaseReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd5ad00c-1db3-4e6e-be4b-298c5a2df75e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     analysis_disease.`id` AS analysis_disease_id,
+     analysis_disease.`symptom` AS analysis_disease_symptom,
+     analysis_disease.`disease` AS analysis_disease_disease,
+     analysis_disease.`value` AS analysis_disease_value,
+     analysis_disease.`valuecolum` AS analysis_disease_valuecolum,
+     analysis_disease.`sum` AS analysis_disease_sum,
+     analysis_disease.`date_time` AS analysis_disease_date_time
+FROM
+     `analysis_disease` analysis_disease]]>
+	</queryString>
+	<field name="analysis_disease_id" class="java.lang.Integer"/>
+	<field name="analysis_disease_symptom" class="java.lang.String"/>
+	<field name="analysis_disease_disease" class="java.lang.String"/>
+	<field name="analysis_disease_value" class="java.lang.Float"/>
+	<field name="analysis_disease_valuecolum" class="java.lang.Integer"/>
+	<field name="analysis_disease_sum" class="java.lang.Float"/>
+	<field name="analysis_disease_date_time" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="25" y="27" width="104" height="79" uuid="13de1ceb-666e-40d3-82aa-bb03cb5104e2"/>
+				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="158" y="77" width="291" height="29" uuid="d13fad0e-5b02-4fb7-bd29-1788668c2582"/>
+				<textElement>
+					<font fontName="TH Kodchasal" size="24"/>
+				</textElement>
+				<text><![CDATA[ใบรายงานการวินิจฉัยโรคของสัตร์]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="bfda4965-8f2f-45b8-8d37-1e0f7489a4b7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="79" y="0" width="101" height="15" forecolor="#736343" uuid="e2d1a8d7-3419-4a88-8592-1761e7c86aae"/>
+				<textElement>
+					<font fontName="TH Kodchasal"/>
+				</textElement>
+				<text><![CDATA[ลำดับ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="180" y="0" width="100" height="15" forecolor="#736343" uuid="7d9b8140-41f9-485f-847f-1db45d7e116b"/>
+				<textElement>
+					<font fontName="TH Kodchasal"/>
+				</textElement>
+				<text><![CDATA[อาการ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="280" y="1" width="100" height="15" forecolor="#736343" uuid="4bd6ade7-f87f-4fbe-9964-99d4c286d2d9"/>
+				<textElement>
+					<font fontName="TH Kodchasal"/>
+				</textElement>
+				<text><![CDATA[โรค]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="99ff701b-f500-4b0d-8c2c-348f34829433"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="79" y="0" width="101" height="15" uuid="eb284e46-8a66-4d14-959a-97ffc9020d86"/>
+					<textFieldExpression><![CDATA[$F{analysis_disease_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="180" y="0" width="100" height="15" uuid="2aa6632d-32f8-4f95-b498-9732f16dd733"/>
+					<textElement>
+						<font fontName="TH Kodchasal"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{analysis_disease_symptom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="280" y="0" width="100" height="15" uuid="1559d315-0646-4b02-83f5-19acc1abbe3f"/>
+					<textElement>
+						<font fontName="TH Kodchasal"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{analysis_disease_disease}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="a414f511-b827-4b7d-814d-a30a4dd76fc5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="474248a5-222b-4764-831c-4ae9abd2820f"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="927dbfc0-f5c0-440e-a0b2-7db43d5af8cf"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="5143db87-66fc-40c3-9479-a21c291b7242"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="f048951d-0f4e-4f5a-a794-c9ef914fe71d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

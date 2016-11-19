@@ -59,6 +59,10 @@ AnalysisBean bean = List.get(i);
            
 <%}%>
 <br>
+<table>
+  
+  <tr>
+
 <%
 
 DiseaseDAO dao2 = new DiseaseDAO();  
@@ -72,12 +76,24 @@ AnalysisBean bean2 = List2.get(i2);
 
 <input name="id[]" type="hidden" value="<%=bean2.getId()%>">
  <%}%>
-<input type="submit" name="submit"
+<td><input type="submit" name="submit"
 								id="submit" class="btn btn-success" value="Clear Data"
-								onclick="cal(value)" /></form> 
+								onclick="cal(value)" /></form> </td>
+								
+<td><form action="ReportServlet" method="post">
+<input name="report_id" value="7" type="hidden">
+<input  type="submit" name="submit"
+id="submit" class="btn btn-success" value="Report"
+onclick="cal(value)" /></form> </td>
   
   
            </center>
+            </tr>
+</table>
 </body>
 </html>
+
+
+ 
+
 <%@ include file="footer_index.jsp"%>

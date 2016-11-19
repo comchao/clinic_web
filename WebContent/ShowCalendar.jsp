@@ -114,10 +114,18 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 <div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
 	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
 </div>
+<table>
+<tr>
+
+<td>
+
 <div align="right">
 	 <a href="AddCalenderServlet.jsp"><input type="submit"
 				class="btn btn-primary" value="เพิ่มข้อมูลการนัดหมาย" /></a>
-</div>
+</div></td>
+  <td>   </td>
+ </tr>
+</table>
 	<div class="row">
 		<div align="center">
 		<h4 align="center">ข้อมูลการนัดหมาย</h4>	

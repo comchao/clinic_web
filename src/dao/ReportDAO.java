@@ -309,4 +309,163 @@ public static boolean printDepositBill(String deposit_id) {
 	return false;
 }
 
+
+
+
+//ใบรายงานการนัดหมาย
+public static boolean Calendar( String id ,String date_start,String date_end) {
+	
+	Connection connect = null;
+	
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		connect =  DriverManager.getConnection("jdbc:mysql://localhost/petshopdb" +
+				"?user=root&password=");
+		
+	} catch (ClassNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	String report = null;
+	try {
+		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\CalendarReport.jrxml");
+		report = dir.getAbsolutePath();
+		
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+	try {
+		
+		HashMap<String, Object> parameter = new HashMap<String, Object>();
+		
+		parameter.put("id",id); 
+		parameter.put("date_start",date_start); 
+		parameter.put("date_end",date_end); 
+		
+		
+		// Report Viewer
+		JasperReport ir = JasperCompileManager.compileReport(report);
+		JasperPrint ip = JasperFillManager.fillReport(ir, parameter,connect);
+		if(ip.getPages().isEmpty()){
+			return false;
+		}
+		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\CalendarReport.pdf");
+		JasperViewer.viewReport(ip, false);
+		return true;
+		
+	} catch (JRException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	try {
+		connect.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return false;
+}
+
+//สิ้นสุดใบรายงานการนัดหมาย
+
+
+
+
+// ใบรายงานการวินิจฉัยโรคของสัตร์
+public static boolean Disease (String id) {
+	
+	Connection connect = null;
+	
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		connect =  DriverManager.getConnection("jdbc:mysql://localhost/petshopdb" +
+				"?user=root&password=");
+		
+	} catch (ClassNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	String report = null;
+	try {
+		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\DiseaseReport.jrxml");
+		report = dir.getAbsolutePath();
+		
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+	try {
+		
+		HashMap<String, Object> parameter = new HashMap<String, Object>();
+		
+		/*parameter.put("id",id); */
+		
+		// Report Viewer
+		JasperReport ir = JasperCompileManager.compileReport(report);
+		JasperPrint ip = JasperFillManager.fillReport(ir, parameter,connect);
+		if(ip.getPages().isEmpty()){
+			return false;
+		}
+		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\DiseaseReport.pdf");
+		JasperViewer.viewReport(ip, false);
+		return true;
+		
+	} catch (JRException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	try {
+		connect.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return false;
+}
+
+//สิ้นสุดใบรายงานการวินิจฉัยโรคของสัตร์
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

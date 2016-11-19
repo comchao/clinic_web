@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-11-19T00:00:44 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CalendarReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0b604af1-1d9e-4c2c-99cb-7e6e2e23ca5e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="id" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="date_start" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="date_end" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     calendar.`id` AS calendar_id,
+     calendar.`id_calendar` AS calendar_id_calendar,
+     calendar.`title` AS calendar_title,
+     calendar.`date` AS calendar_date,
+     calendar.`Status` AS calendar_Status,
+     calendar.`url` AS calendar_url
+FROM
+     `calendar` calendar
+WHERE
+     id = '$P!{id}'
+     AND  `date` BETWEEN '$P!{date_start}' AND '$P!{date_end}']]>
+	</queryString>
+	<field name="calendar_id" class="java.lang.Integer"/>
+	<field name="calendar_id_calendar" class="java.lang.Integer"/>
+	<field name="calendar_title" class="java.lang.String"/>
+	<field name="calendar_date" class="java.sql.Timestamp"/>
+	<field name="calendar_Status" class="java.lang.String"/>
+	<field name="calendar_url" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<image>
+				<reportElement x="25" y="27" width="121" height="67" uuid="a5732cd4-cf54-47f8-bf18-3e5d4ac3b9b7"/>
+				<imageExpression><![CDATA["F:java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="170" y="64" width="240" height="30" uuid="c2001716-edf8-4568-b005-6322b4ad6975"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[	ใบรายงายการนัดหมาย]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="2f8d76b3-67f3-41c3-ae4d-6bce8cab769e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="80" y="0" width="92" height="15" forecolor="#736343" uuid="7dde9da0-96c0-49c3-8951-5cc1dc3d3505"/>
+				<textElement>
+					<font fontName="TH Kodchasal"/>
+				</textElement>
+				<text><![CDATA[เรื่องการนัดหมาย]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="180" y="0" width="120" height="15" forecolor="#736343" uuid="ce7ba2d3-2cdc-40e6-8d77-1acf01f8119c"/>
+				<textElement>
+					<font fontName="TH Kodchasal"/>
+				</textElement>
+				<text><![CDATA[วัน/เดือน/ปี]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="300" y="1" width="110" height="15" forecolor="#736343" uuid="ea188186-30a6-4b95-ab38-0152610ae452"/>
+				<textElement>
+					<font fontName="TH Kodchasal"/>
+				</textElement>
+				<text><![CDATA[สถานะ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="60b4ec0c-8093-4026-b002-6d6626c76cfd"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="80" y="0" width="92" height="15" uuid="ee7ba4ee-8049-47a2-a8f0-3c0d06cd2307"/>
+					<textElement>
+						<font fontName="TH Kodchasal"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{calendar_title}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="180" y="0" width="120" height="15" uuid="121a92df-c84c-46de-927b-2f8090302863"/>
+					<textFieldExpression><![CDATA[$F{calendar_date}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="300" y="0" width="110" height="15" uuid="03129fbc-fac5-4a2f-818c-a1504f9d6ab4"/>
+					<textElement>
+						<font fontName="TH Kodchasal"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{calendar_Status}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="d3c9e831-7dff-4caa-b5c8-8433fa049c6b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="ed6e0b56-508c-4753-86e8-5eab485b7043"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="52a3c5a3-f885-4b67-85dd-09cb448152a2"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="69ff51c2-0ada-401a-a74f-32f16a722ae4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="6bc48486-d4e1-4bac-9679-1161cec9242a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

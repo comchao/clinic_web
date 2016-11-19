@@ -144,7 +144,7 @@
 						<form action="Deletesymptoms_diseaseServlet" method="post">
 							<input name="id_symptom" type="hidden" value="<%=bean.getId_symptom()%>">
 							
-							<input onclick="return delConfirm();" class="btn btn-danger" type="submit" value="ลบข้อมูลยา">
+							<input onclick="return delConfirm();" class="btn btn-danger" type="submit" value="ลบข้อมูล">
 						</form>
 					</td>
 				</tr>

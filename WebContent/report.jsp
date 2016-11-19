@@ -44,7 +44,7 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 	</div>
 	<div class="col-sm-12" align="center">
 	
-		<form action="ReportServlet" method="post">
+		<form action="ReportServlet?id=<%=session.getAttribute("id")%>" method="post">
 		<div class="col-sm-1">
 		</div>
 		<div class="col-sm-3">
@@ -53,6 +53,7 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 				<option value="1" selected="selected">รายงาน การซื้อสินค้าภายในร้าน</option>
 				<option value="2">รายงาน ค่ายา</option>
 				<option value="3">รายงาน ค่ารักษา</option>
+				<option value="6">รายงาน การนัดหมาย</option>
 			</select>
 		</div>
 		<div class="col-sm-3">
