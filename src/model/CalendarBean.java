@@ -37,6 +37,13 @@ public class CalendarBean {
 	private String url;
 	private String date;
 	private String Status;
+	private int id_auto ;
+	public int getId_auto() {
+		return id_auto;
+	}
+	public void setId_auto(int id_auto) {
+		this.id_auto = id_auto;
+	}
 	public String getStatus() {
 		return Status;
 	}

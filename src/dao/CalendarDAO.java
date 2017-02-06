@@ -41,6 +41,7 @@ public class CalendarDAO {
 				
 				selectId = new CalendarBean();
 				selectId.setId(rs.getInt("id"));
+				selectId.setId_auto(rs.getInt("id_auto"));
 				selectId.setId_calendar(rs.getString("id_calendar"));
 				selectId.setTitle(rs.getString("title"));
 				selectId.setDate(rs.getString("date"));
@@ -158,4 +159,111 @@ public class CalendarDAO {
 		return list;
 	}
 	
+	
+	
+                       //UpdateCalendar 
+	public boolean updateCalendar(CalendarBean Calendar) {
+
+		String sql = "update calendar set title = ? , date = ? where id_auto = ?; ";
+		try {
+
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			preparedStmt.setString(1, Calendar.getTitle());
+			preparedStmt.setString(2, Calendar.getDate());
+			preparedStmt.setInt(3, Calendar.getId_auto());
+			preparedStmt.executeUpdate();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+	}
+	                   //สิ้นสุดการUpdateCalendar
+	   
+	
+	
+	
+	                  //deleteCalendar
+	public boolean deleteCalendar(CalendarBean id) {
+
+		String sql = " delete  FROM  calendar  WHERE id_auto = ?; ";
+		try {
+
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			preparedStmt.setInt(1, id.getId_auto());
+
+			preparedStmt.executeUpdate();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+	}               //สิ้นสุดการ DeleteCalendar
+
+	
+	
+	                 //ส่วนของค้นหาข้อมูลการนัดหมาย
+		public ArrayList<CalendarBean>  searchCalender(String dateCalender) {
+
+		CalendarBean calendarBean = new CalendarBean();
+		ArrayList<CalendarBean> CalendarList = new ArrayList<CalendarBean>();
+
+		String sql = "select * from calendar where date LIKE ?; ";
+		try {
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+			preparedStmt.setString(1, "%"+dateCalender+"%");
+		
+			rs = preparedStmt.executeQuery();
+			
+			// dbc.closeConnection();
+
+			while (rs.next()) {
+				calendarBean = new CalendarBean();
+
+				calendarBean.setId(rs.getInt("id"));
+				calendarBean.setId_calendar(rs.getString("id_calendar"));
+				calendarBean.setTitle(rs.getString("title"));
+				calendarBean.setDate(rs.getString("date"));
+				calendarBean.setStatus(rs.getString("Status"));
+				
+				CalendarList.add(calendarBean);
+			}
+			rs.close();
+			return CalendarList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		}finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> "+e.getMessage());
+			}
+		}
+		return null;
+	}	
+		            //สิ้นสุดส่วนของค้นหาข้อมูลการนัดหมาย
 }
+

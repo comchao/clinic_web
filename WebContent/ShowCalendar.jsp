@@ -111,13 +111,6 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 }
 </script>
 <div class="container">
-<div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
-</div>
-<table>
-<tr>
-
-<td>
 
 <div align="right">
 	 <a href="AddCalenderServlet.jsp"><input type="submit"
@@ -130,8 +123,8 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 		<div align="center">
 		<h4 align="center">ข้อมูลการนัดหมาย</h4>	
 	
-			<form action="searchProductServlet" method="post">
-				<input name="date" type="date" class="search-query" onchange="Javascript:dateTime(date_end);"	placeholder="yyyy-mm-dd" required="required"> <input type="hidden"
+			<form action="searchCalenderServlet" method="get">
+				<input name="dateCalender" type="date" class="search-query" onchange="Javascript:dateTime(date_end);"	placeholder="yyyy-mm-dd" required="required"> <input type="hidden"
 					name="searchType" value="searchProducts">&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>
@@ -148,11 +141,12 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 					<th>ประเภทการนัด</th>
 					<th>วัน/เดือน/ปี</th>
 					<th>สถานะ</th>
-					<th>อื่นๆ</th>
+					<th>แก้ไข</th>
+					<th></th>
 					</tr>
 			
 				
-	<%  ArrayList<CalendarBean> list = (ArrayList)request.getAttribute("list") ;%>
+	<%  ArrayList<CalendarBean> list = (ArrayList)request.getAttribute("list");%>
 <%  CalendarBean bean;     for (int i=0; i<list.size(); i++){
 							bean = (CalendarBean) list.get(i); %>
 
@@ -161,19 +155,34 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 						<td><%=i+1%></td>
 					<td><%=bean.getId_calendar()%></td>
 					
+					
 					<td><%=bean.getTitle()%></td>
 					<td><%=bean.getDate()%></td>
 					
 					<td bgcolor="#FF9797"><%=bean.getStatus()%></td>
-				<%-- 	<td><%=bean.getUrl()%></td> --%>
-					<td><div style="display: block; float: ; padding: 3px 3px;">
+				<td>
+				<!-- EditcalendarServlet" -->
+					
+					<form action="EditCalender.jsp" method="post">
 						
-
-					<input type="submit" onclick="return editConfirm();"class="btn btn-warning" value="รายละเอียด">
-				
-		</td>
-
-			</tr>
+						<input type="hidden" name="id" value="<%=bean.getId()%>">
+						<input type="hidden" name="title" value="<%=bean.getTitle()%>">
+						<input type="hidden" name="date" value="<%=bean.getDate()%>">
+							<input type="hidden" name=id_auto value="<%=bean.getId_auto()%>">
+						<input type="submit" onclick="return editConfirm();" class="btn btn-warning" value="แก้ไข">
+					</form>
+				<!-- EditcalendarServlet" -->
+					</td>
+					
+					<!-- DelcalendarServlet" -->
+					<td>
+						<form action="DelcalendarServlet" method="post">
+						<input type="hidden" name=id_auto value="<%=bean.getId_auto()%>">
+							<input onclick="return delConfirm();" class="btn btn-danger" type="submit" value="ลบข้อมูล">
+						</form>
+						<!-- DelcalendarServlet" -->
+					</td>
+				</tr>
 				<% }%>	
 					
 
