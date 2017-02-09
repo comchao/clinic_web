@@ -34,7 +34,7 @@ public class ReportDAO {
 		
 		String report = null;
 		try {
-			File dir = new File("D:\\JavaProject\\clinic_web\\WebContent\\ireport\\ShopReport.jrxml");
+			File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\ShopReport.jrxml");
 			report = dir.getAbsolutePath();
 			
 		} catch (Exception e1) {
@@ -55,7 +55,7 @@ public class ReportDAO {
 			if(ip.getPages().isEmpty()){
 				return false;
 			}
-			JasperExportManager.exportReportToPdfFile(ip,"D:\\JavaProject\\clinic_web\\WebContent\\ireport\\ShopReport.pdf");
+			JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\ShopReport.pdf");
 			JasperViewer.viewReport(ip, false);
 			return true;
 			
@@ -399,7 +399,7 @@ public static boolean Disease (String id) {
 	
 	String report = null;
 	try {
-		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\DiseaseReport.jrxml");
+		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\disease_percentage.jrxml");
 		report = dir.getAbsolutePath();
 		
 	} catch (Exception e1) {
@@ -419,7 +419,7 @@ public static boolean Disease (String id) {
 		if(ip.getPages().isEmpty()){
 			return false;
 		}
-		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\DiseaseReport.pdf");
+		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\disease_percentage.pdf");
 		JasperViewer.viewReport(ip, false);
 		return true;
 		

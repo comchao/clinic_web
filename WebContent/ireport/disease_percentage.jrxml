@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-09T22:56:57 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DiseaseReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd5ad00c-1db3-4e6e-be4b-298c5a2df75e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     disease_percentage.`id` AS disease_percentage_id,
+     disease_percentage.`disease` AS disease_percentage_disease,
+     disease_percentage.`SumPercentage` AS disease_percentage_SumPercentage
+FROM
+     `disease_percentage` disease_percentage]]>
+	</queryString>
+	<field name="disease_percentage_id" class="java.lang.Integer"/>
+	<field name="disease_percentage_disease" class="java.lang.String"/>
+	<field name="disease_percentage_SumPercentage" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement x="380" y="0" width="175" height="70" uuid="89125950-8981-474a-af68-ebf06787d6fc"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
+เปิดทำการทุกวัน เวลา 9:00 - 20:00 น. 
+ติดต่อสอบถาม โทร  088 865 6185
+
+
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="0" width="150" height="136" uuid="759b18d5-85bf-4314-b1af-cd4d89ed7717"/>
+				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="180" y="70" width="291" height="29" uuid="a08ea172-eaa4-48e7-8ab8-55660fe75fe8"/>
+				<textElement>
+					<font fontName="TH Kodchasal" size="24"/>
+				</textElement>
+				<text><![CDATA[ใบรายงานผลการวินิจฉัยโรคของสัตว์]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="401" y="110" width="104" height="18" forecolor="#736343" uuid="ff65106e-089c-4554-a1ea-feb23f1608bf"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="505" y="110" width="50" height="18" uuid="89cdf6e8-31b3-4926-b13f-8c003002c1fc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="79" y="0" width="101" height="26" forecolor="#736343" uuid="e2d1a8d7-3419-4a88-8592-1761e7c86aae"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH Kodchasal" size="16"/>
+				</textElement>
+				<text><![CDATA[ลำดับ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="180" y="0" width="100" height="25" forecolor="#736343" uuid="7d9b8140-41f9-485f-847f-1db45d7e116b"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH Kodchasal" size="16"/>
+				</textElement>
+				<text><![CDATA[โรค]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="280" y="1" width="100" height="25" forecolor="#736343" uuid="4bd6ade7-f87f-4fbe-9964-99d4c286d2d9"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH Kodchasal" size="16"/>
+				</textElement>
+				<text><![CDATA[เปอร์เซ็นต์(%)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="99ff701b-f500-4b0d-8c2c-348f34829433"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="79" y="0" width="101" height="15" uuid="eb284e46-8a66-4d14-959a-97ffc9020d86"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{disease_percentage_id}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="180" y="0" width="100" height="15" uuid="2aa6632d-32f8-4f95-b498-9732f16dd733"/>
+					<textElement>
+						<font fontName="TH Kodchasal"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{disease_percentage_disease}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="280" y="0" width="100" height="15" uuid="1559d315-0646-4b02-83f5-19acc1abbe3f"/>
+					<textElement>
+						<font fontName="TH Kodchasal"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{disease_percentage_SumPercentage}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="12" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="195" height="20" uuid="b3493108-b963-4fc2-80bc-990c0ae027bc"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[(ลงชื่อ)_____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="20" width="100" height="20" uuid="fa3d6caa-6fe0-4491-a0df-70d347757032"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ผู้จัดทำ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="73" y="50" width="107" height="20" forecolor="#736343" uuid="61047b72-891f-4016-acf4-8f19e8504109"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Column header" x="320" y="50" width="80" height="20" forecolor="#736343" uuid="9fbed60d-33ae-4359-a682-ccbc7d38a101"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="403" y="50" width="40" height="20" forecolor="#736343" uuid="31859186-78fb-4f21-9236-1f06c59435b6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="371" y="20" width="100" height="20" uuid="2c9454b0-dd46-4418-9772-73f122ae936e"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ผู้ตรวจสอบ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="228" height="20" uuid="8749fee1-69bd-4a7c-92c4-261897799fa1"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[(ลงชื่อ)_________________________________]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

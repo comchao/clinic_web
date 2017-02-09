@@ -194,7 +194,7 @@
 		
 					   <input type="hidden" name="Disease[]"value="<%=bean.getDisease()%>"> 
 					   <input type="hidden"name="SumPercentage" value="<%=SumPercentage%>">
-
+					  
 
 							
 							<%

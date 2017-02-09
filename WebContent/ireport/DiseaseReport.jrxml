@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-02-09T15:06:32 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DiseaseReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd5ad00c-1db3-4e6e-be4b-298c5a2df75e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DiseaseReport" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd5ad00c-1db3-4e6e-be4b-298c5a2df75e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -49,7 +47,7 @@ FROM
 				<textElement>
 					<font fontName="TH Kodchasal" size="24"/>
 				</textElement>
-				<text><![CDATA[ใบรายงานการวินิจฉัยโรคของสัตร์]]></text>
+				<text><![CDATA[??????????????????????????????]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -65,25 +63,24 @@ FROM
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="79" y="0" width="101" height="15" forecolor="#736343" uuid="e2d1a8d7-3419-4a88-8592-1761e7c86aae"/>
-				<textElement>
-					<font fontName="TH Kodchasal"/>
-				</textElement>
-				<text><![CDATA[ลำดับ]]></text>
+				<reportElement style="Column header" x="0" y="0" width="79" height="15" forecolor="#736343" uuid="e2d1a8d7-3419-4a88-8592-1761e7c86aae"/>
+				<text><![CDATA[analysis_disease_id]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="180" y="0" width="100" height="15" forecolor="#736343" uuid="7d9b8140-41f9-485f-847f-1db45d7e116b"/>
-				<textElement>
-					<font fontName="TH Kodchasal"/>
-				</textElement>
-				<text><![CDATA[อาการ]]></text>
+				<reportElement style="Column header" x="79" y="0" width="79" height="15" forecolor="#736343" uuid="7d9b8140-41f9-485f-847f-1db45d7e116b"/>
+				<text><![CDATA[analysis_disease_symptom]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="280" y="1" width="100" height="15" forecolor="#736343" uuid="4bd6ade7-f87f-4fbe-9964-99d4c286d2d9"/>
-				<textElement>
-					<font fontName="TH Kodchasal"/>
-				</textElement>
-				<text><![CDATA[โรค]]></text>
+				<reportElement style="Column header" x="158" y="0" width="79" height="15" forecolor="#736343" uuid="4bd6ade7-f87f-4fbe-9964-99d4c286d2d9"/>
+				<text><![CDATA[analysis_disease_disease]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="395" y="0" width="79" height="15" forecolor="#736343" uuid="a088a71d-28f4-4d8a-87fa-7cff41e41a70"/>
+				<text><![CDATA[analysis_disease_sum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="474" y="0" width="79" height="15" forecolor="#736343" uuid="74d9a6ca-14a5-41b6-a71e-56b958ae0704"/>
+				<text><![CDATA[analysis_disease_date_time]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -92,21 +89,15 @@ FROM
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="99ff701b-f500-4b0d-8c2c-348f34829433"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="79" y="0" width="101" height="15" uuid="eb284e46-8a66-4d14-959a-97ffc9020d86"/>
+					<reportElement style="Detail" x="0" y="0" width="79" height="15" uuid="eb284e46-8a66-4d14-959a-97ffc9020d86"/>
 					<textFieldExpression><![CDATA[$F{analysis_disease_id}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="180" y="0" width="100" height="15" uuid="2aa6632d-32f8-4f95-b498-9732f16dd733"/>
-					<textElement>
-						<font fontName="TH Kodchasal"/>
-					</textElement>
+					<reportElement style="Detail" x="79" y="0" width="79" height="15" uuid="2aa6632d-32f8-4f95-b498-9732f16dd733"/>
 					<textFieldExpression><![CDATA[$F{analysis_disease_symptom}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="280" y="0" width="100" height="15" uuid="1559d315-0646-4b02-83f5-19acc1abbe3f"/>
-					<textElement>
-						<font fontName="TH Kodchasal"/>
-					</textElement>
+					<reportElement style="Detail" x="158" y="0" width="79" height="15" uuid="1559d315-0646-4b02-83f5-19acc1abbe3f"/>
 					<textFieldExpression><![CDATA[$F{analysis_disease_disease}]]></textFieldExpression>
 				</textField>
 			</frame>

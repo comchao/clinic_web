@@ -606,13 +606,14 @@ public class DiseaseDAO {
 	// insertdisease_percentage
 
 	public static boolean insertdisease_percentage(AnalysisBean disease) {
-		String insertSQL = "insert into disease_percentage(disease,SumPercentage)" + " values(?,?); ";
+		String insertSQL = "insert into disease_percentage(id , disease,SumPercentage)" + " values(?,? ,? ); ";
 
 		try {
 
 			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
-			preparedStmt.setString(1, disease.getDisease());
-			preparedStmt.setFloat(2, disease.getSumPercentage());
+			preparedStmt.setInt(1, disease.getId());
+			preparedStmt.setString(2, disease.getDisease());
+			preparedStmt.setFloat(3, disease.getSumPercentage());
 			preparedStmt.executeUpdate();
 			dbc.closeConnection();
 			return true;
