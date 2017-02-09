@@ -5,6 +5,7 @@ encoding//WebContent/ireport/CalendarReport.jrxml=UTF-8
 encoding//WebContent/ireport/DiseaseReport.jrxml=UTF-8
 encoding//WebContent/ireport/DrugReport.jrxml=UTF-8
 encoding//WebContent/ireport/ShopReport.jrxml=UTF-8
+encoding//WebContent/ireport/disease_percentage.jrxml=UTF-8
 encoding//src/dao/ProductDAO.java=UTF-8
 encoding//src/net/calendar/db/CalDAO.java=UTF-8
 encoding//src/servlet/AddCalenderServlet.java=UTF-8

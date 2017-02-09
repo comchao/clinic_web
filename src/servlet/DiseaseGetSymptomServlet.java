@@ -40,11 +40,42 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		try {
+			/* ส่วนของClearData analysis_disease to SQL */
+			DiseaseDAO dao = new DiseaseDAO();
+			List<AnalysisBean> List = dao.Analysis();
+			for (int i = 0; i < List.size(); i++) {
+				AnalysisBean bean = List.get(i);
+
+				DiseaseDAO DAO = new DiseaseDAO();
+				AnalysisBean Bean = new AnalysisBean();
+				Bean.setId(bean.getId());
+				DAO.ClearData(Bean);
+			}
+			/* ส่วนของClearData disease_percentage to SQL */
+			DiseaseDAO Disease_percentageDAO  = new DiseaseDAO();
+			List<AnalysisBean> disease_percentageList = Disease_percentageDAO.getdisease_percentage();
+			for (int i = 0; i < disease_percentageList.size(); i++) {
+				AnalysisBean Disease_percentageBean = disease_percentageList.get(i);
+
+				DiseaseDAO DAO = new DiseaseDAO();
+				AnalysisBean Bean = new AnalysisBean();
+				Bean.setId(Disease_percentageBean.getId());
+				DAO.ClearDataDisease_percentage(Bean);
+			}
+			
+			
+			
+			
+			
+			
+			
+			/* สิ้นสุดส่วนของClearData analysis_disease to SQL */
 			ArrayList<SymptomsBean> diseaseList = new ArrayList<SymptomsBean>();
 			// ดึงข้อมูลอาการโรค
 			diseaseList = DiseaseDAO.getdisease();
 			HttpSession session = request.getSession(true);
 			// เก็บข้อมูลอาการโรค
+			
 			session.setAttribute("symptom", diseaseList);
 			response.sendRedirect("Disease.jsp");
 		} catch (Exception ex) {
@@ -58,9 +89,7 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		
-
+		try {
 		for (int i = 0; i < 50; i++) {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
@@ -70,7 +99,7 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 
 				DiseaseDAO dao = new DiseaseDAO();
 				List<AnalysisBean> List = dao.symptom(symptom);
-				
+
 				for (int i1 = 0; i1 < List.size(); i1++) {
 					request.setCharacterEncoding("UTF-8");
 					response.setCharacterEncoding("UTF-8");
@@ -79,7 +108,6 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 					System.out.println("Symptom:" + bean.getSymptom());
 					System.out.println("Disease" + bean.getDisease());
 
-	
 					DiseaseDAO DAO = new DiseaseDAO();
 
 					AnalysisBean Bean = new AnalysisBean();
@@ -88,8 +116,6 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 					Bean.setValue(Float.parseFloat(value));
 					DAO.insertDisease(Bean);
 
-				
-
 					DiseaseDAO dao2 = new DiseaseDAO();
 
 					List<AnalysisBean> List2 = dao2.getvaluecolum();
@@ -97,51 +123,34 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 						request.setCharacterEncoding("UTF-8");
 						response.setCharacterEncoding("UTF-8");
 						AnalysisBean bean2 = List2.get(i2);
-
-						System.out.println("*Totalvalue*" + bean2.getTotalvalue());
-						System.out.println("*Totalcolum*" + bean2.getTotalcolum());
-
-						float Totalvalue = bean2.getTotalvalue();
+                        float Totalvalue = bean2.getTotalvalue();
 						float Totalcolum = bean2.getTotalcolum();
-
 						float Total = 0;
 						float Total1 = 0;
 						Total = Totalvalue / Totalcolum;
 						Total1 = Total / Totalcolum;
-                        System.out.println(Total1);
-                        
-                      
+						System.out.println(Total1);
+
+						DiseaseDAO DAO2 = new DiseaseDAO();
+						AnalysisBean Bean2 = new AnalysisBean();
+						Bean2.setSymptom(bean.getSymptom());
+						Bean2.setSum(Total1);
+						DAO2.updateSum(Bean2);
+
 						
-                        DiseaseDAO DAO2 = new DiseaseDAO();
-						
-				       AnalysisBean Bean2 = new AnalysisBean();
 
-				       Bean2.setSymptom(bean.getSymptom());
-
-				       Bean2.setSum(Total1);
-
-							// DAO login
-							DAO2.updateSum(Bean2);
-
-							if (Bean2.isValid()) {
-								response.setContentType("text/html");
-								PrintWriter out = response.getWriter();
-								out.println("<!DOCTYPE HTML>");
-								out.println("<html>");
-								out.println(" <body>");
-								out.println(" <script>alert('สำเร็จ');window.location='AnalysisDisease.jsp';</script>");
-								out.println("</body>");
-								out.println("</html>");
-							} else {
-								response.setContentType("text/html");
-								PrintWriter out = response.getWriter();
-								out.println("<!DOCTYPE HTML>");
-								out.println("<html>");
-								out.println(" <body>");
-								out.println(" <script>alert('สำเร็จ');window.location='AnalysisDisease.jsp';</script>");
-								out.println(" </body>");
-								out.println("</html>");
-							}
+				
+							
 						}
-				}}}}}
+					}
+				}
+			}
+		response.sendRedirect("AnalysisDisease.jsp");
+		
+	} catch (Exception ex) {
+		ex.printStackTrace(System.out);
+	}
+		
 	
+	}
+	}

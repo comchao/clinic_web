@@ -5,6 +5,20 @@ public class AnalysisBean {
 	int id_disease;
 	String disease;
 	float Total1;
+	String  percentage;
+	float SumPercentage;
+	public float getSumPercentage() {
+		return SumPercentage;
+	}
+	public void setSumPercentage(float sumPercentage) {
+		SumPercentage = sumPercentage;
+	}
+	public String getPercentage() {
+		return percentage;
+	}
+	public void setPercentage(String percentage) {
+		this.percentage = percentage;
+	}
 	public float getTotal1() {
 		return Total1;
 	}

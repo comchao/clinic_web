@@ -78,8 +78,8 @@ public class DiseaseDAO {
 			while (rs.next()) {
 				disease = new SymptomsBean();
 
-				disease.setId_symptom(rs.getInt("id_symptom")); //ID อาการโรค
-			    disease.setSymptom(rs.getString("symptom")); // อาการโรค
+				disease.setId_symptom(rs.getInt("id_symptom")); // ID อาการโรค
+				disease.setSymptom(rs.getString("symptom")); // อาการโรค
 				disease.setDisease(rs.getString("disease")); // อาการโรค
 
 				diseaseList.add(disease);
@@ -227,6 +227,8 @@ public class DiseaseDAO {
 			}
 		}
 	}
+	
+	
 
 	// GET DATA Analysis
 
@@ -455,7 +457,7 @@ public class DiseaseDAO {
 
 				disease.setDisease(rs.getString("disease"));
 				disease.setTotal(rs.getFloat("maxDisease"));
-				System.out.println("maxDisease" + rs.getFloat("maxDisease"));
+				
 
 				diseaseList.add(disease);
 			}
@@ -476,6 +478,162 @@ public class DiseaseDAO {
 		return null;
 	}
 
+	// percentage disease 100%
+
+	static public ArrayList<AnalysisBean> getpercentage() {
+
+		AnalysisBean disease = new AnalysisBean();
+		ArrayList<AnalysisBean> diseaseList = new ArrayList<AnalysisBean>();
+
+		String sql = "SELECT disease , SUM(sum) AS percentage  FROM `analysis_disease` GROUP BY disease; ";
+		try {
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			rs = preparedStmt.executeQuery();
+			// dbc.closeConnection();
+
+			while (rs.next()) {
+				disease = new AnalysisBean();
+
+				disease.setDisease(rs.getString("disease"));
+				disease.setPercentage(rs.getString("percentage"));
+
+				diseaseList.add(disease);
+			}
+			rs.close();
+			return diseaseList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	static public ArrayList<AnalysisBean> getsumpercentage() {
+
+		AnalysisBean disease = new AnalysisBean();
+		ArrayList<AnalysisBean> diseaseList = new ArrayList<AnalysisBean>();
+
+		String sql = "SELECT disease , SUM(sum) AS percentage FROM `analysis_disease` GROUP BY disease; ";
+		try {
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			rs = preparedStmt.executeQuery();
+			// dbc.closeConnection();
+
+			while (rs.next()) {
+				disease = new AnalysisBean();
+
+				disease.setDisease(rs.getString("disease"));
+				disease.setPercentage(rs.getString("percentage"));
+				System.out.println("maxDisease" + rs.getFloat("maxDisease"));
+				
+
+				diseaseList.add(disease);
+			}
+			rs.close();
+			return diseaseList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	
+	static public ArrayList<AnalysisBean> getpercentagetotal() {
+
+		AnalysisBean disease = new AnalysisBean();
+		ArrayList<AnalysisBean> diseaseList5 = new ArrayList<AnalysisBean>();
+
+		String sql = "SELECT SUM(sum)as total FROM `analysis_disease` ; ";
+		try {
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			rs = preparedStmt.executeQuery();
+			// dbc.closeConnection();
+
+			while (rs.next()) {
+				disease = new AnalysisBean();
+
+				disease.setTotal(rs.getFloat("total"));
+				
+
+				diseaseList5.add(disease);
+			}
+			rs.close();
+			return diseaseList5;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// insertdisease_percentage
+
+	public static boolean insertdisease_percentage(AnalysisBean disease) {
+		String insertSQL = "insert into disease_percentage(disease,SumPercentage)" + " values(?,?); ";
+
+		try {
+
+			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
+			preparedStmt.setString(1, disease.getDisease());
+			preparedStmt.setFloat(2, disease.getSumPercentage());
+			preparedStmt.executeUpdate();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+	}
+	// สิ้นสุด insertdisease_percentage
+	
+	
+	
+	
 	public boolean updateSum(AnalysisBean disease) {
 
 		String sql = "update analysis_disease set sum = ? where symptom = ?; ";
@@ -517,9 +675,6 @@ public class DiseaseDAO {
 			preparedStmt.setString(1, disease.getSymptom());
 			preparedStmt.setString(2, disease.getDisease());
 			preparedStmt.setInt(3, disease.getId_symptom());
-			
-
-			
 
 			preparedStmt.executeUpdate();
 			dbc.closeConnection();
@@ -537,7 +692,7 @@ public class DiseaseDAO {
 			}
 		}
 	}
-	
+
 	public boolean Deletesymptoms_disease(AnalysisBean id) {
 
 		String sql = " delete from symptoms_disease where id_symptom = ?; ";
@@ -563,6 +718,70 @@ public class DiseaseDAO {
 			}
 		}
 	}
+	
+	// delete Data disease_percentage
+		public boolean ClearDataDisease_percentage (AnalysisBean id) {
+
+			String sql = " delete from disease_percentage where id = ?; ";
+			try {
+
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+				preparedStmt.setInt(1, id.getId());
+
+				preparedStmt.executeUpdate();
+				dbc.closeConnection();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			} finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> " + e.getMessage());
+				}
+			}
+		}
+		// delete Data disease_percentage
+	
+		//SELECT  delete  disease_percentage data sql  
+		static public ArrayList<AnalysisBean> getdisease_percentage() {
+			AnalysisBean disease = new AnalysisBean();
+			ArrayList<AnalysisBean> disease_percentageList = new ArrayList<AnalysisBean>();
+
+			String sql = "SELECT * FROM disease_percentage ; ";
+			try {
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+				rs = preparedStmt.executeQuery();
+				// dbc.closeConnection();
+				while (rs.next()) {
+					disease = new AnalysisBean();
+					disease.setId(rs.getInt("id"));
+					disease_percentageList.add(disease);
+				}
+				rs.close();
+				return disease_percentageList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			} finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> " + e.getMessage());
+				}
+			}
+			return null;
+		}
+            //SELECT  delete  disease_percentage data sql  
+		
+	
+	
 	
 	
 	

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="dao.DiseaseDAO"%>
+<%@page import="model.AnalysisBean"%>
+<%@page import="java.util.List"%>
 	<% 
 							if ((session.getAttribute("typecode") == "1")||(session.getAttribute("typecode") == "3")) {
 						%>
@@ -143,17 +146,23 @@
 				</a>
 				
 			</div>
-			
 			<!-- ปฎิทิน -->
 			<div class="col-sm-3 officer-menu-item">
-				<a href="DiseaseGetSymptomServlet?id=<%=session.getAttribute("id")%>"class="officer-menu-link"
+
+
+	
+								
+			
+				<a href="DiseaseGetSymptomServlet"class="officer-menu-link"
 					data-toggle="modal">
+					
 					<div class="caption">
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
 					</div> <center><img src="img/portfolio/syringe.png" class="img-responsive" alt="" width="130" height="130"><h6>วินิจฉัยโรค</h6></center>
 				</a>
+					
 				
 			</div>
 	</div>
