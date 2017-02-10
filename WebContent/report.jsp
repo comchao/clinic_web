@@ -5,19 +5,22 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="header_index.jsp"%>
 <script type="text/javascript">
-function dateTime($tDate) //แปลงวันที่เป็นวันที่ไทย
-{
-	$y = substr($tDate, 0, 4);
-	$m = substr($tDate, 5, 2);
-	$d = substr($tDate, 8, 9);
-	if ($tDate == "")
-	{
-		return "";
-	} else
-	{
-		return  $y+"-"+$m+"-"+$d;
+function mydate() {
+	  //alert("");
+	  document.getElementById("dt").hidden = false;
+	  document.getElementById("ndt").hidden = true;
 	}
-}
+
+	function mydate1() {
+	  d = new Date(document.getElementById("dt").value);
+	  dt = d.getDate();
+	  mn = d.getMonth();
+	  mn++;
+	  yy = d.getFullYear();
+	  document.getElementById("ndt").value = dt + "/" + mn + "/" + yy
+	  document.getElementById("ndt").hidden = false;
+	  document.getElementById("dt").hidden = true;
+	}
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
@@ -68,5 +71,6 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 		</form>
 	</div>
 </div>
+  <script src="jquery-1.10.2.min.js"></script>
 
 <%@ include file="footer_index.jsp"%>

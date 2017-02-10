@@ -87,12 +87,13 @@
     
   <td width="150">
     <td>  
-    <button id="addRow" type="button"  style = "background-color:#228B22">&nbsp;  &nbsp;  +&nbsp;  &nbsp;  </button>    
-    &nbsp;  
+  
     <button id="removeRow" type="button" style = "background-color:#B22222" >&nbsp;  &nbsp; - &nbsp;  &nbsp;   </button>  
-
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+  <button id="addRow" type="button"  style = "background-color:#228B22">&nbsp;  &nbsp;  +&nbsp;  &nbsp;  </button>    
+    &nbsp;  
 						
-	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	
 	<input type="submit" name="submit" id="submit"
 	class="btn btn-success" value="บันทึกข้อมูล" onclick="cal(value)" />  
 					

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-10T17:57:55 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DrugReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa2f3e9b-dc68-4ea3-930b-0f7fa9eccb1e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -20,13 +22,13 @@
      treatment.`treatment_date` AS treatment_treatment_date,
      drug.`drug_name` AS drug_drug_name,
      drug.`drug_price` AS drug_drug_price,
-     treatment_drug.`drug_qty` AS treatment_drug_drug_qty,
-     treatment_drug.`drug_sumprice` AS treatment_drug_drug_sumprice
+    SUM(`drug_qty`)AS treatment_drug_drug_qty,
+     SUM(`drug_sumprice`)AS treatment_drug_drug_sumprice 
 FROM
      `treatment` treatment INNER JOIN `treatment_drug` treatment_drug ON treatment.`id` = treatment_drug.`refer_treatment_id`
      INNER JOIN `drug` drug ON treatment_drug.`refer_drug_id` = drug.`id`
 WHERE
-     treatment.`treatment_date` BETWEEN $P{BeginDate}AND$P{EndDate}]]>
+     treatment.`treatment_date` BETWEEN $P{BeginDate}AND$P{EndDate} GROUP BY `drug_drug_name` ORDER BY treatment_treatment_date ASC]]>
 	</queryString>
 	<field name="treatment_treatment_date" class="java.lang.String"/>
 	<field name="drug_drug_name" class="java.lang.String"/>
@@ -43,17 +45,46 @@ WHERE
 	<group name="DateGroup">
 		<groupExpression><![CDATA[$F{treatment_treatment_date}]]></groupExpression>
 		<groupFooter>
-			<band height="25">
-				<textField>
-					<reportElement x="520" y="2" width="55" height="20" uuid="a928e7b8-2768-49db-9c77-bc03ac15f2ca"/>
-					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($V{recordGroup})]]></textFieldExpression>
-				</textField>
+			<band height="100">
 				<staticText>
-					<reportElement style="Column header" x="442" y="0" width="76" height="16" forecolor="#736343" uuid="f481bdfb-9edd-44c9-aaf9-98176c14e095"/>
-					<textElement textAlignment="Right">
+					<reportElement style="Column header" x="405" y="1" width="74" height="24" forecolor="#736343" uuid="db21b90c-9409-41cb-a6c9-b89adda9b29e"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="TH SarabunPSK" size="14"/>
 					</textElement>
-					<text><![CDATA[รวมราคาต่อวัน]]></text>
+					<text><![CDATA[รวมราคาทั้งหมด]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="480" y="3" width="74" height="20" uuid="3b5982d8-558a-4003-9898-6b3d08b4f20a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($V{total})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="60" width="195" height="20" uuid="188a45af-10bf-4c66-a659-69d45afbb655"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="14"/>
+					</textElement>
+					<text><![CDATA[(ลงชื่อ)_____________________________]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="48" y="80" width="100" height="20" uuid="c74f3405-bd63-45b4-9e5f-269b8488dcf4"/>
+					<textElement textAlignment="Center">
+						<font fontName="TH SarabunPSK" size="14"/>
+					</textElement>
+					<text><![CDATA[ผู้จัดทำ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="331" y="60" width="228" height="20" uuid="aca38100-920c-4971-9d52-5a4f7b6b00c7"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="14"/>
+					</textElement>
+					<text><![CDATA[(ลงชื่อ)_________________________________]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="380" y="80" width="100" height="20" uuid="7f740834-66d1-4f87-8300-ccfcd1095227"/>
+					<textElement textAlignment="Center">
+						<font fontName="TH SarabunPSK" size="14"/>
+					</textElement>
+					<text><![CDATA[ผู้ตรวจสอบ]]></text>
 				</staticText>
 			</band>
 		</groupFooter>
@@ -65,9 +96,9 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="136" splitType="Stretch">
+		<band height="138" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="169" y="20" width="263" height="62" uuid="a28dc95c-df68-4557-93b5-ca2681ee6454"/>
+				<reportElement style="Title" x="168" y="60" width="219" height="62" uuid="a28dc95c-df68-4557-93b5-ca2681ee6454"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="TH SarabunPSK" size="24" pdfFontName="Times-Roman"/>
 				</textElement>
@@ -94,31 +125,43 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="1" y="0" width="143" height="136" uuid="96ed5aa5-563e-4afe-8c63-ec11644fa5bd"/>
-				<imageExpression><![CDATA["D:\\JavaProject\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
-			</image>
 			<textField>
-				<reportElement x="242" y="95" width="78" height="14" uuid="dcd54e64-1df0-470b-a7c3-113ce9688b03"/>
-				<textFieldExpression><![CDATA[$P{BeginDate}]]></textFieldExpression>
+				<reportElement x="243" y="124" width="78" height="14" uuid="dcd54e64-1df0-470b-a7c3-113ce9688b03"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.text.SimpleDateFormat("yyyy-mm-dd").parse($P{BeginDate}))]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="325" y="95" width="63" height="14" uuid="ae65d7d2-d49d-4c96-ab46-dc33749a48f2"/>
-				<textFieldExpression><![CDATA[$P{EndDate}]]></textFieldExpression>
+				<reportElement x="326" y="124" width="63" height="14" uuid="ae65d7d2-d49d-4c96-ab46-dc33749a48f2"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.text.SimpleDateFormat("yyyy-mm-dd").parse($P{EndDate}))]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Column header" x="181" y="93" width="61" height="16" forecolor="#736343" uuid="b7f59d31-d908-462f-ae3a-7180471858c0"/>
+				<reportElement style="Column header" x="182" y="122" width="61" height="16" forecolor="#736343" uuid="b7f59d31-d908-462f-ae3a-7180471858c0"/>
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
 				<text><![CDATA[ระหว่างวันที่]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="304" y="93" width="16" height="16" forecolor="#736343" uuid="92276941-54ec-47f1-a536-52090768bb32"/>
+				<reportElement style="Column header" x="305" y="122" width="16" height="16" forecolor="#736343" uuid="92276941-54ec-47f1-a536-52090768bb32"/>
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
 				<text><![CDATA[ถึง]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="144" height="130" uuid="3fa2d8de-3605-4e80-81be-4c1bd92562e5"/>
+				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="401" y="20" width="153" height="70" uuid="d03bd2d1-9ee6-45a7-a54c-f5cf0ca19d16"/>
+				<textElement textAlignment="Left">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
+เปิดทำการทุกวัน เวลา 9:00 - 20:00 น. 
+ติดต่อสอบถาม โทร  088 865 6185
+
+
+]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -179,7 +222,7 @@ WHERE
 					<textElement>
 						<font fontName="TH SarabunPSK" size="12"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{treatment_treatment_date}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.text.SimpleDateFormat("yyyy-mm-dd").parse($F{treatment_treatment_date}))]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="69" y="0" width="215" height="15" uuid="7bd0a55d-c397-4e91-b7eb-751a59d8bc2b"/>
@@ -213,47 +256,7 @@ WHERE
 		</band>
 	</detail>
 	<lastPageFooter>
-		<band height="96">
-			<staticText>
-				<reportElement x="327" y="41" width="228" height="20" uuid="aca38100-920c-4971-9d52-5a4f7b6b00c7"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[(ลงชื่อ)_________________________________]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="376" y="61" width="100" height="20" uuid="7f740834-66d1-4f87-8300-ccfcd1095227"/>
-				<textElement textAlignment="Center">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[ผู้ตรวจสอบ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="44" y="61" width="100" height="20" uuid="c74f3405-bd63-45b4-9e5f-269b8488dcf4"/>
-				<textElement textAlignment="Center">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[ผู้จัดทำ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="6" y="41" width="195" height="20" uuid="188a45af-10bf-4c66-a659-69d45afbb655"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[(ลงชื่อ)_____________________________]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="442" y="0" width="76" height="16" forecolor="#736343" uuid="db21b90c-9409-41cb-a6c9-b89adda9b29e"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[รวมราคาทั้งหมด]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="520" y="3" width="79" height="20" uuid="3b5982d8-558a-4003-9898-6b3d08b4f20a"/>
-				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($V{total})]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="96"/>
 	</lastPageFooter>
 	<summary>
 		<band splitType="Stretch"/>

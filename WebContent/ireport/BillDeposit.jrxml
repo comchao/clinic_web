@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-10T11:54:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestBillDeposit" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3efc6c4f-79d3-476b-9b5e-43d1b4ec642d">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="99"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
 	<parameter name="id" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -49,10 +52,6 @@ WHERE
 				</textElement>
 				<text><![CDATA[วัฒนารักษาสัตว์ อุตรดิตถ์]]></text>
 			</staticText>
-			<image>
-				<reportElement x="243" y="0" width="122" height="63" uuid="cc14cefd-ccf4-4f8d-bbce-35318e4bb6ba"/>
-				<imageExpression><![CDATA["D:\\JavaProject\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="243" y="73" width="71" height="23" uuid="30e3c094-c503-47e5-99f0-9c2a668accff"/>
 				<textElement>
@@ -167,6 +166,10 @@ WHERE
 			<line>
 				<reportElement x="1" y="239" width="555" height="1" uuid="a69d4f0c-1030-4064-b48d-9051ebf9bd95"/>
 			</line>
+			<image>
+				<reportElement x="247" y="10" width="69" height="63" uuid="4b1308b0-29b0-4be1-b2a0-5dc0dcffd4f0"/>
+				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
+			</image>
 		</band>
 	</columnHeader>
 	<detail>

@@ -93,7 +93,7 @@ public static boolean printDrug(String date_start, String date_end) {
 		
 		String report = null;
 		try {
-			File dir = new File("D:\\JavaProject\\clinic_web\\WebContent\\ireport\\DrugReport.jrxml");
+			File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\DrugReport.jrxml");
 			report = dir.getAbsolutePath();
 			
 		} catch (Exception e1) {
@@ -114,7 +114,7 @@ public static boolean printDrug(String date_start, String date_end) {
 			if(ip.getPages().isEmpty()){
 				return false;
 			}
-			JasperExportManager.exportReportToPdfFile(ip,"D:\\JavaProject\\clinic_web\\WebContent\\ireport\\DrugReport.pdf");
+			JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\DrugReport.pdf");
 			JasperViewer.viewReport(ip, false);
 			return true;
 			
@@ -135,7 +135,11 @@ public static boolean printDrug(String date_start, String date_end) {
 
 public static boolean printTreatment(String date_start, String date_end) {
 	
+	
+	System.out.println("มาเเล้วdate_start"+date_start);
+	System.out.println("date_start"+date_end);
 	Connection connect = null;
+	
 	
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
@@ -152,7 +156,7 @@ public static boolean printTreatment(String date_start, String date_end) {
 	
 	String report = null;
 	try {
-		File dir = new File("D:\\JavaProject\\clinic_web\\WebContent\\ireport\\OrtheReport.jrxml");
+		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\OrtheReport.jrxml");
 		report = dir.getAbsolutePath();
 		
 	} catch (Exception e1) {
@@ -173,7 +177,7 @@ public static boolean printTreatment(String date_start, String date_end) {
 		if(ip.getPages().isEmpty()){
 			return false;
 		}
-		JasperExportManager.exportReportToPdfFile(ip,"D:\\JavaProject\\clinic_web\\WebContent\\ireport\\OrtheReport.pdf");
+		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\OrtheReport.pdf");
 		JasperViewer.viewReport(ip, false);
 		return true;
 		
@@ -191,6 +195,9 @@ public static boolean printTreatment(String date_start, String date_end) {
 	
 	return false;
 }
+
+
+
 
 public static boolean printDrugTreatment(String id,String name,String date_now) {
 	
@@ -211,7 +218,7 @@ public static boolean printDrugTreatment(String id,String name,String date_now) 
 	
 	String report = null;
 	try {
-		File dir = new File("D:\\JavaProject\\clinic_web\\WebContent\\ireport\\BillTretment.jrxml");
+		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\BillTretment.jrxml");
 		report = dir.getAbsolutePath();
 		
 	} catch (Exception e1) {
@@ -232,7 +239,7 @@ public static boolean printDrugTreatment(String id,String name,String date_now) 
 		if(ip.getPages().isEmpty()){
 			return false;
 		}
-		JasperExportManager.exportReportToPdfFile(ip,"D:\\JavaProject\\clinic_web\\WebContent\\ireport\\BillTretment.pdf");
+		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\BillTretment.pdf");
 		JasperViewer.viewReport(ip, false);
 		return true;
 		
@@ -269,7 +276,7 @@ public static boolean printDepositBill(String deposit_id) {
 	
 	String report = null;
 	try {
-		File dir = new File("D:\\JavaProject\\clinic_web\\WebContent\\ireport\\BillDeposit.jrxml");
+		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\BillDeposit.jrxml");
 		report = dir.getAbsolutePath();
 		
 	} catch (Exception e1) {
@@ -290,7 +297,7 @@ public static boolean printDepositBill(String deposit_id) {
 		if(ip.getPages().isEmpty()){
 			return false;
 		}
-		JasperExportManager.exportReportToPdfFile(ip,"D:\\JavaProject\\clinic_web\\WebContent\\ireport\\BillDeposit.pdf");
+		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\BillDeposit.pdf");
 		JasperViewer.viewReport(ip, false);
 		return true;
 		

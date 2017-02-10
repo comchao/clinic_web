@@ -1,9 +1,12 @@
 eclipse.preferences.version=1
 encoding//WebContent/ShowCalendar1.jsp=UTF-8
 encoding//WebContent/demo/Disease.jsp=UTF-8
+encoding//WebContent/ireport/BillDeposit.jrxml=UTF-8
+encoding//WebContent/ireport/BillTretment.jrxml=UTF-8
 encoding//WebContent/ireport/CalendarReport.jrxml=UTF-8
 encoding//WebContent/ireport/DiseaseReport.jrxml=UTF-8
 encoding//WebContent/ireport/DrugReport.jrxml=UTF-8
+encoding//WebContent/ireport/OrtheReport.jrxml=UTF-8
 encoding//WebContent/ireport/ShopReport.jrxml=UTF-8
 encoding//WebContent/ireport/disease_percentage.jrxml=UTF-8
 encoding//WebContent/ireport/testProduct.jrxml=UTF-8

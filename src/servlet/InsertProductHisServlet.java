@@ -42,11 +42,15 @@ public class InsertProductHisServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String datenow = request.getParameter("datenow");
+		System.out.println("datenow"+datenow);
 		String[] pNameArray = request.getParameterValues("pname[]");
+		System.out.println("pNameArray"+pNameArray);
 		String[] pQtyArray = request.getParameterValues("pqty[]");
+		System.out.println("pQtyArray"+pQtyArray);
 		String[] pPriceArray = request.getParameterValues("pprice[]");
+		System.out.println("pPriceArray"+pPriceArray);
 		String[] pTotalArray = request.getParameterValues("totalpprice[]");
-		
+		System.out.println("pTotalArray"+pTotalArray);
 		DepositBean depositBean = new DepositBean();
 		depositBean.setId(0);
 		

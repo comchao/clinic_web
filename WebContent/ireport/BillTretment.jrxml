@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-10T13:35:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestBill1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de55d867-7299-4c58-b789-8d5b09fcc652">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="57"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
 	<subDataset name="dataset1" uuid="bc741dc7-991b-4007-aaf3-35fb2be3e1d6"/>
 	<parameter name="id" class="java.lang.String"/>
 	<parameter name="name" class="java.lang.String"/>
@@ -86,10 +89,6 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 			<line>
 				<reportElement x="0" y="220" width="555" height="1" uuid="bcf0d9c7-45c0-4fed-81ac-46874278fe97"/>
 			</line>
-			<image>
-				<reportElement x="231" y="0" width="122" height="63" uuid="8c842bb0-8253-4930-979a-a778feeea568"/>
-				<imageExpression><![CDATA["D:\\JavaProject\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="240" y="73" width="71" height="23" uuid="45b5b4fa-a25b-46da-9409-7054b8499672"/>
 				<textElement>
@@ -144,12 +143,19 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 			</textField>
 			<textField>
 				<reportElement x="386" y="170" width="100" height="20" uuid="c8b28740-4d74-4f50-9be7-327d5a09e7b2"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="412" y="190" width="100" height="20" uuid="50603039-3654-452e-9de3-137082b5229a"/>
 				<textFieldExpression><![CDATA[$P{date_now}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="247" y="10" width="69" height="63" uuid="8f43ed68-0b98-4b8a-b702-7ef39172485e"/>
+				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
+			</image>
 		</band>
 	</columnHeader>
 	<detail>

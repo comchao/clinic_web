@@ -49,13 +49,9 @@ public class ReportServlet extends HttpServlet {
 		
 		int report_id = Integer.parseInt(request.getParameter("report_id"));
 		String date_start = request.getParameter("date_start");
-		System.out.println("date_start"+date_start);
 		String date_end = request.getParameter("date_end");
-		System.out.println("date_end"+date_end);
-		
 		String id = request.getParameter("id");
 		String deposit_id = request.getParameter("deposit_id");
-		
 		
 		/*ส่วนชองการ Report*/
 		request.setCharacterEncoding("UTF-8");
@@ -98,7 +94,7 @@ public class ReportServlet extends HttpServlet {
 				response.sendRedirect("reportUnConfrim.jsp");
 			}
 		} else if (report_id == 3) {
-			if (ReportDAO.printTreatment(date_start, date_end)) {
+			if (ReportDAO.printTreatment(date_start, date_end)){
 				response.sendRedirect("reportConfrim.jsp");
 
 			} else {
@@ -143,14 +139,14 @@ public class ReportServlet extends HttpServlet {
 		// สิ้นสุดใบรายงานวินิจฉัยโรคของสัตร์
 		
 		
-		
-		
-		
-		
-		
 		else if (report_id == 4) {// ใบเสร็จค่ารักษาและยา
+			
+			request.setCharacterEncoding("utf-8");  
+		    response.setCharacterEncoding("utf-8");
 			String date_now = request.getParameter("date_now");
-			String name = new String(request.getParameter("name").getBytes("ISO8859_1"), "UTF8");
+			String name = request.getParameter("name");
+			
+			
 			if (ReportDAO.printDrugTreatment(id, name, date_now)) {
 				response.sendRedirect("report4Confrim.jsp?tm_id=" + id + "&name=" + name + "&date_now=" + date_now);
 
