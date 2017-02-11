@@ -19,14 +19,16 @@ public class TreatmentDao {
 	static ResultSet rs = null;
 	static PreparedStatement preparedStmt = null;
 	
-	//เน€เธ�เธดเน�เธกเธ�เน�เธญเธกเธนเธฅเธชเธฑเธ•เธงเน€เธฅเธตเน�เธขเธ�
+	// refer_pet_id  รหัสหมา             treatment_date  
 	static public boolean insertTreatment(String[] drug_id, String[] drug_qty, TreatmentBean treatmentBean, String[] other_name,String[] otherPriceArray){		
 		String sql_insert = "insert into `treatment`" 		
 				+ "(refer_pet_id, treatment_date,vet_name,treatment_detail,note)"  
 		        + " values ( ?, ?, ?, ? ,?); ";
+		
 		String sql_insert_drug = "insert into `treatment_drug`" 		
 				+ "(refer_treatment_id,refer_drug_id,drug_qty,drug_sumprice)"  
 		        + " values ( ?, ?, ?, ?); ";
+		
 		String sql_insert_other = "insert into `treatment_other`" 		
 				+ "(refer_treatment_id,other_id,other_price)"  
 		        + " values ( ?, ?, ?); ";
@@ -130,6 +132,12 @@ public class TreatmentDao {
 			}
 		}				
 	}
+	
+	
+	
+	
+	
+	
 	static public ArrayList<TreatmentBean> getAllPayment(){
 		ArrayList<TreatmentBean> list = new ArrayList<TreatmentBean>();
 		TreatmentBean treatmentBean = new TreatmentBean();

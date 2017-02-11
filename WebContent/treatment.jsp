@@ -344,7 +344,7 @@
 
 			</div>
 
-		</form>
+		
 	</div>
 </div>
 <script src="jquery-latest.min.js"></script>
@@ -500,5 +500,6 @@
 		
 	});
 </script>
+</form>
 
 <%@ include file="footer_index.jsp"%>

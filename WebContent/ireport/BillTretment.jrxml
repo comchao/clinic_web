@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-02-10T13:35:28 -->
+<!-- 2017-02-11T01:23:53 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestBill1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de55d867-7299-4c58-b789-8d5b09fcc652">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -91,7 +91,7 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 			</line>
 			<staticText>
 				<reportElement x="240" y="73" width="71" height="23" uuid="45b5b4fa-a25b-46da-9409-7054b8499672"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="TH SarabunPSK" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ใบเสร็จรับเงิน]]></text>
@@ -122,7 +122,7 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 			</line>
 			<staticText>
 				<reportElement x="216" y="96" width="134" height="27" uuid="82ba8095-cafe-4151-ab08-a7609c997cf3"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="TH SarabunPSK" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[วัฒนารักษาสัตว์ อุตรดิตถ์]]></text>
@@ -148,18 +148,30 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="412" y="190" width="100" height="20" uuid="50603039-3654-452e-9de3-137082b5229a"/>
-				<textFieldExpression><![CDATA[$P{date_now}]]></textFieldExpression>
-			</textField>
 			<image>
-				<reportElement x="247" y="10" width="69" height="63" uuid="8f43ed68-0b98-4b8a-b702-7ef39172485e"/>
+				<reportElement x="233" y="0" width="100" height="72" uuid="8f43ed68-0b98-4b8a-b702-7ef39172485e"/>
 				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
 			</image>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="410" y="190" width="84" height="19" uuid="752ab7c5-c713-415f-8c5c-961135327abb"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="381" y="10" width="153" height="70" uuid="4427f815-f0e0-4cfa-a98e-45f1d09efe0b"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
+เปิดทำการทุกวัน เวลา 9:00 - 20:00 น. 
+ติดต่อสอบถาม โทร  088 865 6185
+
+
+]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<textField>
 				<reportElement x="100" y="0" width="250" height="20" uuid="41bc672b-45d8-4f5e-9d96-a10209cafe0c"/>
 				<textElement>
@@ -180,6 +192,13 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 					<font fontName="TH SarabunPSK" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{drug_sumprice})]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="0" width="90" height="19" uuid="15a81c65-03ec-46e9-88db-517b010dc23d"/>
+				<textElement textAlignment="Left">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
