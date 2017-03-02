@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-02-10T17:57:55 -->
+<!-- 2017-03-01T22:01:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DrugReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa2f3e9b-dc68-4ea3-930b-0f7fa9eccb1e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -105,7 +105,7 @@ WHERE
 				<text><![CDATA[รายงานสรุปการรับชำระเงินค่ายา]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="230" y="0" width="107" height="20" forecolor="#736343" uuid="9a3e2fbd-7512-42e9-bc9c-a00fde186b6c"/>
+				<reportElement style="Column header" x="280" y="0" width="107" height="20" forecolor="#736343" uuid="9a3e2fbd-7512-42e9-bc9c-a00fde186b6c"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
@@ -163,6 +163,11 @@ WHERE
 
 ]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="90" height="20" uuid="46070efa-4794-4935-8470-988862439360"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[วันที่ออกรายงาน  ณ]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -181,7 +186,7 @@ WHERE
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
-				<text><![CDATA[วันที่]]></text>
+				<text><![CDATA[ลำดับ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="69" y="0" width="215" height="16" forecolor="#736343" uuid="af5b6420-8fb0-46b2-a74b-c29f5537bd3e"/>
@@ -222,7 +227,7 @@ WHERE
 					<textElement>
 						<font fontName="TH SarabunPSK" size="12"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.text.SimpleDateFormat("yyyy-mm-dd").parse($F{treatment_treatment_date}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="69" y="0" width="215" height="15" uuid="7bd0a55d-c397-4e91-b7eb-751a59d8bc2b"/>

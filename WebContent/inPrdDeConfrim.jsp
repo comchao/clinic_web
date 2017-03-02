@@ -11,7 +11,7 @@
 <script language="javascript">
 
 	alert('เพิ่มอาหารสัตว์เลี้ยงเรียบร้อย');
-	window.location="ShowShopDetailServlet?deposit_id=<%=Integer.parseInt(request.getParameter("refer_petdeposit"))%>";
+	window.location="ShowShopDetailServlet?deposit_id=<%=Integer.parseInt(request.getParameter("refer_petdeposit"))%>&cage_id=<%=Integer.parseInt(request.getParameter("cage_id"))%>";
 
 
 </script>

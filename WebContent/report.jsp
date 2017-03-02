@@ -53,10 +53,10 @@ function mydate() {
 		<div class="col-sm-3">
 			<select name="report_id" id="report_id" class="form-control"
 				required="required" style="width:100%;">
-				<option value="1" selected="selected">รายงาน การซื้อสินค้าภายในร้าน</option>
-				<option value="2">รายงาน ค่ายา</option>
-				<option value="3">รายงาน ค่ารักษา</option>
-				<option value="6">รายงาน การนัดหมาย</option>
+				<option value="1" selected="selected">รายงานสรุปการขายสินค้า</option>
+				<option value="2">รายงานสรุปค่ายา</option>
+				<option value="3">รายงานสรุปค่ารักษา</option>
+				<option value="6">รายงานสรุปการนัดหมาย</option>
 			</select>
 		</div>
 		<div class="col-sm-3">

@@ -70,6 +70,7 @@ public class InsertTreatmentServlet extends HttpServlet {
 		
 		String[] otherPriceArray = request.getParameterValues("spanOtherPrice[]"); //*
 		
+		if(drugIdArray!=null&& drugQtyArray !=null&& otherNameArray !=null  && otherPriceArray !=null  ){
 		for (int i = 0; i < drugQtyArray.length; i++) {
 			System.out.println("6.drugIdArray :="+drugIdArray[i]);
 			System.out.println("7.drugQtyArray ="+drugQtyArray[i]);
@@ -89,15 +90,15 @@ public class InsertTreatmentServlet extends HttpServlet {
 		
 		if(TreatmentDao.insertTreatment(drugIdArray, drugQtyArray, treatmentBean, otherNameArray ,otherPriceArray)){
 			System.out.println("insert successful.");
-			
 			response.sendRedirect("showPetWaitingServlet");
 			
 		}else{
+			if(drugIdArray==null&& drugQtyArray ==null&& otherNameArray ==null  && otherPriceArray ==null ){
 			System.out.println("not insert.");
-			
+
 			response.sendRedirect("pet_waiting_treatment.jsp");
-		}
+			}}
 		
 	}
 }
-}
+}}

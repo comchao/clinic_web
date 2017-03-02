@@ -113,11 +113,30 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 <div class="container">
 
 <div align="right">
-	 <a href="AddCalenderServlet.jsp"><input type="submit"
-				class="btn btn-primary" value="เพิ่มข้อมูลการนัดหมาย" /></a>
-</div></td>
-  <td>   </td>
- </tr>
+	 <input type="submit"
+				class="btn btn-primary" id="opencageSelect" onClick="Javascript:windowOpenCage();" value="เพิ่มข้อมูลการนัดหมาย" /></a>
+</div>
+<div class="row">
+		<div align="right">
+		
+	
+		<script>
+									function windowOpenCage() {
+										var myCage=window.open('AddCalenderServlet.jsp','windowRef','width=800,height=800,top=100,left=100');
+										if (!myCage.opener) myCage.opener = self;
+									}
+								</script>
+								
+			</form>
+		</div>
+
+	</div>
+
+
+
+
+
+
 </table>
 	<div class="row">
 		<div align="center">

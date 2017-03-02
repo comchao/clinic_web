@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-02-11T00:01:33 -->
+<!-- 2017-03-01T22:05:08 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestBillDeposit" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3efc6c4f-79d3-476b-9b5e-43d1b4ec642d">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="99"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
 	<parameter name="id" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -14,8 +13,8 @@
      ownerdata.`owners_lname` AS ownerdata_owners_lname,
      pet_deposit.`deposit_in` AS pet_deposit_deposit_in,
      shop_detail.`prd_name` AS shop_detail_prd_name,
-     shop_detail.`prd_qty` AS shop_detail_prd_qty,
-     shop_detail.`prd_total` AS shop_detail_prd_total,
+    SUM(`prd_qty`) AS shop_detail_prd_qty,
+     SUM(`prd_total`) AS shop_detail_prd_total,
      pet_deposit.`deposit_day` AS pet_deposit_deposit_day,
      pet_deposit.`deposit_receive` AS pet_deposit_deposit_receive,
      cage.`cage_price` AS cage_cage_price,
@@ -27,7 +26,7 @@ FROM
      INNER JOIN `cage` cage ON pet_deposit.`refer_cage_id` = cage.`id`
      AND ownerdata.`id` = petdata.`reference_owner_id`
 WHERE
-     pet_deposit.`id` = $P{id}]]>
+     pet_deposit.`id` = $P{id} GROUP BY shop_detail_prd_name]]>
 	</queryString>
 	<field name="pet_deposit_id" class="java.lang.Integer"/>
 	<field name="ownerdata_owners_name" class="java.lang.String"/>
@@ -44,7 +43,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<columnHeader>
-		<band height="240" splitType="Stretch">
+		<band height="244" splitType="Stretch">
 			<staticText>
 				<reportElement x="209" y="96" width="144" height="27" uuid="270b3163-4aea-46a7-86a3-677e13994286"/>
 				<textElement>
@@ -137,7 +136,7 @@ WHERE
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[วันที่]]></text>
+				<text><![CDATA[ลำดับ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="76" y="220" width="277" height="20" uuid="0fda7925-67c2-4fa1-b5e8-afe1140a53fb"/>
@@ -167,7 +166,7 @@ WHERE
 				<reportElement x="1" y="239" width="555" height="1" uuid="a69d4f0c-1030-4064-b48d-9051ebf9bd95"/>
 			</line>
 			<image>
-				<reportElement x="247" y="10" width="69" height="63" uuid="4b1308b0-29b0-4be1-b2a0-5dc0dcffd4f0"/>
+				<reportElement x="0" y="0" width="150" height="136" uuid="939f6e27-2c45-4f9e-b256-75d32a73421d"/>
 				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
 			</image>
 		</band>
@@ -179,7 +178,7 @@ WHERE
 				<textElement>
 					<font fontName="TH SarabunPSK" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{shop_detail_prd_date}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="76" y="20" width="277" height="20" uuid="778c60d1-8eef-43ce-8065-6992654f295e"/>

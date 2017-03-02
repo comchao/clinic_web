@@ -68,7 +68,7 @@ function checkCal() {
 							<input type="hidden" name="deposit_id" value="<%=request.getParameter("deposit_id")%>">
 							<input type="hidden" name="cg_id" value="<%=request.getParameter("cage_id")%>">
 							<input type="hidden" value="5" name="report_id" />
-							<input  class="btn btn-info" type="submit" value="ฃำระเงินค่าฝากเลี้ยง">
+							<input  class="btn btn-info" type="submit" value="ชำระเงินค่าฝากเลี้ยง">
 </form>
 
 </div>
@@ -83,6 +83,7 @@ function checkCal() {
 		<br />
 		<div class="col-sm-12">
 		<form name="frmMain" id="frmMain" action="UpdatePrdDepositServlet" method="POST">
+		<input type="hidden" name="cage_id" value="<%=request.getParameter("cage_id")%>">
 		
 				<!--  ข้อมูลสัตว์เลี้ยง  -->
 				<%

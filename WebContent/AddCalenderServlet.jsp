@@ -43,25 +43,23 @@ $(function(){
 </script>
 			<form action="AddCalenderServlet" method="post">
 			<h3><b>เพิ่มรายการวันนัด</b></h3>
-				<table border="1" width="">
-				<tr><td colspan="2"></td></tr>
+				<table >
+				<tr><td ></td></tr>
 			     <input type="hidden" name="id"  id="id" value="<%=session.getAttribute("id")%>"/>
 			   <input type="hidden" name="id_calendar"  id="id_calendar" value="<%=session.getAttribute("id")%>"  />
 			
-				<tr><td><br><center>เรื่องนัดหมาย</center> <br> </td><td><input type="text" name="title" required="required"></td></tr>
+				<tr><td><br><center>ชื่อเจ้าของสัตว์</center> <br> </td><td><input type="text" name="title" required="required"></td></tr>
 				<tr><td><br><center>วัน/เวลา/เดือน/ปี</center> <br> </td><td><input type="text" name="date"  id="dateInput" required="required"></td></tr>
-				<tr><td><br><center>อื่นๆ</center></td><td> <input type="text" name="url" required="required"> </td></tr>
-				<tr><td colspan="2"><input type="submit" class="btn btn-success"  value="ตกลง"></td></tr>
+				<tr><td><br><center>เรื่องนัดหมาย</center></td><td> <input type="text" name="url" required="required"> </td></tr>
+				<tr><td><br><center></center></td><td><input type="submit" class="btn btn-success"  value="ตกลง"></td></tr>
 				</table>
 		
 			</form>
-			<img alt="" src="http://www.thaijob.com/upload/employer/G7aYgLXX67aaGAfWv61.jpg " width="250" height="250">
+			
 </div>
 </center>
-<div class="container">
-<div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
-</div>
+
+
 
 
       

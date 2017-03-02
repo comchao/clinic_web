@@ -51,6 +51,7 @@ request.setCharacterEncoding("utf-8");
 		String prd_name = request.getParameter("pro_name");
 		double prd_price = Double.parseDouble(request.getParameter("product_price"));
 		int prd_qty = Integer.parseInt(request.getParameter("product_qty"));
+		int cage_id =  Integer.parseInt(request.getParameter("cage_id"));
 		double prd_total = prd_price*prd_qty;
 		String page = "";
 		DepositBean depositBean = new DepositBean();
@@ -65,7 +66,7 @@ request.setCharacterEncoding("utf-8");
 		shopDetailBean.setPrd_qty(prd_qty);
 		shopDetailBean.setPrd_total(prd_total);
 		
-		page = ProductDAO.insertDeposit(depositBean,shopDetailBean)? "inPrdDeConfrim.jsp?refer_petdeposit="+refer_petdeposit:"errorConfrim.jsp";
+		page = ProductDAO.insertDeposit(depositBean,shopDetailBean)? "inPrdDeConfrim.jsp?refer_petdeposit="+refer_petdeposit+"&cage_id="+cage_id:"errorConfrim.jsp";
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		  if (dispatcher != null) {		

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-02-10T17:54:05 -->
+<!-- 2017-03-01T21:59:50 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -113,10 +113,15 @@ WHERE
 			</staticText>
 			<staticText>
 				<reportElement x="150" y="80" width="280" height="32" uuid="d7b2ac19-41e7-41d8-8499-35e367d017cc"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="TH SarabunPSK" size="26" isBold="true"/>
 				</textElement>
-				<text><![CDATA[รายงานสรุปการรับชำระเงินค่าสินค้า]]></text>
+				<text><![CDATA[รายงานสรุปการขายสินค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="93" height="20" uuid="ad462d4e-6f7b-4fdc-bab7-4be693d3613a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[วันที่ออกรายงาน  ณ]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -136,7 +141,7 @@ WHERE
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
-				<text><![CDATA[วันที่]]></text>
+				<text><![CDATA[ลำดับ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="54" y="0" width="342" height="16" forecolor="#736343" uuid="4a50e85c-82fd-4f77-84d5-54828f5fbd05"/>
@@ -177,7 +182,7 @@ WHERE
 					<textElement>
 						<font fontName="TH SarabunPSK"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.text.SimpleDateFormat("yyyy-mm-dd").parse($F{shop_detail_prd_date}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="54" y="0" width="342" height="15" uuid="0fee168a-e992-42d5-b8c6-091a870b3f3d"/>

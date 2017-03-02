@@ -30,7 +30,7 @@ public class TreatmentDao {
 		        + " values ( ?, ?, ?, ?); ";
 		
 		String sql_insert_other = "insert into `treatment_other`" 		
-				+ "(refer_treatment_id,other_id,other_price)"  
+				+ "(refer_treatment_id,other_id,other_prices)"  
 		        + " values ( ?, ?, ?); ";
 		try {     
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql_insert ,Statement.RETURN_GENERATED_KEYS);
@@ -69,6 +69,10 @@ public class TreatmentDao {
 	                	other.setId(rs.getInt("id"));
 	                	other.setOtherPrice(rs.getDouble("other_price"));
 	                	arrayListOther.add(other);
+	                	
+	                	
+	                
+	                
 	                }
 	                //######################################
 	                preparedStmt = null;
@@ -106,6 +110,13 @@ public class TreatmentDao {
 	        					total_price = dData.getOtherPrice();
 	        				}
 						}
+	        			
+	        		
+	        			
+	        			
+	        			
+	        			
+	        			
 	        			preparedStmt = dbc.createDBConnect().prepareStatement(sql_insert_other);
 	        			preparedStmt.setInt (1, treatmentBean.getId());
 	        			preparedStmt.setInt (2, otherBean.getId());

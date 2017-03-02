@@ -53,8 +53,8 @@
 		<h3 align="center">การรักษา</h3>
 
 		<br />
-		<form name="form1" id="form1" method="POST"
-			action="InsertTreatmentServlet"
+		<form action="InsertTreatmentServlet" name="form1" id="form1" method="POST"
+			
 			style="margin: 10px, 10px, 10px, 10px;">
 			<div class="row">
 

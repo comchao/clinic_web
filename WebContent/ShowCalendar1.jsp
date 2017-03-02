@@ -36,8 +36,19 @@
 	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
 </div>
 <div align="right">
-	 <a href="AddCalenderServlet.jsp"><input type="submit"
-				class="btn btn-primary" value="เพิ่มข้อมูลการนัดหมาย" /></a>
+<form action="">
+	 <input type="submit"
+				class="btn btn-primary" value="เพิ่มข้อมูลการนัดหมาย" onClick="Javascript:windowOpenCage();" value="เพิ่มข้อมูลการนัดหมาย" /></a>.
+				<script>
+									function windowOpenCage() {
+										var myCage=window.open('AddCalenderServlet.jsp','windowRef','width=800,height=800,top=100,left=100');
+										if (!myCage.opener) myCage.opener = self;
+									}
+								</script>
+				</form>
+				
+				
+				
 <div style="margin:auto;width:700px;">
  <div id='calendar'></div>
  </div>

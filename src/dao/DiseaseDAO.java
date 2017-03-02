@@ -485,7 +485,7 @@ public class DiseaseDAO {
 		AnalysisBean disease = new AnalysisBean();
 		ArrayList<AnalysisBean> diseaseList = new ArrayList<AnalysisBean>();
 
-		String sql = "SELECT disease , SUM(sum) AS percentage  FROM `analysis_disease` GROUP BY disease; ";
+		String sql = "SELECT disease , SUM(sum) AS percentage  FROM `analysis_disease` GROUP BY disease ORDER BY percentage DESC ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 

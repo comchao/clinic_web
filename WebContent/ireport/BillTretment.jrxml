@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-02-11T01:23:53 -->
+<!-- 2017-03-01T21:57:34 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestBill1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de55d867-7299-4c58-b789-8d5b09fcc652">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -16,7 +16,9 @@
  INNER JOIN drug ON drug.id = this_.refer_drug_id
 WHERE this_.refer_treatment_id = $P{id}
  UNION
- SELECT other_treatment.other_name drug_name,  1 drug_qty, treatment_other.other_price
+ SELECT other_treatment.other_name drug_name,  1 drug_qty, 
+ (Select sum(treatment_other.`other_prices`*other_treatment.`other_price`) 
+  FROM treatment_other   JOIN other_treatment ON treatment_other.`other_id`= other_treatment.id   WHERE refer_treatment_id = $P{id} ) AS  other_prices
  FROM `treatment_other`
 INNER JOIN other_treatment ON other_treatment.id = treatment_other.other_id
 WHERE treatment_other.refer_treatment_id = $P{id}]]>
@@ -56,7 +58,7 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[วันที่]]></text>
+				<text><![CDATA[ลำดับ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="350" y="226" width="100" height="20" uuid="c58b557b-e542-43c6-9939-31c95157dac8"/>
@@ -193,12 +195,9 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{drug_sumprice})]]></textFieldExpression>
 			</textField>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="0" y="0" width="90" height="19" uuid="15a81c65-03ec-46e9-88db-517b010dc23d"/>
-				<textElement textAlignment="Left">
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			<textField>
+				<reportElement x="-1" y="0" width="81" height="20" uuid="2a424b74-854e-4489-882f-00efefafcac7"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

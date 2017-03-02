@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="org.apache.taglibs.standard.lang.jstl.test.Bean2"%>
+<%@page import="dao.ProductDAO,model.CalendarBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ include file="header_index.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,12 +34,12 @@
 
 <div id="site">
 	<header id="masthead">
-		<h1>วัฒนารักษาสัตว์</h1>
+		<h1>สรุปรายการ</h1>
 	</header>
 	<form name="frmProduct" method="POST"  action="InsertProductHisServlet">	
 	 <input type='hidden' name='datenow' value='"datenow"'>
 	<div id="content">
-		<br>วันที่ออกบิล :<span name="date_now"></span>
+		<br> <h4> <B>วันที่ออกบิล :<span name="date_now"></span></B></h4>
 
 			<table id="checkout-cart" class="shopping-cart">
 			  <thead>
@@ -87,7 +92,7 @@
 			</script>
 			<ul id="shopping-cart-actions" >
 				<li>
-					<input type="submit" name="empty-cart" id="empty-cart"	value="เก็บข้อมูล" />
+					<input type="submit" name="empty-cart" id="empty-cart"	value="เก็บข้อมูล" 	class="btn btn-primary"  />
 				</li>
 			</ul>
 			
@@ -101,3 +106,4 @@
 
 </body>
 </html>	
+<%@ include file="footer_index.jsp"%>
