@@ -33,7 +33,7 @@
 <div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
 	<a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
 </div>
-<div align="right"">
+<div align="right">
 	<form action="addPets.jsp" method="post">
 			<input type="hidden" name="owner_id" value="<%=request.getParameter("owner_id")%>">
 			<input type="hidden" name="owner_name" value="<%=request.getParameter("owner_name")%>">
@@ -98,7 +98,7 @@
 						<input type="hidden" name="owner_lname"	value="<%=request.getParameter("owner_lname")%>"> 
 						<input type="hidden" name="page_ownerView" value="<%=request.getParameter("page_ownerView")%>">
 						<input type="hidden" name="pet_id" value="<%=petBean.getId()%>">
-						<input onclick="return sentConfirm();" class="btn btn-primary" type="submit" value="ส่งตรวจ">
+						<input class="btn btn-primary" type="submit" value="ส่งตรวจ">
 					</form>
 					<%
  						}

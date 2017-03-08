@@ -7,41 +7,45 @@
 <%@page import="model.purchaseBean"%>
 <%@ include file="header_shop.jsp" %>
 <%@page import="java.util.List"%>
+<%@ page import="java.text.*" %>
 
-<script type="text/javascript">
-function doCalSum(Record, Qty ,Price){
-var Sum;
-Sum =  parseFloat(Qty) - parseFloat(Price) ;
-document.getElementById("hdnSum" + Record).value = Sum.toFixed(2);
-document.getElementById("spnSum" + Record).innerHTML = Sum.toFixed(2);
-doCalTotal();
-}
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*,java.util.*" %>
+<%@ page import="javax.servlet.*,java.text.*" %>
+<title>ออกบิลใบเสร็จ</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.shop.js"></script>
+<script src="js/petshop-script.js" type="text/javascript" charset="utf-8"></script>
 
-function doCalTotal(){
-var Record = document.getElementById("hdnCount").value;
-var Total = 0;
-for(i=1;i<=Record;i++){
-Total += parseFloat(document.getElementById("hdnSum" + i).value);
-}
-document.getElementById("spnTotal").innerHTML = Total.toFixed(2);
-}
-function digitsOnly(obj){
-var regExp = /[0-9]$/;
-if(!regExp.test(obj.value)){
-obj.value = obj.value.substring(0, obj.value.length -1);
-return false;
-}
-}
-</script>
+<script>
+		$(document).ready(function() {
+			
+			var fullDate = new Date()
+			var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+			 
+			var currentDate =  fullDate.getFullYear()+ "-" + twoDigitMonth + "-" + fullDate.get();
+			
+			$("span[name='date_now']").text(currentDate);
+			document.frmProduct.datenow.value = currentDate;
+		});
+		
+	</script>
 </head>
 
 <body>
 
+
+<%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
 <div id="site">
 	<header id="masthead">
 		<h1>รายการสินค้า</h1>
 	</header>
 	<div id="content">
+	 <input type="hidden" name='datenow' ">
+	<div id="content">
+		<br>วันที่ออกบิล :<%= df.format(new java.util.Date()) %>
 	
 			<table class="shopping-cart">
 			  <thead>
@@ -52,12 +56,14 @@ return false;
 				<tr>
 				    <th scope="col"><center>ลำดับ </center></th>
 					<th scope="col"><center>รายการ </center></th>
-					
 					<th scope="col"><center>ราคา/ชิ้น</center></th>
 					<th scope="col"><center>จำนวน</center></th>
 					<th scope="col"><center>รวมราคา</center></th>
-					<th scope="col"><center>ลบรายการ</center></th>
+					
 				</tr>
+
+		<form name="frmProduct" method="POST"  action="InsertProductHisServlet">
+		 <input type="hidden" name="datenow" value="<%= df.format(new java.util.Date()) %>" >	
 			  <%
 			  purchaseDAO dao = new purchaseDAO();  
 List<purchaseBean> List = dao.getpurchaseBean();
@@ -74,12 +80,11 @@ for(int i = 0;i<List.size();i++){
       <td><center><%=bean.getProduct_price() %></center></td>
        <td><center><%=bean.getTotalnumber() %></center></td>
        <td><center><%=bean.getTotalprice() %></center></td>
-        <form action="deletepurchase" method="post">
-       <td><center><input type="submit" value="ลบ" class="btn" ></center></td>
-      
-       <input name="Product_name" type="hidden" value="<%=bean.getProduct_name()%>"> 
+       <input name="Product_name[]" value="<%=bean.getProduct_name()%>" type="hidden">
+         <input name="Totalnumber[]" value="<%=bean.getTotalnumber()%>" type="hidden">
+           <input name="Product_price[]" value="<%=bean.getProduct_price() %>" type="hidden">
+             <input name="Totalprice[]" value="<%=bean.getTotalprice() %>" type="hidden">
        
-       </form>
        
        
      </tr>
@@ -97,12 +102,13 @@ for(int i = 0;i<List.size();i++){
 			<br>
 		<table>
 		<tr>
-		
+	
 		
 		<%
 		
 		
 		%>
+		
 				
 				 <%
 			  purchaseDAO dao1 = new purchaseDAO();  
@@ -111,22 +117,22 @@ response.setCharacterEncoding("utf-8");
 for(int i1 = 0;i1<List1.size();i1++){
 	purchaseBean bean1 = List1.get(i1);
 	
+	int  number = Integer.parseInt(request.getParameter("number"));
+	int SUM = bean1.getTotal();
+	
+	int total = 0 ;
+	
+	total =  number - SUM ;
+	
 	
  
 %>	
 		
 				
-				 	<p align="right"> <b> ราคารวม   &nbsp;   &nbsp;  <%=bean1.getTotal()%>  &nbsp;   &nbsp;  บาท  </p> 
+				 	<p align="right"> <b> ราคารวม   &nbsp;   &nbsp;  <%=bean1.getTotal()%>.0  &nbsp;   &nbsp;  บาท  </p> 
 				 	
-	
-             <%}
-%>
-			</tr>
-			<br>
-			
-</table>
-<form action="SumCart.jsp" method="post">
-           <p align="right" >จำนวนเงินที่รับ &nbsp; &nbsp; <input type="text" name="number"  height="50%"  required="required" ></p>
+				 <p align="right" >จำนวนเงินที่รับ &nbsp; &nbsp; <%=number%>.0 &nbsp;&nbsp; &nbsp;บาท </p>
+				 
            <br>
 			<p   >  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -147,27 +153,36 @@ for(int i1 = 0;i1<List1.size();i1++){
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			
-			เงินทอน  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;0.0  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;บาท  </p>
+			
+			เงินทอน &nbsp;&nbsp; <font color="red"> <%=total%>.0 </font>  &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;บาท  </p>
 			<br>
-		  <p align="right" > <input type="submit" value="ชำระเงิน"   class="btn"  ></p>
+			
+			
+			
+			
+		  <p align="right" > 
+		  
+		  
+		  <input type="submit" value="ชำระเงิน"   class="btn"  ></p>
 			
 			
 			</form>
+	
+             <%}
+%>
+			</tr>
+			<br>
+			
+			
+</table>
 
+         
 			
-			
-			<div style="bottom:0px; width:1000px; margin:0px auto;">
-			<ul id="shopping-cart-actions" >
-			
-			
-			
-				<li>
-					<a href="petshop_view.jsp" class="btn">เลือกสินค้าเพิ่ม</a>
-				</li>
-			
-			</ul>
-			</div>
+		
 		
 		
 	

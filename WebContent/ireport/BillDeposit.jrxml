@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-01T22:05:08 -->
+<!-- 2017-03-07T16:40:20 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestBillDeposit" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3efc6c4f-79d3-476b-9b5e-43d1b4ec642d">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -172,9 +172,9 @@ WHERE
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="69" splitType="Stretch">
+		<band height="76" splitType="Stretch">
 			<textField>
-				<reportElement x="1" y="0" width="75" height="20" uuid="9a1d174c-56fd-477a-baf8-7bbb3750a04f"/>
+				<reportElement x="0" y="0" width="76" height="20" uuid="9a1d174c-56fd-477a-baf8-7bbb3750a04f"/>
 				<textElement>
 					<font fontName="TH SarabunPSK" size="12"/>
 				</textElement>

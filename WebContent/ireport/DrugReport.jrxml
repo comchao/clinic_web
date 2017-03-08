@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-01T22:01:28 -->
+<!-- 2017-03-07T20:25:35 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DrugReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa2f3e9b-dc68-4ea3-930b-0f7fa9eccb1e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -98,54 +98,11 @@ WHERE
 	<title>
 		<band height="138" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="168" y="60" width="219" height="62" uuid="a28dc95c-df68-4557-93b5-ca2681ee6454"/>
+				<reportElement style="Title" x="170" y="40" width="219" height="62" uuid="a28dc95c-df68-4557-93b5-ca2681ee6454"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="TH SarabunPSK" size="24" pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[รายงานสรุปการรับชำระเงินค่ายา]]></text>
-			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="280" y="0" width="107" height="20" forecolor="#736343" uuid="9a3e2fbd-7512-42e9-bc9c-a00fde186b6c"/>
-				<textElement verticalAlignment="Middle">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Column header" x="432" y="0" width="80" height="20" forecolor="#736343" uuid="4388b60c-daec-4228-90aa-fb1533dae24d"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement style="Column header" x="515" y="0" width="40" height="20" forecolor="#736343" uuid="a648a79d-af40-4b82-bea9-620dc89ccb94"/>
-				<textElement verticalAlignment="Middle">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="243" y="124" width="78" height="14" uuid="dcd54e64-1df0-470b-a7c3-113ce9688b03"/>
-				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.text.SimpleDateFormat("yyyy-mm-dd").parse($P{BeginDate}))]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="326" y="124" width="63" height="14" uuid="ae65d7d2-d49d-4c96-ab46-dc33749a48f2"/>
-				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.text.SimpleDateFormat("yyyy-mm-dd").parse($P{EndDate}))]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement style="Column header" x="182" y="122" width="61" height="16" forecolor="#736343" uuid="b7f59d31-d908-462f-ae3a-7180471858c0"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[ระหว่างวันที่]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="305" y="122" width="16" height="16" forecolor="#736343" uuid="92276941-54ec-47f1-a536-52090768bb32"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[ถึง]]></text>
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="144" height="130" uuid="3fa2d8de-3605-4e80-81be-4c1bd92562e5"/>
@@ -164,10 +121,41 @@ WHERE
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="190" y="0" width="90" height="20" uuid="46070efa-4794-4935-8470-988862439360"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="200" y="0" width="93" height="20" uuid="e5535db6-feca-4cd7-af56-8808aeaf1c11"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[วันที่ออกรายงาน  ณ]]></text>
 			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="290" y="0" width="107" height="20" forecolor="#736343" uuid="6266a677-338f-42b0-8d35-48e4f547234a"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="195" y="120" width="61" height="16" forecolor="#736343" uuid="0501b457-9f38-4539-bb66-b62bc506c6f1"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ระหว่างวันที่]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="256" y="122" width="78" height="14" uuid="1a7d933e-d63c-40ae-86cf-f285f4625bc1"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format(new java.text.SimpleDateFormat("yyyy-MM-dd").parse($P{BeginDate}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="318" y="120" width="16" height="16" forecolor="#736343" uuid="df8673fa-95ea-47c8-9875-f37543df0c5f"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ถึง]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="339" y="122" width="63" height="14" uuid="2eb66ccc-4bc6-4382-a8f6-645dea1704b0"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format(new java.text.SimpleDateFormat("yyyy-MM-dd").parse($P{EndDate}))]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

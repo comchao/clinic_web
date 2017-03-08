@@ -11,7 +11,7 @@
 <script language="javascript">
 
 	alert('บันทึกรายการซื้ออาหารสัตว์เลี้ยงเรียบร้อยแล้ว');
-	window.location="ShowPetShopServlet";
+	window.location="ShowPetShopServlet1";
 
 
 </script>

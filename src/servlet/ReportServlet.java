@@ -49,7 +49,14 @@ public class ReportServlet extends HttpServlet {
 		
 		int report_id = Integer.parseInt(request.getParameter("report_id"));
 		String date_start = request.getParameter("date_start");
+		
+		System.out.println(date_start);
+	
+		
 		String date_end = request.getParameter("date_end");
+		System.out.println(date_end);
+		
+		
 		String id = request.getParameter("id");
 		String deposit_id = request.getParameter("deposit_id");
 		

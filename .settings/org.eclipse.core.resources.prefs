@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//WebContent/ShowCalendar1.jsp=UTF-8
 encoding//WebContent/demo/Disease.jsp=UTF-8
 encoding//WebContent/ireport/BillDeposit.jrxml=UTF-8
+encoding//WebContent/ireport/BillPurchase\ _shop.jrxml=UTF-8
 encoding//WebContent/ireport/BillTretment.jrxml=UTF-8
 encoding//WebContent/ireport/CalendarReport.jrxml=UTF-8
 encoding//WebContent/ireport/DiseaseReport.jrxml=UTF-8

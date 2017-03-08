@@ -450,6 +450,73 @@ public static boolean Disease (String id) {
 
 
 
+//ใบเสร็จรับเงิน
+public static boolean BillPurchase (int id) {
+	
+	Connection connect = null;
+	
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		connect =  DriverManager.getConnection("jdbc:mysql://localhost/petshopdb" +
+				"?user=root&password=");
+		
+	} catch (ClassNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	String report = null;
+	try {
+		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\BillPurchase _shop.jrxml");
+		report = dir.getAbsolutePath();
+		
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+	try {
+		
+		HashMap<String, Object> parameter = new HashMap<String, Object>();
+		
+		/*parameter.put("id",id); */
+		
+		// Report Viewer
+		JasperReport ir = JasperCompileManager.compileReport(report);
+		JasperPrint ip = JasperFillManager.fillReport(ir, parameter,connect);
+		if(ip.getPages().isEmpty()){
+			return false;
+		}
+		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\BillPurchase _shop.jrxml.pdf");
+		JasperViewer.viewReport(ip, false);
+		return true;
+		
+	} catch (JRException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	try {
+		connect.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return false;
+}
+
+//สิ้นสุดใบเสร็จรับเงิน
+
+
+
+
+
+
+
 
 
 

@@ -30,16 +30,44 @@
 
 </head>
 
+<script type="text/javascript">
+function doCalSum(Record, Qty ,Price){
+var Sum;
+Sum =  parseFloat(Qty) - parseFloat(Price) ;
+document.getElementById("hdnSum" + Record).value = Sum.toFixed(2);
+document.getElementById("spnSum" + Record).innerHTML = Sum.toFixed(2);
+doCalTotal();
+}
+
+function doCalTotal(){
+var Record = document.getElementById("hdnCount").value;
+var Total = 0;
+for(i=1;i<=Record;i++){
+Total += parseFloat(document.getElementById("hdnSum" + i).value);
+}
+document.getElementById("spnTotal").innerHTML = Total.toFixed(2);
+}
+function digitsOnly(obj){
+var regExp = /[0-9]$/;
+if(!regExp.test(obj.value)){
+obj.value = obj.value.substring(0, obj.value.length -1);
+return false;
+}
+}
+</script>
+</head>
+
+
 <body id="checkout-page">
 
 <div id="site">
 	<header id="masthead">
-		<h1>สรุปรายการ</h1>
+		<h1>รายการสินค้า</h1>
 	</header>
 	<form name="frmProduct" method="POST"  action="InsertProductHisServlet">	
 	 <input type='hidden' name='datenow' value='"datenow"'>
 	<div id="content">
-		<br> <h4> <B>วันที่ออกบิล :<span name="date_now"></span></B></h4>
+		
 
 			<table id="checkout-cart" class="shopping-cart">
 			  <thead>
@@ -57,14 +85,24 @@
 		 <div id="pricing">
 			
 			<p id="sub-total">
-				<strong>รวมเป็นเงิน</strong>: <span id="stotal"></span>
+				<strong>รวมเป็นเงิน</strong>: <span id="stotal" ></span>
 			</p>
 			<p align="right">
-				<strong>รับเงิน</strong>:  <span id=""><%=request.getParameter("txtQty1") %></span>
+				<strong>รับเงิน</strong>: <input type="text" name="txtQty1" id="txtQty1" > 
+				
+				
+				
+				
+				
+				
 			</p>
 			<p align="right">
-				<strong>เงินทอน</strong>: <span id=""><%=request.getParameter("hdnSum1") %></span>
+				<strong>เงินทอน</strong>: <span id="">0.0</span>
 			</p>
+				<p align="right">
+			
+					<input type="submit" name="empty-cart" id="empty-cart"	value="ชำระเงิน" 	class="btn btn-primary"  />
+				</p>
 		 </div>
 		 
 	</div>
@@ -90,10 +128,12 @@
 				});
 			});
 			</script>
+			<div style="bottom:0px; width:1000px; margin:0px auto;">
 			<ul id="shopping-cart-actions" >
 				<li>
-					<input type="submit" name="empty-cart" id="empty-cart"	value="เก็บข้อมูล" 	class="btn btn-primary"  />
+					<a href="petshop_view.jsp" class="btn">เลือกสินค้าเพิ่ม</a>
 				</li>
+			
 			</ul>
 			
 			

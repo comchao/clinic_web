@@ -1,6 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +17,9 @@ import model.ProductBean;
 import model.ShopDetailBean;
 import model.TreatmentBean;
 import dao.ProductDAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Servlet implementation class InsertProductHisServlet
@@ -41,16 +48,21 @@ public class InsertProductHisServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String datenow = request.getParameter("datenow");
+		
+		
+		
+		
+		 String datenow = request.getParameter("datenow");
+
 		System.out.println("datenow"+datenow);
-		String[] pNameArray = request.getParameterValues("pname[]");
-		System.out.println("pNameArray"+pNameArray);
-		String[] pQtyArray = request.getParameterValues("pqty[]");
-		System.out.println("pQtyArray"+pQtyArray);
-		String[] pPriceArray = request.getParameterValues("pprice[]");
-		System.out.println("pPriceArray"+pPriceArray);
-		String[] pTotalArray = request.getParameterValues("totalpprice[]");
-		System.out.println("pTotalArray"+pTotalArray);
+		String[] pNameArray = request.getParameterValues("Product_name[]");
+		System.out.println("Product_name"+pNameArray);
+		String[] pQtyArray = request.getParameterValues("Totalnumber[]");
+		System.out.println("Totalnumber"+pQtyArray);
+		String[] pPriceArray = request.getParameterValues("Product_price[]");
+		System.out.println("Product_price"+pPriceArray);
+		String[] pTotalArray = request.getParameterValues("Totalprice[]");
+		System.out.println("Totalprice"+pTotalArray);
 		DepositBean depositBean = new DepositBean();
 		depositBean.setId(0);
 		

@@ -17,7 +17,7 @@
 		<div class="col-sm-12">
 		<div class="col-sm-6" ><h3 align="center">ค้นหาตามประเภท</h3>
 			
-			<form action="searchProductIDServlet" method="POST" >
+			<form action="purchaseServlet" method="POST" >
 			<select name="pet_id" id="pet_id"class="search-query"  style="width:70%;">
 				<%
 					ArrayList<TypePetBean> list = PetsDAO.queryTypePetAll();
@@ -66,10 +66,12 @@
 					<div class="product-description" data-name="<%=pb.getProduct_name()%>" data-price="<%=pb.getProduct_price()%>">
 						<textarea  rows="3" cols="13"  class="product-name"><%=pb.getProduct_name()%></textarea>
 						<p class="product-price"><%=pb.getProduct_price()%>บาท</p>
-						<form class="add-to-cart" action="cart.jsp" method="post">
+						<form  action="purchaseServlet" method="post">
 							<div>
 								<label for="qty-1">จำนวน</label>
-								<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />
+								<input type="text" name="number" id="qty-1" class="qty" value="1" />
+								<input type="hidden" name="Product_name"  value="<%=pb.getProduct_name()%>" />
+								<input type="hidden" name="Product_price"  value="<%=pb.getProduct_price()%>" />
 							</div>
 							<p><input type="submit" value="เพิ่มรายการ" class="btn" /></p>
 						</form>
