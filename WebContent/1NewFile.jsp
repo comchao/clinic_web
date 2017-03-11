@@ -1,42 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<!-- Popup Login -->
-<script src="js/jquery.min.js"></script>
-<link rel="stylesheet" href="css/jquery_popup.css" />
-<script src="js/jquery_popup.js"></script>
-<!-- เรียกใช้งาน bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- เรียกใช้งาน CSS  -->
-<link href="css/freelancer.css" rel="stylesheet">
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css">
-	
-<title>ระบบจัดการคลินิกสัตว์</title>
 
 </head>
+
 <body>
 
-	<div class="container">
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="col-md-3 col-sm-3"></div>
-			<div class="col-md-7 col-sm-6">
-				<div class="product-menu" style="display: block;">
-					<div class="clear"></div>
-				</div>
-			</div>
-			<div class="col-md-2 col-sm-3">
-				<ul class="nav navbar-nav">
+<input type="text" id="date_manual" value="">
+<input type="button" id="btn_manual_generate" value="Generate">
+<input type="button" id="btn_manual_show" value="Show">
+<input type="button" id="btn_manual_hide" value="Hide">
+<input type="button" id="btn_manual_destroy" value="Destroy">
 
-					
-			</div>
-		</nav>
-	</div>
+<script type="text/javascript">
+	$(function(){
+		$('#btn_manual_generate').click(function(){
+			$('#date_manual').appendDtpicker({
+				"inline": true
+			});
+		});
+		$('#btn_manual_show').click(function(){
+			$('#date_manual').handleDtpicker('show');
+		});
+		$('#btn_manual_hide').click(function(){
+			$('#date_manual').handleDtpicker('hide');
+		});
+		$('#btn_manual_get_date').click(function(){
+			var date = $('#date_manual').handleDtpicker('getDate');
+			window.alert(date.toString());
+		});
+		$('#btn_manual_set_date').click(function(){
+			$('#date_manual').handleDtpicker('setDate', new Date(2014, 04, 25, 0, 0, 0));
+		});
+		$('#btn_manual_destroy').click(function(){
+			$('#date_manual').handleDtpicker('destroy');
+		});
+	});
+</script>
+
+</body>
+</html>

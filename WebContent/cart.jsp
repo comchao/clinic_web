@@ -7,6 +7,7 @@
 <%@page import="model.purchaseBean"%>
 <%@ include file="header_shop.jsp" %>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Locale"%>
 
 <script type="text/javascript">
 function doCalSum(Record, Qty ,Price){
@@ -36,9 +37,15 @@ return false;
 </head>
 
 <body>
-
+<% Locale lc = new Locale("th","TH"); %>
+	
+	<%java.text.DateFormat df = new java.text.SimpleDateFormat("EEEE ที่ dd เดือน MMMM พ.ศ. yyyy", new Locale("th", "TH")); %>
+		<br>
+	<h3 align="center"><b>คิวสัตว์ ที่รอตรวจรักษา</b></h3> <br>
+	<h5 align="center"> <b>ณ วันที่  <%= df.format(new java.util.Date()) %></b> </h5>
 <div id="site">
 	<header id="masthead">
+	
 		<h1>รายการสินค้า</h1>
 	</header>
 	<div id="content">

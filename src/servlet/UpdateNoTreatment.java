@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CalendarDAO;
 import dao.PetsDAO;
+import model.CalendarBean;
 import model.PetsBean;
 
 /**
@@ -51,6 +53,23 @@ public class UpdateNoTreatment extends HttpServlet {
 				String owner_name = request.getParameter("owner_name");
 				String owner_lname = request.getParameter("owner_lname");
 				String page_ownerView = request.getParameter("page_ownerView");
+				
+				String Status = request.getParameter("Status");
+				
+				CalendarDAO Statusdao = new CalendarDAO(); 
+				CalendarBean  StatusCalendarBean = new CalendarBean ();
+				
+				if(Status!=null){
+				
+				StatusCalendarBean.setId(Integer.parseInt(request.getParameter("pet_id")));
+				StatusCalendarBean.setStatus(Status);
+				
+				Statusdao.updateStatusAppointment(StatusCalendarBean);
+				}
+
+				
+				
+				
 			    page = petDao.updateNoTreatmentPet(petBean)? "updateNoConfrim.jsp?owner_id="+owner_id+"&owner_name="+owner_name+"&owner_lname="+owner_lname+"&page_ownerView="+page_ownerView:"";
 
 			    RequestDispatcher dispatcher = request.getRequestDispatcher(page);

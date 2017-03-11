@@ -37,15 +37,21 @@
 <body>
 
 
-<%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
+<% Locale lc = new Locale("th","TH"); %>
+	
+	<%java.text.DateFormat df = new java.text.SimpleDateFormat("EEEE ที่ dd เดือน MMMM พ.ศ. yyyy", new Locale("th", "TH")); %>
+		<br>
+	<h3 align="center"><b>คิวสัตว์ ที่รอตรวจรักษา</b></h3> <br>
+	<h4 align="center"> <b>ณ วันที่  <%= df.format(new java.util.Date()) %></b> </h4>
 <div id="site">
 	<header id="masthead">
+	
 		<h1>รายการสินค้า</h1>
 	</header>
 	<div id="content">
 	 <input type="hidden" name='datenow' ">
 	<div id="content">
-		<br>วันที่ออกบิล :<%= df.format(new java.util.Date()) %>
+		
 	
 			<table class="shopping-cart">
 			  <thead>
@@ -158,7 +164,7 @@ for(int i1 = 0;i1<List1.size();i1++){
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			
 			
-			เงินทอน &nbsp;&nbsp; <font color="red"> <%=total%>.0 </font>  &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;บาท  </p>
+			เงินทอน &nbsp;&nbsp; <font color="red"> <%=total%>.0 </font>  บาท  </p>
 			<br>
 			
 			

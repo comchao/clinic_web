@@ -44,7 +44,7 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/girl.png" class="img-responsive" alt="" width="130" height="130"> <h6>ข้อมูลเจ้าของเเละสัตว์เลี้ยง</h6> </center>
+					</div> <center><img src="img/portfolio/girl.png" class="img-responsive" alt="" width="130" height="130"> <font color="#33CC99"><h6>ข้อมูลเจ้าของเเละสัตว์เลี้ยง</h6> </font></center>
 				</a>
 			</div>
 			<!-- รับฝากสัตว์เลี้ยง -->
@@ -55,7 +55,7 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/dog (2).png" class="img-responsive" alt="" width="130" height="130"> <h6>รับฝากสัตว์เลี้ยง </h6> </center>
+					</div> <center><img src="img/portfolio/dog (2).png" class="img-responsive" alt="" width="130" height="130"> <font color="#33CC99"><h6>รับฝากสัตว์เลี้ยง </h6> </center>
 				</a>
 			</div>
 			<!-- ข้อมูลรับฝากสัตว์เลี้ยง -->
@@ -66,7 +66,7 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/dog (1).png" class="img-responsive" alt=""width="130" height="130"> <h6>ข้อมูลฝากสัตว์เลี้ยง</h6> </center>
+					</div> <center><img src="img/portfolio/dog (1).png" class="img-responsive" alt=""width="130" height="130"> <font color="#33CC99"><h6>ข้อมูลฝากสัตว์เลี้ยง</h6> </center>
 				</a>
 			</div>
 			<!-- ซื้อสินค้า -->
@@ -76,7 +76,7 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/cart.png" class="img-responsive" alt=""width="130" height="130"> <h6>ชื้อสิ้นค้า </h6> </center>
+					</div> <center><img src="img/portfolio/cart.png" class="img-responsive" alt=""width="130" height="130"> <font color="#33CC99"><h6>ชื้อสิ้นค้า </h6> </center>
 				</a>
 			</div>
 			<div class="col-sm-3 officer-menu-item">
@@ -86,7 +86,7 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/money-bag (1).png" class="img-responsive" alt="" width="130" height="130"> <h6>ชำระค่ารักษา </h6> </center>
+					</div> <center><img src="img/portfolio/money-bag (1).png" class="img-responsive" alt="" width="130" height="130"> <font color="#33CC99"><h6>ชำระค่ารักษา </h6> </center>
 				</a>
 			</div>
 			<!-- จัดการข้อมูลยา -->
@@ -96,7 +96,7 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/drugs (1).png" class="img-responsive"  alt="" width="130" height="130"> <h6>ข้อมูลยา</h6> </center>
+					</div> <center><img src="img/portfolio/76-512.png" class="img-responsive"  alt="" width="130" height="130"> <font color="#33CC99"><h6>ข้อมูลยา</h6> </center>
 				</a>
 			</div>
 			<!-- จัดการข้อมูลสินค้า -->
@@ -107,7 +107,7 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/store.png" class="img-responsive"  alt="" width="130" height="130"> <h6>ข้อมูลสิ้นค้า</h6> </center>
+					</div> <center><img src="img/portfolio/store.png" class="img-responsive"  alt="" width="130" height="130"> <font color="#33CC99"><h6>ข้อมูลสิ้นค้า</h6> </center>
 				</a>
 			</div>
 			<!-- รายงานประจำเดือน -->
@@ -118,10 +118,33 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/doc.png" class="img-responsive" alt="" width="130" height="130"><h6>รายงาน</h6></center>
+					</div> <center><img src="img/portfolio/doc.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>รายงาน</h6></center>
 				</a>
 			</div>
+				<!-- จัดคิว -->
+			<div class="col-sm-3 officer-menu-item">
+
+
+	
+								
 			
+				<a href="AppointmentSservlet"class="officer-menu-link"
+					data-toggle="modal">
+					
+					<div class="caption">
+						<div class="caption-content">
+							<i class="fa fa-search-plus fa-3x"></i>
+						</div>
+					</div> <center><img src="img/portfolio/Calendar-Time-512.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>คิวตรวจ</h6></center>
+				</a>
+					
+				
+			</div>
+			
+		
+			
+			
+		
 			<!-- ปฎิทิน -->
 			<div class="col-sm-3 officer-menu-item">
 				<a href="CalendarServlet2?id=<%=session.getAttribute("id")%>"class="officer-menu-link"
@@ -130,41 +153,40 @@
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/calendar (5).png" class="img-responsive" alt="" width="130" height="130"><h6>ตารางนัดหมาย</h6></center>
+					</div> <center><img src="img/portfolio/clients-on-calendar.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>ข้อมูลนัดหมาย</h6></center>
 				</a>
 				
 			</div>
-			
-		<div class="col-sm-3 officer-menu-item">
-				<a href="ShowCalendar1.jsp"class="officer-menu-link"
-					data-toggle="modal">
-					<div class="caption">
-						<div class="caption-content">
-							<i class="fa fa-search-plus fa-3x"></i>
-						</div>
-					</div> <center><img src="img/portfolio/calendar (4).png" class="img-responsive" alt="" width="130" height="130"><h6>ปฏิทินนัดหมาย</h6></center>
-				</a>
-				
-			</div>
-			<!-- ปฎิทิน -->
+			<!-- สถิติ -->
 			<div class="col-sm-3 officer-menu-item">
-
-
-	
-								
-			
-				<a href="DiseaseGetSymptomServlet"class="officer-menu-link"
+				<a href=""class="officer-menu-link"
 					data-toggle="modal">
-					
 					<div class="caption">
 						<div class="caption-content">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
-					</div> <center><img src="img/portfolio/syringe.png" class="img-responsive" alt="" width="130" height="130"><h6>วินิจฉัยโรค</h6></center>
+					</div> <center><img src="img/portfolio/finance_report_infographic-512.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>สถิติ</h6></center>
 				</a>
-					
 				
 			</div>
+			
+			<!--ฉีดวัคซีน -->
+			<div class="col-sm-3 officer-menu-item">
+				<a href=""class="officer-menu-link"
+					data-toggle="modal">
+					<div class="caption">
+						<div class="caption-content">
+							<i class="fa fa-search-plus fa-3x"></i>
+						</div>
+					</div> <center><img src="img/portfolio/syringe_injection_vaccine_medical_aid_vaccination_immunization_tool_flat_design_icon-512.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>ฉีดวัคซีน</h6></center>
+				</a>
+				
+			</div>
+			
+			
+			
+			
+			
 	</div>
 	</div>
 		<%-- <form action="showProductServlet" method="get">

@@ -7,7 +7,7 @@
    response.setCharacterEncoding("UTF-8");
 %>
 <%@ include file="header_index.jsp"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <br><br><br><br>
 <script>
 	function delConfirm() {
@@ -56,10 +56,13 @@
 				<th>เพศ</th>
 				<th>สี/ตำหนิ</th>
 				<th>สถานะการตรวจ</th>
+				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพิ่มนัดหมาย</th>
 				<th></th>
 				<th></th>
 			</tr>
 			<%
+			        request.setCharacterEncoding("UTF-8");
+			        response.setCharacterEncoding("UTF-8");
 					PetsBean petBean;
 					String allpage = (String) session.getAttribute("pageN");
 					int p = Integer.parseInt(allpage);
@@ -74,8 +77,9 @@
 			<tr>
 			<% if(i == 0){
 				%>
-				<h3 align="center">สัตว์เลี้ยงของคุณ <%=petBean.getReference_owner_id().getOwners_name() %> <%=petBean.getReference_owner_id().getOwners_lname() %></h3>
-				<br><br>
+				<h3 align="center">เพิ่มข้อมูลนัดหมายสัตว์เลี้ยง</h3><br>
+				<h4 align="center">สัตว์เลี้ยงของคุณ : <font color="red"> <%=petBean.getReference_owner_id().getOwners_name() %>  <%=petBean.getReference_owner_id().getOwners_lname() %></font></h4>
+				
 			<% }%>
 				<td><%=i+1%></td>
 				<td><%=petBean.getPet_name()%></td>
@@ -83,6 +87,10 @@
 				<td><%=petBean.getPet_gene()%></td>
 				<td><%=petBean.getPet_gender()%></td>
 				<td><%=petBean.getPet_extra()%></td>
+				<td></td>
+				
+				
+				
 				
 				<td>
 					<%
@@ -90,16 +98,34 @@
 									out.print("<font color='red'>อยู่ระหว่างดำเนินการ</font>");
 								} else {
 					%>
-					<form action="UpdateTreatmentPet" method="post">
-					<input type="checkbox" name="emer_status" value="1">
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					 
+			 <script>
+					
+			
+					
+					
+									function windowOpenCage() {
+										
+										var myCage=window.open('AddAppointment.jsp?id=<%=petBean.getId()%>&idmenber=<%=session.getAttribute("id")%>','windowRef','width=1200,height=600,top=400,left=40');
+										if (!myCage.opener) myCage.opener = self;
+									}
+					</script> 
+						<form action="AddAppointment.jsp" method="post">
 						<input type="hidden" name="owner_id" value="<%=request.getParameter("owner_id")%>"> 
 						<input type="hidden" name="owner_name" value="<%=request.getParameter("owner_name")%>"> 
 						<input type="hidden" name="owner_lname"	value="<%=request.getParameter("owner_lname")%>"> 
 						<input type="hidden" name="page_ownerView" value="<%=request.getParameter("page_ownerView")%>">
 						<input type="hidden" name="pet_id" value="<%=petBean.getId()%>">
-						<input class="btn btn-primary" type="submit" value="ส่งตรวจ">
-					</form>
+						
+						<input type="hidden" name="category" value="<%=petBean.getPet_category()%>">
+						<input type="hidden" name="Pet_gene" value="<%=petBean.getPet_gene()%>">
+						<input type="hidden" name="Pet_gender" value="<%=petBean.getPet_gender()%>">
+						<input type="hidden" name="Pet_extra" value="<%=petBean.getPet_extra()%>">
+						
+						
+                        <input name="opencageSelect" class="form-control" type="button" id="opencageSelect" onClick="Javascript:windowOpenCage();" value="นัดหมาย">
+                        
+					</form> 
 					<%
  						}
  					%>

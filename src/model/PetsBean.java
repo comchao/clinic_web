@@ -2,6 +2,13 @@ package model;
 
 public class PetsBean {
 	private int id;
+	private int owner_id;
+	public int getOwner_id() {
+		return owner_id;
+	}
+	public void setOwner_id(int owner_id) {
+		this.owner_id = owner_id;
+	}
 	private OwnersBean reference_owner_id;
 	private String pet_name;
 	private String pet_category;
@@ -14,6 +21,49 @@ public class PetsBean {
 	private String active_flag;
 	private String date_nofi;
 	private int emerStatus;
+	private String owners_name;
+	private String owners_lname;
+	private String telephon;
+	
+	private String mem_name;
+	private String mem_lname;
+	private String mem_position;
+	public String getMem_position() {
+		return mem_position;
+	}
+	public void setMem_position(String mem_position) {
+		this.mem_position = mem_position;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
+	public String getMem_lname() {
+		return mem_lname;
+	}
+	public void setMem_lname(String mem_lname) {
+		this.mem_lname = mem_lname;
+	}
+	public String getOwners_name() {
+		return owners_name;
+	}
+	public void setOwners_name(String owners_name) {
+		this.owners_name = owners_name;
+	}
+	public String getOwners_lname() {
+		return owners_lname;
+	}
+	public void setOwners_lname(String owners_lname) {
+		this.owners_lname = owners_lname;
+	}
+	public String getTelephon() {
+		return telephon;
+	}
+	public void setTelephon(String telephon) {
+		this.telephon = telephon;
+	}
 	public int getId() {
 		return id;
 	}

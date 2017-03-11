@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="java.util.List"%>
+<%@ page import="java.text.*" %>
+
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*,java.util.*" %>
+<%@ page import="javax.servlet.*,java.text.*" %>
 <%@ include file="header_index.jsp"%>
+
 <script>
 	function editConfirm() {
 		if (confirm("บันทึกข้อมูลสำเร็จ")) {
@@ -45,19 +52,22 @@
 <br>
 <br>
 <br>
+	<%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
 	<a href="pet_waiting_treatment.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
 </div>
+<center><%= df.format(new java.util.Date()) %></center>
 	<div class="row">
 		<h3 align="center">การรักษา</h3>
 
 		<br />
+	
 		<form action="InsertTreatmentServlet" name="form1" id="form1" method="POST"
 			
 			style="margin: 10px, 10px, 10px, 10px;">
 			<div class="row">
-
+ <input type="hidden" name="postdate1" value="<%= df.format(new java.util.Date()) %>" >
 				<div class="col-sm-3">
 					<div class="form-group">
 						<div class="row">
@@ -332,10 +342,14 @@
 					</tr>
 				</table>
 			</div>
+			
+			
+			
 
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group" style="text-align: right">
+					<input type="hidden" name="Status" value="0"> 
 						<input type="hidden" name="pet_id" value="<%=request.getParameter("pet_id")%>">
 						<input type="submit" name="submit" id="submit"
 						onclick="return editConfirm();	"class="btn btn-success" value="บันทึกข้อมูล"  /><br><br><br><br>

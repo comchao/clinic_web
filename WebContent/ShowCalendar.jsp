@@ -5,6 +5,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ include file="header_index.jsp"%>
+<%@page import=" java.util.Date"%>
+ <%@page import="java.util.Locale"%>
+ 
+ <%@page import ="java.text.SimpleDateFormat"%>
+ <%@page import =" java.util.Date"%>
+ <%@page import =" java.text.ParseException"%>
 <style>
 /* The Modal (background) */
 .modal {
@@ -111,21 +117,48 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 }
 </script>
 <div class="container">
+<% Locale lc = new Locale("th","TH"); %>
+	<%java.text.DateFormat df = new java.text.SimpleDateFormat("EEEE ที่ dd เดือน MMMM พ.ศ. yyyy", new Locale("th", "TH")); %>
+	<h4 align="right"> <b>  <%= df.format(new java.util.Date()) %></b> </h4>
+	
+	
 
-<div align="right">
-	 <input type="submit"
-				class="btn btn-primary" id="opencageSelect" onClick="Javascript:windowOpenCage();" value="เพิ่มข้อมูลการนัดหมาย" /></a>
+		<br>
+	<h3 align="center"><b>ข้อมูลการนัดหมายสัตว์เลี้ยงทั้งหมด</b></h3> <br>
+
+	<div align="left">
+		<a href="index-officer.jsp"  ><input type="submit" class="btn btn-info" value="ย้อนกลับ" align="left" /></a> </div>
+
+
+						<div align="right">
+					
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+						       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						     
+
+							<a href="ShowAppointmentSservlet"><input type="submit" class="btn btn-info" value="เพิ่มข้อมูลการนัดหมาย"   ></a>
+						
 </div>
+
+
+
+
 <div class="row">
 		<div align="right">
 		
 	
 		<script>
-									function windowOpenCage() {
-										var myCage=window.open('AddCalenderServlet.jsp','windowRef','width=800,height=800,top=100,left=100');
-										if (!myCage.opener) myCage.opener = self;
+				function windowOpenCage() {
+			    var myCage=window.open('ShowAppointmentSservlet','windowRef','width=800,height=800,top=100,left=100');
+			    if (!myCage.opener) myCage.opener = self;
 									}
-								</script>
+							     	</script> 
 								
 			</form>
 		</div>
@@ -140,7 +173,7 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 </table>
 	<div class="row">
 		<div align="center">
-		<h4 align="center">ข้อมูลการนัดหมาย</h4>	
+		<h4 align="center"></h4>	
 	
 			<form action="searchCalenderServlet" method="get">
 				<input name="dateCalender" type="date" class="search-query" onchange="Javascript:dateTime(date_end);"	placeholder="yyyy-mm-dd" required="required"> <input type="hidden"
@@ -156,12 +189,21 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 			<table class="table table-hover">
 				<tr class="info">
 					<th>ลำดับ</th>
-					<th>รหัสสัตว์เลี้ยง</th>
-					<th>ประเภทการนัด</th>
-					<th>วัน/เดือน/ปี</th>
+					<th>ชื่อเจ้าของสัตว์เลี้ยง</th>
+					<th>ชื่อสัตว์เลี้ยง</th>
+				
+					<th>ประเภท</th>
+						<th>สายพันธุ์</th>
+					<th>สัตว์แพทย์ผู้นัด</th>
+					<th>เรื่องที่นัด</th>
+					<th>วันนัด</th>
 					<th>สถานะ</th>
-					<th>แก้ไข</th>
+					
+						
+						<th></th>
 					<th></th>
+						
+						
 					</tr>
 			
 				
@@ -169,40 +211,59 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 <%  CalendarBean bean;     for (int i=0; i<list.size(); i++){
 							bean = (CalendarBean) list.get(i); %>
 
-	
+	  <%if(bean.getStatus().equals("1")){%>
 <tr>
 						<td><%=i+1%></td>
-					<td><%=bean.getId_calendar()%></td>
+					<td><%=bean.getOwners_name()%>&nbsp; &nbsp;<%=bean.getOwners_lname()%></td>
+					<td><%=bean.getPet_name()%></td>
+					<td><%=bean.getPet_category()%></td>
+					<td><%=bean.getPet_gene()%></td>
+					<td><%=bean.getMem_name()%>&nbsp; &nbsp;<%=bean.getMem_lname()%></td>
+						<td>ยังไม่มี</td>
+						<%  SimpleDateFormat sourceDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    Date date = sourceDateFormat.parse(bean.getDate());
+    SimpleDateFormat targetDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+   
+						
+						%>
+						
+					<td><%="&nbsp; &nbsp;" +targetDateFormat.format(date)%></td>
 					
 					
-					<td><%=bean.getTitle()%></td>
-					<td><%=bean.getDate()%></td>
-					
-					<td bgcolor="#FF9797"><%=bean.getStatus()%></td>
-				<td>
+					<td bgcolor="#FF9797">&nbsp; &nbsp;นัดหมาย&nbsp; &nbsp;</td>
+				
 				<!-- EditcalendarServlet" -->
 					
-					<form action="EditCalender.jsp" method="post">
+					
+					<% if ((session.getAttribute("typecode") == "1")||(session.getAttribute("typecode") == "1")) {
+						%>
+							
+						
+					<td>
+				<!-- 	<form action="EditCalender.jsp" method="post"> -->
 						
 						<input type="hidden" name="id" value="<%=bean.getId()%>">
 						<input type="hidden" name="title" value="<%=bean.getTitle()%>">
 						<input type="hidden" name="date" value="<%=bean.getDate()%>">
-							<input type="hidden" name=id_auto value="<%=bean.getId_auto()%>">
+						<input type="hidden" name=id_auto value="<%=bean.getId_auto()%>">
 						<input type="submit" onclick="return editConfirm();" class="btn btn-warning" value="แก้ไข">
-					</form>
+					
+					<!-- </form> -->
 				<!-- EditcalendarServlet" -->
 					</td>
 					
 					<!-- DelcalendarServlet" -->
 					<td>
-						<form action="DelcalendarServlet" method="post">
+						<!-- <form action="DelcalendarServlet" method="post"> -->
 						<input type="hidden" name=id_auto value="<%=bean.getId_auto()%>">
 							<input onclick="return delConfirm();" class="btn btn-danger" type="submit" value="ลบข้อมูล">
-						</form>
+						<!-- </form> -->
 						<!-- DelcalendarServlet" -->
-					</td>
+					</td><%} %>
+					
 				</tr>
-				<% }%>	
+				<% }}%>	
 					
 
 			<!-- สิ้นสุดตัวแบ่งหน้า -->

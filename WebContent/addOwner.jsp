@@ -6,7 +6,7 @@
     <br><br><br><br><br><br>
         <div class="container">
         <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	
 </div>
             <div class="row">
 					<h3 align="center">เพิ่มข้อมูลเจ้าของสัตว์เลี้ยง</h3>

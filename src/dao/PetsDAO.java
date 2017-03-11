@@ -10,12 +10,14 @@ import db.ConnectDB;
 import model.OwnersBean;
 import model.PetsBean;
 import model.TypePetBean;
+import model.CalendarBean;
 import model.DepositBean;
 
 public class PetsDAO {
 	static ConnectDB dbc = new ConnectDB();	
 	static ResultSet rs = null;
 	static PreparedStatement preparedStmt;
+	
 	
 	//เพิ่มข้อมูลสัตวเลี้ยง
 	public boolean insertPet(PetsBean pet){		
@@ -63,7 +65,7 @@ public class PetsDAO {
 			System.out.println(pb);
 			PetsBean petBean = new PetsBean();
 			ArrayList<PetsBean> petList = new ArrayList<PetsBean>();
-			String sql = "select * from petdata inner join ownerdata on ownerdata.id = petdata.reference_owner_id where pet_name Like ? order by pet_name";
+			String sql = "select petdata.*,ownerdata.id AS owner_id ,ownerdata.* from petdata inner join ownerdata on ownerdata.id = petdata.reference_owner_id where pet_name Like ? order by pet_name";
 			try {
 				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 				preparedStmt.setString(1, "%"+pb.getPet_name()+"%");
@@ -72,8 +74,10 @@ public class PetsDAO {
 				while (rs.next()) {
 				petBean = new PetsBean();
 				OwnersBean ownersBean = new OwnersBean();
-            	ownersBean.setOwners_idcard(rs.getString("owners_idcard"));
+            
             	ownersBean.setPrefix(rs.getString("prefix"));
+            	ownersBean.setId(rs.getInt("id"));
+            	System.out.println("owner_id:="+rs.getInt("owner_id"));
             	ownersBean.setOwners_name(rs.getString("owners_name"));
             	ownersBean.setOwners_lname(rs.getString("owners_lname"));
             	ownersBean.setOwners_gender(rs.getString("owners_gender"));
@@ -83,6 +87,7 @@ public class PetsDAO {
             	petBean.setReference_owner_id(ownersBean);
             	
 				petBean.setId(rs.getInt("id"));
+			    petBean.setOwner_id(rs.getInt("owner_id"));
             	petBean.setPet_name(rs.getString("pet_name"));
             	petBean.setPet_category(rs.getString("pet_category"));
             	petBean.setPet_gene(rs.getString("pet_gene"));
@@ -513,5 +518,95 @@ public class PetsDAO {
 		}	
 		return null;
 	}
+	
+	
+	//ข้อมูลสัตว์เลี้ยง เพื่อเก็บข้อมูลนัดหมาย
+		
+public ArrayList<PetsBean> searchPet(int id) {
+
+	ArrayList<PetsBean> list = new ArrayList<PetsBean>();
+
+	String sql = "select petdata.*,ownerdata.id AS owner_id ,ownerdata.* from petdata inner join ownerdata on ownerdata.id = petdata.reference_owner_id WHERE petdata.id= ?";
+
+	try {
+		preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+		preparedStmt.setInt(1, id);
+		
+		rs = preparedStmt.executeQuery();
+		PetsBean petBean;
+		while (rs.next()) {
+			
+			petBean = new PetsBean();
+			petBean.setId(rs.getInt("id"));
+		    petBean.setOwner_id(rs.getInt("owner_id"));
+        	petBean.setPet_name(rs.getString("pet_name"));
+        	petBean.setPet_category(rs.getString("pet_category"));
+        	petBean.setPet_gene(rs.getString("pet_gene"));
+        	petBean.setPet_gender(rs.getString("pet_gender"));
+        	petBean.setPet_weight(rs.getString("pet_weight"));
+        	petBean.setPet_birthday(rs.getString("pet_birthday"));
+        	petBean.setPet_age(rs.getString("pet_age"));
+        	petBean.setPet_extra(rs.getString("pet_extra"));
+        	petBean.setActive_flag(rs.getString("active_flag"));
+        	petBean.setDate_nofi(rs.getString("date_nofi"));
+        	petBean.setEmerStatus(rs.getInt("emer_status"));
+        	petBean.setOwners_name(rs.getString("owners_name"));
+        	petBean.setOwners_lname(rs.getString("owners_lname"));
+        	petBean.setTelephon(rs.getString("telephon"));
+        	
+			
+			list.add(petBean);
+
+		}
+		rs.close();
+		preparedStmt.close();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+
+	return list;
+}
+//สัตวแพทย์ผู้นัด
+
+public ArrayList<PetsBean> members(int id) {
+
+	ArrayList<PetsBean> list = new ArrayList<PetsBean>();
+
+	String sql = "SELECT * FROM `members`  WHERE id= ?";
+
+	try {
+		preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+		preparedStmt.setInt(1, id);
+		
+		rs = preparedStmt.executeQuery();
+		PetsBean petBean;
+		while (rs.next()) {
+			
+			petBean = new PetsBean();
+			petBean.setId(rs.getInt("id"));
+			petBean.setMem_name(rs.getString("mem_name"));
+        	petBean.setMem_lname(rs.getString("mem_lname"));
+        	petBean.setMem_position(rs.getString("mem_position"));
+        	
+        	
+			
+			list.add(petBean);
+
+		}
+		rs.close();
+		preparedStmt.close();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+
+	return list;
+}
+
+
+
 
 }
+
+

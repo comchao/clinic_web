@@ -32,22 +32,15 @@
 
 <br><br><br><br><br>
 <div class="container">
-<div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
-</div>
+<div align="left">
+<a href="index-officer.jsp" ><input type="submit" class="btn btn-info" value="     ย้อนกลับ         "   /> </a>
+ </div>
 <div align="right">
-<form action="">
-	 <input type="submit"
-				class="btn btn-primary" value="เพิ่มข้อมูลการนัดหมาย" onClick="Javascript:windowOpenCage();" value="เพิ่มข้อมูลการนัดหมาย" /></a>.
-				<script>
-									function windowOpenCage() {
-										var myCage=window.open('AddCalenderServlet.jsp','windowRef','width=800,height=800,top=100,left=100');
-										if (!myCage.opener) myCage.opener = self;
-									}
-								</script>
-				</form>
-				
-				
+	<a href="ShowAppointmentSservlet"><input type="submit" class="btn btn-info" value="เพิ่มข้อมูลการนัดหมาย"  /></a>
+ </div>
+<br>
+		<div class="col-sm-12"><h3 align="center">ปฏิทินนัดหมายสัตว์เลี้ยง</h3></div>
+		<br>	<br>	<br>	<br>	<br>
 				
 <div style="margin:auto;width:700px;">
  <div id='calendar'></div>

@@ -3,28 +3,27 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.CalendarDAO;
-import model.CalendarBean;
-import model.MembersBean;
+import dao.PetsDAO;
+import model.PetsBean;
 
 /**
- * Servlet implementation class CalendarServlet2
+ * Servlet implementation class SearchPetAppointmentServlet
  */
-@WebServlet("/CalendarServlet2")
-public class CalendarServlet2 extends HttpServlet {
+@WebServlet("/SearchPetAppointmentServlet")
+public class SearchPetAppointmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CalendarServlet2() {
+    public SearchPetAppointmentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,39 +33,23 @@ public class CalendarServlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		  request.setCharacterEncoding("utf-8");  
-		  response.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String id = request.getParameter("id");
-		System.out.println("ID :"+id);
-		
-		
-		ArrayList<CalendarBean> list = new ArrayList<CalendarBean>();
-		
-		CalendarDAO dao = new CalendarDAO();
-		
-		list = dao.Getcalendar();
-	
-/*//		while ((list != null)) { 	
-*/		request.setAttribute("list", list);
-       
-        
-		String page= "ShowCalendar.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-		if(dispatcher != null){
-			  request.setCharacterEncoding("utf-8");  
-			   response.setCharacterEncoding("utf-8");
-			dispatcher.forward(request, response);
-		}
-	} 
-	
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+
+		PetsBean pb = new PetsBean();
+		pb.setPet_name(request.getParameter("pet_name"));
+		ArrayList<PetsBean> petList = PetsDAO.search(pb);
+				HttpSession session = request.getSession(true);
+				String p = "1";
+				session.setAttribute("pageN", p);
+				session.setAttribute("allPetSS",petList);
+				response.sendRedirect("SearchPetAppointment.jsp");
 	}
 
 }

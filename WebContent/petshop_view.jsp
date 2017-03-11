@@ -17,7 +17,7 @@
 		<div class="col-sm-12">
 		<div class="col-sm-6" ><h3 align="center">ค้นหาตามประเภท</h3>
 			
-			<form action="purchaseServlet" method="POST" >
+			<form action="searchProductIDServlet" method="POST" >
 			<select name="pet_id" id="pet_id"class="search-query"  style="width:70%;">
 				<%
 					ArrayList<TypePetBean> list = PetsDAO.queryTypePetAll();

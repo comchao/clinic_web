@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,23 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ProductDAO;
-import dao.ReportDAO;
-import dao.purchaseDAO;
-import model.ProductBean;
-import model.purchaseBean;
+import dao.OwnersDAO;
+import model.OwnersBean;
 
 /**
- * Servlet implementation class ShowPetShopServlet1
+ * Servlet implementation class ShowAppointmentSservlet
  */
-@WebServlet("/ShowPetShopServlet1")
-public class ShowPetShopServlet1 extends HttpServlet {
+@WebServlet("/ShowAppointmentSservlet")
+public class ShowAppointmentSservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowPetShopServlet1() {
+    public ShowAppointmentSservlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,47 +32,27 @@ public class ShowPetShopServlet1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//เรียกข้อมูลเพื่อเพิ่มข้อมูลการนัดหมาย
 		request.setCharacterEncoding("UTF-8");
 		try {
 			
-		int id = 1;
-			
-			// ใบรายงานการวินิจฉัยโรคของสัตร์
-			
-			ReportDAO ReportDAO = new ReportDAO();
-				if (ReportDAO.BillPurchase(id)) {
-
-
-			ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
+			ArrayList<OwnersBean>ownerList = new ArrayList<OwnersBean>();
 			
 			// ดึงข้อมูลรายชื่อสินค้า
-			productList = ProductDAO.queryProdtuctAll();
+			ownerList = OwnersDAO.queryOwnerAll();
 			
 			HttpSession session = request.getSession(true);
 			
 			String p = "1";
 			session.setAttribute("pageN", p);
 			
-			// เก็บข้อมูลรายชื่อสินค้า
-			session.setAttribute("allProductSS", productList);
+			// เก็บข้อมูล
+			session.setAttribute("allOwnerSS", ownerList);
 
-			//ลบข้อมูลสินค้าในตะกร้าสินค้าทั้งหมด
-			purchaseDAO dao = new purchaseDAO();
-			List<purchaseBean> List = dao.getpurchaseID();
-			for (int i = 0; i < List.size(); i++) {
-				purchaseBean bean = List.get(i);
+			
+			response.sendRedirect("ShowAppointment.jsp");
 
-				purchaseDAO DAO = new purchaseDAO();
-				purchaseBean Bean = new purchaseBean();
-				Bean.setId(bean.getId());
-				DAO.deleteall(Bean);
-			
-			}
-			response.sendRedirect("petshop_view.jsp");
-			
-				} else {
-					response.sendRedirect("reportUnConfrim.jsp");
-				}
 		} catch (Exception ex) {
 			ex.printStackTrace(System.out);
 		}

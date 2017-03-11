@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.CalendarDAO;
 import model.CalendarBean;
-import model.MembersBean;
 
 /**
- * Servlet implementation class CalendarServlet2
+ * Servlet implementation class AppointmentSservlet
  */
-@WebServlet("/CalendarServlet2")
-public class CalendarServlet2 extends HttpServlet {
+@WebServlet("/AppointmentSservlet")
+public class AppointmentSservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CalendarServlet2() {
+    public AppointmentSservlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,34 +32,34 @@ public class CalendarServlet2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		  request.setCharacterEncoding("utf-8");  
-		  response.setCharacterEncoding("utf-8");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String id = request.getParameter("id");
-		System.out.println("ID :"+id);
+		 
 		
 		
-		ArrayList<CalendarBean> list = new ArrayList<CalendarBean>();
 		
-		CalendarDAO dao = new CalendarDAO();
+	try{
+		CalendarDAO dao = new CalendarDAO(); 
 		
-		list = dao.Getcalendar();
-	
-/*//		while ((list != null)) { 	
-*/		request.setAttribute("list", list);
-       
-        
-		String page= "ShowCalendar.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+		
+		
+		
+		ArrayList<CalendarBean> list = dao.GetAppointment();
+		
+		request.setAttribute("show", list); 
+		
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		String page= "Appointment.jsp"; //เเสดงหน้า
+		RequestDispatcher dispatcher =
+		request.getRequestDispatcher(page); 
 		if(dispatcher != null){
-			  request.setCharacterEncoding("utf-8");  
-			   response.setCharacterEncoding("utf-8");
-			dispatcher.forward(request, response);
+
+		 dispatcher.forward(request, response);
+		}}catch (Throwable theException)
+		{
+		System.out.println(theException);
 		}
-	} 
-	
+		}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
