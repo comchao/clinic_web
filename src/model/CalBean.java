@@ -10,6 +10,14 @@ public class CalBean {
 	private String title;
 	private String url;
 	private String date;
+	private String Status;
+	
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
+	}
 	public String getId() {
 		return id;
 	}

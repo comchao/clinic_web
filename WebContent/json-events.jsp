@@ -9,16 +9,22 @@
 	
 <%
 
+
+
+
+
 CalendarDAO caldao = new CalendarDAO();  
-Integer id = (Integer)session.getAttribute("id"); 
-List<CalBean> callist = caldao.selectIdCalendar(id);
+Integer id_calendar = (Integer)session.getAttribute("id"); 
+List<CalBean> callist = caldao.selectIdCalendar(id_calendar);
 response.setCharacterEncoding("utf-8");
 JSONArray ja = new JSONArray();
+
 for(int i=0;i<callist.size();i++){
 	CalBean calbean = callist.get(i);
+	if(calbean.getStatus().equals("1")){
 
 	ja.add(new CalJson(calbean.getId(),calbean.getTitle(),calbean.getDate(),calbean.getUrl()));
-} 
+} }
 out.println(ja);
 %>	
 	

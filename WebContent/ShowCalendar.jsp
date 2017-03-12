@@ -219,11 +219,11 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 					<td><%=bean.getPet_category()%></td>
 					<td><%=bean.getPet_gene()%></td>
 					<td><%=bean.getMem_name()%>&nbsp; &nbsp;<%=bean.getMem_lname()%></td>
-						<td>ยังไม่มี</td>
+						<td  bgcolor="#FFFFF0" ><%=bean.getTitle() %></td>
 						<%  SimpleDateFormat sourceDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     Date date = sourceDateFormat.parse(bean.getDate());
-    SimpleDateFormat targetDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+    SimpleDateFormat targetDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
    
 						
 						%>

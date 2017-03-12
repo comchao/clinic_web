@@ -11,7 +11,21 @@ public class CalendarBean {
 	private String  pet_category ;
 	private String pet_gene;
 	private String mem_lname;
+	private String not;
+	boolean valid ;
 
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public String getNot() {
+		return not;
+	}
+	public void setNot(String not) {
+		this.not = not;
+	}
 	public String getMem_lname() {
 		return mem_lname;
 	}
