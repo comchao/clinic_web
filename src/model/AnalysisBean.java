@@ -4,6 +4,20 @@ public class AnalysisBean {
 	int id;
 	int id_disease;
 	String disease;
+	int id_pet;
+	int id_member;
+	public int getId_pet() {
+		return id_pet;
+	}
+	public void setId_pet(int id_pet) {
+		this.id_pet = id_pet;
+	}
+	public int getId_member() {
+		return id_member;
+	}
+	public void setId_member(int id_member) {
+		this.id_member = id_member;
+	}
 	float Total1;
 	String  percentage;
 	float SumPercentage;

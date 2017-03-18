@@ -61,6 +61,18 @@ public class DiseaseGetSymptomServlet extends HttpServlet {
 				AnalysisBean Bean = new AnalysisBean();
 				Bean.setId(Disease_percentageBean.getId());
 				DAO.ClearDataDisease_percentage(Bean);
+				DAO.ClearDataAnalysisdisease_report(Bean);
+			}
+			/* ส่วนของClearData disease_percentage to SQL */
+			DiseaseDAO Disease_percentage_reportDAO  = new DiseaseDAO();
+			List<AnalysisBean> disease_percentagereportList = Disease_percentage_reportDAO.getdisease_percentage_report();
+			for (int i = 0; i < disease_percentagereportList.size(); i++) {
+				AnalysisBean Disease_percentag_reporteBean = disease_percentagereportList.get(i);
+
+				DiseaseDAO DAO = new DiseaseDAO();
+				AnalysisBean Bean = new AnalysisBean();
+				Bean.setId(Disease_percentag_reporteBean.getId());
+				DAO.ClearDataAnalysisdisease_report(Bean);
 			}
 			
 			

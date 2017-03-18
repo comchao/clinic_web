@@ -56,7 +56,7 @@ function mydate() {
 				<option value="1" selected="selected">รายงานสรุปการขายสินค้า</option>
 				<option value="2">รายงานสรุปค่ายา</option>
 				<option value="3">รายงานสรุปค่ารักษา</option>
-				<option value="6">รายงานสรุปการนัดหมาย</option>
+				<option value="6">รายงานการนัดหมาย</option>
 			</select>
 		</div>
 		<div class="col-sm-3">

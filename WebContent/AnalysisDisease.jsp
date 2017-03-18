@@ -85,7 +85,11 @@
 								response.setCharacterEncoding("utf-8");
 								for (int i = 0; i < diseaseList.size(); i++) {
 									AnalysisBean bean = diseaseList.get(i);
+									
 						%>
+						    
+		<form action="SaveDisease.jsp" method="post">
+	    
 
 						<%
 							float SumPercentage = 0;
@@ -103,7 +107,7 @@
 
 
 
-						<form action="SaveDisease.jsp" method="post">
+					
 							<%--    
         <td> <h3> <%=bean.getDisease()%><h3> </td>
         <td> <h3> <%=bean.getPercentage()%><h3></td> --%>
@@ -132,6 +136,21 @@
 								}
 								}
 							%>
+							   <%
+							DiseaseDAO dao4 = new DiseaseDAO();
+
+								List<AnalysisBean> diseaseList4 = dao4.getpercentage();
+								response.setCharacterEncoding("utf-8");
+								for (int i4 = 0; i4 < diseaseList4.size(); i4++) {
+									AnalysisBean bean4 = diseaseList4.get(i4);
+									
+						%>
+						    <input type="hidden" name="percentage" value="<%=bean4.getPercentage()%>"> 
+					  
+
+							
+							<%
+								}%>
 						
 						<td><input type="submit" name="submit" id="submit"
 							class="btn btn-success" value="SaveData" onclick="cal(value)" />
@@ -161,7 +180,7 @@
 						</form>
 		<td width="10"></td>
 						
-					<td><form action="ReportServlet" method="post">
+				<!-- 	<td><form action="ReportServlet" method="post"> -->
 						<%
 							DiseaseDAO dao7 = new DiseaseDAO();
 							List<AnalysisBean> diseaseList7 = dao5.getpercentagetotal();
@@ -178,7 +197,7 @@
 								for (int i = 0; i < diseaseList.size(); i++) {
 									AnalysisBean bean = diseaseList.get(i);
 						%>
-
+	         
 						<%
 							float SumPercentage = 0;
 									float TotalPercentage = Float.parseFloat(bean.getPercentage());
@@ -194,6 +213,7 @@
 		
 					   <input type="hidden" name="Disease[]"value="<%=bean.getDisease()%>"> 
 					   <input type="hidden"name="SumPercentage" value="<%=SumPercentage%>">
+					   
 					  
 
 							
@@ -202,10 +222,11 @@
 								}
 							%>
 
+           
 
-			<input name="report_id" value="7" type="hidden"> 
+			<!-- <input name="report_id" value="7" type="hidden"> 
 			<input type="submit" name="submit" id="submit" class="btn btn-success"value="Report" onclick="cal(value)" />
-		   </form>
+		   </form> -->
 						</td>
 	</center>
 	</tr>

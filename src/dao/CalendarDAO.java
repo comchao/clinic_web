@@ -27,15 +27,20 @@ public class CalendarDAO {
 
 	static PreparedStatement pstmtt = null;
 
-	public ArrayList<CalendarBean> selectId(int id) {
+	
+	
+	
+	
+	public ArrayList<CalendarBean> selectId(int id ) {
 
 		ArrayList<CalendarBean> list = new ArrayList<CalendarBean>();
 
-		String sql = "SELECT * FROM calendar WHERE id= ? order by date DESC ";
+		String sql = "SELECT * FROM calendar WHERE id= ? Status = 1 order by date DESC ";
 
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 			preparedStmt.setInt(1, id);
+		
 
 			rs = preparedStmt.executeQuery();
 			CalendarBean selectId;
@@ -69,7 +74,7 @@ public class CalendarDAO {
 		CalendarBean AppointmentBean = new CalendarBean();
 		ArrayList<CalendarBean> diseaseList = new ArrayList<CalendarBean>();
 
-		String sql = "SELECT ownerdata.owners_name ,ownerdata.owners_lname, petdata.pet_name , petdata.pet_category ,petdata.pet_gene,members.mem_position , members.mem_name ,members.mem_lname  ,calendar.* FROM calendar , petdata ,members,ownerdata WHERE calendar.id = petdata.id AND calendar.`id_calendar` = members.id AND calendar.`id_ownerdata` = ownerdata.id ;";
+		String sql = "SELECT ownerdata.owners_name ,ownerdata.owners_lname, petdata.pet_name , petdata.pet_category ,petdata.pet_gene,members.mem_position , members.mem_name ,members.mem_lname  ,calendar.* FROM calendar , petdata ,members,ownerdata WHERE calendar.id = petdata.id AND Status = 1  AND calendar.`id_calendar` = members.id AND calendar.`id_ownerdata` = ownerdata.id ;";
 
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
@@ -115,6 +120,52 @@ public class CalendarDAO {
 		return null;
 	}
 
+	static public ArrayList<CalBean> selectIdCalendar() {
+
+		CalBean CalBean = new CalBean();
+		ArrayList<CalBean> diseaseList = new ArrayList<CalBean>();
+
+		String sql = "SELECT ownerdata.owners_name ,ownerdata.owners_lname, petdata.pet_name , petdata.pet_category ,petdata.pet_gene,members.mem_position , members.mem_name ,members.mem_lname  ,calendar.* FROM calendar , petdata ,members,ownerdata WHERE calendar.id = petdata.id AND Status = 1  AND calendar.`id_calendar` = members.id AND calendar.`id_ownerdata` = ownerdata.id ;";
+
+		try {
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			rs = preparedStmt.executeQuery();
+			// dbc.closeConnection();
+
+			while (rs.next()) {
+
+				CalBean = new CalBean();
+				CalBean.setId(rs.getString("id"));
+				
+				CalBean.setTitle(rs.getString("title"));
+				CalBean.setUrl(rs.getString("url"));
+				CalBean.setDate(rs.getString("date"));
+				CalBean.setStatus(rs.getString("Status"));
+				
+				diseaseList.add(CalBean);
+			}
+			rs.close();
+			return diseaseList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
 	public ArrayList<CalBean> selectIdCalendar(int id_calendar) {
 		ArrayList<CalBean> List = new ArrayList<CalBean>();
 		String selectSQL = "select*from calendar where id_calendar = ?";

@@ -13,6 +13,11 @@
 <%@page import="dao.OwnersDAO,model.OwnersBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.PetsDAO,model.PetsBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="model.AnalysisBean"%>
+<%@page import="java.util.List"%>
+
 <%@ include file="header_index.jsp"%>
 
 
@@ -33,7 +38,7 @@
 	
 	<center>
 
-		<h2>บันทึกข้อมูลการวิเคราะห์โรค</h2>
+		<h2>ข้อมูลการวิเคราะห์โรค</h2>
 		<br>
 		<table>
 		<tr>
@@ -45,53 +50,73 @@
 	<div class="row">
 	
 
-
+<table align="center">
+<tr>
+<th width="100:px">ลำดับ</th>
+<th width="150:px">โรค</th>
+<th width="130:px">ให้ผลบวกโรค</th>
+<th width="200:px">ร้อยละของผลบวก(%)</th>
+</tr>
+	
+	 <form action="ReportServlet" method="post">
 	 
-	 <form action="SaveDiseaseSearchServlet" method="post">
+	<%
+	DiseaseDAO dao = new DiseaseDAO (); 
+List<AnalysisBean >List=dao.getdisease_percentage();
+for(int i = 0;i<List.size();i++){
+	AnalysisBean bean = List.get(i); 
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+	String id_Pet = request.getParameter("id_Pet");
+	
+%>
+
+<tr> 
+
+ <td><h4><%=i+1%></h4></td>
+ <td><h4><%=bean.getDisease()%></h4></td>
+ <td><h4> <%=bean.getSum()%></h4></td>
+ <td><h4><%=bean.getSumPercentage()%></h4></td>
+ 	<input type="hidden" name="Disease[]"  value="<%=bean.getDisease()%>" />
+ 	<input type="hidden" name="Sum[]"  value="<%=bean.getSum()%>" />
+ 	<input type="hidden" name="SumPercentage"  value="<%=bean.getSumPercentage()%>" />
+ 	<input type="hidden" name="id_member[]"  value="<%=session.getAttribute("id")%>" />
+ 	<input type="hidden" name="report_id"  value="7" />
+ 	<input type="hidden" name="id_pet[]"  value="<%=id_Pet%>" />
+ 	
+    
+  </tr>
+ <%} %>
+	</table>
 	 	<%
 	 	
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String[] Disease = request.getParameterValues("Disease");
-		String[] SumPercentage = request.getParameterValues("SumPercentage");
-		String[] percentage = request.getParameterValues("percentage");
-
-			request.setCharacterEncoding("UTF-8");
 		
-			
-	     for(int i1=0; i1<Disease.length; i1++){ 
-	     DecimalFormat df = new DecimalFormat();
-			df.applyPattern("0.0");%>
-			
-			<%float SumPercentag = 0 ; 
-			SumPercentag = Float.parseFloat(SumPercentage[i1]);
-			
-		
-
+		String Pet_name = request.getParameter("Pet_name");
+		String Pet_category = request.getParameter("Pet_category");
+		String Pet_gender = request.getParameter("Pet_gender"); 
+		String Pet_gene = request.getParameter("Pet_gene");
+		String Pet_weight = request.getParameter("Pet_weight");
+		String Pet_birthday = request.getParameter("Pet_birthday");
+		String Pet_age = request.getParameter("Pet_age");
+		String Pet_extra = request.getParameter("Pet_extra");
+		String Reference_owner_id = request.getParameter("Reference_owner_id");
+		String Owners_name = request.getParameter("Owners_name");
+		String Owners_lname = request.getParameter("Owners_lname");
+	
+	
 %>
 	 	
-	 	
-
-		<input type="hidden" name="Disease" value="<%=Disease[i1]%>"> 
-		<input type="hidden" name="SumPercentage" value="<%= new DecimalFormat("0.0").format(SumPercentag)%>">
-		<input type="hidden" name="percentage" value="<%=percentage[i1]%>">
-		<h4><%=Disease[i1]%> : <%=new DecimalFormat("0.0").format(SumPercentag)%></h4>
-		
-		
-				<%
-			}
-			
-		%>
-			
-		
-		
-		<div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
-	<a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
-</div>
+	
 		<h3 align="center"></h3>
 		
-		
+		 <h3 align="center">สัตว์เลี้ยงของ คุณ : <font color="red"><%=Owners_name%><%=Owners_lname %></font></h3>
+	
+	
+
+									
 		
 		
 		
@@ -108,7 +133,7 @@
 							<div class="col-sm-8">
 								<div class="form-group">
 									<input type="text" name="pet_name" id="disease"
-										placeholder="กรุณากรอกชื่อสัตว์เลี้ยง" class="form-control" required="required" />
+										value="<%=Pet_name%>" class="form-control"	readonly="readonly" />
 									
 								</div>
 							</div>
@@ -123,7 +148,7 @@
 							<div class="col-sm-8">
 								<div class="form-group">
 									<input type="text" name="pet_category" id="pet_category"
-									value="<%-- <%=request.getParameter("pet_category")%> --%>"
+									value="<%=Pet_category%>"
 										placeholder="ประเภทสัตว์เลี้ยง " class="form-control"
 										readonly="readonly" />
 								</div>
@@ -139,7 +164,7 @@
 								<div class="form-group">
 									<input type="text" name="pet_gene" id="pet_gene"
 										placeholder="พันธุ์สัตว์เลี้ยง" class="form-control"
-										value="<%-- <%=request.getParameter("pet_gene")%> --%>"
+										value="<%=Pet_gene%>"
 										readonly="readonly" />
 								</div>
 							</div>
@@ -153,7 +178,7 @@
 							<div class="col-sm-8">
 								<div class="form-group">
 									<input type="text"  name="pet_gender" id="pet_gender" 
-									placeholder="เพศสัตว์เลี้ยง" value="<%-- <%=request.getParameter("pet_gender")%> --%>" class="form-control"
+									placeholder="เพศสัตว์เลี้ยง" value="<%=Pet_gender%>" class="form-control"
 										readonly="readonly">
 								</div>
 							</div>
@@ -179,7 +204,7 @@
 							<div class="col-sm-8">
 								<div class="form-group">
 									<input type="text" name="pet_weight" id="pet_weight"
-									value="<%-- <%=request.getParameter("pet_weight")%> --%>"
+									value="<%=Pet_weight%>"
 										placeholder="น้ำหนัก" class="form-control" readonly="readonly" />
 								</div>
 							</div>
@@ -194,7 +219,7 @@
 							<div class="col-sm-8">
 								<div class="form-group">
 									<input type="text" name="pet_birthday" id="pet_birthday"
-									value="<%-- <%=request.getParameter("pet_birthday")%> --%>"
+									value="<%=Pet_birthday%>"
 										placeholder="วันเกิด " class="form-control"
 										readonly="readonly"/>
 								</div>
@@ -209,7 +234,7 @@
 							<div class="col-sm-8">
 								<div class="form-group">
 									<input type="text" name="pet_age" id="pet_age"
-									value="<%-- <%=request.getParameter("pet_age")%> --%>"
+									value="<%=Pet_age%>"
 										placeholder="อายุ" class="form-control" readonly="readonly" />
 
 								</div>
@@ -223,8 +248,8 @@
 							</div>
 							<div class="col-sm-8">
 								<div class="form-group">
-									<textarea name="pet_extra" rows="5" class="form-control"
-										placeholder="ตำหนิ/สี" id="pet_extra" readonly="readonly"><%-- <%=request.getParameter("pet_extra")%> --%></textarea>
+									<input name="pet_extra" rows="5" class="form-control"
+										placeholder="ตำหนิ/สี" id="pet_extra" readonly="readonly" value="<%=Pet_extra%>">
 								</div>
 							</div>
 						</div>
@@ -240,7 +265,7 @@
 		</div>
 		</div>
 		</div>
-<input type="submit" class="btn btn-success" value="ค้นหาข้อมูล" />
+<input type="submit" class="btn btn-success" value="บันทึกข้อมูล" />
 </div></form>
 
 	</div>

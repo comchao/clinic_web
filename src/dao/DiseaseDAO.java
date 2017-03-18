@@ -604,9 +604,9 @@ public class DiseaseDAO {
 	
 
 	// insertdisease_percentage
-
+	
 	public static boolean insertdisease_percentage(AnalysisBean disease) {
-		String insertSQL = "insert into disease_percentage(id , disease,SumPercentage)" + " values(?,? ,? ); ";
+		String insertSQL = "insert into disease_percentage(id , disease,SumPercentage ,sum)" + " values(?,? ,? ,?); ";
 
 		try {
 
@@ -614,6 +614,7 @@ public class DiseaseDAO {
 			preparedStmt.setInt(1, disease.getId());
 			preparedStmt.setString(2, disease.getDisease());
 			preparedStmt.setFloat(3, disease.getSumPercentage());
+			preparedStmt.setString(4, disease.getPercentage());
 			preparedStmt.executeUpdate();
 			dbc.closeConnection();
 			return true;
@@ -632,7 +633,64 @@ public class DiseaseDAO {
 	}
 	// สิ้นสุด insertdisease_percentage
 	
+	public static boolean insertanalysisdisease(AnalysisBean disease) {
+		String insertSQL = "insert into analysisdisease(disease,SumPercentage ,sum,id_pet,id_member)" + " values(?,? ,? ,?,?); ";
+
+		try {
+
+			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
+			preparedStmt.setString(1, disease.getDisease());
+			preparedStmt.setFloat(2, disease.getSumPercentage());
+			preparedStmt.setString(3, disease.getPercentage());
+			preparedStmt.setInt(4, disease.getId_pet());
+			preparedStmt.setInt(5, disease.getId_member());
+			preparedStmt.executeUpdate();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+	}
+	// สิ้นสุด insertdisease_percentage
 	
+	public static boolean insertanalysisdisease_report(AnalysisBean disease) {
+		String insertSQL = "insert into analysisdisease_report(id,disease,SumPercentage ,sum,id_pet,id_member)" + " values(?,?,? ,? ,?,?); ";
+
+		try {
+
+			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
+			preparedStmt.setInt(1, disease.getId());
+			preparedStmt.setString(2, disease.getDisease());
+			preparedStmt.setFloat(3, disease.getSumPercentage());
+			preparedStmt.setString(4, disease.getPercentage());
+			preparedStmt.setInt(5, disease.getId_pet());
+			preparedStmt.setInt(6, disease.getId_member());
+			preparedStmt.executeUpdate();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+	}
+	// สิ้นสุด insertdisease_percentage
 	
 	
 	public boolean updateSum(AnalysisBean disease) {
@@ -747,6 +805,43 @@ public class DiseaseDAO {
 			}
 		}
 		// delete Data disease_percentage
+		
+		
+		// delete Data disease_percentage
+		public boolean ClearDataAnalysisdisease_report(AnalysisBean id) {
+
+			String sql = " delete from analysisdisease_report where id = ?; ";
+			try {
+
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+				preparedStmt.setInt(1, id.getId());
+
+				preparedStmt.executeUpdate();
+				dbc.closeConnection();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			} finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> " + e.getMessage());
+				}
+			}
+		}
+		// delete Data disease_percentage
+		
+		
+		
+		
+		
+		
+		
+		
 	
 		//SELECT  delete  disease_percentage data sql  
 		static public ArrayList<AnalysisBean> getdisease_percentage() {
@@ -761,6 +856,16 @@ public class DiseaseDAO {
 				while (rs.next()) {
 					disease = new AnalysisBean();
 					disease.setId(rs.getInt("id"));
+					System.out.println(rs.getInt("id"));
+					
+					disease.setDisease(rs.getString("disease"));
+					System.out.println(rs.getString("disease"));
+					
+					disease.setSumPercentage(rs.getInt("SumPercentage"));
+					System.out.println(rs.getInt("SumPercentage"));
+					
+					disease.setSum(rs.getFloat("sum"));
+					System.out.println(rs.getFloat("sum"));
 					disease_percentageList.add(disease);
 				}
 				rs.close();
@@ -780,6 +885,40 @@ public class DiseaseDAO {
 			return null;
 		}
             //SELECT  delete  disease_percentage data sql  
+		
+		static public ArrayList<AnalysisBean> getdisease_percentage_report() {
+			AnalysisBean disease = new AnalysisBean();
+			ArrayList<AnalysisBean> disease_percentageList = new ArrayList<AnalysisBean>();
+
+			String sql = "SELECT * FROM analysisdisease_report ; ";
+			try {
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+				rs = preparedStmt.executeQuery();
+				// dbc.closeConnection();
+				while (rs.next()) {
+					disease = new AnalysisBean();
+					disease.setId(rs.getInt("id"));
+					System.out.println(rs.getInt("id"));
+					disease_percentageList.add(disease);
+				}
+				rs.close();
+				return disease_percentageList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			} finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> " + e.getMessage());
+				}
+			}
+			return null;
+		}
+            //SELECT  delete  disease_percentage data sql  
+		
 		
 	
 	

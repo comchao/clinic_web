@@ -11,6 +11,12 @@
  <%@page import ="java.text.SimpleDateFormat"%>
  <%@page import =" java.util.Date"%>
  <%@page import =" java.text.ParseException"%>
+ <%@page import="model.CalJson"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="model.CalBean"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.CalendarDAO"%>
+ 
 <style>
 /* The Modal (background) */
 .modal {
@@ -140,10 +146,15 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 						       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-						     
-
+						    <%  if ((session.getAttribute("typecode") == "1")||(session.getAttribute("typecode") == "1")&(session.getAttribute("typecode") == "2")||(session.getAttribute("typecode") == "2")) {
+						%>
 							<a href="ShowAppointmentSservlet"><input type="submit" class="btn btn-info" value="เพิ่มข้อมูลการนัดหมาย"   ></a>
 						
+						<%
+						}
+						%>
+
+							
 </div>
 
 
@@ -210,9 +221,19 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 	<%  ArrayList<CalendarBean> list = (ArrayList)request.getAttribute("list");%>
 <%  CalendarBean bean;     for (int i=0; i<list.size(); i++){
 							bean = (CalendarBean) list.get(i); %>
+							
+							
+	<%
+	
+	
+	
+	%>
 
-	  <%if(bean.getStatus().equals("1")){%>
 <tr>
+					
+					
+					
+					
 						<td><%=i+1%></td>
 					<td><%=bean.getOwners_name()%>&nbsp; &nbsp;<%=bean.getOwners_lname()%></td>
 					<td><%=bean.getPet_name()%></td>
@@ -236,7 +257,7 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 				<!-- EditcalendarServlet" -->
 					
 					
-					<% if ((session.getAttribute("typecode") == "1")||(session.getAttribute("typecode") == "1")) {
+					<% if ((session.getAttribute("typecode") == "1")||(session.getAttribute("typecode") == "1")&(session.getAttribute("typecode") == "2")||(session.getAttribute("typecode") == "2")) {
 						%>
 							
 						
@@ -263,7 +284,7 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 					</td><%} %>
 					
 				</tr>
-				<% }}%>	
+				<% }%>	
 					
 
 			<!-- สิ้นสุดตัวแบ่งหน้า -->
@@ -301,5 +322,6 @@ window.onclick = function(event) {
 </script>
 	
 	
-</div>
+</div></table>
+
 <%@ include file="footer_index.jsp"%>

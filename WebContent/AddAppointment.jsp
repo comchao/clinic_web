@@ -236,7 +236,7 @@
 									PetsBean bean4 = List4.get(i4);
 							%>
 							<input name="Close" type="text" class="form-control"
-								value="<%="สาพันธุ์:&nbsp;&nbsp;" + bean4.getPet_gene()%>"
+								value="<%="สายพันธุ์:&nbsp;&nbsp;" + bean4.getPet_gene()%>"
 								readonly="readonly" />
 							<%
 								}

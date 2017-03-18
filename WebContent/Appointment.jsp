@@ -56,6 +56,7 @@
 
 	<br><br><br>
 	
+	
 		<% Locale lc = new Locale("th","TH"); %>
 	
 	<%java.text.DateFormat df = new java.text.SimpleDateFormat("EEEE ที่ dd เดือน MMMM พ.ศ. yyyy", new Locale("th", "TH")); %>

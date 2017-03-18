@@ -78,6 +78,19 @@
 					
 				
 			</div>
+			<!-- รายงานประจำเดือน -->
+			<div class="col-sm-3 officer-menu-item">
+				<a href="report.jsp" class="officer-menu-link"
+					data-toggle="modal">
+					<div class="caption">
+						<div class="caption-content">
+							<i class="fa fa-search-plus fa-3x"></i>
+						</div>
+					</div> <center><img src="img/portfolio/doc.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>รายงาน</h6></center>
+				</a>
+			</div>
+			
+			
                 <% 
 							if (session.getAttribute("typecode") == "1") {
 				%>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-18T00:56:12 -->
+<!-- 2017-03-18T01:02:30 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -16,46 +16,26 @@
 			<style backcolor="#E6DAC3"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="BeginDate" class="java.lang.String"/>
-	<parameter name="EndDate" class="java.lang.String"/>
+	<parameter name="id_member" class="java.lang.String"/>
+	<parameter name="date_start" class="java.lang.String"/>
+	<parameter name="date_end" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT
-     shop_detail.`prd_date` AS shop_detail_prd_date,
-     shop_detail.`prd_name` AS shop_detail_prd_name,
-     shop_detail.`prd_price` AS shop_detail_prd_price,
-     SUM(`prd_qty`) AS shop_detail_prd_qty,
-     SUM(`prd_total`) AS shop_detail_prd_total
-FROM
-     `shop_detail` shop_detail
-WHERE
-     shop_detail.`prd_date` BETWEEN $P{BeginDate} AND $P{EndDate} GROUP BY `shop_detail_prd_name` ORDER BY shop_detail_prd_date ASC]]>
+		<![CDATA[SELECT ownerdata.owners_name ,ownerdata.owners_lname, petdata.pet_name ,petdata.pet_gene, petdata.pet_category,calendar.`title` ,calendar.`date`, members.mem_position , members.mem_name FROM calendar , petdata ,members,ownerdata WHERE id_calendar = '$P!{id_member}'  AND calendar.id = petdata.id AND calendar.`id_calendar` = members.id AND calendar.`id_ownerdata` = ownerdata.id AND `date_time` BETWEEN '$P!{date_start}' AND '$P!{date_end}']]>
 	</queryString>
-	<field name="shop_detail_prd_date" class="java.lang.String"/>
-	<field name="shop_detail_prd_name" class="java.lang.String"/>
-	<field name="shop_detail_prd_price" class="java.math.BigDecimal"/>
-	<field name="shop_detail_prd_qty" class="java.lang.Integer"/>
-	<field name="shop_detail_prd_total" class="java.math.BigDecimal"/>
-	<variable name="DateGroup" class="java.math.BigDecimal" resetType="Group" resetGroup="DateGroup" incrementType="Group" incrementGroup="Grouprecord" calculation="Sum">
-		<variableExpression><![CDATA[$F{shop_detail_prd_total}]]></variableExpression>
-	</variable>
-	<variable name="total" class="java.math.BigDecimal" incrementType="Group" incrementGroup="Grouprecord" calculation="Sum">
-		<variableExpression><![CDATA[$F{shop_detail_prd_total}]]></variableExpression>
-	</variable>
-	<group name="DateGroup">
-		<groupExpression><![CDATA[$F{shop_detail_prd_date}]]></groupExpression>
-	</group>
-	<group name="Grouprecord">
-		<groupExpression><![CDATA[$F{shop_detail_prd_total}]]></groupExpression>
-	</group>
+	<field name="owners_name" class="java.lang.String"/>
+	<field name="owners_lname" class="java.lang.String"/>
+	<field name="pet_name" class="java.lang.String"/>
+	<field name="pet_gene" class="java.lang.String"/>
+	<field name="pet_category" class="java.lang.String"/>
+	<field name="title" class="java.lang.String"/>
+	<field name="date" class="java.sql.Timestamp"/>
+	<field name="mem_position" class="java.lang.String"/>
+	<field name="mem_name" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="136" splitType="Stretch">
-			<textField>
-				<reportElement x="256" y="122" width="78" height="14" uuid="f782dbab-706e-4bda-b4a2-4a6baf95fb8d"/>
-				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format(new java.text.SimpleDateFormat("yyyy-MM-dd").parse($P{BeginDate}))]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement style="Column header" x="318" y="120" width="16" height="16" forecolor="#736343" uuid="493f5354-92e8-40ab-8931-22e4edd00a34"/>
 				<textElement>
@@ -63,10 +43,6 @@ WHERE
 				</textElement>
 				<text><![CDATA[ถึง]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="339" y="122" width="63" height="14" uuid="949749d7-5be9-4e4e-b819-19faedd1d008"/>
-				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format(new java.text.SimpleDateFormat("yyyy-MM-dd").parse($P{EndDate}))]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement style="Column header" x="195" y="120" width="61" height="16" forecolor="#736343" uuid="e1570211-a4e6-4325-91f4-3a6aa8d2b2cd"/>
 				<textElement>
@@ -95,7 +71,7 @@ WHERE
 				<textElement textAlignment="Center">
 					<font fontName="TH SarabunPSK" size="26" isBold="true"/>
 				</textElement>
-				<text><![CDATA[รายงานสรุปการขายสินค้า]]></text>
+				<text><![CDATA[รายงานการนัดหมายสัตว์เลี้ยง]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="200" y="0" width="93" height="20" uuid="ad462d4e-6f7b-4fdc-bab7-4be693d3613a"/>
@@ -104,10 +80,12 @@ WHERE
 				</textElement>
 				<text><![CDATA[วันที่ออกรายงาน  ณ]]></text>
 			</staticText>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="280" y="1" width="100" height="19" uuid="42405b15-f604-4206-b81f-9d59db36bafd"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="290" y="0" width="107" height="20" forecolor="#736343" uuid="cabe8878-d366-443a-bfc1-33f88199b5a7"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -130,32 +108,11 @@ WHERE
 				<text><![CDATA[ลำดับ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="54" y="0" width="342" height="16" forecolor="#736343" uuid="4a50e85c-82fd-4f77-84d5-54828f5fbd05"/>
+				<reportElement style="Column header" x="54" y="0" width="126" height="16" forecolor="#736343" uuid="4a50e85c-82fd-4f77-84d5-54828f5fbd05"/>
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
-				<text><![CDATA[ชื่อสินค้า]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="470" y="0" width="35" height="16" forecolor="#736343" uuid="71f4cc79-0a2d-4fd6-ba98-77a4a3e5adc7"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[จำนวน]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="505" y="0" width="50" height="16" forecolor="#736343" uuid="72255541-9cba-4a0f-9bca-c3b5dc6884d7"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[ราคารวม]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="396" y="0" width="74" height="16" forecolor="#736343" uuid="f7bc8530-4e63-47cc-8955-1e8ab4ad7902"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[ราคาต่อหน่วย]]></text>
+				<text><![CDATA[ชื่อเจ้าของสัตว์เลี้ยง]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -170,33 +127,9 @@ WHERE
 					</textElement>
 					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="54" y="0" width="342" height="15" uuid="0fee168a-e992-42d5-b8c6-091a870b3f3d"/>
-					<textElement>
-						<font fontName="TH SarabunPSK"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{shop_detail_prd_name}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="470" y="0" width="35" height="15" uuid="0ab69724-4ec9-4eef-a347-134e0b532abc"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{shop_detail_prd_qty}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="505" y="0" width="50" height="15" uuid="1a648e92-fcfb-4de0-8ba9-ff75e2fbc060"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{shop_detail_prd_total})]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="396" y="0" width="74" height="15" uuid="dd8c9083-6fb7-44fc-abd9-cbfbb35fb790"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{shop_detail_prd_price}]]></textFieldExpression>
+				<textField>
+					<reportElement x="54" y="0" width="76" height="15" uuid="0c99d49a-183f-4a05-a96f-9b669a0e4d4d"/>
+					<textFieldExpression><![CDATA[$F{owners_name}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -231,28 +164,9 @@ WHERE
 				</textElement>
 				<text><![CDATA[ผู้ตรวจสอบ]]></text>
 			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="380" y="0" width="65" height="20" forecolor="#736343" uuid="e2de8d5b-bfc9-49bc-ba06-1242bacc9475"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[รวมราคาทั้งหมด]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="445" y="0" width="68" height="20" uuid="520cb84a-851a-432c-a58c-79bca40d8b8e"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($V{total})]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="0" y="30" width="555" height="1" uuid="99df75ee-c5f3-43ea-8eb7-acd3f80e2e2b"/>
 			</line>
-			<staticText>
-				<reportElement x="514" y="0" width="38" height="18" uuid="187ed961-9501-4d52-a2a8-2bf940635761"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[บาท]]></text>
-			</staticText>
 		</band>
 	</lastPageFooter>
 	<summary>

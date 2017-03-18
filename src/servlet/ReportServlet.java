@@ -58,6 +58,11 @@ public class ReportServlet extends HttpServlet {
 		
 		
 		String id = request.getParameter("id");
+		System.out.println(id);
+		
+		
+		
+		
 		String deposit_id = request.getParameter("deposit_id");
 		
 		/*ส่วนชองการ Report*/
@@ -65,6 +70,14 @@ public class ReportServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String[] Disease = request.getParameterValues("Disease[]");
 		String[] SumPercentag = request.getParameterValues("SumPercentage");
+		String[] Sum = request.getParameterValues("Sum[]");
+		String[] id_member = request.getParameterValues("id_member[]");
+		String[] id_pet = request.getParameterValues("id_pet[]");
+		
+		
+		
+		
+		
 		if(Disease != null ){
 		for (int i = 0; i < Disease.length; i++) {
 			
@@ -77,12 +90,18 @@ public class ReportServlet extends HttpServlet {
 			System.out.println("Disease: =" +Disease[i]);
 			System.out.println(i+1);
             System.out.println("SumPercentag: ="+new DecimalFormat("0.0").format(SumPercentage));
+            
             AnalysisBean Bean = new AnalysisBean();
             DiseaseDAO percentageDAO = new DiseaseDAO();
+            Bean.setId(i+1);
 			Bean.setSumPercentage(SumPercentage); 
 			Bean.setDisease(Disease[i]);
-			Bean.setId(i+1);
-			percentageDAO.insertdisease_percentage(Bean);
+			Bean.setPercentage(Sum[i]);
+			Bean.setId_member(Integer.parseInt(id_member[i]));
+			Bean.setId_pet(Integer.parseInt(id_pet[i]));
+			
+			percentageDAO.insertanalysisdisease(Bean);
+			percentageDAO.insertanalysisdisease_report(Bean);
 	}}
 		/*สิ้นสุดส่วนชองการ Report*/
 		

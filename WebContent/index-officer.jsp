@@ -110,17 +110,7 @@
 					</div> <center><img src="img/portfolio/store.png" class="img-responsive"  alt="" width="130" height="130"> <font color="#33CC99"><h6>ข้อมูลสิ้นค้า</h6> </center>
 				</a>
 			</div>
-			<!-- รายงานประจำเดือน -->
-			<div class="col-sm-3 officer-menu-item">
-				<a href="report.jsp" class="officer-menu-link"
-					data-toggle="modal">
-					<div class="caption">
-						<div class="caption-content">
-							<i class="fa fa-search-plus fa-3x"></i>
-						</div>
-					</div> <center><img src="img/portfolio/doc.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>รายงาน</h6></center>
-				</a>
-			</div>
+		
 				<!-- จัดคิว -->
 			<div class="col-sm-3 officer-menu-item">
 
@@ -145,43 +135,8 @@
 			
 			
 		
-			<!-- ปฎิทิน -->
-			<div class="col-sm-3 officer-menu-item">
-				<a href="CalendarServlet2?id=<%=session.getAttribute("id")%>"class="officer-menu-link"
-					data-toggle="modal">
-					<div class="caption">
-						<div class="caption-content">
-							<i class="fa fa-search-plus fa-3x"></i>
-						</div>
-					</div> <center><img src="img/portfolio/clients-on-calendar.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>ข้อมูลนัดหมาย</h6></center>
-				</a>
-				
-			</div>
-			<!-- สถิติ -->
-			<div class="col-sm-3 officer-menu-item">
-				<a href=""class="officer-menu-link"
-					data-toggle="modal">
-					<div class="caption">
-						<div class="caption-content">
-							<i class="fa fa-search-plus fa-3x"></i>
-						</div>
-					</div> <center><img src="img/portfolio/finance_report_infographic-512.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>สถิติ</h6></center>
-				</a>
-				
-			</div>
 			
-			<!--ฉีดวัคซีน -->
-			<div class="col-sm-3 officer-menu-item">
-				<a href=""class="officer-menu-link"
-					data-toggle="modal">
-					<div class="caption">
-						<div class="caption-content">
-							<i class="fa fa-search-plus fa-3x"></i>
-						</div>
-					</div> <center><img src="img/portfolio/syringe_injection_vaccine_medical_aid_vaccination_immunization_tool_flat_design_icon-512.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>ฉีดวัคซีน</h6></center>
-				</a>
-				
-			</div>
+			
 			
 			
 			

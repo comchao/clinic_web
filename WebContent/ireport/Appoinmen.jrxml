@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-03-18T02:04:04 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="id_member" class="java.lang.String"/>
+	<parameter name="date_start" class="java.lang.String"/>
+	<parameter name="date_end" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT ownerdata.owners_name ,ownerdata.owners_lname, petdata.pet_name ,petdata.pet_gene, petdata.pet_category,calendar.`title` ,calendar.`date`, members.mem_position , members.mem_name , members.mem_lname FROM calendar , petdata ,members,ownerdata WHERE id_calendar = '$P!{id_member}'  AND calendar.id = petdata.id AND calendar.`id_calendar` = members.id AND calendar.`id_ownerdata` = ownerdata.id AND `date_time` BETWEEN '$P!{date_start}' AND '$P!{date_end}']]>
+	</queryString>
+	<field name="owners_name" class="java.lang.String"/>
+	<field name="owners_lname" class="java.lang.String"/>
+	<field name="pet_name" class="java.lang.String"/>
+	<field name="pet_gene" class="java.lang.String"/>
+	<field name="pet_category" class="java.lang.String"/>
+	<field name="title" class="java.lang.String"/>
+	<field name="date" class="java.sql.Timestamp"/>
+	<field name="mem_position" class="java.lang.String"/>
+	<field name="mem_name" class="java.lang.String"/>
+	<field name="mem_lname" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="160" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="308" y="121" width="16" height="16" forecolor="#736343" uuid="493f5354-92e8-40ab-8931-22e4edd00a34"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ถึง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="195" y="120" width="61" height="16" forecolor="#736343" uuid="e1570211-a4e6-4325-91f4-3a6aa8d2b2cd"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ระหว่างวันที่]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="150" height="136" uuid="0d35c501-20a5-49bd-93c9-a5b07b4f5646"/>
+				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="401" y="0" width="153" height="70" uuid="4e8de9a3-46e8-4a30-a1eb-63e8c4d9d340"/>
+				<textElement textAlignment="Left">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
+เปิดทำการทุกวัน เวลา 9:00 - 20:00 น. 
+ติดต่อสอบถาม โทร  088 865 6185
+
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="58" width="280" height="32" uuid="d7b2ac19-41e7-41d8-8499-35e367d017cc"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[รายงานการนัดหมายสัตว์เลี้ยง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="93" height="20" uuid="ad462d4e-6f7b-4fdc-bab7-4be693d3613a"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[วันที่ออกรายงาน  ณ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="290" y="0" width="107" height="20" forecolor="#736343" uuid="cabe8878-d366-443a-bfc1-33f88199b5a7"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="120" width="58" height="16" uuid="b707cf90-9143-4dee-9495-3b48d10c4172"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{date_start}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="324" y="121" width="50" height="16" uuid="6910db2e-932e-4c5d-9f2a-a252b5395388"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{date_end}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="116f7bcf-4e95-43bb-aa57-8cf01f6a1420"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="40" height="16" forecolor="#736343" uuid="bfed525c-8b90-497c-b6ea-5657d72560c4"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ลำดับ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="40" y="1" width="126" height="16" forecolor="#736343" uuid="4a50e85c-82fd-4f77-84d5-54828f5fbd05"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ชื่อเจ้าของสัตว์เลี้ยง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="150" y="1" width="50" height="16" forecolor="#736343" uuid="41c95718-7ad2-4835-bbe1-019ea3937bb9"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ชื่อสัตว์เลี้ยง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="0" width="40" height="16" forecolor="#736343" uuid="811aefc3-f4ce-427e-b9a7-6d2f73977939"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ประเภท]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="240" y="0" width="40" height="16" forecolor="#736343" uuid="3bec79c7-02a1-47fd-ab86-d83dfe93df27"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[พันธุ์]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="280" y="1" width="100" height="16" forecolor="#736343" uuid="e56282be-3ad7-4e1b-a519-ecb5d35176c6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[เรื่องนัดหมาย]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="480" y="1" width="74" height="16" forecolor="#736343" uuid="4b06cb2f-7ca6-4e0d-a5a5-55ad569a2885"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[สัตวแพทย์ผู้นัด]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="380" y="-1" width="100" height="16" forecolor="#736343" uuid="88be16b7-e584-4f74-9fa6-c552ff98a8a1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[วัน/เดือน/ปี  เวลา]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="8a6dd7d6-bc21-40ac-b39f-f7b1da211287"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="40" height="15" uuid="c8738b6f-d57b-46f9-a43f-b1e62d2a69d0"/>
+					<textElement>
+						<font fontName="TH SarabunPSK"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="56" y="0" width="44" height="15" uuid="0c99d49a-183f-4a05-a96f-9b669a0e4d4d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{owners_name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="40" y="0" width="16" height="14" uuid="ca334bae-3950-49be-9c39-2bac5831be59"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<text><![CDATA[คุณ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="0" width="50" height="14" uuid="9bae2e22-2045-4567-ae9b-85b3c49e5b74"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{owners_lname}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="150" y="0" width="50" height="14" uuid="082b235c-5911-4e41-bdd8-c5d1b1a66e2e"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pet_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="199" y="0" width="40" height="14" uuid="fb0385d1-3e41-4f42-8471-dc90b0ca83f6"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pet_category}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="239" y="0" width="40" height="14" uuid="4c3a9077-4959-4be0-a809-999d2376ff18"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pet_gene}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="280" y="0" width="100" height="14" uuid="484acd53-ce9e-4646-97c7-46551410204d"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="379" y="0" width="100" height="14" uuid="e7a2a059-bd72-4817-89fe-8f991691617a"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="478" y="0" width="30" height="14" uuid="4a84533c-9db2-4f2e-9867-3dfd442493be"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mem_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="508" y="0" width="44" height="14" uuid="e8296c95-4b97-4afd-9405-319580050684"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mem_lname}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="93">
+			<staticText>
+				<reportElement x="61" y="70" width="100" height="20" uuid="a20f1383-fb99-4058-9ba1-670d78792315"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ผู้จัดทำ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="50" width="195" height="20" uuid="3b7b780b-504e-4dde-bd17-57150e0b6987"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[(ลงชื่อ)_____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="50" width="228" height="20" uuid="69f7d449-b436-47b1-89b4-5dd96f929ee3"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[(ลงชื่อ)_________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="70" width="100" height="20" uuid="16480362-44e3-49ea-b39e-af2803126615"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ผู้ตรวจสอบ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="30" width="555" height="1" uuid="99df75ee-c5f3-43ea-8eb7-acd3f80e2e2b"/>
+			</line>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -339,7 +339,7 @@ public static boolean Calendar( String id ,String date_start,String date_end) {
 	
 	String report = null;
 	try {
-		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\CalendarReport.jrxml");
+		File dir = new File("F:java_web\\clinic_web\\WebContent\\ireport\\Appoinmen.jrxml");
 		report = dir.getAbsolutePath();
 		
 	} catch (Exception e1) {
@@ -351,7 +351,13 @@ public static boolean Calendar( String id ,String date_start,String date_end) {
 		
 		HashMap<String, Object> parameter = new HashMap<String, Object>();
 		
-		parameter.put("id",id); 
+		String  id_member = id;
+		
+		System.out.println("id_member"+id_member);
+		System.out.println("date_start"+date_start);
+		System.out.println("date_end"+date_end);
+				
+		parameter.put("id_member",id_member); 
 		parameter.put("date_start",date_start); 
 		parameter.put("date_end",date_end); 
 		
@@ -362,7 +368,7 @@ public static boolean Calendar( String id ,String date_start,String date_end) {
 		if(ip.getPages().isEmpty()){
 			return false;
 		}
-		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\CalendarReport.pdf");
+		JasperExportManager.exportReportToPdfFile(ip,"F:java_web\\clinic_web\\WebContent\\ireport\\Appoinmen.pdf");
 		JasperViewer.viewReport(ip, false);
 		return true;
 		
