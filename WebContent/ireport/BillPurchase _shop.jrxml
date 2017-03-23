@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-08T23:51:51 -->
+<!-- 2017-03-20T12:04:07 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -21,7 +21,7 @@
     
        purchase.`Product_name` AS Product_name,
        purchase.`Product_price` AS Product_price,
-       purchase.`number` AS number , SUM(Product_price*number) AS purchasetotal
+       SUM(number) AS number , SUM(Product_price*number) AS purchasetotal
        FROM purchase GROUP BY `Product_name`]]>
 	</queryString>
 	<field name="Product_name" class="java.lang.String"/>

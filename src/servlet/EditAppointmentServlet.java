@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,60 +16,62 @@ import dao.CalendarDAO;
 import model.CalendarBean;
 
 /**
- * Servlet implementation class insertAppointmentServlet
+ * Servlet implementation class EditAppointmentServlet
  */
-@WebServlet("/insertAppointmentServlet")
-public class insertAppointmentServlet extends HttpServlet {
+@WebServlet("/EditAppointmentServlet")
+public class EditAppointmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EditAppointmentServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public insertAppointmentServlet() {
-		super();
-		// TODO Auto-generated constructor stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		try {
-
-			response.setContentType("text/html;charset=UTF-8");
-			request.setCharacterEncoding("UTF-8");
-
-			String Id = request.getParameter("id");
-			String Id_calendar = request.getParameter("idmenber");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try{
+			
+			
+			
+		    request.setCharacterEncoding("UTF-8");
+		    response.setCharacterEncoding("UTF-8");
+		
+			String id_auto = request.getParameter("id_auto");
 			String Title = request.getParameter("title");
-			String date = request.getParameter("date");
-			String date_time = request.getParameter("date");
-			String Id_ownerdata = request.getParameter("id_ownerdata");
+			String Date = request.getParameter("date");
 			String Note = request.getParameter("note");
-
+			String date_time = request.getParameter("date"); 
+			
+		
+		
 			CalendarBean bean = new CalendarBean();
 			CalendarDAO dao = new CalendarDAO();
 
-			bean.setId(Integer.parseInt(Id)); // id pet
-			System.out.println("Id" + Id);
+			bean.setId_auto(Integer.parseInt(id_auto)); // id pet
+			System.out.println("id_auto" + id_auto);
 
-			bean.setId_calendar(Integer.parseInt(Id_calendar)); // id pet
-			System.out.println("Id_calendar" + Id_calendar);
-
-			bean.setTitle(Title); // เรื่องนัดหมาย
+			
+			bean.setTitle(Title);             // เรื่องนัดหมาย
 			System.out.println("Title" + Title);
+			
+			
+			bean.setDate(Date);                             // เวลานัดหมาย
+			
+			System.out.println("date" + Date);
 
 			SimpleDateFormat sourceDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -78,26 +79,19 @@ public class insertAppointmentServlet extends HttpServlet {
 			date1 = sourceDateFormat.parse(date_time);
 
 			SimpleDateFormat targetDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			System.out.println(targetDateFormat.format(date1));
-
+			
 			bean.setDate_time(targetDateFormat.format(date1)); // วันนัด
 			System.out.println("date_time" + targetDateFormat.format(date1));
 
 	
-			bean.setDate(date); // เวลานัดหมาย
-															// เเละเวลา
-			System.out.println("date" + date);
 			
-
-			bean.setId_ownerdata(Integer.parseInt(Id_ownerdata));// เจ้าของสัตว์เลี้ยง
-			System.out.println("Id_ownerdata" + Id_ownerdata);
-
-			bean.setNote(Note); // หมายเหตุอื่นๆๆ
+			
+			bean.setNote(Note);                              // หมายเหตุอื่นๆๆ
 			System.out.println("Note" + Note);
 
-			dao.insertAppointment(bean);
+			dao.UpdateAppointment(bean);
 
-			if (bean.isValid()) {
+			if (id_auto!=null) {
 				response.setContentType("text/html");
 				PrintWriter out = response.getWriter();
 				out.println("<!DOCTYPE HTML>");

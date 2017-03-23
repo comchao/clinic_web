@@ -239,6 +239,8 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 					<td><%=bean.getPet_name()%></td>
 					<td><%=bean.getPet_category()%></td>
 					<td><%=bean.getPet_gene()%></td>
+				
+					
 					<td><%=bean.getMem_name()%>&nbsp; &nbsp;<%=bean.getMem_lname()%></td>
 						<td  bgcolor="#FFFFF0" ><%=bean.getTitle() %></td>
 						<%  SimpleDateFormat sourceDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -262,26 +264,26 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 							
 						
 					<td>
-				<!-- 	<form action="EditCalender.jsp" method="post"> -->
+					<!-- EditcalendarServlet" -->
+				<form action="ViewAppointment.jsp" method="post"> 
 						
-						<input type="hidden" name="id" value="<%=bean.getId()%>">
+						<input type="hidden" name=id_pet value="<%=bean.getId()%>">
 						<input type="hidden" name="title" value="<%=bean.getTitle()%>">
 						<input type="hidden" name="date" value="<%=bean.getDate()%>">
 						<input type="hidden" name=id_auto value="<%=bean.getId_auto()%>">
-						<input type="submit" onclick="return editConfirm();" class="btn btn-warning" value="แก้ไข">
+						<input type="hidden" name=idmenber value="<%=session.getAttribute("id")%>">
+						<input type="hidden" name=Date value="<%=bean.getDate()%>">
+						<input type="hidden" name=note value="<%=bean.getNote()%>">
+						
+						
+						
+						<input type="submit"  class="btn btn-success" value="รายละเอียด">
 					
-					<!-- </form> -->
+					 </form> 
 				<!-- EditcalendarServlet" -->
 					</td>
 					
-					<!-- DelcalendarServlet" -->
-					<td>
-						<!-- <form action="DelcalendarServlet" method="post"> -->
-						<input type="hidden" name=id_auto value="<%=bean.getId_auto()%>">
-							<input onclick="return delConfirm();" class="btn btn-danger" type="submit" value="ลบข้อมูล">
-						<!-- </form> -->
-						<!-- DelcalendarServlet" -->
-					</td><%} %>
+				<%} %>
 					
 				</tr>
 				<% }%>	
