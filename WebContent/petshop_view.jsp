@@ -60,18 +60,18 @@
 				pb = (ProductBean) allProduct.get(i);
 		%>
 		<div style="width:210px;float: left;height:550px;padding-right: 10px;" >
+		
 					<div class="product-image">
-						<img src="images/<%=pb.getProduct_img_name()%>" width="150px" height="150px" alt="" />
+					<img src="images/<%=pb.getProduct_img_name()%>" width="150px" height="150px" />
+					1493392916804
 					</div>
 					<div class="product-description" data-name="<%=pb.getProduct_name()%>" data-price="<%=pb.getProduct_price()%>">
 						<textarea  rows="3" cols="13"  class="product-name"><%=pb.getProduct_name()%></textarea>
 						<p class="product-price"><%=pb.getProduct_price()%>บาท</p>
-						<form  action="purchaseServlet" method="post">
+						<form class="add-to-cart" action="cart.jsp" method="post">
 							<div>
 								<label for="qty-1">จำนวน</label>
-								<input type="text" name="number" id="qty-1" class="qty" value="1" />
-								<input type="hidden" name="Product_name"  value="<%=pb.getProduct_name()%>" />
-								<input type="hidden" name="Product_price"  value="<%=pb.getProduct_price()%>" />
+								<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />
 							</div>
 							<p><input type="submit" value="เพิ่มรายการ" class="btn" /></p>
 						</form>

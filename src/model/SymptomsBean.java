@@ -1,12 +1,25 @@
 package model;
 
 public class SymptomsBean {
-	
+	int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	int id_symptom;
 	String  symptom;
 	String disease;
 	boolean valid;
+	String Symptom_Type;
 	
+	public String getSymptom_Type() {
+		return Symptom_Type;
+	}
+	public void setSymptom_Type(String symptom_Type) {
+		Symptom_Type = symptom_Type;
+	}
 	public boolean isValid() {
 		return valid;
 	}

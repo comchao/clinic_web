@@ -53,6 +53,8 @@ public class InsertProductHisServlet extends HttpServlet {
 		
 		
 		 String datenow = request.getParameter("datenow");
+		 String produc_year = request.getParameter("produc_year");
+		 String produc_month = request.getParameter("produc_month"); 
 
 		System.out.println("datenow"+datenow);
 		String[] pNameArray = request.getParameterValues("Product_name[]");
@@ -69,6 +71,9 @@ public class InsertProductHisServlet extends HttpServlet {
 		ShopDetailBean shopDetailBean = new ShopDetailBean();
 		shopDetailBean.setRefer_petdeposit(depositBean);
 		shopDetailBean.setPrd_date(datenow);
+		shopDetailBean.setProduc_year(produc_year);
+		shopDetailBean.setProduc_month(produc_month);
+		
 		System.out.println(datenow);
 		ProductDAO.inserPetShop(shopDetailBean , pNameArray, pQtyArray, pPriceArray ,pTotalArray);
 			response.sendRedirect("insertPetShopConfrim.jsp");

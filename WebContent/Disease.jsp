@@ -6,6 +6,14 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ include file="header_index.jsp"%>
 <%@page import="dao.DiseaseDAO,model.SymptomsBean"%>
+ <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="./nicelabel/css/jquery-nicelabel.css" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script type="text/javascript">
+
+</script>
+
+
 <style>
 /* The Modal (background) */
 .modal {
@@ -95,6 +103,10 @@ to {
 }
 </style>
 <link rel="stylesheet" href="demo.css">
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+	
 <br>
 <br>
 <br>
@@ -186,73 +198,131 @@ to {
         }  
  }  
  </script>  
-<div class="col-lg-12">
-		<div class="cont1">
-
-				
-				<div class="panel">
-					<div class="panel-heading"><h3>การวินิจฉัยโรคเบื้องต้น</h3></div>
-					<div class="panel-body">
-						<ul class="input-list">
-							 <table id="mytable" border="0" cellspacing="0" cellpadding="0">  
-								<!--   อาการโรคสัตว์ที่พบเบื้องต้น -->
-	<tr>							<li>
-
-	
-						
-								
-								
-									<%
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	<h3> วิเคราะห์โรคฐานพื้นของสัตว์เลี้ยง </h3>
+	<br>
+							
+				<%
 										ArrayList<SymptomsBean> diseaseList = (ArrayList) session.getAttribute("symptom");
 
 										SymptomsBean bean;
 										for (int i = 0; i < diseaseList.size(); i++) {
 											bean = (SymptomsBean) diseaseList.get(i);
 									%>
+			
 
-								   
+	
+						
+					
 								
-									  <form action="DiseaseGetSymptomServlet" method="post">
-										<tr>
-										<td width="50"></td>
-										
-										<td><input name="symptom<%=i%>"  type="hidden" value="<%=bean.getSymptom()%>" ><%=bean.getSymptom()%></td>
-									
-									<td><h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5> </td>
-								
-									
-									<td ><input name="value<%=i%>" type="radio"  value="1" >&nbsp;&nbsp;<b>มาก</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td ><input name="value<%=i%>"  type="radio" value="0.5"> &nbsp;&nbsp;<b>น้อย</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td ><input name="value<%=i%>"  type="radio"  value="0">  &nbsp;&nbsp;<b>ปกติ</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-									<%-- <input name="id_symptom<%=i%>"  type="hidden"  value="<%=bean.getId_symptom()%>" >   --%>
+	
+		
+		
+		
+	
+		
+		
+		<div class="col-md-7">
+			<form action="DiseaseGetSymptomServlet" method="post">
+		<input name="symptom<%=i%>"  type="hidden" value="<%=bean.getSymptom()%>" ><%=bean.getSymptom()%>
 									
 								
-									
-										
+         
+        
+</div>
+
+
+
+          <div class="col-md-1">
+        <div id="text-radio">
+		
+          <input class="text-nicelabel" data-nicelabel='{"position_class": "text_radio", "checked_text": "มาก", "unchecked_text": "มาก"}' type="radio" name="value<%=i%>" value="1"  />	
+            </div>
+          </div>
+              <div class="col-md-1">
+        <div id="text-radio">
+		
+         <input class="text-nicelabel" data-nicelabel='{"position_class": "text_radio", "checked_text": "น้อย", "unchecked_text": "น้อย"}' type="radio" name="value<%=i%>"  value="0.5"   />	
+            </div>
+          </div>
+              <div class="col-md-2">
+        <div id="text-radio" align="left">
+		
+         <input class="text-nicelabel" data-nicelabel='{"position_class": "text_radio", "checked_text": "ไม่พบอาการ", "unchecked_text": "ไม่พบอาการ"}' checked type="radio" name="value<%=i%>"  value="0" />
+            </div>
+          </div>
+
+		
+		
+					
 										
 									<%
 										}
 									%> 
-									</tr></table>
-									<br>
-<table>	
-<tr>                              <!-- วิเคราะห์โรค -->						
-<td><input name="submit"type="submit" class="btn btn-success" value="วิเคราะห์โรค" > </form></td>
-<td width="10"></td>
-                                    <!-- เพิ่มข้อมูลโรค -->
-<td><form action="AddDisease.jsp" method="post"><input name="submit" value="เพิ่มข้อมูลโรค" type="submit" class="btn btn-success" > </form></td>
-<td width="10"></td>
-<td><form action="EditDisease.jsp" method="post"><input name="submit" value="ข้อมูลโรค" type="submit" class="btn btn-success" > </form></td>
-<td width="10"></td>
+							
 
-<td></td>
+  <table >
+  <tr>
+    <th><input name="submit"type="submit" class="btn btn-success" value="วิเคราะห์โรค" > </form></th>
+    <th width="5%"></th>
+    
+    <th><form action="AddDisease.jsp" method="post"><input name="submit" value="เพิ่มข้อมูลโรค" type="submit" class="btn btn-success" > </form></th>
+    <th width="5%"></th>
+    <th><form action="EditDisease.jsp" method="post"><input name="submit" value="ข้อมูลโรค" type="submit" class="btn btn-success" > </form></th>
+  </tr>
+  <tr>
+   
+  </tr>
+</table>
+</center>	
+<br><br><br>						
+	<script src="./nicelabel/js/jquery.nicelabel.js"></script>
+	<script>
+	$(function(){
+		$('#rect-checkbox > input').nicelabel();
+		$('#rect-radio > input').nicelabel();
+		$('#circle-checkbox > input').nicelabel();
+		$('#circle-radio > input').nicelabel();
+		$('#text-checkbox > input').nicelabel();
+		$('#text-radio > input').nicelabel();
+		$('#text-checkbox-ico > input:eq(0)').nicelabel({
+			checked_ico: './ico/checked.png',
+			unchecked_ico: './ico/unchecked.png'
+		});
+		$('#text-checkbox-ico > input:eq(1)').nicelabel({
+			checked_ico: './ico/checked.png',
+			unchecked_ico: './ico/unchecked.png'
+		});
+		$('#text-checkbox-ico > input:eq(2)').nicelabel({
+			checked_ico: './ico/checked.png',
+			unchecked_ico: './ico/unchecked.png'
+		});
+		$('#text-checkbox-ico > input:eq(3)').nicelabel({
+			uselabel: false
+		});
+		
+	});
+	</script><script type="text/javascript">
 
-</tr></table>											
-										
-									
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>								
 	
     
 <%@ include file="footer_index.jsp"%>

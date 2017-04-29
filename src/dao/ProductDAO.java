@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import db.ConnectDB;
+
 import model.DepositBean;
 import model.DrugBean;
 import model.OwnersBean;
@@ -61,8 +64,8 @@ public class ProductDAO {
 		String sql_insert = "insert into `shop_detail`" 		
 //				+ "(product_name,product_qty,product_price,product_total)"  
 //		        + " values ( ?, ?, ?, ?); ";
-				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total)"  
-		        + " values ( ?, ?, ?, ?, ?, ?); ";
+				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total,produc_month,produc_year)"  
+		        + " values ( ?, ?, ?, ?, ?, ?,?,?); ";
 		try { 
 		preparedStmt = null;
         PetShopBean petshopBean = new PetShopBean();
@@ -82,6 +85,8 @@ public class ProductDAO {
 			preparedStmt.setDouble (4, shopDetailBean.getPrd_price());
 			preparedStmt.setInt (5, shopDetailBean.getPrd_qty());
 			preparedStmt.setDouble (6, shopDetailBean.getPrd_total());
+			preparedStmt.setString (7, shopDetailBean.getProduc_month());
+			preparedStmt.setString (8, shopDetailBean.getProduc_year());
 			
 			preparedStmt.executeUpdate();
 		}
@@ -99,6 +104,7 @@ public class ProductDAO {
 		}
 		return false;				
 	}
+	
 	
 	
 	
@@ -180,6 +186,9 @@ public class ProductDAO {
 		return null;
 	}
 	
+	
+	
+
 	static public ArrayList<ShopDetailBean> queryShopDetail(int deposit_id) {
 
 		ShopDetailBean prdShopBean = new ShopDetailBean();
@@ -222,6 +231,107 @@ public class ProductDAO {
 		}
 		return null;
 	}
+	
+	///กราฟpie
+	static public ArrayList<ShopDetailBean>ShopDetail(String produc_month  , String produc_year ) {
+
+		ShopDetailBean prdShopBean = new ShopDetailBean();
+	
+		ArrayList<ShopDetailBean> prdShopList = new ArrayList<ShopDetailBean>();
+
+		String sql = "SELECT shop_detail.`prd_date` AS shop_detail_prd_date, shop_detail.`prd_name` AS shop_detail_prd_name,"
+				+ " shop_detail.`prd_price` AS shop_detail_prd_price, SUM(`prd_qty`) AS shop_detail_prd_qty, "
+				+ "SUM(`prd_total`) AS shop_detail_prd_total "
+				+ "FROM  shop_detail "
+				+ " WHERE  produc_month = ?  and produc_year = ?  GROUP BY `shop_detail_prd_name`  ORDER BY shop_detail_prd_qty  DESC , shop_detail_prd_total DESC  LIMIT 0,10 ; ";
+		try {
+			
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+			int i = 1;
+			preparedStmt.setString(i++, produc_month);   System.out.println(produc_month);
+			preparedStmt.setString(i++, produc_year);     System.out.println(produc_year);
+			
+			rs = preparedStmt.executeQuery();		
+		
+
+			while (rs.next()) {
+				prdShopBean = new ShopDetailBean();
+			
+				prdShopBean.setLitres(rs.getString("shop_detail_prd_qty"));
+				prdShopBean.setCountry(rs.getString("shop_detail_prd_name"));
+				prdShopBean.setPrd_qty(rs.getInt("shop_detail_prd_qty"));
+                
+				prdShopList.add(prdShopBean);
+			}
+			rs.close();
+			/*dbc.closeConnection();*/
+			return prdShopList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		}finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> "+e.getMessage());
+			}
+		}
+		return null;
+	}
+	
+	
+	///กราฟแท่ง
+	static public ArrayList<ShopDetailBean>ShopDetailchar(String produc_month  , String produc_year ) {
+
+		ShopDetailBean prdShopBean = new ShopDetailBean();
+	
+		ArrayList<ShopDetailBean> prdShopList = new ArrayList<ShopDetailBean>();
+
+		String sql = "SELECT shop_detail.`prd_date` AS shop_detail_prd_date, shop_detail.`prd_name` AS shop_detail_prd_name,"
+				+ " shop_detail.`prd_price` AS shop_detail_prd_price, SUM(`prd_qty`) AS shop_detail_prd_qty, "
+				+ "SUM(`prd_total`) AS shop_detail_prd_total "
+				+ "FROM  shop_detail "
+				+ " WHERE  produc_month = ?  and produc_year = ?  GROUP BY `shop_detail_prd_name`  ORDER BY shop_detail_prd_qty  DESC , shop_detail_prd_total DESC  LIMIT 0,10 ; ";
+		try {
+			
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+			int i = 1;
+			preparedStmt.setString(i++, produc_month);   System.out.println(produc_month);
+			preparedStmt.setString(i++, produc_year);     System.out.println(produc_year);
+			
+			rs = preparedStmt.executeQuery();		
+		
+
+			while (rs.next()) {
+				prdShopBean = new ShopDetailBean();
+			
+				prdShopBean.setVisits(rs.getString("shop_detail_prd_total"));  // ราคารวม 
+				prdShopBean.setCountry(rs.getString("shop_detail_prd_name"));  // ชื่อ
+				prdShopBean.setPrd_qty(rs.getInt("shop_detail_prd_qty"));     // หน่วย
+                
+				prdShopList.add(prdShopBean);
+			}
+			rs.close();
+			/*dbc.closeConnection();*/
+			return prdShopList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		}finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> "+e.getMessage());
+			}
+		}
+		return null;
+	}
+
+	
 	
 static public ArrayList<ProductBean> queryProductAllWhereTID(int type_id){
 		

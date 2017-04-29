@@ -6,9 +6,24 @@ public class TreatmentBean {
 	String treatment_date;
 	String vet_name;
 	String treatment_detail;
+	
 	String 	note;
+	String 	treatment_month;
+	String treatment_year;
 	public int getId() {
 		return id;
+	}
+	public String getTreatment_month() {
+		return treatment_month;
+	}
+	public void setTreatment_month(String treatment_month) {
+		this.treatment_month = treatment_month;
+	}
+	public String getTreatment_year() {
+		return treatment_year;
+	}
+	public void setTreatment_year(String treatment_year) {
+		this.treatment_year = treatment_year;
 	}
 	public void setId(int id) {
 		this.id = id;

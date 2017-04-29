@@ -111,8 +111,13 @@
 							<%--    
         <td> <h3> <%=bean.getDisease()%><h3> </td>
         <td> <h3> <%=bean.getPercentage()%><h3></td> --%>
-							<h4><%=bean.getDisease()%>
-								<%=new DecimalFormat("0.0").format(SumPercentage)%> %
+        
+                          <%if(SumPercentage!=0){ %>
+                        	  <h4><%=bean.getDisease()%>
+								<%=new DecimalFormat("0.0").format(SumPercentage)%> % <% 
+        	}%>
+        
+							
 								<input type="hidden" name="Disease" value="<%=bean.getDisease()%>"> 
 								<input type="hidden" name="SumPercentage" value="<%=SumPercentage%>">
 

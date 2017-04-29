@@ -56,7 +56,7 @@
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
-									<input type="text" name="poduct_code" id="poduct_code"
+									<input type="text" name="product_code" id="poduct_code"
 										placeholder="รหัสสินค้า" class="form-control"
 										required="required" />
 								</div>

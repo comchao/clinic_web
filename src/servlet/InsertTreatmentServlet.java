@@ -49,6 +49,10 @@ public class InsertTreatmentServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
+		 
+		 String Treatment_month = request.getParameter("Treatment_month");
+		 String Treatment__year = request.getParameter("Treatment__year");
+		 
 		int pet_id = Integer.parseInt(request.getParameter("pet_id"));
 		System.out.println("1.pet_id:=" + pet_id);
 
@@ -88,6 +92,11 @@ public class InsertTreatmentServlet extends HttpServlet {
 				treatmentBean.setVet_name(veterinary_name);
 				treatmentBean.setTreatment_detail(cure_de);
 				treatmentBean.setNote(cure_treament);
+				
+				
+				treatmentBean.setTreatment_month(Treatment_month);
+				treatmentBean.setTreatment_year(Treatment__year);
+				
 
 				String Status = request.getParameter("Status");
 

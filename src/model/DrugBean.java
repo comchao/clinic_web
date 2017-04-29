@@ -8,7 +8,36 @@ public class DrugBean {
 	private String 	drug_detail;
 	private double drug_price;
 	private String 	drug_unit;
+	private double drug_sumprice;
+	private String litres  ;
+	private String country ;
 	
+	private String  visits;
+	
+	public String getVisits() {
+		return visits;
+	}
+	public void setVisits(String visits) {
+		this.visits = visits;
+	}
+	public String getLitres() {
+		return litres;
+	}
+	public void setLitres(String litres) {
+		this.litres = litres;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public double getDrug_sumprice() {
+		return drug_sumprice;
+	}
+	public void setDrug_sumprice(double drug_sumprice) {
+		this.drug_sumprice = drug_sumprice;
+	}
 	private String 	detail;
 	private String note;
 	

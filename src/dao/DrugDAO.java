@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import db.ConnectDB;
 import model.DrugBean;
+import model.ShopDetailBean;
 
 
 public class DrugDAO {
@@ -284,4 +285,105 @@ public class DrugDAO {
 			}
 		}
 	}
+	///กราฟpie ค่ายา 
+		static public ArrayList<DrugBean>treatmentCharPie(String produc_month  , String produc_year ) {
+
+			DrugBean drugBean = new DrugBean();
+		
+			ArrayList<DrugBean> drughopList = new ArrayList<DrugBean>();
+
+			String sql = "SELECT treatment.`treatment_date` AS treatment_treatment_date,drug.`drug_name` AS drug_drug_name, drug.`drug_price`AS drug_drug_price, SUM(`drug_qty`)AS treatment_drug_drug_qty, SUM(`drug_sumprice`) AS drug_sumprice FROM `treatment` treatment INNER JOIN `treatment_drug` treatment_drug ON treatment.`id` = treatment_drug.`refer_treatment_id` INNER JOIN `drug` drug ON treatment_drug.`refer_drug_id` = drug.`id` WHERE treatment_month = ? AND treatment_year = ? GROUP BY `drug_drug_name` ORDER BY treatment_drug_drug_qty DESC ,drug_sumprice DESC LIMIT 0,10 ";
+			try {
+				
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+				int i = 1;
+				preparedStmt.setString(i++, produc_month);   System.out.println(produc_month);
+				preparedStmt.setString(i++, produc_year);     System.out.println(produc_year);
+				
+				rs = preparedStmt.executeQuery();		
+			
+
+				while (rs.next()) {
+					drugBean = new DrugBean();
+				
+					drugBean.setCountry(rs.getString("drug_drug_name"));                  //ชื่อ
+					drugBean.setDrug_price(rs.getDouble("drug_drug_price"));              // ราคา 
+					drugBean.setDrug_unit(rs.getString("treatment_drug_drug_qty"));       //หน่วย 
+					drugBean.setLitres(rs.getString("treatment_drug_drug_qty"));    // ค่าผลรวม
+	                
+					drughopList.add(drugBean);
+				}
+				rs.close();
+				/*dbc.closeConnection();*/
+				return drughopList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			}finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> "+e.getMessage());
+				}
+			}
+			return null;
+		}
+	
+		///สิ้นสุด กราฟ pie ค่ายา 
+		
+		
+		///กราฟแท่ง ค่ายา 
+		static public ArrayList<DrugBean>treatmentChar(String produc_month  , String produc_year ) {
+
+			DrugBean drugBean = new DrugBean();
+		
+			ArrayList<DrugBean> drughopList = new ArrayList<DrugBean>();
+
+			String sql = "SELECT treatment.`treatment_date` AS treatment_treatment_date,drug.`drug_name` AS drug_drug_name, drug.`drug_price`AS drug_drug_price, SUM(`drug_qty`)AS treatment_drug_drug_qty, SUM(`drug_sumprice`) AS drug_sumprice FROM `treatment` treatment INNER JOIN `treatment_drug` treatment_drug ON treatment.`id` = treatment_drug.`refer_treatment_id` INNER JOIN `drug` drug ON treatment_drug.`refer_drug_id` = drug.`id` WHERE treatment_month = ? AND treatment_year = ? GROUP BY `drug_drug_name` ORDER BY treatment_drug_drug_qty DESC ,drug_sumprice DESC LIMIT 0,10 ";
+			try {
+				
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+				int i = 1;
+				preparedStmt.setString(i++, produc_month);   System.out.println(produc_month);
+				preparedStmt.setString(i++, produc_year);     System.out.println(produc_year);
+				
+				rs = preparedStmt.executeQuery();		
+			
+
+				while (rs.next()) {
+					drugBean = new DrugBean();
+				
+					drugBean.setCountry(rs.getString("drug_drug_name"));                  //ชื่อ
+					drugBean.setVisits(rs.getString("drug_sumprice"));                 // ราคารวม
+					drugBean.setDrug_price(rs.getDouble("drug_drug_price"));            // หน่วย
+					drugBean.setDrug_unit(rs.getString("treatment_drug_drug_qty"));       // ราคารวม
+					drughopList.add(drugBean);
+				}
+				rs.close();
+				/*dbc.closeConnection();*/
+				return drughopList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			}finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> "+e.getMessage());
+				}
+			}
+			return null;
+		}
+	
+		///สิ้นสุด กราฟแท่ง  ค่ายา 
+	
+	
+	
+	
+	
+	
 }

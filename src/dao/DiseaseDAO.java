@@ -9,7 +9,7 @@ import db.ConnectDB;
 import db.ConnectionManager;
 import model.AnalysisBean;
 import model.DiseaseBean;
-import model.DrugBean;
+
 import model.SymptomsBean;
 
 public class DiseaseDAO {
@@ -411,15 +411,16 @@ public class DiseaseDAO {
 	}
 
 	public static boolean insertSymptomsBean(SymptomsBean disease) {
-		String insertSQL = "insert into symptoms_disease(symptom,disease)" + " values(?,?); ";
+		String insertSQL = "insert into symptom (symptom,type)" + " values(?,?); ";
 		System.out.println("Query: " + insertSQL);
 		try {
 
 			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
 			preparedStmt.setString(1, disease.getSymptom());
-			preparedStmt.setString(2, disease.getDisease());
-			System.out.println("DiseaseDAO2" + disease.getSymptom());
-			System.out.println("SymptomDAO2" + disease.getDisease());
+			
+			preparedStmt.setString(2, disease.getSymptom_Type());
+			System.out.println("DiseaseDAO" + disease.getSymptom());
+			System.out.println("SymptomDAO" + disease.getSymptom_Type());
 			preparedStmt.executeUpdate();
 			dbc.closeConnection();
 			return true;
@@ -437,6 +438,42 @@ public class DiseaseDAO {
 		}
 
 	}
+	
+	//ข้อมูลการวินิจฉัยโรค
+	public static boolean insertDiseaseData(SymptomsBean disease) {
+		String insertSQL = "insert into symptoms_disease (symptom,disease)" + " values(?,?); ";
+		System.out.println("Query: " + insertSQL);
+		try {
+
+			preparedStmt = dbc.createDBConnect().prepareStatement(insertSQL);
+		
+			preparedStmt.setString(1, disease.getSymptom());
+			preparedStmt.setString(2, disease.getDisease());
+			
+			
+			System.out.println("getDisease" + disease.getDisease());
+			System.out.println("getSymptom" + disease.getSymptom());
+			preparedStmt.executeUpdate();
+			dbc.closeConnection();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> " + e.getMessage());
+			}
+		}
+
+	}
+	
+	
+	
+	
 	// ผลโรค
 
 	static public ArrayList<AnalysisBean> getAnalysis() {
@@ -920,6 +957,87 @@ public class DiseaseDAO {
             //SELECT  delete  disease_percentage data sql  
 		
 		
+		// เรียกข้อมูลประเภทอาการโรคsymptom
+		static public ArrayList<SymptomsBean> Symptom_Type() {
+
+			SymptomsBean disease = new SymptomsBean();
+			ArrayList<SymptomsBean> diseaseList = new ArrayList<SymptomsBean>();
+
+			String sql = "SELECT DISTINCT symptom.symptom ,  Symptom_Type.Symptom_Type FROM symptom , Symptom_Type  WHERE symptom.type = Symptom_Type.id order by symptom ; ";
+			try {
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+				rs = preparedStmt.executeQuery();
+				// dbc.closeConnection();
+
+				while (rs.next()) {
+					disease = new SymptomsBean();
+
+					
+					disease.setSymptom_Type(rs.getString("Symptom_Type")); // ประเภทอาการโรค
+					
+					disease.setSymptom(rs.getString("Symptom")); // อาการโรค
+				
+
+					diseaseList.add(disease);
+				}
+				rs.close();
+				return diseaseList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			} finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> " + e.getMessage());
+				}
+			}
+			return null;
+		}
+		
+		static public ArrayList<SymptomsBean> Symptom_Type1() {
+
+			SymptomsBean disease = new SymptomsBean();
+			ArrayList<SymptomsBean> diseaseList = new ArrayList<SymptomsBean>();
+
+			String sql = "SELECT *  FROM symptom_type   order by Symptom_Type  ; ";
+			try {
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+				rs = preparedStmt.executeQuery();
+				// dbc.closeConnection();
+
+				while (rs.next()) {
+					disease = new SymptomsBean();
+
+					
+					disease.setSymptom_Type(rs.getString("Symptom_Type")); // ประเภทอาการโรค
+					disease.setId(rs.getInt("id")); // ประเภทอาการโรค
+					
+					
+				
+
+					diseaseList.add(disease);
+				}
+				rs.close();
+				return diseaseList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			} finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> " + e.getMessage());
+				}
+			}
+			return null;
+		}
 	
 	
 	

@@ -37,19 +37,24 @@
 <body>
 
 
+
+
 <% Locale lc = new Locale("th","TH"); %>
 	
-	<%java.text.DateFormat df = new java.text.SimpleDateFormat("EEEE ที่ dd เดือน MMMM พ.ศ. yyyy", new Locale("th", "TH")); %>
+	<%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd"); %>
+	<%java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy"); %>
+	<%java.text.DateFormat df3 = new java.text.SimpleDateFormat("MM"); %>
 		<br>
 	<h3 align="center"><b>คิวสัตว์ ที่รอตรวจรักษา</b></h3> <br>
 	<h4 align="center"> <b>ณ วันที่  <%= df.format(new java.util.Date()) %></b> </h4>
+
 <div id="site">
 	<header id="masthead">
 	
 		<h1>รายการสินค้า</h1>
 	</header>
 	<div id="content">
-	 <input type="hidden" name='datenow' ">
+	 <input type="hidden" name='datenow'>
 	<div id="content">
 		
 	
@@ -70,6 +75,12 @@
 
 		<form name="frmProduct" method="POST"  action="InsertProductHisServlet">
 		 <input type="hidden" name="datenow" value="<%= df.format(new java.util.Date()) %>" >	
+			 <input type="hidden" name="produc_year" value="<%= df2.format(new java.util.Date())%>" >
+			  <input type="hidden" name="produc_month" value="<%= df3.format(new java.util.Date())%>" >	
+			
+
+			
+			
 			  <%
 			  purchaseDAO dao = new purchaseDAO();  
 List<purchaseBean> List = dao.getpurchaseBean();

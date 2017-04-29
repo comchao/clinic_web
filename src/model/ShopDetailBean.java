@@ -8,6 +8,95 @@ public class ShopDetailBean {
 	private double prd_price;
 	private int prd_qty;
 	private double prd_total;
+	private String total;
+	private String produc_year; 
+	private String produc_month;
+	public String getProduc_month() {
+		return produc_month;
+	}
+	public void setProduc_month(String produc_month) {
+		this.produc_month = produc_month;
+	}
+	private String country;
+	private String y;
+	public String getVisits() {
+		return visits;
+	}
+	public void setVisits(String visits) {
+		this.visits = visits;
+	}
+	private String indexLabel;
+	private String  label;
+	private String  visits;
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public String getY() {
+		return y;
+	}
+	public void setY(String y) {
+		this.y = y;
+	}
+	public String getIndexLabel() {
+		return indexLabel;
+	}
+	public void setIndexLabel(String indexLabel) {
+		this.indexLabel = indexLabel;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getLitres() {
+		return litres;
+	}
+	public void setLitres(String litres) {
+		this.litres = litres;
+	}
+	private String litres;
+	
+	
+	
+	public String getProduc_year() {
+		return produc_year;
+	}
+	public void setProduc_year(String produc_year) {
+		this.produc_year = produc_year;
+	}
+	//กราฟ
+	private String code;
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	private String value;
+	private String name;
+	
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
 	public int getId() {
 		return id;
 	}

@@ -22,8 +22,8 @@ public class TreatmentDao {
 	// refer_pet_id  รหัสหมา             treatment_date  
 	static public boolean insertTreatment(String[] drug_id, String[] drug_qty, TreatmentBean treatmentBean, String[] other_name,String[] otherPriceArray){		
 		String sql_insert = "insert into `treatment`" 		
-				+ "(refer_pet_id, treatment_date,vet_name,treatment_detail,note)"  
-		        + " values ( ?, ?, ?, ? ,?); ";
+				+ "(refer_pet_id, treatment_date,vet_name,treatment_detail,note,treatment_month,treatment_year)"  
+		        + " values ( ?, ?, ?, ? ,?,?,?); ";
 		
 		String sql_insert_drug = "insert into `treatment_drug`" 		
 				+ "(refer_treatment_id,refer_drug_id,drug_qty,drug_sumprice)"  
@@ -39,6 +39,8 @@ public class TreatmentDao {
 			preparedStmt.setString (3, treatmentBean.getVet_name());
 			preparedStmt.setString(4, treatmentBean.getTreatment_detail());
 			preparedStmt.setString(5, treatmentBean.getNote());
+			preparedStmt.setString(6, treatmentBean.getTreatment_month());
+			preparedStmt.setString(7, treatmentBean.getTreatment_year());
 			int affectedRows = preparedStmt.executeUpdate();
 			if (affectedRows == 0) {
 	            throw new SQLException("Creating user failed, no rows affected.");
@@ -217,4 +219,122 @@ public class TreatmentDao {
 			}
 		}				
 	}
+	
+	//pie char other_treatment 
+	static public ArrayList<OtherTreatment>OtherTreatmentCharPie(String produc_month  , String produc_year ) {
+
+		OtherTreatment OtherTreatment = new OtherTreatment();
+	
+		ArrayList<OtherTreatment> OtherTreatmentList = new ArrayList<OtherTreatment>();
+
+		String sql = "SELECT treatment.`treatment_date` AS treatment_treatment_date,"
+				+ " other_treatment.`other_name` AS other_treatment_other_name, "
+				+ " other_treatment.`other_price` AS other_treatment_other_price,"
+				+ " SUM(`other_prices`) as treatment_other_other_price ,"
+				+ " sum(treatment_other.`other_prices`*other_treatment.`other_price` )AS treatment_other_total "
+				+ "FROM `treatment` treatment INNER JOIN `treatment_other` treatment_other ON treatment.`id` = treatment_other.`refer_treatment_id` "
+				+ "INNER JOIN `other_treatment` other_treatment ON treatment_other.`other_id` = other_treatment.`id`"
+				+ " WHERE treatment_month =  ? AND treatment_year = ?  GROUP BY other_treatment_other_name ";
+		try {
+			
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+			int i = 1;
+			preparedStmt.setString(i++, produc_month);   System.out.println(produc_month);
+			preparedStmt.setString(i++, produc_year);     System.out.println(produc_year);
+			
+			rs = preparedStmt.executeQuery();		
+		
+
+			while (rs.next()) {
+				OtherTreatment = new OtherTreatment();
+			
+				OtherTreatment.setCountry(rs.getString("other_treatment_other_name"));                   //ชื่ออื่นๆค่ารักษา             
+				OtherTreatment.setOtherPrice(rs.getDouble("other_treatment_other_price"));               // ราคาการรักษา            
+			/*	OtherTreatment.setOtherUnit(rs.getString("treatment_other_other_price "));  */              //ราคาต่อหน่วย       
+				OtherTreatment.setLitres(rs.getString("treatment_other_other_price"));                          // ราคารวม  treatment_other_total       
+				OtherTreatmentList.add(OtherTreatment);
+			}
+			rs.close();
+			/*dbc.closeConnection();*/
+			return OtherTreatmentList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		}finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> "+e.getMessage());
+			}
+		}
+		return null;
+	}
+
+	///สิ้นสุด กราฟ pie  
+	
+	
+	
+	//กราฟแท่ง char other_treatment 
+		static public ArrayList<OtherTreatment>OtherTreatmentChar(String produc_month  , String produc_year ) {
+
+			OtherTreatment OtherTreatment = new OtherTreatment();
+		
+			ArrayList<OtherTreatment> OtherTreatmentList = new ArrayList<OtherTreatment>();
+
+			String sql = "SELECT treatment.`treatment_date` AS treatment_treatment_date,"
+					+ " other_treatment.`other_name` AS other_treatment_other_name, "
+					+ " other_treatment.`other_price` AS other_treatment_other_price,"
+					+ " SUM(`other_prices`) as treatment_other_other_price ,"
+					+ " sum(treatment_other.`other_prices`*other_treatment.`other_price` )AS treatment_other_total "
+					+ "FROM `treatment` treatment INNER JOIN `treatment_other` treatment_other ON treatment.`id` = treatment_other.`refer_treatment_id` "
+					+ "INNER JOIN `other_treatment` other_treatment ON treatment_other.`other_id` = other_treatment.`id`"
+					+ " WHERE treatment_month =  ? AND treatment_year = ?  GROUP BY other_treatment_other_name ";
+			try {
+				
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+				int i = 1;
+				preparedStmt.setString(i++, produc_month);   System.out.println(produc_month);
+				preparedStmt.setString(i++, produc_year);     System.out.println(produc_year);
+				
+				rs = preparedStmt.executeQuery();		
+			
+
+				while (rs.next()) {
+					OtherTreatment = new OtherTreatment();
+				
+					OtherTreatment.setCountry(rs.getString("other_treatment_other_name"));                   //ชื่ออื่นๆค่ารักษา             
+					OtherTreatment.setOtherPrice(rs.getDouble("other_treatment_other_price"));               // ราคาการรักษา            
+				     OtherTreatment.setOtherUnit(rs.getString("treatment_other_other_price"));                     //ราคาต่อหน่วย       
+					OtherTreatment.setVisits(rs.getString("treatment_other_total"));                    // ราคารวม  treatment_other_total       
+					OtherTreatmentList.add(OtherTreatment);
+				}
+				rs.close();
+				/*dbc.closeConnection();*/
+				return OtherTreatmentList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			}finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> "+e.getMessage());
+				}
+			}
+			return null;
+		}
+
+		///สิ้นสุด กราฟแท่ง 
+	
+	
+	
+	
+	
+	
+	
+	
 }

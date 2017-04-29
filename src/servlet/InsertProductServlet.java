@@ -58,7 +58,7 @@ public class InsertProductServlet extends HttpServlet {
 		productBean.setRefer_type_pet(Integer.parseInt(request.getParameter("refer_type_pet")));
 		//upload img
 		
-		String savePath = "D:\\JavaProject\\clinic_web\\WebContent\\images";
+		String savePath = "F:\\java_web\\clinic_web\\WebContent\\images";
         File fileSaveDir=new File(savePath);
         if(!fileSaveDir.exists()){
             fileSaveDir.mkdir();
