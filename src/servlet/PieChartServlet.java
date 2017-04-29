@@ -41,6 +41,7 @@ public class PieChartServlet extends HttpServlet {
 	                        /*	รับค่าจากฟอร์ม*/
 		String chart_id = request.getParameter("chart_id");
 		
+		
 		System.out.println(chart_id);
 		
 		String produc_month = request.getParameter("produc_month"); //จากวันที่ 
@@ -49,12 +50,14 @@ public class PieChartServlet extends HttpServlet {
 		
 		String produc_year = request.getParameter("produc_year");    // ถึงวันที่ 
 		System.out.println(produc_year);                          // ถึงวันที่ 
+		String ON = request.getParameter("ON");                   //ลำดับ
 		
 		
 	                          //คืนค่า
 		request.setAttribute("chart_id", chart_id);
 		request.setAttribute("produc_month", produc_month);
 		request.setAttribute("produc_year",produc_year);
+		request.setAttribute("ON",ON);
 		
 		
 		

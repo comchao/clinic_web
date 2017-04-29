@@ -82,13 +82,15 @@
 					<td><%=pb.getProduct_detail()%></td>
 					<td><%=pb.getProduct_price()%></td>
 					<td><%=pb.getProduct_unit()%></td>
+				
 					<td>
 					<form action="editProduct.jsp?product_id=<%=pb.getId()%>" method="post">
-						<input type="hidden" name="edit_product_id" value="<%=pb.getId()%>">
+						<input type="hidden" name="product_id" value="<%=pb.getId()%>">
 						<input type="hidden" name="edit_product_name" value="<%=pb.getProduct_name()%>">
 						<input type="hidden" name="edit_product_detail" value="<%=pb.getProduct_detail()%>">
 						<input type="hidden" name="edit_product_price" value="<%=pb.getProduct_price()%>">
 						<input type="hidden" name="edit_product_unit" value="<%=pb.getProduct_unit()%>">
+						<input type="hidden" name="product_img_name" value="<%=pb.getProduct_img_name()%>">
 						<input type="submit" onclick="return editConfirm();" class="btn btn-warning" value="แก้ไข">
 					</form>
 					</td>

@@ -5,6 +5,14 @@
 <%@page import="dao.PetsDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ include file="header_shop.jsp" %>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/thumbnail-gallery.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 <script src="js/petshop-script.js" type="text/javascript" charset="utf-8"></script>
 <body class="col-md-12">
 <div id="site" >
@@ -60,18 +68,21 @@
 				pb = (ProductBean) allProduct.get(i);
 		%>
 		<div style="width:210px;float: left;height:550px;padding-right: 10px;" >
-		
-					<div class="product-image">
-					<img src="images/<%=pb.getProduct_img_name()%>" width="150px" height="150px" />
-					1493392916804
+					<div class="img-responsive">
+					  <center> <a class="thumbnail" href="#">
+						<img src="images/<%=pb.getProduct_img_name()%>" width="150px" height="150px" />
+					 </a> </center> 
 					</div>
+				
 					<div class="product-description" data-name="<%=pb.getProduct_name()%>" data-price="<%=pb.getProduct_price()%>">
 						<textarea  rows="3" cols="13"  class="product-name"><%=pb.getProduct_name()%></textarea>
 						<p class="product-price"><%=pb.getProduct_price()%>บาท</p>
-						<form class="add-to-cart" action="cart.jsp" method="post">
+						<form  action="purchaseServlet" method="post">
 							<div>
 								<label for="qty-1">จำนวน</label>
-								<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />
+								<input type="text" name="number" id="qty-1" class="qty" value="1" />
+								<input type="hidden" name="Product_name"  value="<%=pb.getProduct_name()%>" />
+								<input type="hidden" name="Product_price"  value="<%=pb.getProduct_price()%>" />
 							</div>
 							<p><input type="submit" value="เพิ่มรายการ" class="btn" /></p>
 						</form>
@@ -85,7 +96,7 @@
 			<div class="col-md-12"  style="  clear:both;" >
 			<form action="pagePetShopServlet">
 				<div align="center">
-					<br> <br>
+					<br> 
 					<%
 						int a = 0;
 						int b = (allProduct.size() / 16) + 1;

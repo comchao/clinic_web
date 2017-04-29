@@ -26,8 +26,8 @@
 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 100%;
-  height: 200px;
+  width: 400px;
+  height: 400px;
 }
 
 .amcharts-export-menu-top-right {
@@ -35,8 +35,8 @@
   right: 0;
 }			
 #chartdiv {
-	width		: 100%;
-	height		: 800px;
+	width		: 400px;
+	height		: 400px;
 	font-size	: 11px;
 }		
 </style>
@@ -75,22 +75,482 @@ function mydate() {
 	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
 </div>
 	<div class="row">
-		<h3 align="center"> </h3>
+		<h3 align="center"></h3>
 		<br />
 	</div>
+	<br>
+	
+	<%
+request.setCharacterEncoding("UTF-8");
+response.setCharacterEncoding("UTF-8");
+String chart_id = (String)request.getAttribute("chart_id");
+
+
+String produc_month = (String)request.getAttribute("produc_month"); //จากวันที่ 
+                        //จากวันที่ 
+
+
+String produc_year = (String)request.getAttribute("produc_year");    // ถึงวันที่ 
+                         // ถึงวันที่ 
+                         
+String ON = (String)request.getAttribute("ON");    // ลำดับ
+
+
+
+
+
+%>
+<%if(produc_month!=null){%>
 	<div class="col-sm-12" align="center">
 		<div class="col-sm-1">
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3" align="center" >
 			<h4>กรุณาเลือกรายการ</h4>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3" >
 			<h4>เดือน</h4>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-sm-2" align="left" >
 			<h4>ปี</h4>
 		</div>
+		<div class="col-sm-2" align="left" >
+		<h4>อันดับ</h4>
+		</div>
+		<div class="col-sm-2"  >
+		
+		</div>
+	</div>
+	
+	<div class="col-sm-12" align="center">
+	
+		<form action="ShopDetailcharServlet" method="get">
+		<div class="col-sm-1">
+		</div>
+		<div class="col-sm-3">
+			<select name="chart_id" id="report_id" class="form-control"
+				required="required" style="width:100%;">
+				<%if(chart_id.equals("1")){ %>
+				<option value="<%=chart_id%>" >สถิติการขายสินค้า</option>
+				<option value="2">สถิติค่ายา</option>
+				<option value="3">สถิติค่ารักษา</option>
+			    <%} %>
+			    	<%if(chart_id.equals("2")){ %>
+				<option value="<%=chart_id%>" >สถิติค่ายา</option>
+				<option value="1" >สถิติการขายสินค้า</option>
+				<option value="3">สถิติค่ารักษา</option>
+			    <%} %>
+			    	<%if(chart_id.equals("3")){ %>
+				<option value="<%=chart_id%>" >สถิติค่ารักษา</option>
+				<option value="1" >สถิติการขายสินค้า</option>
+				<option value="2">สถิติค่ายา</option>
+				
+			    <%} %>
+			   
+				
+			</select>
+		</div>
 		<div class="col-sm-2">
+			<select name="produc_month" id="report_id" class="form-control"
+				required="required" style="width:100%;">
+				<%if(produc_month.equals("01")){ %>
+				<option value="<%=produc_month%>" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("02")){ %>
+				<option value="<%=produc_month%>" >กุมภาพันธ์</option>
+				<option value="01" >มกราคม</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("03")){ %>
+				<option value="<%=produc_month%>" >มีนาคม</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("04")){ %>
+				<option value="<%=produc_month%>" >เมษายน</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("05")){ %>
+				<option value="<%=produc_month%>" >พฤษภาคม</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("06")){ %>
+				<option value="<%=produc_month%>" >มิถุนายน</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("07")){ %>
+				<option value="<%=produc_month%>" >กรกฎาคม</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+			
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("08")){ %>
+				<option value="<%=produc_month%>" >สิงหาคม</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+			
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("09")){ %>
+				<option value="<%=produc_month%>" >กันยายน</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+			    <option value="08"> สิงหาคม </option>
+				
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("10")){ %>
+				<option value="<%=produc_month%>" >ตุลาคม</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+			
+				<option value="11"> พฤศจิกายน </option>
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("11")){ %>
+				<option value="<%=produc_month%>" >พฤศจิกายน</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				
+				<option value="12"> ธันวาคม</option>
+				<%} %>
+				<%if(produc_month.equals("12")){ %>
+				<option value="<%=produc_month%>" >ธันวาคม</option>
+				<option value="01" >มกราคม</option>
+				<option value="02">กุมภาพันธ์</option>
+				<option value="03">มีนาคม</option>
+				<option value="04" > เมษายน</option>
+				<option value="05"> พฤษภาคม </option>
+				<option value="06"> มิถุนายน </option>
+				<option value="07" > กรกฎาคม  </option>
+				<option value="08"> สิงหาคม </option>
+				<option value="09"> กันยายน </option>
+				<option value="10" > ตุลาคม </option>
+				<option value="11"> พฤศจิกายน </option>
+		
+				<%} %>
+				
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<select name="produc_year" id="report_id" class="form-control"
+				required="required" style="width:100%;">
+				<%if(produc_year.equals("2017")){ %>
+				<option value="<%=produc_year%>" >2017</option>
+				
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+			<%if(produc_year.equals("2018")){ %>
+				<option value="<%=produc_year%>" >2018</option>
+			    <option value="2017"> 2017</option>
+				
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+			<%if(produc_year.equals("2019")){ %>
+				<option value="<%=produc_year%>" >2019</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+			
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+				<%if(produc_year.equals("2020")){ %>
+				<option value="<%=produc_year%>" >2020</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+			<%if(produc_year.equals("2021")){ %>
+				<option value="<%=produc_year%>" >2021</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+			<%if(produc_year.equals("2022")){ %>
+				<option value="<%=produc_year%>" >2022</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+			<%if(produc_year.equals("2023")){ %>
+				<option value="<%=produc_year%>" >2023</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+			<%if(produc_year.equals("2024")){ %>
+				<option value="<%=produc_year%>" >2024</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+			<%if(produc_year.equals("2025")){ %>
+				<option value="<%=produc_year%>" >2025</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				
+			    <option value="2026"> 2026</option>
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+				<%if(produc_year.equals("2026")){ %>
+				<option value="<%=produc_year%>" >2026</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    
+			    <option value="2027"> 2027</option>
+				
+			<%} %>
+			<%if(produc_year.equals("2027")){ %>
+				<option value="<%=produc_year%>" >2027</option>
+			    <option value="2017"> 2017</option>
+				<option value="2018"> 2018</option>
+				<option value="2019"> 2019</option>
+				<option value="2020"> 2020</option>
+				<option value="2021"> 2021</option>
+				<option value="2022"> 2022</option>
+				<option value="2023"> 2023</option>
+				<option value="2024"> 2024</option>
+				<option value="2025"> 2025</option>
+			    <option value="2026"> 2026</option>
+			   
+				
+			<%} %>
+			</select>
+		</div>
+		<div class="col-sm-2">
+			<select name="ON" id="report_id" class="form-control"
+				required="required" style="width:100%;">
+				<%if(ON.equals("3")){ %>
+				<option value="<%=ON%>" >3</option>
+				
+				<option value="5"> 5 </option>
+				<option value="10"> 10</option>
+				<% }%>
+				<%if(ON.equals("5")){ %>
+				<option value="<%=ON%>" >5</option>
+				<option value="3"> 3 </option>
+				
+				<option value="10"> 10</option>
+				<% }%>
+				<%if(ON.equals("10")){ %>
+				<option value="<%=ON%>" >10</option>
+				<option value="3"> 3 </option>
+				<option value="5"> 5 </option>
+				
+				<% }%>
+				
+				
+			</select>
+		</div>
+		
+	
+		
+		<div class="col-sm-2" >
+
+			<input type="submit" class="btn btn-info" value="ค้นหา" />
+		</div>
+		
+		<% } else{%>
+		<div class="col-sm-12" align="center">
+		<div class="col-sm-1">
+		</div>
+		<div class="col-sm-3" align="center" >
+			<h4>กรุณาเลือกรายการ</h4>
+		</div>
+		<div class="col-sm-3" >
+			<h4>เดือน</h4>
+		</div>
+		<div class="col-sm-2" align="left" >
+			<h4>ปี</h4>
+		</div>
+		<div class="col-sm-2" align="left" >
+		<h4>ลำดับ</h4>
+		</div>
+		<div class="col-sm-2"  >
+		
 		</div>
 	</div>
 	
@@ -108,7 +568,7 @@ function mydate() {
 				<option value="3">สถิติค่ารักษา</option>
 			</select>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<select name="produc_month" id="report_id" class="form-control"
 				required="required" style="width:100%;">
 				<option value="" >--โปรดเลือก--</option>
@@ -146,30 +606,36 @@ function mydate() {
 			</select>
 		</div>
 		<div class="col-sm-2">
+			<select name="ON" id="report_id" class="form-control"
+				required="required" style="width:100%;">
+				<option value="" >--โปรดเลือก--</option>
+				<option value="3"> 3 </option>
+				<option value="5"> 5 </option>
+				<option value="10"> 10</option>
+			</select>
+		</div>
+		
+	
+		
+		<div class="col-sm-2" >
+
 			<input type="submit" class="btn btn-info" value="ค้นหา" />
 		</div>
-		</form>
+		<%} %>
+			</form>
+		<div class="row">
+	<div class="col-sm-8">
+			
+		</div>
 	
 		
 		
-		<%
-request.setCharacterEncoding("UTF-8");
-response.setCharacterEncoding("UTF-8");
-String chart_id = (String)request.getAttribute("chart_id");
-
-
-String produc_month = (String)request.getAttribute("produc_month"); //จากวันที่ 
-                        //จากวันที่ 
-
-
-String produc_year = (String)request.getAttribute("produc_year");    // ถึงวันที่ 
-                         // ถึงวันที่ 
-
-
-
-
-		%>
-		
+	</div>
+	</div>
+	
+	
+	
+</div>
 		<div class="col-sm-12" align="center">
 		
 <%if(produc_month!=null){
@@ -248,9 +714,10 @@ if(produc_month.equals("01")){ %>
 
 </div>
 <br>
+<div class="col-sm-2">
+</div>
 
-
-<div class="col-sm-12">
+<div class="col-sm-8">
 
  <%if(chart_id!=null){ %>
 <!--ตารางข้อมูล-->
@@ -271,7 +738,7 @@ if(produc_month.equals("01")){ %>
 	  <tbody>
 
 			<%TreatmentDao dao = new TreatmentDao();  
-			List<OtherTreatment> list = dao.OtherTreatmentChar(produc_month,produc_year);
+			List<OtherTreatment> list = dao.OtherTreatmentChar(produc_month,produc_year,ON);
 			response.setCharacterEncoding("utf-8");
 			JSONArray ja = new JSONArray();
 

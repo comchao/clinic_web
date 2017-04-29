@@ -43,12 +43,14 @@ public class ShopDetailcharServlet extends HttpServlet {
 		
 		String produc_year = request.getParameter("produc_year");    // ถึงวันที่ 
 		System.out.println(produc_year);                          // ถึงวันที่ 
+		String ON = request.getParameter("ON");                   //อันดับที่ 
 		
 		
 	                          //คืนค่า
 		request.setAttribute("chart_id", chart_id);
 		request.setAttribute("produc_month", produc_month);
 		request.setAttribute("produc_year",produc_year);
+		request.setAttribute("ON",ON);                      
 		
 		
 								//คืนหน้า

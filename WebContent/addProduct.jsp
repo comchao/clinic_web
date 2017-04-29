@@ -136,7 +136,7 @@
 								<div class="form-group">
 									<input type="file" name="pic_product" id="pic_product"
 										placeholder="รูปภาพ" class="form-control"
-										required="required" size="50" />
+										required="required" size="50" /> 
 										
 								</div>
 							</div>

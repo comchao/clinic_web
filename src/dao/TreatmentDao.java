@@ -221,10 +221,10 @@ public class TreatmentDao {
 	}
 	
 	//pie char other_treatment 
-	static public ArrayList<OtherTreatment>OtherTreatmentCharPie(String produc_month  , String produc_year ) {
+	static public ArrayList<OtherTreatment>OtherTreatmentCharPie(String produc_month  , String produc_year, String ON  ) {
 
 		OtherTreatment OtherTreatment = new OtherTreatment();
-	
+		int limit = 0;
 		ArrayList<OtherTreatment> OtherTreatmentList = new ArrayList<OtherTreatment>();
 
 		String sql = "SELECT treatment.`treatment_date` AS treatment_treatment_date,"
@@ -234,7 +234,7 @@ public class TreatmentDao {
 				+ " sum(treatment_other.`other_prices`*other_treatment.`other_price` )AS treatment_other_total "
 				+ "FROM `treatment` treatment INNER JOIN `treatment_other` treatment_other ON treatment.`id` = treatment_other.`refer_treatment_id` "
 				+ "INNER JOIN `other_treatment` other_treatment ON treatment_other.`other_id` = other_treatment.`id`"
-				+ " WHERE treatment_month =  ? AND treatment_year = ?  GROUP BY other_treatment_other_name ";
+				+ " WHERE treatment_month =  ? AND treatment_year = ?  GROUP BY other_treatment_other_name LIMIT  "+limit+ ","+ON+"; ";
 		try {
 			
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
@@ -277,8 +277,8 @@ public class TreatmentDao {
 	
 	
 	//กราฟแท่ง char other_treatment 
-		static public ArrayList<OtherTreatment>OtherTreatmentChar(String produc_month  , String produc_year ) {
-
+		static public ArrayList<OtherTreatment>OtherTreatmentChar(String produc_month  , String produc_year ,String ON ) {
+			int limit = 0;
 			OtherTreatment OtherTreatment = new OtherTreatment();
 		
 			ArrayList<OtherTreatment> OtherTreatmentList = new ArrayList<OtherTreatment>();
@@ -290,13 +290,14 @@ public class TreatmentDao {
 					+ " sum(treatment_other.`other_prices`*other_treatment.`other_price` )AS treatment_other_total "
 					+ "FROM `treatment` treatment INNER JOIN `treatment_other` treatment_other ON treatment.`id` = treatment_other.`refer_treatment_id` "
 					+ "INNER JOIN `other_treatment` other_treatment ON treatment_other.`other_id` = other_treatment.`id`"
-					+ " WHERE treatment_month =  ? AND treatment_year = ?  GROUP BY other_treatment_other_name ";
+					+ " WHERE treatment_month =  ? AND treatment_year = ?  GROUP BY other_treatment_other_name LIMIT  "+limit+ ","+ON+";";
 			try {
 				
 				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 				int i = 1;
-				preparedStmt.setString(i++, produc_month);   System.out.println(produc_month);
-				preparedStmt.setString(i++, produc_year);     System.out.println(produc_year);
+				preparedStmt.setString(i++, produc_month);     System.out.println(produc_month);
+				preparedStmt.setString(i++, produc_year);      System.out.println(produc_year);
+																System.out.println(ON);
 				
 				rs = preparedStmt.executeQuery();		
 			

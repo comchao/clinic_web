@@ -233,8 +233,11 @@ public class ProductDAO {
 	}
 	
 	///กราฟpie
-	static public ArrayList<ShopDetailBean>ShopDetail(String produc_month  , String produc_year ) {
+	static public ArrayList<ShopDetailBean>ShopDetail(String produc_month  , String produc_year , String  ON ) {
 
+		int limit = 0;
+	
+	 
 		ShopDetailBean prdShopBean = new ShopDetailBean();
 	
 		ArrayList<ShopDetailBean> prdShopList = new ArrayList<ShopDetailBean>();
@@ -243,13 +246,15 @@ public class ProductDAO {
 				+ " shop_detail.`prd_price` AS shop_detail_prd_price, SUM(`prd_qty`) AS shop_detail_prd_qty, "
 				+ "SUM(`prd_total`) AS shop_detail_prd_total "
 				+ "FROM  shop_detail "
-				+ " WHERE  produc_month = ?  and produc_year = ?  GROUP BY `shop_detail_prd_name`  ORDER BY shop_detail_prd_qty  DESC , shop_detail_prd_total DESC  LIMIT 0,10 ; ";
+				+ " WHERE  produc_month = ?  and produc_year = ?  GROUP BY `shop_detail_prd_name`  ORDER BY shop_detail_prd_qty  DESC , shop_detail_prd_total DESC  LIMIT  "+limit+ ","+ON+" ; ";
 		try {
 			
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 			int i = 1;
-			preparedStmt.setString(i++, produc_month);   System.out.println(produc_month);
-			preparedStmt.setString(i++, produc_year);     System.out.println(produc_year);
+			
+			preparedStmt.setString(i++, produc_month);      System.out.println(produc_month);
+			preparedStmt.setString(i++, produc_year);       System.out.println(produc_year);
+			                                                System.out.println(ON);
 			
 			rs = preparedStmt.executeQuery();		
 		
@@ -283,9 +288,10 @@ public class ProductDAO {
 	
 	
 	///กราฟแท่ง
-	static public ArrayList<ShopDetailBean>ShopDetailchar(String produc_month  , String produc_year ) {
+	static public ArrayList<ShopDetailBean>ShopDetailchar(String produc_month  , String produc_year,String  ON) {
 
 		ShopDetailBean prdShopBean = new ShopDetailBean();
+		int limit = 0;
 	
 		ArrayList<ShopDetailBean> prdShopList = new ArrayList<ShopDetailBean>();
 
@@ -293,7 +299,7 @@ public class ProductDAO {
 				+ " shop_detail.`prd_price` AS shop_detail_prd_price, SUM(`prd_qty`) AS shop_detail_prd_qty, "
 				+ "SUM(`prd_total`) AS shop_detail_prd_total "
 				+ "FROM  shop_detail "
-				+ " WHERE  produc_month = ?  and produc_year = ?  GROUP BY `shop_detail_prd_name`  ORDER BY shop_detail_prd_qty  DESC , shop_detail_prd_total DESC  LIMIT 0,10 ; ";
+				+ " WHERE  produc_month = ?  and produc_year = ?  GROUP BY `shop_detail_prd_name`  ORDER BY shop_detail_prd_qty  DESC , shop_detail_prd_total DESC   LIMIT  "+limit+ ","+ON+" ; ";
 		try {
 			
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
@@ -578,7 +584,7 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 	
 	public boolean updateProduct(ProductBean product) {
 
-		String sql = "update products set product_name = ?,product_detail = ?,product_price = ?,product_unit = ? where id = ?; ";
+		String sql = "update products set product_name = ?,product_detail = ?,product_price = ?,product_unit = ?,product_img_name = ?  where id = ?; ";
 		try {
 
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
@@ -587,7 +593,8 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 			preparedStmt.setString(2, product.getProduct_detail());
 			preparedStmt.setDouble(3, product.getProduct_price());
 			preparedStmt.setString(4, product.getProduct_unit());
-			preparedStmt.setInt(5, product.getId());
+			preparedStmt.setString(5, product.getProduct_img_name());
+			preparedStmt.setInt(6, product.getId());
 
 			preparedStmt.executeUpdate();
 			dbc.closeConnection();
