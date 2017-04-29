@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-03-27T22:25:45 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c9f508b2-337d-4125-9c58-6fc378f068cf">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT shop_detail.`prd_date` AS shop_detail_prd_date, shop_detail.`prd_name` AS shop_detail_prd_name, shop_detail.`prd_price` AS shop_detail_prd_price, SUM(`prd_qty`) AS shop_detail_prd_qty, SUM(`prd_total`) AS shop_detail_prd_total FROM `shop_detail` shop_detail GROUP BY `shop_detail_prd_name` LIMIT 0,5]]>
+	</queryString>
+	<field name="shop_detail_prd_date" class="java.lang.String"/>
+	<field name="shop_detail_prd_name" class="java.lang.String"/>
+	<field name="shop_detail_prd_price" class="java.math.BigDecimal"/>
+	<field name="shop_detail_prd_qty" class="java.math.BigDecimal"/>
+	<field name="shop_detail_prd_total" class="java.math.BigDecimal"/>
+	<group name="shop_detail_prd_date">
+		<groupExpression><![CDATA[$F{shop_detail_prd_date}]]></groupExpression>
+	</group>
+	<group name="shop_detail_prd_name">
+		<groupExpression><![CDATA[$F{shop_detail_prd_name}]]></groupExpression>
+	</group>
+	<group name="shop_detail_prd_price">
+		<groupExpression><![CDATA[$F{shop_detail_prd_price}]]></groupExpression>
+	</group>
+	<group name="shop_detail_prd_qty">
+		<groupExpression><![CDATA[$F{shop_detail_prd_qty}]]></groupExpression>
+	</group>
+	<group name="shop_detail_prd_total">
+		<groupExpression><![CDATA[$F{shop_detail_prd_total}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
