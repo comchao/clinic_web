@@ -133,7 +133,7 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 	<h3 align="center"><b>ข้อมูลการนัดหมายสัตว์เลี้ยงทั้งหมด</b></h3> <br>
 
 	<div align="left">
-		<a href="index-officer.jsp"  ><input type="submit" class="btn btn-info" value="ย้อนกลับ" align="left" /></a> </div>
+		<a href="index-veterinary.jsp"  ><input type="submit" class="btn btn-info" value="ย้อนกลับ" align="left" /></a> </div>
 
 
 						<div align="right">
@@ -187,7 +187,7 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 		<h4 align="center"></h4>	
 	
 			<form action="searchCalenderServlet" method="get">
-				<input name="dateCalender" type="date" class="search-query" onchange="Javascript:dateTime(date_end);"	placeholder="yyyy-mm-dd" required="required"> <input type="hidden"
+				<input name="dateCalender" type="date" class="form-control" style="width:30%;"  onchange="Javascript:dateTime(date_end);"	placeholder="yyyy-mm-dd" required="required"> <input type="hidden"
 					name="searchType" value="searchProducts">&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>

@@ -29,8 +29,8 @@ public class DepositDAO {
 				+ "(refer_pet_id,refer_owner_id,refer_cage_id,food_status,deposit_in,deposit_out,deposit_receive,deposit_day,deposit_status,deposit_date)"  
 		        + " values ( ?, ?, ?, ? ,? , ? ,? , ? , ? ,?=now()); ";
 		String sql_insert_product = "insert into `shop_detail`" 		
-				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total)"  
-		        + " values ( ?, ?, ?, ?, ?, ?); ";
+				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total,produc_month,produc_year,No_bil)"  
+		        + " values ( ?, ?, ?, ?, ?, ?,?,?,?); ";
 		
 		try {     
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql_insert ,Statement.RETURN_GENERATED_KEYS);
@@ -44,6 +44,7 @@ public class DepositDAO {
 			preparedStmt.setInt   (8, depositBean.getDeposit_day());
 			preparedStmt.setInt   (9, depositBean.getDeposit_status());
 			preparedStmt.setString   (10, depositBean.getDeposit_date());
+			
 			int affectedRows = preparedStmt.executeUpdate();
 			if (affectedRows == 0) {
 	            throw new SQLException("Creating user failed, no rows affected.");
@@ -60,6 +61,9 @@ public class DepositDAO {
 	                preparedStmt.setDouble(4, shopDetailBean.getPrd_price());
 	                preparedStmt.setInt (5, shopDetailBean.getPrd_qty());
 	                preparedStmt.setDouble(6, shopDetailBean.getPrd_total());
+	                preparedStmt.setString (7, shopDetailBean.getProduc_month());
+	    			preparedStmt.setString (8, shopDetailBean.getProduc_year());
+	    			preparedStmt.setString (9, shopDetailBean.getNo_bil());
         			preparedStmt.executeUpdate();
 	            }
 			}

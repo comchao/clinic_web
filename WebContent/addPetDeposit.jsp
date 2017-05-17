@@ -71,14 +71,21 @@ DecimalFormat Formatter = new DecimalFormat("###,###.00");
 <br>
 <br>
 <div class="container">
-<div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
+<!-- <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
 	<a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" />
 	</a>
-</div>
+</div> -->
 		<h3 align="center">การรับฝากเลี้ยง</h3>
 		<br />
 		<div class="col-sm-12">
 		<form name="frmMain" id="frmMain" action="InsertPetDepositServlet" method="POST">
+		 <%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
+	<%java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy"); %>
+	<%java.text.DateFormat df3 = new java.text.SimpleDateFormat("MM"); %>
+	
+	          <input type="hidden" name="datenow" value="<%= df.format(new java.util.Date()) %>" >	
+			  <input type="hidden" name="produc_year" value="<%= df2.format(new java.util.Date())%>" >
+			  <input type="hidden" name="produc_month" value="<%= df3.format(new java.util.Date())%>" >
 				<!--  ข้อมูลสัตว์เลี้ยง  -->
 				<div class="col-sm-4">
 					<div class="form-group">

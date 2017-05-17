@@ -18,7 +18,7 @@
 		<div class="col-sm-12">
 		<div class="col-sm-6"><h4 align="center">ค้นหาประวัติจากข้อมูลเจ้าของ</h4>
 			<form action="SearchHistoryDepositServlet" method="post">
-				<input name="owner_history" type="text" class="search-query" style="width:70%;"
+				<input name="owner_history" type="text" class="form-control" style="width:70%;"
 					placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" /> 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>
@@ -26,7 +26,7 @@
 		<div class="col-sm-6"><h4 align="center">ค้นหาประวัติจากชื่อสัตว์เลี้ยง</h4>
 			
 			<form action="SearchDepositHistorySearvlet" method="post">
-				<input name="pet_name" type="text" class="search-query"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
+				<input name="pet_name" type="text" class="form-control"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
 				<input type="hidden" name="searchType" value="searchPets">&nbsp;&nbsp; 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form></div>

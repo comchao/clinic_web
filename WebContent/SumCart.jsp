@@ -41,12 +41,12 @@
 
 <% Locale lc = new Locale("th","TH"); %>
 	
-	<%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd"); %>
+	<%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
 	<%java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy"); %>
 	<%java.text.DateFormat df3 = new java.text.SimpleDateFormat("MM"); %>
 		<br>
 	<h3 align="center"><b>คิวสัตว์ ที่รอตรวจรักษา</b></h3> <br>
-	<h4 align="center"> <b>ณ วันที่  <%= df.format(new java.util.Date()) %></b> </h4>
+	<%-- <h4 align="center"> <b>ณ วันที่  <%= df.format(new java.util.Date()) %></b> </h4> --%>
 
 <div id="site">
 	<header id="masthead">

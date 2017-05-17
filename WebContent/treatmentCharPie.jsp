@@ -87,11 +87,11 @@ function mydate() {
 </script>
 
 <div class="container">
-<div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
+<!-- <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
 	<a href="chart_all.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
 
 	
-</div>
+</div> -->
 		<div class="row">
 		<h3 align="center"></h3>
 		<br />
@@ -131,12 +131,12 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 		<div class="col-sm-2" align="left" >
 			<h4>ปี</h4>
 		</div>
-		<div class="col-sm-2" align="left" >
+		<!-- <div class="col-sm-2" align="left" >
 		<h4>อันดับ</h4>
 		</div>
 		<div class="col-sm-2"  >
 		
-		</div>
+		</div> -->
 	</div>
 	
 	<div class="col-sm-12" align="center">
@@ -518,7 +518,7 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 			<%} %>
 			</select>
 		</div>
-		<div class="col-sm-2">
+		<%-- <div class="col-sm-2">
 			<select name="ON" id="report_id" class="form-control"
 				required="required" style="width:100%;">
 				<%if(ON.equals("3")){ %>
@@ -542,7 +542,10 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 				
 				
 			</select>
-		</div>
+		</div> --%>
+		<!-- ค่าอันดับ -->
+		<input name="ON" type="hidden" value="5">
+		
 		
 	
 		
@@ -550,6 +553,7 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 
 			<input type="submit" class="btn btn-info" value="ค้นหา" />
 		</div>
+		</form>
 		
 		<% } else{%>
 		<div class="col-sm-12" align="center">
@@ -564,12 +568,12 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 		<div class="col-sm-2" align="left" >
 			<h4>ปี</h4>
 		</div>
-		<div class="col-sm-2" align="left" >
+		<!-- <div class="col-sm-2" align="left" >
 		<h4>ลำดับ</h4>
 		</div>
 		<div class="col-sm-2"  >
 		
-		</div>
+		</div> -->
 	</div>
 	
 	<div class="col-sm-12" align="center">
@@ -623,7 +627,7 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 			
 			</select>
 		</div>
-		<div class="col-sm-2">
+		<!-- <div class="col-sm-2">
 			<select name="ON" id="report_id" class="form-control"
 				required="required" style="width:100%;">
 				<option value="" >--โปรดเลือก--</option>
@@ -631,7 +635,11 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 				<option value="5"> 5 </option>
 				<option value="10"> 10</option>
 			</select>
-		</div>
+		</div> -->
+		
+		<!-- ค่าอันดับ -->
+		<input name="ON" type="hidden" value="5">
+		
 		
 	
 		
@@ -728,6 +736,7 @@ if(produc_month.equals("01")){ %>
 	<h4>กลุ่มรายได้จากการจ่ายยา</h4>
 	<div id="chartdiv1"></div>
 	
+	
 
  	
 	
@@ -748,7 +757,7 @@ if(produc_month.equals("01")){ %>
 <th>ลำดับ</th>
 <th><center>รายการ</center></th>
 <th>จำนวน</th>
-<th>ยอด</th>
+
 </tr></center>
 </thead>
 
@@ -848,14 +857,11 @@ var chart = AmCharts.makeChart("chartdiv", {
  <td><%=i2+1%></td>
  <td><%=bean2.getCountry()%></td>
 <td> <%=bean2.getDrug_unit()%></td>
-<td><%=bean2.getLitres()%>
+
 </tr>
 
 
-	<% 
-	
-	 
-%>
+
 
 
 

@@ -22,15 +22,15 @@
 		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลเจ้าของ</h4>
 			
 			<form action="SearchHisTreOwnerServlet" method="post">
-				<input name="owner_name" type="text" class="search-query"
-					placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> <input type="hidden"
+				<input name="owner_name" type="text" class="form-control" style="width:70%;"
+					placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" /> <input type="hidden"
 					name="searchType" value="searchOwners">&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />
 			</form></div>
 		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลสัตว์เลี้ยง</h4>
 			
 			<form action="" method="post">
-				<input  name="pet_name" type="text" class="search-query"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
+				<input  name="pet_name" type="text" placeholder="ชื่อสัตว์เลี้ยง" class="form-control" style="width:70%;"/> 
 				<input type="hidden" name="searchType" value="searchPets">&nbsp;&nbsp; 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form></div>

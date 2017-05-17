@@ -48,6 +48,9 @@ function mydate() {
 	<div class="col-sm-12" align="center">
 	
 		<form action="ReportServlet?id=<%=session.getAttribute("id")%>" method="post">
+		
+		<%java.text.DateFormat df = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); %>
+	  <input type="hidden" name="datenow" value="<%= df.format(new java.util.Date()) %>" >	
 		<div class="col-sm-1">
 		</div>
 		<div class="col-sm-3">
@@ -60,10 +63,10 @@ function mydate() {
 			</select>
 		</div>
 		<div class="col-sm-3">
-			<input name="date_start" type="date" class="search-query" onchange="Javascript:dateTime(date_start);"	placeholder="yyyy-mm-dd" required="required" style="width:100%;"/> 
+			<input name="date_start" type="date" class="form-control" onchange="Javascript:dateTime(date_start);"	placeholder="yyyy/mm/dd" required="required" style="width:100%;"/> 
 		</div>
 		<div class="col-sm-3">
-			<input name="date_end" type="date" class="search-query" onchange="Javascript:dateTime(date_end);"	placeholder="yyyy-mm-dd" required="required" style="width:100%;"/> 
+			<input name="date_end" type="date" class="form-control"  onchange="Javascript:dateTime(date_end);"	placeholder="yyyy/mm/dd" required="required" style="width:100%;"/> 
 		</div>
 		<div class="col-sm-2">
 			<input type="submit" class="btn btn-info" value="ออกรายงาน" />

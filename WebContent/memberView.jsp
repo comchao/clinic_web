@@ -22,7 +22,7 @@
 			<h4 align="center">ค้นหาข้อมูลพนักงาน - สัตวแพทย์</h4>
 			
 			<form action="SearchMemberServlet" method="post">
-				<input name="mem_name" type="text" class="search-query"
+				<input name="mem_name" type="text" class="form-control" style="width:30%;"
 					placeholder="ชื่อ ,รหัสบัตรประชาชน ,เบอร์โทร" /> <input type="hidden"
 					name="searchType" value="searchMembers">&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />

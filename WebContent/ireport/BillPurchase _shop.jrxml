@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-20T12:04:07 -->
+<!-- 2017-05-17T22:58:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -16,22 +16,24 @@
 			<style backcolor="#E6DAC3"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="No_bil" class="java.lang.String"/>
+	<parameter name="datenow" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT
-    
-       purchase.`Product_name` AS Product_name,
-       purchase.`Product_price` AS Product_price,
-       SUM(number) AS number , SUM(Product_price*number) AS purchasetotal
-       FROM purchase GROUP BY `Product_name`]]>
+		<![CDATA[SELECT shop_detail.`prd_name` AS Product_name,
+      shop_detail.`prd_qty` AS Product_price,
+        shop_detail.`No_bil`AS Product_No_bil,
+       SUM(`prd_qty`) AS number , SUM(`prd_price`*`prd_qty`) AS purchasetotal
+       FROM shop_detail WHERE `No_bil` = $P{No_bil}  GROUP BY `prd_name`]]>
 	</queryString>
 	<field name="Product_name" class="java.lang.String"/>
 	<field name="Product_price" class="java.lang.String"/>
+	<field name="Product_No_bil" class="java.lang.String"/>
 	<field name="number" class="java.math.BigDecimal"/>
 	<field name="purchasetotal" class="java.math.BigDecimal"/>
 	<variable name="DateGroup" class="java.math.BigDecimal" resetType="Group" resetGroup="DateGroup" incrementType="Group" incrementGroup="Grouprecord" calculation="Sum">
 		<variableExpression><![CDATA[$F{purchasetotal}]]></variableExpression>
 	</variable>
-	<variable name="total" class="java.math.BigDecimal" incrementType="Group" incrementGroup="Grouprecord" calculation="Sum">
+	<variable name="total" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{purchasetotal}]]></variableExpression>
 	</variable>
 	<group name="DateGroup">
@@ -44,17 +46,32 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="136" splitType="Stretch">
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="380" y="30" width="140" height="41" uuid="d7b2ac19-41e7-41d8-8499-35e367d017cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="TH SarabunPSK" size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ใบเสร็จรับเงิน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="360" y="101" width="80" height="19" forecolor="#736343" uuid="581d96f3-b744-4cb3-83be-db461169a811"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[วันที่ออกใบเสร็จ  ]]></text>
+			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="150" height="136" uuid="0d35c501-20a5-49bd-93c9-a5b07b4f5646"/>
+				<reportElement x="4" y="37" width="99" height="88" uuid="5d449eed-3d31-48b5-9342-53be8c3c76e9"/>
 				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="401" y="20" width="153" height="70" uuid="4e8de9a3-46e8-4a30-a1eb-63e8c4d9d340"/>
+				<reportElement x="103" y="37" width="160" height="88" uuid="5beececd-351f-44d6-976d-53ee697dee49"/>
 				<textElement textAlignment="Left">
-					<font fontName="TH SarabunPSK" size="12"/>
+					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
+				<text><![CDATA[
+ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
 เปิดทำการทุกวัน เวลา 9:00 - 20:00 น. 
 ติดต่อสอบถาม โทร  088 865 6185
 
@@ -62,23 +79,21 @@
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="150" y="58" width="280" height="32" uuid="d7b2ac19-41e7-41d8-8499-35e367d017cc"/>
-				<textElement textAlignment="Center">
-					<font fontName="TH SarabunPSK" size="26" isBold="true"/>
+				<reportElement style="Column header" x="360" y="80" width="80" height="19" forecolor="#736343" uuid="4d6528b4-722a-410a-b7a7-8a48f41f7e30"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
-				<text><![CDATA[ใบเสร็จรับเงิน]]></text>
+				<text><![CDATA[เลขที่ No.]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="200" y="0" width="93" height="20" uuid="ad462d4e-6f7b-4fdc-bab7-4be693d3613a"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[วันที่ใบเสร็จรับเงิน  ณ]]></text>
-			</staticText>
+			<textField>
+				<reportElement x="445" y="79" width="110" height="20" uuid="9a1da982-2889-4dc6-93dd-99d0fac10705"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{No_bil}]]></textFieldExpression>
+			</textField>
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="280" y="1" width="100" height="19" uuid="42405b15-f604-4206-b81f-9d59db36bafd"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<reportElement x="445" y="101" width="110" height="19" uuid="aac0029a-4117-4184-b2be-6f8b82e6a449"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{datenow}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

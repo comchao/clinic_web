@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DepositDAO;
 import dao.PetsDAO;
+import dao.ProductDAO;
 import dao.CageTypeDAO;
 import dao.TreatmentDao;
 import model.CageBean;
@@ -66,6 +68,36 @@ public class InsertPetDepositServlet extends HttpServlet {
 		int prd_qty = Integer.parseInt(request.getParameter("txtQty"));
 		double prd_total = Double.parseDouble(request.getParameter("txtSum"));
 		
+		
+		 
+		 String datenow = request.getParameter("datenow");
+		 System.out.println("datenow"+datenow);
+		 String produc_month = request.getParameter("produc_month");
+		 System.out.println("produc_month"+produc_month);
+		 String produc_year = request.getParameter("produc_year");
+		 System.out.println("produc_year"+produc_year);
+		 
+		 
+		
+		
+		//เลขบิล ShopDetail_Bil
+			
+			ProductDAO ShopDetail_Bil_ProductDAO = new ProductDAO();
+			List<DepositBean> List = ShopDetail_Bil_ProductDAO.ShopDetail_Bil();
+			for (int i = 0; i < List.size(); i++) {
+				DepositBean DepositBean = List.get(i);
+				DepositBean.getNo_bil();
+				
+				System.out.println("No_Bil"+DepositBean.getNo_bil());
+				
+				DepositBean depositBean1 = new DepositBean();
+				depositBean1.setNo_bil(DepositBean.getNo_bil());
+				ShopDetail_Bil_ProductDAO.insertShopDetail_Bil(depositBean1);
+				
+				
+				
+		
+		
 		String page = "";
 		DepositBean depositBean = new DepositBean();
 		ShopDetailBean shopDetailBean = new ShopDetailBean();
@@ -93,6 +125,12 @@ public class InsertPetDepositServlet extends HttpServlet {
 		shopDetailBean.setPrd_qty(prd_qty);
 		shopDetailBean.setPrd_total(prd_total);
 		
+		shopDetailBean.setProduc_year(produc_year);
+		shopDetailBean.setProduc_month(produc_month);
+		shopDetailBean.setNo_bil(DepositBean.getNo_bil());
+		
+		
+		
 		//update กรง
 		cageBean.setCage_status(cage_status);
 		cageBean.setId(sizeId);
@@ -103,6 +141,6 @@ public class InsertPetDepositServlet extends HttpServlet {
 		  if (dispatcher != null) {		
 				dispatcher.forward(request, response);
 			}
-	}
+			}}
 
 }

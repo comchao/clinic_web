@@ -64,8 +64,8 @@ public class ProductDAO {
 		String sql_insert = "insert into `shop_detail`" 		
 //				+ "(product_name,product_qty,product_price,product_total)"  
 //		        + " values ( ?, ?, ?, ?); ";
-				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total,produc_month,produc_year)"  
-		        + " values ( ?, ?, ?, ?, ?, ?,?,?); ";
+				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total,produc_month,produc_year,No_bil)"  
+		        + " values ( ?, ?, ?, ?, ?, ?,?,?,?); ";
 		try { 
 		preparedStmt = null;
         PetShopBean petshopBean = new PetShopBean();
@@ -87,7 +87,7 @@ public class ProductDAO {
 			preparedStmt.setDouble (6, shopDetailBean.getPrd_total());
 			preparedStmt.setString (7, shopDetailBean.getProduc_month());
 			preparedStmt.setString (8, shopDetailBean.getProduc_year());
-			
+			preparedStmt.setString (9, shopDetailBean.getNo_bil());
 			preparedStmt.executeUpdate();
 		}
 		} catch (SQLException e) {
@@ -110,8 +110,8 @@ public class ProductDAO {
 	
 	static public boolean insertDeposit(DepositBean depositBean,ShopDetailBean shopDetailBean ){		
 		String sql_insert = "insert into `shop_detail`" 		
-				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total)"  
-		        + " values ( ?, ?, ?, ?, ?, ?); ";
+				+ "(refer_petdeposit,prd_date,prd_name,prd_price,prd_qty,prd_total,produc_month,produc_year,No_Bil)"  
+		        + " values ( ?, ?, ?, ?, ?, ?,?,?,?); ";
 		
 		
 		try  {
@@ -124,6 +124,10 @@ public class ProductDAO {
                 preparedStmt.setDouble(4, shopDetailBean.getPrd_price());
                 preparedStmt.setInt (5, shopDetailBean.getPrd_qty());
                 preparedStmt.setDouble(6, shopDetailBean.getPrd_total());
+                preparedStmt.setString(7, shopDetailBean.getProduc_month());
+                preparedStmt.setString(8, shopDetailBean.getProduc_year());
+                preparedStmt.setString(9, shopDetailBean.getNo_bil());
+                
     			preparedStmt.executeUpdate();
 			
 			dbc.closeConnection();
@@ -149,7 +153,7 @@ public class ProductDAO {
 		ProductBean productBean = new ProductBean();
 		ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
 
-		String sql = "select * from products order by product_name; ";
+		String sql = "select * from products  GROUP BY product_name ; ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 
@@ -212,6 +216,7 @@ public class ProductDAO {
 				prdShopBean.setPrd_price(rs.getDouble("prd_price"));
 				prdShopBean.setPrd_qty(rs.getInt("prd_qty"));
 				prdShopBean.setPrd_total(rs.getDouble("prd_total"));
+				prdShopBean.setNo_bil(rs.getString("No_bil"));
 
 				prdShopList.add(prdShopBean);
 			}
@@ -242,7 +247,7 @@ public class ProductDAO {
 	
 		ArrayList<ShopDetailBean> prdShopList = new ArrayList<ShopDetailBean>();
 
-		String sql = "SELECT shop_detail.`prd_date` AS shop_detail_prd_date, shop_detail.`prd_name` AS shop_detail_prd_name,"
+		String sql = "SELECT shop_detail.`prd_date` AS shop_detail_prd_date, SUBSTRING(shop_detail.`prd_name`,1,70) AS shop_detail_prd_name,"
 				+ " shop_detail.`prd_price` AS shop_detail_prd_price, SUM(`prd_qty`) AS shop_detail_prd_qty, "
 				+ "SUM(`prd_total`) AS shop_detail_prd_total "
 				+ "FROM  shop_detail "
@@ -295,7 +300,7 @@ public class ProductDAO {
 	
 		ArrayList<ShopDetailBean> prdShopList = new ArrayList<ShopDetailBean>();
 
-		String sql = "SELECT shop_detail.`prd_date` AS shop_detail_prd_date, shop_detail.`prd_name` AS shop_detail_prd_name,"
+		String sql = "SELECT shop_detail.`prd_date` AS shop_detail_prd_date, SUBSTRING(shop_detail.`prd_name`,1,70) AS shop_detail_prd_name,"
 				+ " shop_detail.`prd_price` AS shop_detail_prd_price, SUM(`prd_qty`) AS shop_detail_prd_qty, "
 				+ "SUM(`prd_total`) AS shop_detail_prd_total "
 				+ "FROM  shop_detail "
@@ -315,6 +320,7 @@ public class ProductDAO {
 			
 				prdShopBean.setVisits(rs.getString("shop_detail_prd_total"));  // ราคารวม 
 				prdShopBean.setCountry(rs.getString("shop_detail_prd_name"));  // ชื่อ
+				System.out.println(rs.getString("shop_detail_prd_name"));
 				prdShopBean.setPrd_qty(rs.getInt("shop_detail_prd_qty"));     // หน่วย
                 
 				prdShopList.add(prdShopBean);
@@ -344,7 +350,7 @@ static public ArrayList<ProductBean> queryProductAllWhereTID(int type_id){
 	ProductBean productBean = new ProductBean();
 		ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
 		
-		String sql = "select * from products where refer_type_pet=? order by product_name ; ";
+		String sql = "select * from products where refer_type_pet=? GROUP BY product_name ; ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 			preparedStmt.setInt(1, type_id);
@@ -385,7 +391,7 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 	ProductBean productBean = new ProductBean();
 		ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
 		
-		String sql = "select * from products where id=? order by product_name ; ";
+		String sql = "select * from products where id=? GROUP BY product_name ; ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 			preparedStmt.setInt(1, type_id);
@@ -427,7 +433,7 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 		ProductBean productBean = new ProductBean();
 		ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
 
-		String sql = "select * from products where product_name LIKE ? OR product_code LIKE ? order by product_name ; ";
+		String sql = "select * from products where product_name LIKE ? OR product_code LIKE ? GROUP BY product_name ; ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 			preparedStmt.setString(1, "%"+product_key+"%");
@@ -471,7 +477,7 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 		ProductBean productBean = new ProductBean();
 		ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
 
-		String sql = "select * from products where refer_type_pet = ?; ";
+		String sql = "select * from products where refer_type_pet = ? GROUP BY product_name ; ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 			preparedStmt.setInt(1, pb.getRefer_type_pet());
@@ -516,7 +522,7 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 		ProductBean productBean = new ProductBean();
 		ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
 
-		String sql = "select * from products where product_name like ? or product_price like ?  order by id desc; ";
+		String sql = "select * from products where product_name like ? or product_price like ? GROUP BY product_name ; ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 			preparedStmt.setString(1, productList + "%");
@@ -618,7 +624,7 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 		ProductBean productBean = new ProductBean();
 		ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
 
-		String sql = "select * from products where refer_type_pet = ? order by product_name; ";
+		String sql = "select * from products where refer_type_pet = ? GROUP BY product_name ; ";
 		try {
 			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
 			preparedStmt.setInt(1, id);
@@ -653,5 +659,158 @@ static public ArrayList<ProductBean> queryProductWhereTID(int type_id){
 		}
 		return null;
 	}
+	
+     //select เลขบิลใบเสร็จ
+	static public ArrayList<DepositBean> ShopDetail_Bil() {
+
+		DepositBean DepositBean = new DepositBean();
+		ArrayList<DepositBean> DepositList = new ArrayList<DepositBean>();
+
+		String sql = "SELECT CONCAT( LPAD(No_bil+1,7,'0'))   AS No_bil FROM  ShopDetail_Bil order by `No_bil` desc limit 1; ";
+		try {
+			preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+			rs = preparedStmt.executeQuery();
+			// dbc.closeConnection();
+
+			while (rs.next()) {
+				DepositBean = new DepositBean();
+
+				
+				DepositBean.setNo_bil(rs.getString("No_bil"));
+			
+				DepositList.add(DepositBean);
+			}
+			rs.close();
+			return DepositList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error ===> " + e);
+		}finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> "+e.getMessage());
+			}
+		}
+		return null;
+	}
+	//select เลขบิลใบเสร็จ
+		static public ArrayList<DepositBean> ShopDetail_Bil1() {
+
+			DepositBean DepositBean = new DepositBean();
+			ArrayList<DepositBean> DepositList = new ArrayList<DepositBean>();
+
+			String sql = "SELECT No_bil  AS No_bil FROM  ShopDetail_Bil order by `No_bil` desc limit 1; ";
+			try {
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+				rs = preparedStmt.executeQuery();
+				// dbc.closeConnection();
+
+				while (rs.next()) {
+					DepositBean = new DepositBean();
+
+					
+					DepositBean.setNo_bil(rs.getString("No_bil"));
+				
+					DepositList.add(DepositBean);
+				}
+				rs.close();
+				return DepositList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			}finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> "+e.getMessage());
+				}
+			}
+			return null;
+		}
+	//insert No Bil 
+	static public boolean insertShopDetail_Bil(DepositBean depositBean1){		
+		String sql_insert = "insert into shopdetail_bil" 		
+				+ "(No_bil)"  
+		        + " values (?); ";
+		
+		
+		try  {
+            	
+			preparedStmt = null;
+                preparedStmt = dbc.createDBConnect().prepareStatement(sql_insert);
+                preparedStmt.setString (1, depositBean1.getNo_bil());
+               
+    			preparedStmt.executeUpdate();
+			
+			dbc.closeConnection();
+			return true;	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+			}finally {
+			try {
+				dbc.closeConnection();
+				preparedStmt.close();
+			} catch (Exception e) {
+				System.out.println("finally x=> "+e.getMessage());
+			}
+		}	
+	}
+	
+	//select เลขบิลใบเสร็จเพิ่มอาหารรับฝากสัตว์เลี้ยง
+			static public ArrayList<DepositBean> showDepositDetail_Bil1() {
+
+				DepositBean DepositBean = new DepositBean();
+				ArrayList<DepositBean> DepositList = new ArrayList<DepositBean>();
+
+				String sql = "SELECT No_bil  AS No_bil FROM  ShopDetail_Bil order by `No_bil` desc limit 1; ";
+				try {
+					preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+					rs = preparedStmt.executeQuery();
+					// dbc.closeConnection();
+
+					while (rs.next()) {
+						DepositBean = new DepositBean();
+
+						
+						DepositBean.setNo_bil(rs.getString("No_bil"));
+					
+						DepositList.add(DepositBean);
+					}
+					rs.close();
+					return DepositList;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("error ===> " + e);
+				}finally {
+					try {
+						dbc.closeConnection();
+						preparedStmt.close();
+					} catch (Exception e) {
+						System.out.println("finally x=> "+e.getMessage());
+					}
+				}
+				return null;
+			}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
+

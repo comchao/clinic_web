@@ -31,8 +31,8 @@
 		<h3 align="center">ข้อมูลยา</h3>	<br />
 			<h4 align="center">ค้นหายา</h4>
 			<form action="searchDrugServlet" method="post">
-				<input name="drug_name" type="text" class="search-query"
-					placeholder="ชื่อยา,รหัสยา" /> <input type="hidden"
+				<input name="drug_name" type="text" class="form-control" 
+					placeholder="ชื่อยา,รหัสยา" style="width:20%;" /> <input type="hidden"
 					name="searchType" >&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>

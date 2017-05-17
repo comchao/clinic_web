@@ -87,9 +87,9 @@ function mydate() {
 </script>
 
 <div class="container">
-<div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
+<!-- <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
 	<a href="chart_all.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
-
+ -->
 	
 </div>
 	<div class="row">
@@ -132,7 +132,7 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 			<h4>ปี</h4>
 		</div>
 		<div class="col-sm-2" align="left" >
-		<h4>อันดับ</h4>
+		<!-- <h4>อันดับ</h4> -->
 		</div>
 		<div class="col-sm-2"  >
 		
@@ -518,7 +518,7 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 			<%} %>
 			</select>
 		</div>
-		<div class="col-sm-2">
+		<%-- <div class="col-sm-2">
 			<select name="ON" id="report_id" class="form-control"
 				required="required" style="width:100%;">
 				<%if(ON.equals("3")){ %>
@@ -542,7 +542,10 @@ String ON = (String)request.getAttribute("ON");    // ลำดับ
 				
 				
 			</select>
-		</div>
+		</div> --%>
+		<!-- ค่าอันดับ -->
+		<input name="ON" type="hidden" value="5">
+		
 		
 	
 		

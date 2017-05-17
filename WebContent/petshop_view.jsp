@@ -26,7 +26,7 @@
 		<div class="col-sm-6" ><h3 align="center">ค้นหาตามประเภท</h3>
 			
 			<form action="searchProductIDServlet" method="POST" >
-			<select name="pet_id" id="pet_id"class="search-query"  style="width:70%;">
+			<select name="pet_id" id="pet_id" class="form-control" style="width:70%;">
 				<%
 					ArrayList<TypePetBean> list = PetsDAO.queryTypePetAll();
 					for (TypePetBean typePet : list) {
@@ -43,7 +43,7 @@
 		<div class="col-sm-6"><h3 align="center">ค้นหาจาก รหัสสินค้า / ชื่อสินค้า</h3>
 			
 			<form action="searchProductShopServlet" method="post">
-				<input name="product_name" type="text" class="search-query"	placeholder="ชื่อสินค้าสัตว์เลี้ยง" style="width:70%;"/> 
+				<input name="product_name" type="text" class="form-control"	placeholder="ชื่อสินค้าสัตว์เลี้ยง" style="width:70%;"/> 
 				<input type="hidden" name="searchType" value="searchProducts">&nbsp;&nbsp; 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>
@@ -67,9 +67,9 @@
 				}
 				pb = (ProductBean) allProduct.get(i);
 		%>
-		<div style="width:210px;float: left;height:550px;padding-right: 10px;" >
+		<div style="width:210px;float: left;height:550px;padding-right: 15px;" >
 					<div class="img-responsive">
-					  <center> <a class="thumbnail" href="#">
+					  <center> <a class="thumbnail" >
 						<img src="images/<%=pb.getProduct_img_name()%>" width="150px" height="150px" />
 					 </a> </center> 
 					</div>
@@ -80,7 +80,7 @@
 						<form  action="purchaseServlet" method="post">
 							<div>
 								<label for="qty-1">จำนวน</label>
-								<input type="text" name="number" id="qty-1" class="qty" value="1" />
+								<input type="number" name="number" id="qty-1" class="qty" value="1" />
 								<input type="hidden" name="Product_name"  value="<%=pb.getProduct_name()%>" />
 								<input type="hidden" name="Product_price"  value="<%=pb.getProduct_price()%>" />
 							</div>

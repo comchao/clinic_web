@@ -1,7 +1,12 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,18 +54,25 @@ public class ReportServlet extends HttpServlet {
 		
 		int report_id = Integer.parseInt(request.getParameter("report_id"));
 		String date_start = request.getParameter("date_start");
-		
 		System.out.println(date_start);
-	
-		
 		String date_end = request.getParameter("date_end");
 		System.out.println(date_end);
-		
-		
 		String id = request.getParameter("id");
 		System.out.println(id);
 		
+		//วันที่ออกรายงาน  ณ
+		String datenow = request.getParameter("datenow");  
+		System.out.println("วันที่ออกรายงาน  ณ"+datenow);
 		
+		
+		//จาก ระหว่างวันที่ไทย 
+		String date_start_thai = dateThai(date_start);
+		System.out.println("date_start_thai"+date_start_thai);
+		
+		//ถึง ระหว่างวันที่ไทย
+		String date_end_thai = dateThai(date_end);
+		System.out.println("date_end_thai"+date_end_thai);
+	
 		
 		
 		String deposit_id = request.getParameter("deposit_id");
@@ -106,7 +118,7 @@ public class ReportServlet extends HttpServlet {
 		/*สิ้นสุดส่วนชองการ Report*/
 		
 		if (report_id == 1) {
-			if ((ReportDAO.printPetShop(date_start, date_end)) != false) {
+			if ((ReportDAO.printPetShop(date_start, date_end,date_start_thai,date_end_thai,datenow)) != false) {
 				response.sendRedirect("reportConfrim.jsp");
 
 			} else {
@@ -180,22 +192,58 @@ public class ReportServlet extends HttpServlet {
 				response.sendRedirect("report4UnConfrim.jsp");
 			}
 
+			
+			
+			
+			
 		} else if (report_id == 5) {// ใบเสร็จค่าฝากเลี้ยง
-			if (ReportDAO.printDepositBill(deposit_id)) {
+			/*if (ReportDAO.printDepositBill(deposit_id,datenow,No_bil)) {
 				int cage_id = Integer.parseInt(request.getParameter("cg_id"));
 				response.sendRedirect("report5Confrim.jsp?deposit_id=" + deposit_id + "&cage_id=" + cage_id);
 
 			} else {
 				response.sendRedirect("report5UnConfrim.jsp");
-			}
+			}*/
 
 		}
+		
+		
+		
+		
+		
+		
 		try {
 			// Do something
 		} catch (Exception e) {
 			// No rethrowing or logging, just suppressing
 		}
 
+	}
+	public static String dateThai(String strDate)
+	{
+		String Months[] = {
+			      "มกราคม", "กุมภาพันธ์", "มีนาคม ", "เมษายน",
+			      "พฤษภาคม", "มิถุนายน ", "กรกฎาคม", "สิงหาคม ",
+			      "กันยายน", "ตุลาคม ", "พฤศจิกายน", "ธันวาคม"};
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+		
+		int year=0,month=0,day=0;
+		try {
+			Date date = df.parse(strDate);
+			Calendar c = Calendar.getInstance();
+			c.setTime(date);  
+			
+			year = c.get(Calendar.YEAR);
+			month = c.get(Calendar.MONTH);
+			day = c.get(Calendar.DATE);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return String.format("%s %s %s", day,Months[month],year+543);
 	}
 
 }

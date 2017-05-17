@@ -13,9 +13,13 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ReportDAO {
-	public static boolean printPetShop(String date_start, String date_end) {
+	public static boolean printPetShop(String date_start, String date_end,String date_start_thai,String date_end_thai,String datenow) {
 		
 		Connection connect = null;
 		
@@ -48,6 +52,9 @@ public class ReportDAO {
 			
 			parameter.put("BeginDate",date_start); 
 			parameter.put("EndDate",date_end); 
+			parameter.put("date_start_thai",date_start_thai); 
+			parameter.put("date_end_thai",date_end_thai); 
+			parameter.put("datenow",datenow);
 			
 			// Report Viewer
 			JasperReport ir = JasperCompileManager.compileReport(report);
@@ -136,7 +143,7 @@ public static boolean printDrug(String date_start, String date_end) {
 public static boolean printTreatment(String date_start, String date_end) {
 	
 	
-	System.out.println("มาเเล้วdate_start"+date_start);
+	System.out.println("date_start"+date_start);
 	System.out.println("date_start"+date_end);
 	Connection connect = null;
 	
@@ -257,7 +264,7 @@ public static boolean printDrugTreatment(String id,String name,String date_now) 
 	
 	return false;
 }
-public static boolean printDepositBill(String deposit_id) {
+public static boolean printDepositBill(String deposit_id,String datenow ,String No_bil) {
 	
 	Connection connect = null;
 	
@@ -289,6 +296,8 @@ public static boolean printDepositBill(String deposit_id) {
 		HashMap<String, Object> parameter = new HashMap<String, Object>();
 		
 		parameter.put("id",deposit_id); 
+		parameter.put("datenow",datenow);  
+		parameter.put("No_bil",No_bil);
 		
 		
 		// Report Viewer
@@ -457,7 +466,7 @@ public static boolean Disease (String id) {
 
 
 //ใบเสร็จรับเงิน
-public static boolean BillPurchase (int id) {
+public static boolean BillPurchase (int id ,  String No_bil) {
 	
 	Connection connect = null;
 	
@@ -487,8 +496,15 @@ public static boolean BillPurchase (int id) {
 	try {
 		
 		HashMap<String, Object> parameter = new HashMap<String, Object>();
+		Date date = Calendar.getInstance().getTime();
+
+        // Display a date in day, month, year format
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String datenow = formatter.format(date);
+        System.out.println("datenow : " + datenow);
 		
-		/*parameter.put("id",id); */
+		parameter.put("No_bil",No_bil); 
+		parameter.put("datenow",datenow); 
 		
 		// Report Viewer
 		JasperReport ir = JasperCompileManager.compileReport(report);

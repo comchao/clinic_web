@@ -10,7 +10,7 @@
 
 <script>
 	function editConfirm() {
-		if (confirm("บันทึกข้อมูลสำเร็จ")) {
+		if (confirm("ตรวจสอบข้อมูลอีกครั้ง!")) {
 			return true;
 		}
 		return false;
@@ -312,7 +312,7 @@
 										<td colspan="3">
 											<div class="form-group">
 												<button type="button" id="add_row_treatment"
-													class="btn btn-sm btn-primary">อื่น ๆ</button>
+													class="btn btn-sm btn-primary">ค่ารักษา</button>
 											</div>
 										</td>
 									</tr>
@@ -408,7 +408,7 @@
 					+ ' </td> '
 					+ ' <td> '
 					+ ' 	<div class="form-group"> '
-					+ ' 		<input type="number"  class="form-control" name="drug_qty[]" value="1"/> '
+					+ ' 		<input type="number"  class="form-control" name="drug_qty[]" value="1"  placeholder="จำนวน"/> '
 					+ ' 	</div> '
 					+ ' </td> '
 					+ ' <td> '
@@ -481,7 +481,7 @@
 					+ ' </td> '
 					+ ' <td> '
 					+ ' 	<div class="form-group"> '
-					+ ' 		<input type="number"  class="form-control" name="spanOtherPrice[]" value=""/>'
+					+ ' 		<input type="number"  class="form-control" name="spanOtherPrice[]" value="1"/>'
 					+ ' 	</div> '
 					+ ' </td> '
 					+ ' <td> '

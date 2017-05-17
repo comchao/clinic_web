@@ -36,7 +36,7 @@
 			<h4 align="center">ค้นหาสินค้า</h4>
 			<br />
 			<form action="searchProductServlet" method="post">
-				<input name="product_name" type="text" class="search-query"
+				<input name="product_name" type="text" class="form-control" style="width:20%;" 
 					placeholder="ชื่อสินค้า" /> <input type="hidden"
 					name="searchType" value="searchProducts">&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />

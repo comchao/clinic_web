@@ -11,7 +11,7 @@
 
 
 
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-info" value="ย้อนกลับ"  align="right" /></a>
+	<a href="index-veterinary.jsp"><input type="submit" class="btn btn-info" value="ย้อนกลับ"  align="right" /></a>
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -38,14 +38,14 @@
 		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลเจ้าของ</h4>
 			
 			<form action="SearchOwnerAppointmentServlet" method="post">
-				<input name="owner_name" type="text" class="search-query" placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> 
+				<input name="owner_name" type="text" class="form-control"  placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> 
 				<input type="hidden" name="searchType" >
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form></div>
 		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลสัตว์เลี้ยง</h4>
 			
 			<form action="SearchPetAppointmentServlet" method="post">
-				<input name="pet_name" type="text" class="search-query"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
+				<input name="pet_name" type="text" class="form-control"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
 				<input type="hidden" name="searchType" value="searchPets">&nbsp;&nbsp; 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form></div>

@@ -11,6 +11,13 @@ public class ShopDetailBean {
 	private String total;
 	private String produc_year; 
 	private String produc_month;
+	private String No_bil;
+	public String getNo_bil() {
+		return No_bil;
+	}
+	public void setNo_bil(String no_bil) {
+		No_bil = no_bil;
+	}
 	public String getProduc_month() {
 		return produc_month;
 	}

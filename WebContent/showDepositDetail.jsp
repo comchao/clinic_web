@@ -61,13 +61,42 @@ function checkCal() {
 <br>
 <br>
 <br>
+	<%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
+	<%java.text.DateFormat df4 = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); %>
+	<%java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy"); %>
+	    <%java.text.DateFormat df3 = new java.text.SimpleDateFormat("MM"); %>
 
 <div class="container" >
 <div align="right">
-<form name="billPledge" action="ReportServlet" method="post">
+<form  action="Pet_depositServlet" method="post">
+
+
+	
+	          <input type="hidden" name="datenow" value="<%= df4.format(new java.util.Date()) %>" >	
+			  
+			
 							<input type="hidden" name="deposit_id" value="<%=request.getParameter("deposit_id")%>">
 							<input type="hidden" name="cg_id" value="<%=request.getParameter("cage_id")%>">
-							<input type="hidden" value="5" name="report_id" />
+							<%
+		ArrayList<ShopDetailBean> prdShopList1 = (ArrayList) session.getAttribute("allShopSS");
+		if (prdShopList1 != null) {
+		
+			ShopDetailBean prdShopBean;
+					String allpage = (String) session.getAttribute("pageN");
+					int p = Integer.parseInt(allpage);
+					double sum=0;
+					for (int i = (p * 10) - 10; i < p * 10; i++) {
+						
+						if (i == prdShopList1.size()) {
+							break;
+						}
+						prdShopBean = (ShopDetailBean) prdShopList1.get(i);
+						
+						
+				%>
+	
+							<input type="hidden" name="No_bil" value="<%=prdShopBean.getNo_bil()%>">
+							<%} }%>
 							<input  class="btn btn-info" type="submit" value="ชำระเงินค่าฝากเลี้ยง">
 </form>
 
@@ -82,6 +111,13 @@ function checkCal() {
 		<form name="frmMain" id="frmMain" action="UpdatePrdDepositServlet" method="POST">
 		<input type="hidden" name="cage_id" value="<%=request.getParameter("cage_id")%>">
 		
+	
+	    
+	
+	          <input type="hidden" name="datenow" value="<%= df.format(new java.util.Date()) %>" >	
+			  <input type="hidden" name="produc_year" value="<%= df2.format(new java.util.Date())%>" >
+			  <input type="hidden" name="produc_month" value="<%= df3.format(new java.util.Date())%>" >
+		
 				<!--  ข้อมูลสัตว์เลี้ยง  -->
 				<%
 					ArrayList<DepositBean> depositList = (ArrayList) session.getAttribute("allDepositSS");
@@ -89,6 +125,10 @@ function checkCal() {
 						DepositBean depositBean;
 							depositBean = (DepositBean) depositList.get(0);
 				%>
+				
+				
+				
+				
 				<div class="col-sm-4">
 					<div class="form-group">
 						<div class="row">
@@ -471,6 +511,9 @@ function checkCal() {
 				<td align="right"><%=formatter.format(prdShopBean.getPrd_price())%></td>
 				<td align="right"><%=prdShopBean.getPrd_qty()%></td>
 				<td align="right"><%=formatter.format(prdShopBean.getPrd_total())%></td>
+				
+				<input type="hidden" name="No_bil" value="<%=prdShopBean.getNo_bil()%>">
+				
 			</tr>
 			<%
 				}

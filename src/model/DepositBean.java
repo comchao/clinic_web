@@ -12,6 +12,14 @@ public class DepositBean {
 	private int deposit_day;
 	private int deposit_status;
 	private String deposit_date;
+
+	private String No_bil;
+	public String getNo_bil() {
+		return No_bil;
+	}
+	public void setNo_bil(String no_bil) {
+		No_bil = no_bil;
+	}
 	public int getId() {
 		return id;
 	}

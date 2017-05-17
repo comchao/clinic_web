@@ -34,7 +34,7 @@
                 </div>
                 
 			
-		<div class="col-sm-3 officer-menu-item">
+		<!-- <div class="col-sm-3 officer-menu-item">
 				<a href="barchart.jsp"class="officer-menu-link"
 					data-toggle="modal">
 					<div class="caption">
@@ -44,7 +44,7 @@
 					</div> <center><img src="img/portfolio/laptop.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>bar chart year</h6></center>
 				</a>
 				
-			</div>
+			</div> -->
 			
 			
 			

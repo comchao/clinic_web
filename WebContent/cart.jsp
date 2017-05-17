@@ -133,7 +133,7 @@ for(int i1 = 0;i1<List1.size();i1++){
 			
 </table>
 <form action="SumCart.jsp" method="post">
-           <p align="right" >จำนวนเงินที่รับ &nbsp; &nbsp; <input type="text" name="number"  height="50%"  required="required" ></p>
+           <p align="right" >จำนวนเงินที่รับ &nbsp; &nbsp; <input type="text" name="number" required="required" class="form-control"  style="width:20%;"></p>
            <br>
 			<p   >  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import dao.ProductDAO;
 import dao.ReportDAO;
 import dao.purchaseDAO;
+import model.DepositBean;
 import model.ProductBean;
 import model.purchaseBean;
 
@@ -38,13 +39,23 @@ public class ShowPetShopServlet1 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		try {
+			//เลขบิล ShopDetail_Bil
+			
+			ProductDAO ShopDetail_Bil_ProductDAO = new ProductDAO();
+			List<DepositBean> List = ShopDetail_Bil_ProductDAO.ShopDetail_Bil1();
+			for (int i = 0; i < List.size(); i++) {
+				DepositBean DepositBean = List.get(i);
+				DepositBean.getNo_bil();
+				
+				System.out.println("No_bil "+DepositBean.getNo_bil());
 			
 		int id = 1;
 			
 			// ใบรายงานการวินิจฉัยโรคของสัตร์
-			
+		
+		    String No_bil = DepositBean.getNo_bil();
 			ReportDAO ReportDAO = new ReportDAO();
-				if (ReportDAO.BillPurchase(id)) {
+				if (ReportDAO.BillPurchase(id,No_bil)) {
 
 
 			ArrayList<ProductBean> productList = new ArrayList<ProductBean>();
@@ -61,10 +72,10 @@ public class ShowPetShopServlet1 extends HttpServlet {
 			session.setAttribute("allProductSS", productList);
 
 			//ลบข้อมูลสินค้าในตะกร้าสินค้าทั้งหมด
-			purchaseDAO dao = new purchaseDAO();
-			List<purchaseBean> List = dao.getpurchaseID();
-			for (int i = 0; i < List.size(); i++) {
-				purchaseBean bean = List.get(i);
+			purchaseDAO dao2 = new purchaseDAO();
+			List<purchaseBean> List2 = dao2.getpurchaseID();
+			for (int i2 = 0; i2 < List2.size(); i2++) {
+				purchaseBean bean = List2.get(i2);
 
 				purchaseDAO DAO = new purchaseDAO();
 				purchaseBean Bean = new purchaseBean();
@@ -77,7 +88,7 @@ public class ShowPetShopServlet1 extends HttpServlet {
 				} else {
 					response.sendRedirect("reportUnConfrim.jsp");
 				}
-		} catch (Exception ex) {
+			}} catch (Exception ex) {
 			ex.printStackTrace(System.out);
 		}
 	}

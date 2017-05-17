@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.AnalysisBean;
 import model.DepositBean;
 import model.ProductBean;
 import model.ShopDetailBean;
 import model.TreatmentBean;
+import dao.DiseaseDAO;
 import dao.ProductDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -68,16 +71,40 @@ public class InsertProductHisServlet extends HttpServlet {
 		DepositBean depositBean = new DepositBean();
 		depositBean.setId(0);
 		
-		ShopDetailBean shopDetailBean = new ShopDetailBean();
-		shopDetailBean.setRefer_petdeposit(depositBean);
-		shopDetailBean.setPrd_date(datenow);
-		shopDetailBean.setProduc_year(produc_year);
-		shopDetailBean.setProduc_month(produc_month);
+	
 		
+		//เลขบิล ShopDetail_Bil
+		
+		ProductDAO ShopDetail_Bil_ProductDAO = new ProductDAO();
+		List<DepositBean> List = ShopDetail_Bil_ProductDAO.ShopDetail_Bil();
+		for (int i = 0; i < List.size(); i++) {
+			DepositBean DepositBean = List.get(i);
+			DepositBean.getNo_bil();
+			
+			System.out.println("No_Bil"+DepositBean.getNo_bil());
+		
+			
+			
+			DepositBean Bean = new DepositBean();
+			Bean.setNo_bil(DepositBean.getNo_bil());
+			ShopDetail_Bil_ProductDAO.insertShopDetail_Bil(Bean);
+			
+			
+			//insert shopDetail DB 
+			ShopDetailBean shopDetailBean = new ShopDetailBean();
+			shopDetailBean.setRefer_petdeposit(depositBean);
+			shopDetailBean.setPrd_date(datenow);
+			shopDetailBean.setProduc_year(produc_year);
+			shopDetailBean.setProduc_month(produc_month);
+			//เลขบิล ShopDetail_Bil
+			shopDetailBean.setNo_bil(DepositBean.getNo_bil());
+			
+			
+
 		System.out.println(datenow);
 		ProductDAO.inserPetShop(shopDetailBean , pNameArray, pQtyArray, pPriceArray ,pTotalArray);
 			response.sendRedirect("insertPetShopConfrim.jsp");
 		
-	}
+	}}
 
 }
