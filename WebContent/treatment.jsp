@@ -10,7 +10,7 @@
 
 <script>
 	function editConfirm() {
-		if (confirm("ตรวจสอบข้อมูลอีกครั้ง!")) {
+		if (confirm("ต้องการบันทึกปรข้อมูล")) {
 			return true;
 		}
 		return false;
@@ -304,8 +304,8 @@
 									<tr data-value="1">
 										<td colspan="3">
 											<div class="form-group">
-												<button type="button" id="add_row_drug"
-													class="btn btn-sm btn-primary">เพิ่มการจ่ายยา</button>
+												 <button type="button" id="add_row_drug"
+													class="btn btn-sm btn-danger" > โปรดเลือก  เพิ่มการจ่ายยา</button>
 											</div>
 										</td>
 									</tr>
@@ -318,8 +318,8 @@
 									<tr data-value="1">
 										<td colspan="3">
 											<div class="form-group">
-												<button type="button" id="add_row_treatment"
-													class="btn btn-sm btn-primary">ค่ารักษา</button>
+											<button type="button" id="add_row_treatment"
+													class="btn btn-sm btn-danger" >โปรดเลือก ค่ารักษา</button>
 											</div>
 										</td>
 									</tr>
@@ -365,7 +365,7 @@
 					<input type="hidden" name="Status" value="0"> 
 						<input type="hidden" name="pet_id" value="<%=request.getParameter("pet_id")%>">
 						<input type="submit" name="submit" id="submit"
-						onclick="return editConfirm();	"class="btn btn-success" value="บันทึกข้อมูล"  /><br><br><br><br>
+						class="btn btn-success" value="บันทึกข้อมูล"  /><br><br><br><br>
 					</div>
 				</div>
 
@@ -483,12 +483,12 @@
 					+ '"> '
 					+ ' <td> '
 					+ ' 	<div class="form-group"> '
-					+ ' 		<select name="other_name[]" id="other_name" class="form-control" required></select> '
+					+ ' 		<select name="other_name[]" id="other_name" class="form-control"  required="required"></select> '
 					+ ' 	</div> '
 					+ ' </td> '
 					+ ' <td> '
 					+ ' 	<div class="form-group"> '
-					+ ' 		<input type="number"  class="form-control" name="spanOtherPrice[]" value="1"/>'
+					+ ' 		<input type="hidden"  class="form-control" name="spanOtherPrice[]" value="1"  />'
 					+ ' 	</div> '
 					+ ' </td> '
 					+ ' <td> '

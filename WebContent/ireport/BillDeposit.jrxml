@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-05-18T23:07:09 -->
+<!-- 2017-05-20T02:10:42 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -31,7 +31,8 @@
      pet_deposit.`deposit_day` AS pet_deposit_deposit_day,
      pet_deposit.`deposit_receive` AS pet_deposit_deposit_receive,
      cage.`cage_price` AS cage_cage_price,
-     shop_detail.`prd_date` AS shop_detail_prd_date
+     shop_detail.`prd_date` AS shop_detail_prd_date,
+     shop_detail.prd_price AS  shop_detail_prd_price
 FROM
      `pet_deposit` pet_deposit INNER JOIN `shop_detail` shop_detail ON pet_deposit.`id` = shop_detail.`refer_petdeposit`
      INNER JOIN `petdata` petdata ON pet_deposit.`refer_pet_id` = petdata.`id`
@@ -48,15 +49,37 @@ WHERE
 	<field name="shop_detail_prd_name" class="java.lang.String"/>
 	<field name="shop_detail_prd_qty" class="java.lang.Integer"/>
 	<field name="shop_detail_prd_total" class="java.math.BigDecimal"/>
-	<field name="pet_deposit_deposit_day" class="java.lang.Integer"/>
 	<field name="pet_deposit_deposit_receive" class="java.math.BigDecimal"/>
-	<field name="cage_cage_price" class="java.lang.Double"/>
 	<field name="shop_detail_prd_date" class="java.lang.String"/>
+	<field name="pet_deposit_deposit_day" class="java.math.BigDecimal"/>
+	<field name="cage_cage_price" class="java.math.BigDecimal"/>
+	<field name="shop_detail_prd_price" class="java.math.BigDecimal"/>
+	<variable name="total" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{shop_detail_prd_total}]]></variableExpression>
+	</variable>
+	<variable name="SUM2" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{cage_cage_price}*$F{pet_deposit_deposit_day}]]></variableExpression>
+	</variable>
+	<variable name="SUM1" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{cage_cage_price}*$F{pet_deposit_deposit_day}/$V{SUM2}]]></variableExpression>
+	</variable>
+	<variable name="SUM3" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{SUM2}*$V{SUM1}]]></variableExpression>
+	</variable>
+	<variable name="SUM6" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{pet_deposit_deposit_receive}]]></variableExpression>
+	</variable>
+	<variable name="SUM7" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{pet_deposit_deposit_receive}/$V{SUM6}]]></variableExpression>
+	</variable>
+	<variable name="SUM8" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{SUM6}*$V{SUM7}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="138" splitType="Stretch">
+		<band height="125" splitType="Stretch">
 			<staticText>
 				<reportElement x="380" y="10" width="140" height="41" uuid="d7b2ac19-41e7-41d8-8499-35e367d017cc"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
@@ -139,7 +162,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="22" splitType="Stretch">
+		<band height="74" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="116f7bcf-4e95-43bb-aa57-8cf01f6a1420"/>
 				<graphicElement>
@@ -158,131 +181,183 @@ WHERE
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
-				<text><![CDATA[รายการรับฝากสัตว์เลี้ยง]]></text>
+				<text><![CDATA[รายการค่าฝากสัตว์เลี้ยง]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="454" y="0" width="51" height="16" forecolor="#736343" uuid="71f4cc79-0a2d-4fd6-ba98-77a4a3e5adc7"/>
+				<reportElement style="Column header" x="353" y="0" width="51" height="16" forecolor="#736343" uuid="71f4cc79-0a2d-4fd6-ba98-77a4a3e5adc7"/>
 				<textElement textAlignment="Right">
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
 				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="505" y="0" width="50" height="16" forecolor="#736343" uuid="72255541-9cba-4a0f-9bca-c3b5dc6884d7"/>
+				<reportElement style="Column header" x="480" y="0" width="74" height="16" forecolor="#736343" uuid="72255541-9cba-4a0f-9bca-c3b5dc6884d7"/>
 				<textElement textAlignment="Right">
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
 				<text><![CDATA[ราคารวม]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="380" y="0" width="74" height="16" forecolor="#736343" uuid="156d366a-4dc3-43e7-a87f-94ea21d65f38"/>
+				<reportElement style="Column header" x="406" y="0" width="74" height="16" forecolor="#736343" uuid="156d366a-4dc3-43e7-a87f-94ea21d65f38"/>
 				<textElement textAlignment="Right">
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
 				<text><![CDATA[จำนวน]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="58" y="15" width="96" height="20" uuid="802cf60a-2d76-44fa-8dc6-0c0796284afe"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[ราคากรง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="35" width="96" height="20" uuid="93ac5d3f-a58c-4da9-aab4-6dffbec98d0b"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[ค่ามัดจำ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="15" width="56" height="20" uuid="dcdd17b9-86ad-4fde-97bb-f7b36e510f09"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{cage_cage_price})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="437" y="15" width="11" height="20" uuid="69b3b3d6-7514-4db2-a243-089a5d0f2e33"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="449" y="15" width="9" height="20" uuid="954d66c9-14e1-4bc1-b5bd-7fc69fcfbdfd"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pet_deposit_deposit_day}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="460" y="15" width="17" height="20" uuid="02ee4e38-8232-41a8-92cb-f630572e65d6"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[วัน]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="15" width="74" height="20" uuid="9026d57c-1217-44d8-9dc1-4586edf7fce8"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{cage_cage_price}*$F{pet_deposit_deposit_day})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="35" width="74" height="20" uuid="97bba77d-e88f-4f34-bda3-b3ec08dfc72e"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[-$F{pet_deposit_deposit_receive}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="16" width="54" height="18" uuid="218d37cc-3342-4a8f-b69c-a6b62441665f"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="54" height="18" uuid="c6553b4f-d983-4086-8dad-33123dc08016"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="54" y="55" width="324" height="16" forecolor="#736343" uuid="11491298-59e0-4025-84f1-6aeaa6d1cadf"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[รายการอาหาร]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="55" width="52" height="16" forecolor="#736343" uuid="7237a64e-74a4-4ab6-a1f0-514b148b25b6"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ลำดับ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="406" y="55" width="72" height="16" forecolor="#736343" uuid="0ad77738-280e-429e-aade-9f6bbaa6eb94"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[จำนวน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="505" y="55" width="48" height="16" forecolor="#736343" uuid="b698b01f-d68f-4e31-89c7-6ec97b966753"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ราคารวม]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="71" width="555" height="1" uuid="44db7521-a8cb-4b6b-a864-39606e3af39f"/>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="332" y="55" width="74" height="16" forecolor="#736343" uuid="707e954a-a028-4dbc-94da-f62129a917f3"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ราคาต่อหน่วย]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="65" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="65" uuid="8a6dd7d6-bc21-40ac-b39f-f7b1da211287"/>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="20" uuid="8a6dd7d6-bc21-40ac-b39f-f7b1da211287"/>
 				<textField>
-					<reportElement x="0" y="0" width="76" height="20" uuid="2f0e09e2-9496-4eba-aa3c-d06bfea22a87"/>
+					<reportElement x="0" y="0" width="54" height="20" uuid="2f0e09e2-9496-4eba-aa3c-d06bfea22a87"/>
 					<textElement>
 						<font fontName="TH SarabunPSK" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement x="76" y="0" width="100" height="20" uuid="5c567b5a-0296-49d9-8448-6d4c5898bf93"/>
-					<textElement>
-						<font fontName="TH SarabunPSK" size="12"/>
-					</textElement>
-					<text><![CDATA[ราคากรง]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="76" y="40" width="100" height="20" uuid="d8b24be7-16d2-4543-99bf-2d82c0aeb944"/>
-					<textElement>
-						<font fontName="TH SarabunPSK" size="12"/>
-					</textElement>
-					<text><![CDATA[ค่ามัดจำ]]></text>
-				</staticText>
 				<textField>
-					<reportElement x="76" y="20" width="277" height="20" uuid="cd3fcc95-ea39-4efa-a36a-89ce1067e9ec"/>
+					<reportElement x="54" y="0" width="273" height="20" uuid="cd3fcc95-ea39-4efa-a36a-89ce1067e9ec"/>
 					<textElement textAlignment="Left">
 						<font fontName="TH SarabunPSK" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{shop_detail_prd_name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="353" y="40" width="91" height="20" uuid="04fb39e5-1efa-4ba8-85a2-270690085312"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format(-$F{pet_deposit_deposit_receive})]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="353" y="20" width="91" height="20" uuid="1768f772-321c-4000-b8bf-392d06664f32"/>
+					<reportElement x="404" y="0" width="76" height="20" uuid="1768f772-321c-4000-b8bf-392d06664f32"/>
 					<textElement textAlignment="Right">
 						<font fontName="TH SarabunPSK" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{shop_detail_prd_qty}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="353" y="0" width="50" height="20" uuid="8b54ff4a-3b01-481d-a69e-541dcff673ee"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{cage_cage_price})]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="403" y="0" width="12" height="20" uuid="d42e4427-aae2-4b0c-82d0-55a2904ef579"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK" size="12"/>
-					</textElement>
-					<text><![CDATA[X]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="415" y="0" width="10" height="20" uuid="98047861-dd5d-4e3a-9e3f-453004f6afcb"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{pet_deposit_deposit_day}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="426" y="0" width="18" height="20" uuid="833c8601-b51c-4b06-a71c-7180fad00391"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK" size="12"/>
-					</textElement>
-					<text><![CDATA[วัน]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="500" y="0" width="55" height="20" uuid="35cba29a-2de0-43b8-a805-d5b640379526"/>
-					<textElement textAlignment="Right">
-						<font fontName="TH SarabunPSK" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{cage_cage_price}*$F{pet_deposit_deposit_day})]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="444" y="20" width="111" height="20" uuid="14031368-f2e4-454c-b695-9653d7c54d8e"/>
+					<reportElement x="480" y="0" width="75" height="20" uuid="14031368-f2e4-454c-b695-9653d7c54d8e"/>
 					<textElement textAlignment="Right">
 						<font fontName="TH SarabunPSK" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{shop_detail_prd_total})]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="444" y="40" width="111" height="20" uuid="628d6da3-12cd-4e79-be8e-c7c9dc254c68"/>
-					<textElement textAlignment="Right">
+					<reportElement x="332" y="-2" width="70" height="20" uuid="77d79af0-8c3a-45bb-87eb-769a5229473a"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="TH SarabunPSK" size="12"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format(-$F{pet_deposit_deposit_receive})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{shop_detail_prd_price}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
 	</detail>
 	<lastPageFooter>
-		<band height="155">
+		<band height="110">
 			<staticText>
 				<reportElement style="Column header" x="380" y="20" width="65" height="20" forecolor="#736343" uuid="e2de8d5b-bfc9-49bc-ba06-1242bacc9475"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -300,19 +375,6 @@ WHERE
 				</textElement>
 				<text><![CDATA[บาท]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="229" y="0" width="100" height="20" uuid="f4255db5-40f3-4462-a32c-3f0fac191b68"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="444" y="20" width="70" height="20" uuid="993805c2-f2d9-4acb-b6af-9032c1ca7966"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{shop_detail_prd_total}+$F{cage_cage_price}*$F{pet_deposit_deposit_day}-$F{pet_deposit_deposit_receive}
-)]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="380" y="70" width="164" height="20" uuid="1953693f-c159-4083-b65a-c5bb2823bd64"/>
 				<textElement>
@@ -327,6 +389,13 @@ WHERE
 				</textElement>
 				<text><![CDATA[(                                               )]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="445" y="20" width="75" height="19" uuid="71f46b37-7cf6-4f67-bc44-8392734e67b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format(($V{total}+$V{SUM3})-$V{SUM8})]]></textFieldExpression>
+			</textField>
 		</band>
 	</lastPageFooter>
 	<summary>

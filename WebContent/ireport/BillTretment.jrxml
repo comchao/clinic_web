@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-05-18T22:30:00 -->
+<!-- 2017-05-19T16:29:54 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -21,42 +21,35 @@
 	<parameter name="No_bil" class="java.lang.String"/>
 	<parameter name="datenow" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT drug.drug_name ,drug.drug_price,SUM(treatment_drug.drug_qty) AS drug_qty ,
-		SUM(drug.drug_price*treatment_drug.drug_qty) AS total , other_treatment.other_name , 
-		SUM(treatment_other.`other_prices`*other_treatment.`other_price`)AS totalother, SUM(treatment_other.other_prices) AS totalother_qty
-		FROM drug ,treatment_drug ,treatment_other , other_treatment WHERE drug.id = treatment_drug.refer_drug_id 
-		AND treatment_drug.refer_treatment_id = $P{id} AND treatment_other.other_id = other_treatment.id AND
-		 treatment_other.refer_treatment_id = $P{id}GROUP BY drug.drug_name]]>
+		<![CDATA[SELECT drug.drug_name,SUM(this_.drug_qty) AS drug_qty   , this_.drug_sumprice
+ FROM `treatment_drug` this_ 
+ INNER JOIN drug ON drug.id = this_.refer_drug_id
+WHERE this_.refer_treatment_id = $P{id} GROUP BY refer_drug_id
+ UNION
+ SELECT other_treatment.other_name drug_name,  1 drug_qty, 
+ (Select sum(treatment_other.`other_prices`*other_treatment.`other_price`) 
+  FROM treatment_other   JOIN other_treatment ON treatment_other.`other_id`= other_treatment.id   WHERE refer_treatment_id = $P{id}) AS  other_prices
+ FROM `treatment_other`
+INNER JOIN other_treatment ON other_treatment.id = treatment_other.other_id
+WHERE treatment_other.refer_treatment_id = $P{id}]]>
 	</queryString>
 	<field name="drug_name" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="other_name" class="java.lang.String">
+	<field name="drug_sumprice" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="drug_price" class="java.lang.Long">
+	<field name="drug_qty" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="drug_qty" class="java.lang.Long">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="total" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="totalother_qty" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="totalother" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<variable name="SUMTOTAL" class="java.math.BigDecimal" calculation="Sum">
-		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{drug_sumprice}*$F{drug_qty}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="125" splitType="Stretch">
+		<band height="138" splitType="Stretch">
 			<staticText>
 				<reportElement x="380" y="10" width="140" height="41" uuid="d7b2ac19-41e7-41d8-8499-35e367d017cc"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
@@ -132,7 +125,7 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="32" splitType="Stretch">
+		<band height="16" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="116f7bcf-4e95-43bb-aa57-8cf01f6a1420"/>
 				<graphicElement>
@@ -174,41 +167,6 @@
 				</textElement>
 				<text><![CDATA[ราคาต่อหน่วย]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="54" y="15" width="326" height="17" uuid="19852a0e-eba6-4b94-ae71-ea9333f2a2e6"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{other_name}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="15" width="54" height="16" uuid="8ad19df1-6bd0-40b0-8404-f9f5203b8a30"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<text><![CDATA[1]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="453" y="15" width="52" height="17" uuid="ca46815a-2e7b-487e-a35d-8fcfc62e0b0a"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalother_qty}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="380" y="16" width="73" height="15" uuid="939fe79a-287d-4fa8-9622-7649a611b914"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalother}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="505" y="16" width="50" height="16" uuid="291e2a80-fd62-4202-aad0-54b819329a76"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{totalother_qty}*$F{totalother})]]></textFieldExpression>
-			</textField>
 		</band>
 	</columnHeader>
 	<detail>
@@ -234,7 +192,7 @@
 					<textElement textAlignment="Right">
 						<font fontName="TH SarabunPSK" size="12" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{drug_price}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{drug_sumprice}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="453" y="0" width="52" height="15" uuid="e459ab39-c049-4913-b4e8-943fbcecf1d6"/>
@@ -248,7 +206,7 @@
 					<textElement textAlignment="Right">
 						<font fontName="TH SarabunPSK" size="12"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{drug_price}*$F{drug_qty})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{drug_sumprice}*$F{drug_qty})]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -301,12 +259,9 @@
 				<text><![CDATA[บาท]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="445" y="0" width="69" height="18" uuid="f1cf8b1e-0ebb-4e41-b8aa-be4e50bd1c6d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[
-$V{SUMTOTAL}+$F{totalother}]]></textFieldExpression>
+				<reportElement x="445" y="1" width="69" height="18" uuid="0f03c378-d4d6-4489-8c02-24db57d8a42e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($V{total})]]></textFieldExpression>
 			</textField>
 		</band>
 	</lastPageFooter>
