@@ -56,11 +56,12 @@
 <%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
 	<%java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy"); %>
 	<%java.text.DateFormat df3 = new java.text.SimpleDateFormat("MM"); %>
+	<% String No_Bil =  request.getParameter("No_Bil");%>
 	
 <div class="container">
-<div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
+<!-- <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
 	<a href="pet_waiting_treatment.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
-</div>
+</div> -->
 
 	<div class="row">
 		<h3 align="center">การรักษา</h3>
@@ -73,7 +74,13 @@
 			<div class="row">
  <input type="hidden" name="postdate1" value="<%= df.format(new java.util.Date()) %>" >
  <input type="hidden" name="Treatment__year" value="<%= df2.format(new java.util.Date())%>" >
+ 
 			  <input type="hidden" name="Treatment_month" value="<%= df3.format(new java.util.Date())%>" >	
+			  	  <input type="hidden" name="No_Bil" value="<%=No_Bil%>" >	
+			  
+			  
+			  
+			  
 				<div class="col-sm-3">
 					<div class="form-group">
 						<div class="row">

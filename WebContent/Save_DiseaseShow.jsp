@@ -52,13 +52,13 @@
 
 <table align="center">
 <tr>
-<th width="100:px">ลำดับ</th>
-<th width="150:px">โรค</th>
-<th width="130:px">ให้ผลบวกโรค</th>
-<th width="200:px">ร้อยละของผลบวก(%)</th>
+<th width="100:px"><h4>ลำดับ</h4></th>
+<th width="150:px"><h4>โรค</h4></th>
+<th width="300:px"><h4>ผลรวมค่าอาการ</h4></th>
+<th width="300:px"><h4>ความเป็นไปได้ของโรค</h4></th>
 </tr>
 	
-	 <form action="ReportServlet" method="post">
+	 <form action="SaveDiseaseServlet" method="post">
 	 
 	<%
 	DiseaseDAO dao = new DiseaseDAO (); 

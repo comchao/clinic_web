@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import db.ConnectDB;
+import model.DepositBean;
 import model.DrugBean;
 import model.OtherTreatment;
 import model.OwnersBean;
@@ -22,11 +23,11 @@ public class TreatmentDao {
 	// refer_pet_id  รหัสหมา             treatment_date  
 	static public boolean insertTreatment(String[] drug_id, String[] drug_qty, TreatmentBean treatmentBean, String[] other_name,String[] otherPriceArray){		
 		String sql_insert = "insert into `treatment`" 		
-				+ "(refer_pet_id, treatment_date,vet_name,treatment_detail,note,treatment_month,treatment_year)"  
-		        + " values ( ?, ?, ?, ? ,?,?,?); ";
+				+ "(refer_pet_id, treatment_date,vet_name,treatment_detail,note,treatment_month,treatment_year,No_Bil)"  
+		        + " values ( ?, ?, ?, ? ,?,?,?,?); ";
 		
 		String sql_insert_drug = "insert into `treatment_drug`" 		
-				+ "(refer_treatment_id,refer_drug_id,drug_qty,drug_sumprice)"  
+				+ "(refer_treatment_id,refer_drug_id,drug_qty,drug_sumprice)" 
 		        + " values ( ?, ?, ?, ?); ";
 		
 		String sql_insert_other = "insert into `treatment_other`" 		
@@ -41,6 +42,8 @@ public class TreatmentDao {
 			preparedStmt.setString(5, treatmentBean.getNote());
 			preparedStmt.setString(6, treatmentBean.getTreatment_month());
 			preparedStmt.setString(7, treatmentBean.getTreatment_year());
+			preparedStmt.setString(8, treatmentBean.getNo_Bil());
+			
 			int affectedRows = preparedStmt.executeUpdate();
 			if (affectedRows == 0) {
 	            throw new SQLException("Creating user failed, no rows affected.");
@@ -168,6 +171,7 @@ public class TreatmentDao {
 			//dbc.closeConnection();
             while (rs.next()) {
             	treatmentBean.setId(rs.getInt("id"));
+            	treatmentBean.setNo_Bil(rs.getString("No_Bil")); 
             	treatmentBean.setTreatment_date(rs.getString("treatment_date"));
             	treatmentBean.setTreatment_detail(rs.getString("treatment_detail"));
             	treatmentBean.setNote(rs.getString("note"));
@@ -330,6 +334,54 @@ public class TreatmentDao {
 		}
 
 		///สิ้นสุด กราฟแท่ง 
+		
+		
+		
+		
+		//เลขบิลค่ารักษาค่ายา
+		static public ArrayList<DepositBean>  treatment_Bil(String id) {
+
+			DepositBean DepositBean = new DepositBean();
+			ArrayList<DepositBean> DepositList = new ArrayList<DepositBean>();
+
+			String sql = "SELECT * FROM `treatment` WHERE `id` = "+id+"; ";
+			try {
+				preparedStmt = dbc.createDBConnect().prepareStatement(sql);
+
+				rs = preparedStmt.executeQuery();
+				// dbc.closeConnection();
+
+				while (rs.next()) {
+					DepositBean = new DepositBean();
+
+					
+					DepositBean.setNo_bil(rs.getString("No_bil"));
+				
+					DepositList.add(DepositBean);
+				}
+				rs.close();
+				return DepositList;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("error ===> " + e);
+			}finally {
+				try {
+					dbc.closeConnection();
+					preparedStmt.close();
+				} catch (Exception e) {
+					System.out.println("finally x=> "+e.getMessage());
+				}
+			}
+			return null;
+		}
+
+
+		
+		//สิ้นสุดเลขบิลค่ารักษาค่ายา
+		
+		
+
 	
 	
 	

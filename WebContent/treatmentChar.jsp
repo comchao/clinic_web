@@ -769,7 +769,7 @@ var chart = AmCharts.makeChart( "chartdiv", {
   "valueAxes": [{
 	    "axisAlpha": 0,
 	    "position": "left",
-	    "title": "Visitors from country"
+	    "title": "รายได้จากการจ่ายยา"
 	  }],
 	  "startDuration": 1,
 	  "graphs": [{

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-17T01:06:28 -->
+<!-- 2017-05-18T12:05:49 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DrugReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa2f3e9b-dc68-4ea3-930b-0f7fa9eccb1e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -17,6 +17,9 @@
 	</style>
 	<parameter name="BeginDate" class="java.lang.String"/>
 	<parameter name="EndDate" class="java.lang.String"/>
+	<parameter name="date_start_thai" class="java.lang.String"/>
+	<parameter name="date_end_thai" class="java.lang.String"/>
+	<parameter name="datenow" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      treatment.`treatment_date` AS treatment_treatment_date,
@@ -35,7 +38,7 @@ WHERE
 	<field name="drug_drug_price" class="java.math.BigDecimal"/>
 	<field name="treatment_drug_drug_qty" class="java.lang.Integer"/>
 	<field name="treatment_drug_drug_sumprice" class="java.math.BigDecimal"/>
-	<variable name="total" class="java.math.BigDecimal" incrementType="Group" incrementGroup="groupRecord" calculation="Sum">
+	<variable name="total" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{treatment_drug_drug_sumprice}]]></variableExpression>
 		<initialValueExpression><![CDATA[]]></initialValueExpression>
 	</variable>
@@ -45,7 +48,7 @@ WHERE
 	<group name="DateGroup">
 		<groupExpression><![CDATA[$F{treatment_treatment_date}]]></groupExpression>
 		<groupFooter>
-			<band height="24"/>
+			<band height="5"/>
 		</groupFooter>
 	</group>
 	<group name="groupRecord">
@@ -56,23 +59,17 @@ WHERE
 	</background>
 	<title>
 		<band height="138" splitType="Stretch">
-			<staticText>
-				<reportElement style="Title" x="170" y="40" width="219" height="62" uuid="a28dc95c-df68-4557-93b5-ca2681ee6454"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="TH SarabunPSK" size="24" pdfFontName="Times-Roman"/>
-				</textElement>
-				<text><![CDATA[รายงานสรุปการรับชำระเงินค่ายา]]></text>
-			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="144" height="130" uuid="3fa2d8de-3605-4e80-81be-4c1bd92562e5"/>
+				<reportElement x="4" y="37" width="99" height="88" uuid="f10b3ca4-9629-4bc9-8240-bde35c3da7a3"/>
 				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="401" y="20" width="153" height="70" uuid="d03bd2d1-9ee6-45a7-a54c-f5cf0ca19d16"/>
+				<reportElement x="103" y="44" width="160" height="75" uuid="b2c79988-5370-4ccc-bf75-2e9d65534015"/>
 				<textElement textAlignment="Left">
-					<font fontName="TH SarabunPSK" size="12"/>
+					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
+				<text><![CDATA[
+ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
 เปิดทำการทุกวัน เวลา 9:00 - 20:00 น. 
 ติดต่อสอบถาม โทร  088 865 6185
 
@@ -80,40 +77,46 @@ WHERE
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="0" width="93" height="20" uuid="e5535db6-feca-4cd7-af56-8808aeaf1c11"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
+				<reportElement x="320" y="30" width="221" height="45" uuid="4047da19-1486-432d-a61a-eb6e173cb329"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="28" isBold="true"/>
 				</textElement>
-				<text><![CDATA[วันที่ออกรายงาน  ณ]]></text>
+				<text><![CDATA[รายงานสรุปการรับชำระเงินค่ายา]]></text>
 			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="290" y="0" width="107" height="20" forecolor="#736343" uuid="6266a677-338f-42b0-8d35-48e4f547234a"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement style="Column header" x="195" y="120" width="61" height="16" forecolor="#736343" uuid="0501b457-9f38-4539-bb66-b62bc506c6f1"/>
+				<reportElement style="Column header" x="306" y="79" width="54" height="16" forecolor="#736343" uuid="83529c5c-3e9d-4039-89cc-b40c2e65529b"/>
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
 				<text><![CDATA[ระหว่างวันที่]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="256" y="122" width="78" height="14" uuid="1a7d933e-d63c-40ae-86cf-f285f4625bc1"/>
-				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format(new java.text.SimpleDateFormat("yyyy-MM-dd").parse($P{BeginDate}))]]></textFieldExpression>
+				<reportElement x="360" y="80" width="89" height="15" uuid="095588c8-9847-4c6e-aa5f-9756e98fa246"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{date_start_thai}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Column header" x="318" y="120" width="16" height="16" forecolor="#736343" uuid="df8673fa-95ea-47c8-9875-f37543df0c5f"/>
-				<textElement>
+				<reportElement style="Column header" x="449" y="80" width="16" height="16" forecolor="#736343" uuid="dc93ca5b-8f99-42bf-81dd-9dffb71e4571"/>
+				<textElement verticalAlignment="Bottom">
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
 				<text><![CDATA[ถึง]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="339" y="122" width="63" height="14" uuid="2eb66ccc-4bc6-4382-a8f6-645dea1704b0"/>
-				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format(new java.text.SimpleDateFormat("yyyy-MM-dd").parse($P{EndDate}))]]></textFieldExpression>
+				<reportElement x="465" y="81" width="89" height="15" uuid="8d531e77-f74e-4b69-8436-1f62c808d336"/>
+				<textFieldExpression><![CDATA[$P{date_end_thai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="360" y="100" width="80" height="19" forecolor="#736343" uuid="3c0eb2cb-c131-4255-a8e4-41f3c3aad7c1"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[วันที่ออกรายงาน  ณ]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="440" y="100" width="105" height="19" uuid="245bbe70-58a6-43c1-8396-def1e1e9abcf"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{datenow}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -249,6 +252,9 @@ WHERE
 				</textElement>
 				<text><![CDATA[ผู้ตรวจสอบ]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="30" width="555" height="1" uuid="7fea0b4e-c7b5-47ec-9aa2-a90f7e0bb452"/>
+			</line>
 		</band>
 	</lastPageFooter>
 	<summary>

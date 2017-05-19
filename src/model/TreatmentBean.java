@@ -10,6 +10,13 @@ public class TreatmentBean {
 	String 	note;
 	String 	treatment_month;
 	String treatment_year;
+	String No_Bil;
+	public String getNo_Bil() {
+		return No_Bil;
+	}
+	public void setNo_Bil(String no_Bil) {
+		No_Bil = no_Bil;
+	}
 	public int getId() {
 		return id;
 	}

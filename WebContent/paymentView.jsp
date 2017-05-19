@@ -49,13 +49,14 @@
 				%>
 				<tr>
 					<td><%=i+1%></td>
-					<td><%=tmb.getId()%></td>
+					<td><%=tmb.getNo_Bil()%></td>
 					<td><%=tmb.getTreatment_date() %></td>
 					<td><%=tmb.getRefer_pet_id().getReference_owner_id().getOwners_name()%> <%=tmb.getRefer_pet_id().getReference_owner_id().getOwners_lname()%></td>
 					<td><%=tmb.getRefer_pet_id().getPet_name()%></td>
 					<td class="text-right">
-					<form action="ReportServlet" method="post">
-					<input type="hidden" name="date_now" value="<%=tmb.getTreatment_date() %>" />
+					<form action="PaymentBilServlet" method="post">
+					<%java.text.DateFormat df = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); %>
+						 <input type="hidden" name="datenow" value="<%= df.format(new java.util.Date()) %>" >
 					<input type="hidden" name="name" value="<%=tmb.getRefer_pet_id().getReference_owner_id().getOwners_name()%> <%=tmb.getRefer_pet_id().getReference_owner_id().getOwners_lname()%>" />
 							<input type="hidden" name="id" value="<%= tmb.getId()%>" />
 							<input type="hidden" value="4" name="report_id" />

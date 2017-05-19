@@ -1,224 +1,316 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-07T16:19:13 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestBill1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de55d867-7299-4c58-b789-8d5b09fcc652">
+<!-- 2017-05-18T22:30:00 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="57"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ireport"/>
-	<subDataset name="dataset1" uuid="bc741dc7-991b-4007-aaf3-35fb2be3e1d6"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
 	<parameter name="id" class="java.lang.String"/>
 	<parameter name="name" class="java.lang.String"/>
+	<parameter name="No_bil" class="java.lang.String"/>
+	<parameter name="datenow" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT drug.drug_name, this_.drug_qty, this_.drug_sumprice
- FROM `treatment_drug` this_
- INNER JOIN drug ON drug.id = this_.refer_drug_id
-WHERE this_.refer_treatment_id = $P{id}
- UNION
- SELECT other_treatment.other_name drug_name,  1 drug_qty, 
- (Select sum(treatment_other.`other_prices`*other_treatment.`other_price`) 
-  FROM treatment_other   JOIN other_treatment ON treatment_other.`other_id`= other_treatment.id   WHERE refer_treatment_id = $P{id} ) AS  other_prices
- FROM `treatment_other`
-INNER JOIN other_treatment ON other_treatment.id = treatment_other.other_id
-WHERE treatment_other.refer_treatment_id = $P{id}]]>
+		<![CDATA[SELECT drug.drug_name ,drug.drug_price,SUM(treatment_drug.drug_qty) AS drug_qty ,
+		SUM(drug.drug_price*treatment_drug.drug_qty) AS total , other_treatment.other_name , 
+		SUM(treatment_other.`other_prices`*other_treatment.`other_price`)AS totalother, SUM(treatment_other.other_prices) AS totalother_qty
+		FROM drug ,treatment_drug ,treatment_other , other_treatment WHERE drug.id = treatment_drug.refer_drug_id 
+		AND treatment_drug.refer_treatment_id = $P{id} AND treatment_other.other_id = other_treatment.id AND
+		 treatment_other.refer_treatment_id = $P{id}GROUP BY drug.drug_name]]>
 	</queryString>
 	<field name="drug_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="other_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="drug_price" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="drug_qty" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="drug_sumprice" class="java.math.BigDecimal">
+	<field name="total" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<variable name="treatment_other_other_price_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
-		<variableExpression><![CDATA[]]></variableExpression>
-	</variable>
-	<variable name="treatment_drug_drug_sumprice_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
-		<variableExpression><![CDATA[]]></variableExpression>
-	</variable>
-	<variable name="SUM_PRIce" class="java.math.BigDecimal" calculation="Sum">
-		<variableExpression><![CDATA[$F{drug_sumprice}]]></variableExpression>
+	<field name="totalother_qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalother" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="SUMTOTAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<columnHeader>
-		<band height="248" splitType="Stretch">
+	<title>
+		<band height="125" splitType="Stretch">
 			<staticText>
-				<reportElement x="100" y="189" width="250" height="20" uuid="79fee064-89be-4698-b9bf-5f94b817e9f4"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[รายการ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="189" width="100" height="20" backcolor="#CCFFCC" uuid="8d337d81-a6ec-4b38-b258-256ed42c0207"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ลำดับ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="350" y="189" width="100" height="20" uuid="c58b557b-e542-43c6-9939-31c95157dac8"/>
-				<textElement textAlignment="Center">
-					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[จำนวน]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="450" y="189" width="99" height="20" uuid="b0b96419-06a6-42b9-8bfe-976dd73fa6a4"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ราคารวม]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="381" y="123" width="52" height="20" uuid="8c17aacf-cfde-48ef-a8f3-84e85bc30590"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[เลขที่ใบเสร็จ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="381" y="143" width="52" height="20" uuid="4602ca3d-572c-4c5f-9bd3-5c0ce1b920dc"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ชื่อลูกค้า]]></text>
-			</staticText>
-			<line>
-				<reportElement x="0" y="183" width="555" height="1" uuid="bcf0d9c7-45c0-4fed-81ac-46874278fe97"/>
-			</line>
-			<staticText>
-				<reportElement x="230" y="74" width="100" height="36" uuid="45b5b4fa-a25b-46da-9409-7054b8499672"/>
-				<textElement textAlignment="Center">
-					<font fontName="TH SarabunPSK" size="18" isBold="true"/>
+				<reportElement x="380" y="10" width="140" height="41" uuid="d7b2ac19-41e7-41d8-8499-35e367d017cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="TH SarabunPSK" size="28" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ใบเสร็จรับเงิน]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="220" y="110" width="134" height="27" uuid="82ba8095-cafe-4151-ab08-a7609c997cf3"/>
-				<textElement textAlignment="Center">
-					<font fontName="TH SarabunPSK" size="18" isBold="true"/>
+				<reportElement style="Column header" x="360" y="81" width="80" height="19" forecolor="#736343" uuid="581d96f3-b744-4cb3-83be-db461169a811"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
-				<text><![CDATA[วัฒนารักษาสัตว์ อุตรดิตถ์]]></text>
+				<text><![CDATA[วันที่ออกใบเสร็จ  ]]></text>
 			</staticText>
-			<line>
-				<reportElement x="0" y="245" width="555" height="1" uuid="0d51c38e-ddf9-420a-a412-13ae1b838efb"/>
-			</line>
-			<staticText>
-				<reportElement x="381" y="163" width="62" height="20" uuid="8d9e96f2-7129-41ac-ab4e-ed176dfa05c6"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[วันที่ออกใบเสร็จ]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="433" y="124" width="100" height="20" uuid="7e4cee8f-f601-432b-b949-f94abf2e0f0f"/>
-				<textFieldExpression><![CDATA[$P{id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="417" y="144" width="100" height="20" uuid="c8b28740-4d74-4f50-9be7-327d5a09e7b2"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
-			</textField>
 			<image>
-				<reportElement x="10" y="22" width="160" height="122" uuid="8f43ed68-0b98-4b8a-b702-7ef39172485e"/>
+				<reportElement x="4" y="37" width="99" height="88" uuid="5d449eed-3d31-48b5-9342-53be8c3c76e9"/>
 				<imageExpression><![CDATA["F:\\java_web\\clinic_web\\WebContent\\ireport\\1.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="381" y="20" width="168" height="90" uuid="4427f815-f0e0-4cfa-a98e-45f1d09efe0b"/>
-				<textElement textAlignment="Center">
-					<font fontName="TH SarabunPSK" size="12"/>
+				<reportElement x="103" y="37" width="160" height="88" uuid="5beececd-351f-44d6-976d-53ee697dee49"/>
+				<textElement textAlignment="Left">
+					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
+				<text><![CDATA[
+ที่อยู่: ถนน ศรีอุตรานอก ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์  จังหวัด อุตรดิตถ์ 53000
 เปิดทำการทุกวัน เวลา 9:00 - 20:00 น. 
 ติดต่อสอบถาม โทร  088 865 6185
 
 
 ]]></text>
 			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="360" y="60" width="80" height="19" forecolor="#736343" uuid="4d6528b4-722a-410a-b7a7-8a48f41f7e30"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[เลขที่ No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="59" width="110" height="20" uuid="9a1da982-2889-4dc6-93dd-99d0fac10705"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{No_bil}]]></textFieldExpression>
+			</textField>
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="443" y="163" width="100" height="20" uuid="3f78788a-52fd-4d14-b1ac-e2ab70f7af9b"/>
-				<textFieldExpression><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format(new Date())]]></textFieldExpression>
+				<reportElement x="445" y="81" width="110" height="19" uuid="aac0029a-4117-4184-b2be-6f8b82e6a449"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{datenow}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="360" y="100" width="63" height="19" forecolor="#736343" uuid="443be23e-1e74-4352-bfbd-180663ceb6d4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ชื่อลูกค้า]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="423" y="100" width="22" height="19" uuid="52e23246-4aaf-449d-b02a-d211fcb4d19a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[คุณ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="101" width="110" height="18" uuid="3d6197ec-7174-4761-9d90-98cef2f12707"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="116f7bcf-4e95-43bb-aa57-8cf01f6a1420"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="54" height="16" forecolor="#736343" uuid="bfed525c-8b90-497c-b6ea-5657d72560c4"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ลำดับ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="54" y="0" width="326" height="16" forecolor="#736343" uuid="4a50e85c-82fd-4f77-84d5-54828f5fbd05"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[รายการค่ารักษา/ค่ายา]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="454" y="0" width="51" height="16" forecolor="#736343" uuid="71f4cc79-0a2d-4fd6-ba98-77a4a3e5adc7"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[จำนวน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="505" y="0" width="50" height="16" forecolor="#736343" uuid="72255541-9cba-4a0f-9bca-c3b5dc6884d7"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ราคารวม]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="380" y="0" width="74" height="16" forecolor="#736343" uuid="156d366a-4dc3-43e7-a87f-94ea21d65f38"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ราคาต่อหน่วย]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="15" width="326" height="17" uuid="19852a0e-eba6-4b94-ae71-ea9333f2a2e6"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="54" height="16" uuid="8ad19df1-6bd0-40b0-8404-f9f5203b8a30"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="453" y="15" width="52" height="17" uuid="ca46815a-2e7b-487e-a35d-8fcfc62e0b0a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalother_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="16" width="73" height="15" uuid="939fe79a-287d-4fa8-9622-7649a611b914"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalother}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="16" width="50" height="16" uuid="291e2a80-fd62-4202-aad0-54b819329a76"/>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{totalother_qty}*$F{totalother})]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="40" splitType="Stretch">
-			<textField>
-				<reportElement x="100" y="-37" width="250" height="20" uuid="41bc672b-45d8-4f5e-9d96-a10209cafe0c"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{drug_name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="350" y="-37" width="62" height="20" uuid="cce80298-27b1-4977-b14f-fb8eca16050e"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{drug_qty}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="450" y="-37" width="100" height="20" uuid="72f3542d-9655-4111-9dbf-54453e25b740"/>
-				<textElement textAlignment="Right">
-					<font fontName="TH SarabunPSK" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{drug_sumprice})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="-1" y="-37" width="81" height="20" uuid="2a424b74-854e-4489-882f-00efefafcac7"/>
-				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
-			</textField>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="8a6dd7d6-bc21-40ac-b39f-f7b1da211287"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="54" height="15" uuid="c8738b6f-d57b-46f9-a43f-b1e62d2a69d0"/>
+					<textElement>
+						<font fontName="TH SarabunPSK"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="54" y="0" width="326" height="15" uuid="0fee168a-e992-42d5-b8c6-091a870b3f3d"/>
+					<textElement>
+						<font fontName="TH SarabunPSK"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{drug_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="-1" width="74" height="16" uuid="d34886ce-de2d-49a6-92de-24085e7c9862"/>
+					<textElement textAlignment="Right">
+						<font fontName="TH SarabunPSK" size="12" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{drug_price}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="453" y="0" width="52" height="15" uuid="e459ab39-c049-4913-b4e8-943fbcecf1d6"/>
+					<textElement textAlignment="Right">
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{drug_qty}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="504" y="0" width="51" height="15" uuid="f7310b61-6463-4f42-9233-417c4b45e15a"/>
+					<textElement textAlignment="Right">
+						<font fontName="TH SarabunPSK" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###.00").format($F{drug_price}*$F{drug_qty})]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="22">
-			<textField>
-				<reportElement x="240" y="-37" width="100" height="20" uuid="0ef59bbf-79d5-4179-a7a8-6583f75bb700"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageFooter>
 	<lastPageFooter>
-		<band height="88">
+		<band height="155">
 			<staticText>
-				<reportElement x="350" y="-23" width="93" height="20" uuid="b75c5473-f9c0-42ba-8f9c-adc0b4bcc02d"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				<reportElement x="61" y="70" width="100" height="20" uuid="a20f1383-fb99-4058-9ba1-670d78792315"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
-				<text><![CDATA[รวมทั้งสิ้น]]></text>
+				<text><![CDATA[ผู้จัดทำ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="50" width="195" height="20" uuid="3b7b780b-504e-4dde-bd17-57150e0b6987"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[(ลงชื่อ)_____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="50" width="228" height="20" uuid="69f7d449-b436-47b1-89b4-5dd96f929ee3"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[(ลงชื่อ)_________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="70" width="100" height="20" uuid="16480362-44e3-49ea-b39e-af2803126615"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[ผู้ตรวจสอบ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="380" y="0" width="65" height="20" forecolor="#736343" uuid="e2de8d5b-bfc9-49bc-ba06-1242bacc9475"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<text><![CDATA[รวมราคาทั้งหมด]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="-24" width="555" height="1" uuid="444ae1db-810e-43a4-95e6-db84b39ce333"/>
+				<reportElement x="0" y="30" width="555" height="1" uuid="99df75ee-c5f3-43ea-8eb7-acd3f80e2e2b"/>
 			</line>
 			<staticText>
-				<reportElement x="381" y="11" width="164" height="20" uuid="9d6cd0ee-e38f-443b-97ec-1ca3c897cd90"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ลงชื่อ__________________ผู้รับเงิน]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="386" y="31" width="164" height="20" uuid="4e8c92b1-de3a-4ce5-a09d-a3ce899f1b8e"/>
-				<text><![CDATA[(                                               )]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="427" y="-23" width="85" height="20" uuid="c9e72e86-bbdc-4f33-911a-8ce4c0853001"/>
-				<textFieldExpression><![CDATA[$V{SUM_PRIce}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="512" y="-23" width="46" height="20" uuid="2d3bfa6f-83fe-452c-bf94-80db0f4dc298"/>
-				<textElement>
+				<reportElement x="514" y="0" width="38" height="18" uuid="187ed961-9501-4d52-a2a8-2bf940635761"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[บาท]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="445" y="0" width="69" height="18" uuid="f1cf8b1e-0ebb-4e41-b8aa-be4e50bd1c6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[
+$V{SUMTOTAL}+$F{totalother}]]></textFieldExpression>
+			</textField>
 		</band>
 	</lastPageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>

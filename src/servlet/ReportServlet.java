@@ -77,45 +77,7 @@ public class ReportServlet extends HttpServlet {
 		
 		String deposit_id = request.getParameter("deposit_id");
 		
-		/*ส่วนชองการ Report*/
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		String[] Disease = request.getParameterValues("Disease[]");
-		String[] SumPercentag = request.getParameterValues("SumPercentage");
-		String[] Sum = request.getParameterValues("Sum[]");
-		String[] id_member = request.getParameterValues("id_member[]");
-		String[] id_pet = request.getParameterValues("id_pet[]");
 		
-		
-		
-		
-		
-		if(Disease != null ){
-		for (int i = 0; i < Disease.length; i++) {
-			
-			DecimalFormat df = new DecimalFormat();
-			df.applyPattern("0.0");
-		
-			
-			float SumPercentage = 0;
-			SumPercentage = Float.parseFloat(SumPercentag[i]);
-			System.out.println("Disease: =" +Disease[i]);
-			System.out.println(i+1);
-            System.out.println("SumPercentag: ="+new DecimalFormat("0.0").format(SumPercentage));
-            
-            AnalysisBean Bean = new AnalysisBean();
-            DiseaseDAO percentageDAO = new DiseaseDAO();
-            Bean.setId(i+1);
-			Bean.setSumPercentage(SumPercentage); 
-			Bean.setDisease(Disease[i]);
-			Bean.setPercentage(Sum[i]);
-			Bean.setId_member(Integer.parseInt(id_member[i]));
-			Bean.setId_pet(Integer.parseInt(id_pet[i]));
-			
-			percentageDAO.insertanalysisdisease(Bean);
-			percentageDAO.insertanalysisdisease_report(Bean);
-	}}
-		/*สิ้นสุดส่วนชองการ Report*/
 		
 		if (report_id == 1) {
 			if ((ReportDAO.printPetShop(date_start, date_end,date_start_thai,date_end_thai,datenow)) != false) {
@@ -125,14 +87,14 @@ public class ReportServlet extends HttpServlet {
 				response.sendRedirect("reportUnConfrim.jsp");
 			}
 		} else if (report_id == 2) {
-			if (ReportDAO.printDrug(date_start, date_end)) {
+			if (ReportDAO.printDrug(date_start, date_end,date_start_thai,date_end_thai,datenow)) {
 				response.sendRedirect("reportConfrim.jsp");
 
 			} else {
 				response.sendRedirect("reportUnConfrim.jsp");
 			}
 		} else if (report_id == 3) {
-			if (ReportDAO.printTreatment(date_start, date_end)){
+			if (ReportDAO.printTreatment(date_start, date_end,date_start_thai,date_end_thai,datenow)){
 				response.sendRedirect("reportConfrim.jsp");
 
 			} else {
@@ -144,7 +106,7 @@ public class ReportServlet extends HttpServlet {
 		// ใบรายรายการนัดหมาย
 		else if (report_id == 6) { 
 			    
-			if (ReportDAO.Calendar(id, date_start, date_end)) {
+			if (ReportDAO.Calendar(id, date_start, date_end,date_start_thai,date_end_thai,datenow)) {
 				System.out.println("Servlet:"+id+date_start+date_end);
 
 				response.sendRedirect(
@@ -161,7 +123,7 @@ public class ReportServlet extends HttpServlet {
 		
 
 		// ใบรายงานการวินิจฉัยโรคของสัตร์
-		else if (report_id == 7) { 
+		/*else if (report_id == 7) { 
 			    
 			if (ReportDAO.Disease(id)) {
 				System.out.println("Servlet:"+id);
@@ -173,7 +135,7 @@ public class ReportServlet extends HttpServlet {
 				response.sendRedirect("reportUnConfrim.jsp");
 			}
 
-		}
+		}*/
 		// สิ้นสุดใบรายงานวินิจฉัยโรคของสัตร์
 		
 		
@@ -185,27 +147,27 @@ public class ReportServlet extends HttpServlet {
 			String name = request.getParameter("name");
 			
 			
-			if (ReportDAO.printDrugTreatment(id, name, date_now)) {
+			/*if (ReportDAO.printDrugTreatment(id, name, date_now)) {
 				response.sendRedirect("report4Confrim.jsp?tm_id=" + id + "&name=" + name + "&date_now=" + date_now);
 
 			} else {
 				response.sendRedirect("report4UnConfrim.jsp");
-			}
+			}*/
 
 			
 			
 			
 			
-		} else if (report_id == 5) {// ใบเสร็จค่าฝากเลี้ยง
-			/*if (ReportDAO.printDepositBill(deposit_id,datenow,No_bil)) {
+		} /*else if (report_id == 5) {// ใบเสร็จค่าฝากเลี้ยง
+			if (ReportDAO.printDepositBill(deposit_id,datenow,No_bil)) {
 				int cage_id = Integer.parseInt(request.getParameter("cg_id"));
 				response.sendRedirect("report5Confrim.jsp?deposit_id=" + deposit_id + "&cage_id=" + cage_id);
 
 			} else {
 				response.sendRedirect("report5UnConfrim.jsp");
-			}*/
+			}
 
-		}
+		}*/
 		
 		
 		

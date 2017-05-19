@@ -70,6 +70,7 @@
 				<td style="color: red;"><%=petBean.getEmerStatus()==1?"EMER":"-" %></td>
 				<td>
 					<form action="treatment.jsp" method="post">
+					    <input type="hidden" name="No_Bil" value="<%=session.getAttribute("No_Bil_Treatment")%>"> 
 						<input type="hidden" name="reference_owner_id" value="<%=request.getParameter("owner_id")%>"> 
 						<input type="hidden" name="pet_name" value="<%=petBean.getPet_name()%>">
 						<input type="hidden" name="pet_category" value="<%=petBean.getPet_category()%>"> 

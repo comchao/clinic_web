@@ -81,7 +81,7 @@ public class ReportDAO {
 		return false;
 	}
 	
-public static boolean printDrug(String date_start, String date_end) {
+public static boolean printDrug(String date_start, String date_end,String date_start_thai,String date_end_thai,String datenow) {
 		
 		Connection connect = null;
 		
@@ -114,6 +114,9 @@ public static boolean printDrug(String date_start, String date_end) {
 			
 			parameter.put("BeginDate",date_start); 
 			parameter.put("EndDate",date_end); 
+			parameter.put("date_start_thai",date_start_thai); 
+			parameter.put("date_end_thai",date_end_thai); 
+			parameter.put("datenow",datenow);
 			
 			// Report Viewer
 			JasperReport ir = JasperCompileManager.compileReport(report);
@@ -140,7 +143,7 @@ public static boolean printDrug(String date_start, String date_end) {
 		return false;
 	}
 
-public static boolean printTreatment(String date_start, String date_end) {
+public static boolean printTreatment(String date_start, String date_end,String date_start_thai,String date_end_thai,String datenow) {
 	
 	
 	System.out.println("date_start"+date_start);
@@ -177,6 +180,10 @@ public static boolean printTreatment(String date_start, String date_end) {
 		
 		parameter.put("BeginDate",date_start); 
 		parameter.put("EndDate",date_end); 
+		parameter.put("date_start_thai",date_start_thai); 
+		parameter.put("date_end_thai",date_end_thai); 
+		parameter.put("datenow",datenow);
+		
 		
 		// Report Viewer
 		JasperReport ir = JasperCompileManager.compileReport(report);
@@ -206,7 +213,7 @@ public static boolean printTreatment(String date_start, String date_end) {
 
 
 
-public static boolean printDrugTreatment(String id,String name,String date_now) {
+public static boolean printDrugTreatment(String id,String name,String datenow,String No_bil) {
 	
 	Connection connect = null;
 	
@@ -239,7 +246,9 @@ public static boolean printDrugTreatment(String id,String name,String date_now) 
 		
 		parameter.put("id",id); 
 		parameter.put("name",name); 
-		parameter.put("date_now",date_now); 
+		parameter.put("datenow",datenow); 
+		parameter.put("No_bil",No_bil); 
+		
 		// Report Viewer
 		JasperReport ir = JasperCompileManager.compileReport(report);
 		JasperPrint ip = JasperFillManager.fillReport(ir, parameter,connect);
@@ -329,7 +338,7 @@ public static boolean printDepositBill(String deposit_id,String datenow ,String 
 
 
 //ใบรายงานการนัดหมาย
-public static boolean Calendar( String id ,String date_start,String date_end) {
+public static boolean Calendar( String id ,String date_start,String date_end,String date_start_thai,String date_end_thai,String datenow) {
 	
 	Connection connect = null;
 	
@@ -369,6 +378,10 @@ public static boolean Calendar( String id ,String date_start,String date_end) {
 		parameter.put("id_member",id_member); 
 		parameter.put("date_start",date_start); 
 		parameter.put("date_end",date_end); 
+		
+		parameter.put("date_start_thai",date_start_thai); 
+		parameter.put("date_end_thai",date_end_thai); 
+		parameter.put("datenow",datenow);
 		
 		
 		// Report Viewer
