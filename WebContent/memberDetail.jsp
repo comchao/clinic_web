@@ -23,7 +23,7 @@
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="memberView.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a href="memberView.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 	<div class="row">
 	<% request.setCharacterEncoding("UTF-8"); %>

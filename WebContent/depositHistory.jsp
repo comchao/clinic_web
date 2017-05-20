@@ -8,9 +8,9 @@
 <br>
 <br>
 <div class="container">
-<div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
+<!-- <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
 	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
-</div>
+</div> -->
 
 	<div class="row">
 		<div align="center">

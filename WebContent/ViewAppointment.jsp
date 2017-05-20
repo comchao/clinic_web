@@ -321,7 +321,7 @@
 
 									PetsBean bean7 = List7.get(i7);
 							%>
-							<input name="Close" type="text" class="form-control"
+							<input name="Date" type="text" class="form-control"
 								value="<%="น้ำหนัก:&nbsp;&nbsp;" + bean7.getPet_weight() + "kg."%>"
 								readonly="readonly" />
 							
@@ -333,15 +333,16 @@
 					
 			
 					
-					
+			 
 									function windowOpenCage() {
 										
 										var myCage=window.open('EditAppointment.jsp?id=<%=id%>&idmenber=<%=session.getAttribute("id")%>&title=<%=title%>&Date=<%=Date%>&note=<%=note%>&id_auto=<%=id_auto%>','windowRef','width=1200,height=600,top=400,left=40');
 										if (!myCage.opener) myCage.opener = self;
 									}
 					</script> 
-					<form action="DeletAppointmentServlet" method="post">
-					           	<input type="hidden" name="id_auto" value="<%=id_auto%>">
+					
+					
+					
 					<%
 								}
 							%>
@@ -349,31 +350,43 @@
 						
                   
 <div>
-			<div style="display: block; float: right; padding: 5px 5px;">
-		
+</div></div>
 
-		  <input type="submit" onclick="return delConfirm();"	class="btn btn-danger" value="ลบข้อมูล">
-</form>
-					
-					
-				
-			</div>
-			<div style="display: block; float: right; padding: 5px 5px;">
-			
-
+<table><tr>
 					<input type="hidden" name="id"	value="<%=id%>"> 
 					
-				<input type="submit" onClick="Javascript:windowOpenCage();"class="btn btn-warning" value="แก้ไข">
-
-			</div>
-		</div>
+				<th><input type="submit" onclick="return windowOpenCage();"class="btn btn-warning" value="แก้ไข"></th>
+              
+			
 		
+<th width="10%"></th>
 
-
-			</div>
-
+		
+			<form action="DeletAppointmentServlet" method="post">
+			<input type="hidden" name="id_auto" value="<%=id_auto%>">
+			<th> <input type="submit" onclick="return delConfirm();"	class="btn btn-danger" value="ลบข้อมูล"> </th>
+</form>
+		</tr></table>			
+					
+				
+			
+			
 			
 	</center>
+	<script>
+	function delConfirm() {
+		if (confirm("คุณแน่ใจที่ต้องการที่จะลบข้อมูลการนัดหมายสัตว์เลี้ยง?")) {
+			return true;
+		}
+		return false;
+	}
+	function editConfirm() {
+		if (confirm("คุณแน่ใจที่จะทำการแก้ไขข้อมูลใช่หรือไม่? ")) {
+			return true;
+		}
+		return false;
+	}
+</script>
 	
 	
 		

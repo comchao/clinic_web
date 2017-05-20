@@ -133,8 +133,8 @@ function dateTime($tDate) //แปลงวันที่เป็นวัน�
 	<h3 align="center"><b>ข้อมูลการนัดหมายสัตว์เลี้ยงทั้งหมด</b></h3> <br>
 
 	<div align="left">
-		<a href="index-veterinary.jsp"  ><input type="submit" class="btn btn-info" value="ย้อนกลับ" align="left" /></a> </div>
-
+		<!-- <a href="index-veterinary.jsp"  ><input type="submit" class="btn btn-info" value="ย้อนกลับ" align="left" /></a> </div>
+ -->
 
 						<div align="right">
 					

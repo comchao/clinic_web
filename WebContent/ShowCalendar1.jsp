@@ -32,9 +32,9 @@
 
 <br><br><br><br><br>
 <div class="container">
-<div align="left">
+<!-- <div align="left">
 <a href="index-veterinary.jsp" ><input type="submit" class="btn btn-info" value="     ย้อนกลับ         "   /> </a>
- </div>
+ </div> -->
 <div align="right">
 	<a href="ShowAppointmentSservlet"><input type="submit" class="btn btn-info" value="เพิ่มข้อมูลการนัดหมาย"  /></a>
  </div>

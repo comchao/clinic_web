@@ -1,7 +1,6 @@
-<%@page import="model.OwnersBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="dao.PetsDAO,model.PetsBean"%>
+<%@page import="dao.OwnersDAO,model.OwnersBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ include file="header_index.jsp"%>
 <br>
@@ -13,8 +12,27 @@
 <div align="left" style="position:fixed;bottom:80%;width:500px;margin:0px auto;">
 	
 </div>
-<div align="right">
-	<a href="addOwner.jsp"><input type="submit" class="btn btn-info" value="เพิ่มข้อมูลเจ้าของสัตว์เลี้ยง" /></a>
+<div >
+	
+	
+	<!-- 
+		<a href="ShowAppointment.jsp" ><input type="submit" class="btn btn-info" value="ย้อนกลับ"  align="right" /></a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+ -->
+
+	<!-- <a href="addOwner.jsp"><input type="submit" class="btn btn-info" value="เพิ่มข้อมูลการนัดหมาย"  align="left" /></a> -->
+	
+	
 </div>
 
 
@@ -22,20 +40,19 @@
 		<div align="center">
 		<div class="col-sm-12"><h3 align="center">เพิ่มข้อมูลนัดหมายสัตว์เลี้ยง</h3></div>
 		<div class="col-sm-12">
-		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลเจ้าของ</h4>
+		<div class="col-sm-6"><h4 align="center"><!-- ค้นหาข้อมูลเจ้าของ --></h4>
 			
 			<form action="SearchOwnerAppointmentServlet" method="post">
-				<input name="owner_name" type="text" class="search-query"
-					placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> <input type="hidden"
-					name="searchType" value="searchOwners">&nbsp;&nbsp; <input
-					type="submit" class="btn btn-info" value="ค้นหา" />
+				<!-- <input name="owner_name" type="text" class="search-query" placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> 
+				<input type="hidden" name="searchType" >
+				<input type="submit" class="btn btn-info" value="ค้นหา" /> -->
 			</form></div>
-		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลสัตว์เลี้ยง</h4>
+		<div class="col-sm-6"><h4 align="center"><!-- ค้นหาข้อมูลสัตว์เลี้ยง --></h4>
 			
 			<form action="SearchPetAppointmentServlet" method="post">
-				<input  name="pet_name" type="text" class="search-query"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
+				<!-- <input name="pet_name" type="text" class="search-query"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
 				<input type="hidden" name="searchType" value="searchPets">&nbsp;&nbsp; 
-				<input type="submit" class="btn btn-info" value="ค้นหา" />
+				<input type="submit" class="btn btn-info"  value="ค้นหา" /> -->
 			</form></div>
 		</div>
 			
@@ -43,112 +60,80 @@
 		</div>
 	</div>
 	<br> <br>
-	<%
-		ArrayList<PetsBean> petList = (ArrayList) session.getAttribute("allPetSS");
-		if (petList != null) {
-	%>
+	
 
-	<div  class="table-responsive">
+	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr class="info">
 				<th>ลำดับ</th>
-				<th>ชื่อสัตว์เลี้ยง</th>
-				<th>ประเภท</th>
-				<th>สายพันธุ์</th>
-				<th>ชื่อเจ้าของ</th>
-				<th>เบอร์โทรติดต่อ</th>
+				<th>เลขบัตรประชาชน</th>
+				<th>คำนำหน้า</th>
+				<th>ชื่อ</th>
+				<th>นามสกุล</th>
+				<th>เพศ</th>
+				<th>เบอร์โทร</th>
 				<th></th>
 				<th></th>
 			</tr>
 			<%
-					PetsBean pb;
-					String allpage = (String) session.getAttribute("pageN");
-					int p = Integer.parseInt(allpage);
+		ArrayList<OwnersBean> ownerList = (ArrayList) session.getAttribute("allOwnerSS");
+		if (ownerList != null) {
+	
+			OwnersBean bean; for (int i=0; i<ownerList.size(); i++){
+bean = (OwnersBean) ownerList.get(i); %>
 
-					for (int i = (p * 10) - 10; i < p * 10; i++) {
-						
-						if (i == petList.size()) {
-							break;
-						}
-						pb = (PetsBean) petList.get(i);
-				%>
+
 			<tr>
 				<td><%=i+1%></td>
-				<td><%=pb.getPet_name() %></td>
-				<td><%=pb.getPet_category() %></td>
-				<td><%=pb.getPet_gene() %></td>
-				<td><%=pb.getReference_owner_id().getOwners_name() %> <%=pb.getReference_owner_id().getOwners_lname() %></td>
-				<td><%=pb.getReference_owner_id().getTelephon() %></td>
-				<td><form action="ShowPetAppointmentServlet" method="get">
-						<input type="hidden" name="owner_id" value="<%=pb.getOwner_id()%>">
-						<input type="hidden" name="owner_name" value="<%=pb.getReference_owner_id().getOwners_name() %>">
-						<input type="hidden" name="owner_lname" value="<%=pb.getReference_owner_id().getOwners_lname() %>">
+				<td><%=bean.getOwners_idcard() %></td>
+				<td><%=bean.getPrefix()%></td>
+				<td><%=bean.getOwners_name()%></td>
+				<td><%=bean.getOwners_lname()%></td>
+				<td><%=bean.getOwners_gender()%></td>
+				<td><%=bean.getTelephon()%></td>
+				
+				<td><form action="ShowPetAppointmentServlet" method="post">
+						<input type="hidden" name="owner_id" value="<%=bean.getId()%>">
+						<input type="hidden" name="owner_name" value="<%=bean.getOwners_name()%>">
+						<input type="hidden" name="owner_lname" value="<%=bean.getOwners_lname()%>">
 						<input type="hidden" name="page_ownerView" value="1">
 						
 						<input type="submit" class="btn btn-success"
 						value="นัดหมาย">
 				</form></td>
 				<td>
-				<form action="petDetail.jsp" method="post">
-						<input type="hidden" name="owner_name"	value="<%=pb.getReference_owner_id().getOwners_name() %>"> 
-						<input type="hidden" name="owner_lname"	value="<%=pb.getReference_owner_id().getOwners_lname() %>">  
-						<input type="hidden" name="owner_id"value="<%=request.getParameter("owner_id")%>">
-						<input type="hidden" name="pet_id"	value="<%=pb.getId()%>"> 
-						<input type="hidden"name="pet_name" value="<%=pb.getPet_name()%>">
-						<input type="hidden" name="pet_category"value="<%=pb.getPet_category()%>"> 
-						<input	type="hidden" name="pet_gene"	value="<%=pb.getPet_gene()%>"> 
-						<input type="hidden" name="pet_gender" value="<%=pb.getPet_gender()%>">
-						<input type="hidden" name="pet_weight"	value="<%=pb.getPet_weight()%>"> 
-						<input	type="hidden" name="pet_birthday"	value="<%=pb.getPet_birthday()%>"> 
-						<input	type="hidden" name="pet_age"value="<%=pb.getPet_age()%>"> 
-						<input type="hidden" name="pet_extra" value="<%=pb.getPet_extra()%>">
-						<input type="hidden" name="page_petSearch" value="1">
-					<input  class="btn btn-primary" type="submit" value="รายละเอียดสัตว์เลี้ยง">
-				</form>
+					<form action="ownerDetail.jsp" method="post">
+					<input type="hidden" name="owner_id" value="<%=bean.getId()%>">
+					<input type="hidden" name="owners_idcard" value="<%=bean.getOwners_idcard()%>"> 
+					<input type="hidden" name="prefix"	value="<%=bean.getPrefix()%>"> 
+					<input type="hidden" name="owners_name" value="<%=bean.getOwners_name()%>">
+					<input type="hidden" name="owners_lname" value="<%=bean.getOwners_lname()%>"> 
+					<input type="hidden" name="owners_gender" value="<%=bean.getOwners_gender()%>"> 
+					<input type="hidden" name="address"	value="<%=bean.getAddress()%>"> 
+					<input type="hidden" name="telephon" value="<%=bean.getTelephon()%>">
+					<input type="hidden" name="owners_birthday"	value="<%=bean.getOwners_birthday()%>">
+					<input  class="btn btn-primary" type="submit" value="รายละเอียดเจ้าของ">
+					</form>
 				</td>
-				
 			</tr>
 			<%
-				}
+				}}
 			%>
 		</table>
 		<!-- ตัวแบ่งหน้า -->
-			<form action="pagePetViewSerachServlet">
+			<form action="pageOwnerViewServlet">
 				<div align="center">
 					<br> <br>
-					<%
-						int a = 0;
-						int b = (petList.size() / 10) + 1;
-						int c = petList.size() % 10;
-						if (c != 0) {
-							for (a = 0; a < b; a++) {
-					%>
-					<button value="<%=a + 1%>" name="page" class="btn btn-info"><%=a + 1%></button>
-					<%
-						}
-						} else {
-							for (a = 1; a < b; a++) {
-					%>
-					<button value="<%=a%>" name="page" class="btn btn-info"><%=a%></button>
-					<%
-						}
-						}
-					%>
+					
 				</div>
-			</form><br>
+			</form>
+			<br>
 			<!-- สิ้นสุดตัวแบ่งหน้า -->
 	</div>
 
-	<%
-		}
-		if (petList.size() == 0) {
-	%>
-	<script>
-		alert('ไม่พบข้อมูลสัตว์เลี้ยงที่ค้นหา กรุณาตรวจสอบข้อมูลอีกครั้ง !!');
-	</script>
-	<%
-		}
-	%>
+	
+	
+	
 
 </div>
 

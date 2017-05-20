@@ -20,7 +20,7 @@
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 <div align="right">
 	<a href="addOwner.jsp"><input type="submit"
@@ -30,20 +30,22 @@
 		<div align="center">
 		<div class="col-sm-12"><h3 align="center">รับฝากสัตว์เลี้ยง</h3></div>
 		<div class="col-sm-12">
+		<div class="col-sm-3"> </div>
 		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลเจ้าของ</h4>
 			<form action="SearchDepositPetServlet" method="post">
 				<input name="owner_deposit" type="text" class="form-control" placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>
 		</div>
-		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลสัตว์เลี้ยง</h4>
+		<!-- <div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลสัตว์เลี้ยง</h4>
 			<form action="SearchPetDepositServlet" method="post">
 				<input name="pet_name" type="text" class="form-control"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
 				<input type="hidden" name="searchType" value="searchPets">&nbsp;&nbsp; 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>
+		</div> -->
 		</div>
-		</div>
+		<div class="col-sm-3"> </div>
 			
 			
 		</div>

@@ -226,8 +226,9 @@ DecimalFormat Formatter = new DecimalFormat("###,###.00");
 								<input  type="radio" name="dep_persent" value="4"  onclick="JavaScript:return fnccheck('9');"> 25%
 								<input type="radio" name="dep_persent" value="2" checked="checked"  onclick="JavaScript:return fnccheck('9');"> 50%
 								<input type="radio" name="dep_persent" value="1" onclick="JavaScript:return fnccheck('9');"> จ่ายเต็ม<br>
-								<input type="radio" name="dep_persent" value="0"  onclick="JavaScript:return fnccheck('1');" /> กำหนดเอง
-								<input type="text" name="pe_config" id="pe_config" class="form-control" value="" onchange="JavaScript:return fnccheck();"/> 
+								<input type="radio" name="dep_persent" value="0"  onclick="JavaScript:return fnccheck('1');" /> กำหนดเอง  
+								<input type="text" name="pe_config" placeholder="*กรุณาห้ามใส่เงินจำนวน 0 บาท  " id="pe_config" class="form-control" value="" onchange="JavaScript:return fnccheck();"/>
+								
 								</div>
 							</div>
 						</div>
@@ -294,7 +295,7 @@ DecimalFormat Formatter = new DecimalFormat("###,###.00");
 										if (!myCage.opener) myCage.opener = self;
 									}
 								</script>
-								<input name="opencageSelect" class="form-control" type="button" id="opencageSelect" onClick="Javascript:windowOpenCage();" value="เลือกกรง">
+								<input name="opencageSelect" class="form-control" type="button" id="opencageSelect" onClick="Javascript:windowOpenCage();" value="เลือกกรง"><font color="red"> *กรุณาเลือกกรง </font>
 								</div>
 							</div>
 						</div>

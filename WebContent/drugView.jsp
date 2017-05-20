@@ -20,7 +20,7 @@
 <br><br><br><br>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+<!-- 	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 <div align="right">
 	<a href="addDrug.jsp"><input type="submit"
@@ -32,7 +32,7 @@
 			<h4 align="center">ค้นหายา</h4>
 			<form action="searchDrugServlet" method="post">
 				<input name="drug_name" type="text" class="form-control" 
-					placeholder="ชื่อยา,รหัสยา" style="width:20%;" /> <input type="hidden"
+					placeholder="ชื่อยา,รหัสยา" style="width:25%;" /> <input type="hidden"
 					name="searchType" >&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>

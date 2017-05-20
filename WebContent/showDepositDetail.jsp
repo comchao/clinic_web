@@ -426,7 +426,7 @@ function checkCal() {
 								<div class="col-sm-5">
 								</div>
 								<div class="col-sm-2">
-								<input name="openProduct" class="form-control" type="button" id="openProduct" onClick="Javascript:windowOpen();" value="เลือกอาหารสัตว์เลี้ยง"><br>
+								<input name="openProduct" class="btn"  type="button" id="openProduct" onClick="Javascript:windowOpen();" value="เลือกอาหารสัตว์เลี้ยง"><br>
 								</div>
 								<div class="col-sm-5">
 								</div>
@@ -469,7 +469,7 @@ function checkCal() {
 						<input type="text"name="total_total" id="total_total" class="form-control" placeholder="รวม/บาท" required="required" readonly="readonly">
 					</div>
 					<div class="col-sm-2"  style="padding-left: 3px;padding-right: 3px;width: 12.33333333%;">
-						<input name="addFood" class="form-control" type="submit" id=""  value="เพิ่มอาหาร" onload="Javascript:checkPrd();"><br>
+						<input name="addFood" class="form-control" type="submit" id=""  value="เพิ่มอาหาร" onload="Javascript:checkPrd();"><font color="red"> *กรุณาเลือกอาหารก่อน </font><br>
 					</div>
 				</div>
 				

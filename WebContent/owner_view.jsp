@@ -10,7 +10,7 @@
 <div class="container">
 
 <div align="left" style="position:fixed;bottom:80%;width:500px;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 <div align="right">
 	<a href="addOwner.jsp"><input type="submit" class="btn btn-info" value="เพิ่มข้อมูลเจ้าของสัตว์เลี้ยง" /></a>

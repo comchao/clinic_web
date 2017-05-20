@@ -29,7 +29,7 @@
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                       <center> <img src="img/portfolio/analytics.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>bar chart</h6></center>
+                       <center> <img src="img/portfolio/analytics.png" class="img-responsive" alt="" width="130" height="130"><font color="#33CC99"><h6>column chart </h6></center>
 				</a>
                 </div>
                 

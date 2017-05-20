@@ -11,7 +11,7 @@
 <div class="container">
 
 <div align="left" style="position:fixed;bottom:80%;width:500px;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 <div align="right">
 	<a href="addOwner.jsp"><input type="submit" class="btn btn-info" value="เพิ่มข้อมูลเจ้าของสัตว์เลี้ยง" /></a>
@@ -20,22 +20,22 @@
 
 	<div class="row">
 		<div align="center">
-		<div class="col-sm-12"><h3 align="center">รับฝากสัตว์เลี้ยง</h3></div>
+			<div class="col-sm-12"><h3 align="center">รับฝากสัตว์เลี้ยง</h3></div>
 		<div class="col-sm-12">
-		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลเจ้าของ</h4>
+		<div class="col-sm-6"><h4 align="center"><!-- ค้นหาข้อมูลเจ้าของ --></h4>
 			
 			<form action="SearchDepositPetServlet" method="post">
-				<input name="owner_deposit" type="text" class="search-query"
+				<!-- <input name="owner_deposit" type="text" class="search-query"
 					placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> <input type="hidden"
 					name="searchType" value="searchOwners">&nbsp;&nbsp; <input
-					type="submit" class="btn btn-info" value="ค้นหา" />
+					type="submit" class="btn btn-info" value="ค้นหา" /> -->
 			</form></div>
-		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลสัตว์เลี้ยง</h4>
+		<div class="col-sm-6"><h4 align="center"><!-- ค้นหาข้อมูลสัตว์เลี้ยง --></h4>
 			
 			<form action="SearchPetDepositServlet" method="post">
-				<input  name="pet_name" type="text" class="search-query"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
+				<!-- <input  name="pet_name" type="text" class="search-query"	placeholder="ชื่อสัตว์เลี้ยง" style="width:70%;"/> 
 				<input type="hidden" name="searchType" value="searchPets">&nbsp;&nbsp; 
-				<input type="submit" class="btn btn-info" value="ค้นหา" />
+				<input type="submit" class="btn btn-info" value="ค้นหา" /> -->
 			</form></div>
 		</div>
 			
@@ -79,15 +79,23 @@
 				<td><%=pb.getPet_gene() %></td>
 				<td><%=pb.getReference_owner_id().getOwners_name() %> <%=pb.getReference_owner_id().getOwners_lname() %></td>
 				<td><%=pb.getReference_owner_id().getTelephon() %></td>
-				<td>
+				<%-- <td>
 				<form action="ShowPetDpsByOwner">
 						<input type="hidden" name="owner_id" value="<%=pb.getReference_owner_id().getId()%>" >
 						<input type="hidden" name="owner_name" value="<%=pb.getReference_owner_id().getOwners_name()%>" >
 						<input type="hidden" name="owner_lname" value="<%=pb.getReference_owner_id().getOwners_lname()%>" >
+						<input type="hidden" name="owners_idcard" value="<%=pb.getReference_owner_id().getOwners_idcard()%>"> 
+					<input type="hidden" name="prefix"	value="<%=pb.getReference_owner_id().getPrefix()%>"> 
+					<input type="hidden" name="owners_name" value="<%=pb.getReference_owner_id().getOwners_name()%>">
+					<input type="hidden" name="owners_lname" value="<%=pb.getReference_owner_id().getOwners_lname()%>"> 
+					<input type="hidden" name="owners_gender" value="<%=pb.getReference_owner_id().getOwners_gender()%>"> 
+					<input type="hidden" name="address"	value="<%=pb.getReference_owner_id().getAddress()%>"> 
+					<input type="hidden" name="telephon" value="<%=pb.getReference_owner_id().getTelephon()%>">
+					<input type="hidden" name="owners_birthday"	value="<%=pb.getReference_owner_id().getOwners_birthday()%>">
 						<input type="submit" class="btn btn-success"
 						value="ข้อมูลสัตวเลี้ยง">
 				</form>
-				</td>
+				</td> --%>
 				<td>
 					<form action="ownerDetail.jsp" method="post">
 					<input type="hidden" name="owner_id" value="<%=pb.getReference_owner_id().getId()%>">

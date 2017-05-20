@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-05-19T16:29:54 -->
+<!-- 2017-05-20T21:14:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShopReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fc34f2f-1fc4-4865-bf37-f3b9ce17091b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -214,20 +214,6 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 	<lastPageFooter>
 		<band height="155">
 			<staticText>
-				<reportElement x="61" y="70" width="100" height="20" uuid="a20f1383-fb99-4058-9ba1-670d78792315"/>
-				<textElement textAlignment="Center">
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[ผู้จัดทำ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="18" y="50" width="195" height="20" uuid="3b7b780b-504e-4dde-bd17-57150e0b6987"/>
-				<textElement>
-					<font fontName="TH SarabunPSK" size="14"/>
-				</textElement>
-				<text><![CDATA[(ลงชื่อ)_____________________________]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="334" y="50" width="228" height="20" uuid="69f7d449-b436-47b1-89b4-5dd96f929ee3"/>
 				<textElement>
 					<font fontName="TH SarabunPSK" size="14"/>
@@ -239,7 +225,7 @@ WHERE treatment_other.refer_treatment_id = $P{id}]]>
 				<textElement textAlignment="Center">
 					<font fontName="TH SarabunPSK" size="14"/>
 				</textElement>
-				<text><![CDATA[ผู้ตรวจสอบ]]></text>
+				<text><![CDATA[ผู้รับเงิน]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="380" y="0" width="65" height="20" forecolor="#736343" uuid="e2de8d5b-bfc9-49bc-ba06-1242bacc9475"/>

@@ -299,13 +299,13 @@
 				<table style="width: 100%">
 					<tr>
 						<td width="50%">
-							<table style="width: 100%">
+							<table style="width: 20%">
 								<tbody>
 									<tr data-value="1">
 										<td colspan="3">
 											<div class="form-group">
 												 <button type="button" id="add_row_drug"
-													class="btn btn-sm btn-danger" > โปรดเลือก  เพิ่มการจ่ายยา</button>
+													class="form-control" >เพิ่มจ่ายยา</button> <font color="red" size="2"> *กรุณาเพิ่มการจ่ายยา</font><br>
 											</div>
 										</td>
 									</tr>
@@ -313,13 +313,13 @@
 							</table>
 						</td>
 						<td width="50%">
-							<table style="width: 100%">
+							<table style="width: 20%">
 								<tbody>
 									<tr data-value="1">
 										<td colspan="3">
 											<div class="form-group">
 											<button type="button" id="add_row_treatment"
-													class="btn btn-sm btn-danger" >โปรดเลือก ค่ารักษา</button>
+													class="form-control" > ค่ารักษา</button><font color="red" size="2"> *กรุณาเลือกค่ารักษา </font><br>
 											</div>
 										</td>
 									</tr>

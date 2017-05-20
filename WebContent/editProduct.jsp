@@ -29,7 +29,7 @@
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="productView.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+<!-- 	<a href="productView.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 
 	<div class="row">
@@ -143,7 +143,7 @@
 								<div class="form-group">
 								
 									<input type="file" name=pic_product id="pic_product"
-										placeholder="รูปภาพ" class="form-control"
+										placeholder="รูปภาพ" class="form-control" required="required" 
 										 size="50">
 								</div>
 							</div>
@@ -159,7 +159,7 @@
 						<div class="form-group" style="text-align: right">
 							<input type="hidden" name="product_id"
 								value="<%=request.getParameter("product_id")%>"> <input
-								type="submit" name="submit" id="submit" onclick="return editConfirm();"class="btn btn-success"
+								type="submit" name="submit" class="btn btn-success"
 								value="บันทึกข้อมูล"  />
 						</div>
 					</div>

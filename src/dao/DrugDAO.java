@@ -63,6 +63,7 @@ public class DrugDAO {
 				drugBean.setId(rs.getInt("id"));
 				drugBean.setDrug_type(rs.getString("drug_type"));
 				drugBean.setDrug_name(rs.getString("drug_name"));
+				drugBean.setDrug_code(rs.getString("drug_code"));
 				drugBean.setDrug_detail(rs.getString("drug_detail"));
 				drugBean.setDrug_price(rs.getDouble("drug_price"));
 				drugBean.setDrug_unit(rs.getString("drug_unit"));
@@ -106,6 +107,7 @@ public class DrugDAO {
 				drugBean.setId(rs.getInt("id"));
 				drugBean.setDrug_type(rs.getString("drug_type"));
 				drugBean.setDrug_name(rs.getString("drug_name"));
+				drugBean.setDrug_code(rs.getString("drug_code"));
 				drugBean.setDrug_detail(rs.getString("drug_detail"));
 				drugBean.setDrug_price(rs.getDouble("drug_price"));
 				drugBean.setDrug_unit(rs.getString("drug_unit"));
@@ -148,6 +150,7 @@ public class DrugDAO {
 				drugBean.setId(rs.getInt("id"));
 				drugBean.setDrug_type(rs.getString("drug_type"));
 				drugBean.setDrug_name(rs.getString("drug_name"));
+				drugBean.setDrug_code(rs.getString("drug_code"));
 				drugBean.setDrug_detail(rs.getString("drug_detail"));
 				drugBean.setDrug_price(rs.getDouble("drug_price"));
 				drugBean.setDrug_unit(rs.getString("drug_unit"));

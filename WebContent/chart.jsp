@@ -36,7 +36,7 @@
 }			
 #chartdiv {
 	width		: 800px;
-	height		: 800px;
+	height		: 500px;
 	font-size	: 11px;
 }		
 </style>
@@ -724,9 +724,9 @@ if(produc_month.equals("01")){ %>
 </div>
 <br>
 
-<div class="col-sm-2">
-</div>
-<div class="col-sm-8">
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
 
  <%if(chart_id!=null){ %>
 <!--ตารางข้อมูล-->
@@ -810,17 +810,10 @@ var chart = AmCharts.makeChart( "chartdiv", {
 
 </tbody>
 </table>
-
-  
-	
-	
-
- 
-
+</div>
+  <div class="col-sm-3"></div>
 </div>
 
-<div class="col-sm-2">
-</div>
 </div>
 <!-- Chart code -->
 
@@ -840,8 +833,9 @@ var chart = AmCharts.makeChart( "chartdiv", {
 
 	
 
-
+<br>
 
 
 </body>
 </html>
+<%@ include file="footer_index.jsp" %>

@@ -30,7 +30,7 @@
 	}
 </script>
 <div class="container">
-<div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
+<%-- <div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
 	<a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
 </div>
 <div align="right">
@@ -41,11 +41,8 @@
 			<input type="submit" class="btn btn-info"
 			value="เพิ่มสัตว์เลี้ยง">
 	</form>
-</div>
-	<%
-		ArrayList<PetsBean> petList = (ArrayList) session.getAttribute("allPetSS");
-		if (petList != null) {
-	%>
+</div> --%>
+	
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr class="info">
@@ -64,6 +61,10 @@
 			        request.setCharacterEncoding("UTF-8");
 			        response.setCharacterEncoding("UTF-8");
 					PetsBean petBean;
+					
+					ArrayList<PetsBean> petList = (ArrayList) session.getAttribute("allPetSS");
+					if (petList != null) {
+				
 					String allpage = (String) session.getAttribute("pageN");
 					int p = Integer.parseInt(allpage);
 					for (int i = (p * 10) - 10; i < p * 10; i++) {
@@ -176,7 +177,7 @@
 			%>
 
 		</table>
-		<!-- ตัวแบ่งหน้า -->
+	<%-- 	<!-- ตัวแบ่งหน้า -->
 			<form action="pagePetViewServlet">
 				<div align="center">
 					<br> <br>
@@ -202,7 +203,7 @@
 				
 			</form>
 			<!-- สิ้นสุดตัวแบ่งหน้า -->
-	</div>
+	</div> --%>
 	<%
 		}
 	%>
