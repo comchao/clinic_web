@@ -61,7 +61,7 @@
 	
 	<%java.text.DateFormat df = new java.text.SimpleDateFormat("EEEE ที่ dd เดือน MMMM พ.ศ. yyyy", new Locale("th", "TH")); %>
 		<br>
-	<h3 align="center"><b>คิวสัตว์ ที่รอตรวจรักษา</b></h3> <br>
+	<h3 align="center"><b>ข้อมูลคิวนัดหมายสัตว์ ที่รอตรวจรักษา</b></h3> <br>
 	<h4 align="center"> <b>ณ วันที่  <%= df.format(new java.util.Date()) %></b> </h4>
 	<div class="table-responsive">
 		<table class="table table-hover">
@@ -138,7 +138,7 @@ bean = (CalendarBean) list.get(i); %>
 		   <td>
 					
 						<td bgcolor="#33CC66" >ตรวจเรียบร้อย</td>
-						<td><center><input class="btn btn-primary" type="submit" value="นัดครั้งต่อไป"></center><td>
+						<!-- <td><center><input class="btn btn-primary" type="submit" value="นัดครั้งต่อไป"></center><td> -->
 						
 			</td>
 				<%} %>

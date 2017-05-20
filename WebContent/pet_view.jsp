@@ -31,7 +31,7 @@
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
-	<a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 <div align="right">
 	<form action="addPets.jsp" method="post">

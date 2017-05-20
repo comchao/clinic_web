@@ -38,9 +38,9 @@
 		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลเจ้าของ</h4>
 			
 			<form action="SearchOwnerAppointmentServlet" method="post">
-				<input name="owner_name" type="text" class="form-control"  placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> 
+				<input name="owner_name" type="text" class="form-control" required="required" placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> 
 				<input type="hidden" name="searchType" >
-				<input type="submit" class="btn btn-info" value="ค้นหา" />
+				<input type="submit" class="btn btn-info" required="required"value="ค้นหา" />
 			</form></div>
 		<!-- <div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลสัตว์เลี้ยง</h4>
 			

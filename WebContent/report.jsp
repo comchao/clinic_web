@@ -24,7 +24,7 @@ function mydate() {
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	
 </div>
 	<div class="row"><br><br><br><br><br><br>	
 		<h3 align="center">การออกรายงาน</h3>
@@ -75,5 +75,6 @@ function mydate() {
 	</div>
 </div>
   <script src="jquery-1.10.2.min.js"></script>
+<!--   สิ้นสุด -->
 
 <%@ include file="footer_index.jsp"%>

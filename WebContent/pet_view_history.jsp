@@ -36,7 +36,7 @@
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 	<br>
 	<h3 align="center">สัตว์เลี้ยงของ คุณ <%=request.getParameter("owner_name")+"  "+request.getParameter("owner_lname") %></h3>

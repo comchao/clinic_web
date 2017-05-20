@@ -328,11 +328,13 @@ li.sortable-placeholder {
 							<div class="col-sm-4">
 								<div class="form-group">
 								<ul class="connected list">
-                                <p><h6>*กรุณา ลาก วาง อาการของโรค*</h6></p>
+                                <font color="red"><p><h6>*กรุณา ลาก วาง อาการของโรค*</h6></p></font>
+                              
                                 
                                 
 								</ul>
 								
+								<br><br><br><br><br><br><br><br><br><br><br><br><br>
 								
 							
 								</div>

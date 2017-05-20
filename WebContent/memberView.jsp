@@ -10,7 +10,7 @@
 
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
-	<a href="index-veterinary.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+<!-- 	<a href="index-veterinary.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 <div align="right">
 
@@ -23,7 +23,7 @@
 			
 			<form action="SearchMemberServlet" method="post">
 				<input name="mem_name" type="text" class="form-control" style="width:30%;"
-					placeholder="ชื่อ ,รหัสบัตรประชาชน ,เบอร์โทร" /> <input type="hidden"
+					placeholder="ชื่อ ,รหัสบัตรประชาชน ,เบอร์โทร" required="required"/> <input type="hidden"
 					name="searchType" value="searchMembers">&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>

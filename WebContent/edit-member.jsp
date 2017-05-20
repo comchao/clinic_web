@@ -23,7 +23,7 @@
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a  href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a  href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 	<div class="row">
 	<% request.setCharacterEncoding("UTF-8"); %>
@@ -169,9 +169,9 @@
 							</div>
 							<div class="col-sm-8">
 								<div class="form-group">
-									<input type="text" name="mem_birthday" id="dateInput"
+									<input type="date" name="mem_birthday"
 										placeholder="วันเกิด " class="form-control" value="<%=request.getParameter("mem_birthday")%>"
-										required="required" />
+										 />
 								</div>
 							</div>
 						</div>
@@ -267,7 +267,7 @@
 								<div class="form-group" style="text-align: center">
 					<input type="hidden" name="id" value="<%=request.getParameter("id") %>">
 						<input type="submit" name="submit" id="submit"
-						onclick="return editConfirm();	"class="btn btn-success" value="บันทึกข้อมูล" onclick="cal(value)" />
+							class="btn btn-success" value="บันทึกข้อมูล" onclick="cal(value)" />
 					</div>
 							</div>
 						</div>

@@ -33,7 +33,7 @@
 		<div class="col-sm-3"> </div>
 		<div class="col-sm-6"><h4 align="center">ค้นหาข้อมูลเจ้าของ</h4>
 			<form action="SearchDepositPetServlet" method="post">
-				<input name="owner_deposit" type="text" class="form-control" placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;"/> 
+				<input name="owner_deposit" type="text" class="form-control" required="required"  placeholder="ชื่อเจ้าของสัตว์เลี้ยง,หมายเลขบัตรประชาชน,เบอร์โทรศัพท์" style="width:70%;" /> 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>
 		</div>
@@ -97,7 +97,7 @@
 						<input type="hidden" name="owner_name" value="<%=ownerBean.getOwners_name()%>" >
 						<input type="hidden" name="owner_lname" value="<%=ownerBean.getOwners_lname()%>" >
 						<input type="submit" class="btn btn-success"
-						value="ข้อมูลสัตวเลี้ยง">
+						value="ข้อมูลสัตว์เลี้ยง">
 				</form>
 				<td>
 					<form action="ownerDetail.jsp" method="post">

@@ -205,7 +205,7 @@
 					<div class="col-sm-3">
 						<div class="form-group" style="text-align: center">
 							<input name="title" type="text" class="form-control" value=""
-								placeholder="เรื่องนัด" />
+								placeholder="เรื่องนัด" required="required" />
 						</div>
 					</div>
 
@@ -217,7 +217,7 @@
 					<div class="col-sm-3">
 						<div class="form-group" style="text-align: center">
 							<b><input name="date" type="text" class="form-control"
-								value="" id="dateInput" placeholder="วันนัด" /> <!-- ตัวแปรเพิ่มข้อมูลนัดหมาย -->
+								value="" id="dateInput" required="required" placeholder="วันนัด" /> <!-- ตัวแปรเพิ่มข้อมูลนัดหมาย -->
 							</b>
 						</div>
 					</div>
@@ -267,7 +267,7 @@
 						<div class="form-group" style="text-align: center">
 							<center>
 								<input name="note" type="text" class="form-control" value=""
-									placeholder="หมายเหตุ" />
+									placeholder="หมายเหตุ" required="required" />
 								<!-- ตัวแปรเพิ่มข้อมูลนัดหมาย -->
 							</center>
 						</div>

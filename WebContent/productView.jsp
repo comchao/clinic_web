@@ -24,7 +24,7 @@
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;margin:0px auto;">
-	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+<!-- 	<a href="index-officer.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 <div align="right">
 	 <a href="addProduct.jsp"><input type="submit"
@@ -32,12 +32,12 @@
 </div>
 	<div class="row">
 		<div align="center">
-		<h3 align="center">ข้อมูลสินค้า</h3>	<br />
+		<h3 align="center">ข้อมูลสินค้าทั้งหมด</h3>	<br />
 			<h4 align="center">ค้นหาสินค้า</h4>
 			<br />
 			<form action="searchProductServlet" method="post">
-				<input name="product_name" type="text" class="form-control" style="width:20%;" 
-					placeholder="ชื่อสินค้า" /> <input type="hidden"
+				<input name="product_name" type="text" class="form-control" style="width:30%;" 
+					placeholder="ชื่อสินค้า" required="required" > <input type="hidden"
 					name="searchType" value="searchProducts">&nbsp;&nbsp; <input
 					type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>

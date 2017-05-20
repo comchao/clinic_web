@@ -26,12 +26,14 @@
 		<div class="col-sm-6" ><h3 align="center">ค้นหาตามประเภท</h3>
 			
 			<form action="searchProductIDServlet" method="POST" >
-			<select name="pet_id" id="pet_id" class="form-control" style="width:70%;">
+			<select name="pet_id" id="pet_id" class="form-control" style="width:70%;"required="required" >
+				 <option value=""> เลือกประเภท </option>
 				<%
 					ArrayList<TypePetBean> list = PetsDAO.queryTypePetAll();
 					for (TypePetBean typePet : list) {
 							
 				%>
+				  
 					<option value="<%=typePet.getId()%>"><%=typePet.getTypeName()%></option>
 				<%
 				}
@@ -43,7 +45,7 @@
 		<div class="col-sm-6"><h3 align="center">ค้นหาจาก รหัสสินค้า / ชื่อสินค้า</h3>
 			
 			<form action="searchProductShopServlet" method="post">
-				<input name="product_name" type="text" class="form-control"	placeholder="ชื่อสินค้าสัตว์เลี้ยง" style="width:70%;"/> 
+				<input name="product_name" type="text" required="required" class="form-control"	placeholder="ชื่อสินค้าสัตว์เลี้ยง" style="width:70%;"/> 
 				<input type="hidden" name="searchType" value="searchProducts">&nbsp;&nbsp; 
 				<input type="submit" class="btn btn-info" value="ค้นหา" />
 			</form>

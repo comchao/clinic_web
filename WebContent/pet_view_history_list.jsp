@@ -18,7 +18,7 @@
 
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a href="javascript:history.back();"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 	<br>
 	<h3 align="center">ประวัติการรักษาทั้งหมด </h3><br> 

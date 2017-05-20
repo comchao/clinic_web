@@ -27,7 +27,7 @@
 </script>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="depositPet.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" />
+	<!-- <a href="depositPet.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /> -->
 	<input type="hidden" name="owner_id" value="<%=request.getParameter("owner_id")%>" >
 	<input type="hidden" name="owner_name" value="<%=request.getParameter("owner_name")%>" >
 	<input type="hidden" name="owner_lname" value="<%=request.getParameter("owner_lname")%>" >

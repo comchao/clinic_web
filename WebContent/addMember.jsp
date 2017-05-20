@@ -6,14 +6,8 @@
 <br>
 <br>
 <br>
-<script>
-	function editConfirm() {
-		if (confirm("บันทึกการแก้ไขข้อมูลสำเร็จ")) {
-			return true;
-		}
-		return false;
-	}
-</script>
+
+
 <div class="container">
 <!-- <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
 	<a href="memberView.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
@@ -156,7 +150,7 @@
 							</div>
 							<div class="col-sm-8">
 								<div class="form-group">
-									<input type="text" name="mem_birthday" id="dateInput"
+									<input type="date" name="mem_birthday" 
 										placeholder="วันเกิด " class="form-control"
 										required="required" />
 								</div>
@@ -232,7 +226,7 @@
 							<div class="col-sm-8">
 								<div class="form-group" style="text-align: center">
 							<input type="submit" name="submit" id="submit"
-								onclick="return editConfirm();"class="btn btn-success" value="บันทึกข้อมูล"
+								class="btn btn-success" value="บันทึกข้อมูล"
 								onclick="cal(value)" />
 						</div>
 							</div>

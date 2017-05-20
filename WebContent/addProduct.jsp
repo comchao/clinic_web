@@ -11,7 +11,7 @@
 <br>
 <div class="container">
 <div align="left" style="position:fixed;bottom:80%;width:1000px;margin:0px auto;">
-	<a href="productView.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a>
+	<!-- <a href="productView.jsp"><input type="submit" class="btn btn-success" value="ย้อนกลับ" /></a> -->
 </div>
 	<div class="row">
 		<h3 align="center">เพิ่มข้อมูลสินค้า</h3>
@@ -34,6 +34,7 @@
 								<div class="form-group">
 								<select name="refer_type_pet" id="refer_type_pet" class="form-control"
 										required="required">
+										 <option value=""> เลือกประเภทสัตว์เลี้ยง </option>
 								<%
 								ArrayList<TypePetBean> list = PetsDAO.queryTypePetAll();
 								for (TypePetBean typePet : list) {
